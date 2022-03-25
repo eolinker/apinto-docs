@@ -5,13 +5,14 @@ module.exports = {
   description: '一款基于 Golang 开发的微服务网关',
   public: path.resolve(basedir, './public'),
   head: [['link', { rel: 'icon', href: '/images/logo.svg' }]],
+  home: '/docs/index.md',
   themeConfig: {
     logo: '/images/logo.svg',
     repo: 'https://github.com/eolinker/apinto',
     repoLabel: 'Github',
     navbar: [
       { text: "首页", link: "https://www.apinto.com/", target: "_self" },
-      { text: "文档", link: "/" },
+      { text: "文档", link: "/docs/index.md" },
       { text: "论坛", link: "https://community.apinto.com/" },
       { text: "下载", link: "https://github.com/eolinker/apinto/releases" },
     ],
@@ -25,7 +26,7 @@ function getSideBar(){
     '/': [
       {
         text: '关于Apinto',
-        link: '/',
+        link: '/docs/index.md',
       },
       {
         text: '快速开始',
