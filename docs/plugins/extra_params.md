@@ -1,0 +1,173 @@
+# 额外参数
+### 插件信息
+
+| 插件名称 | 字段插件     | 属性     |
+| -------- | ------------ | -------- |
+| 额外参数 | extra_params | 参数处理 |
+
+### 功能描述
+
+开启该插件后，不需要用户传某些参数值，网关会在转发时自动带上这些参数，支持header、body、query参数。
+额外参数仅支持 **表单** 类型与 **json** 类型：
+
+- formdata的参数值须为string类型，头部补充Conent-Type:x-www-form-urlencoded。
+- 若额外参数是json类型，需在头部补充Content-Type:application/json。
+- 参数类型为表单时支持同名参数。
+
+
+
+### Open Api
+
+#### 配置示例
+
+**示例说明**：在转发请求的头部header里加上`test:test_value`, 若转发header里本身已存在test，且冲突处理方式为conflict，则采用插件内配置的值。
+
+```json
+{
+    "params":[
+        {
+            "name":"test",
+            "position":"header",
+            "value":"test_value",
+            "conflict": "convert",
+        }
+    ],
+    "error_type":"text"
+}
+```
+
+
+
+#### 配置参数说明
+
+| 参数名     | 说明                 | 是否必填 | 默认值  | 取值范围               |
+| ---------- | -------------------- | -------- | ------- | ---------------------- |
+| params     | 额外参数列表         |          |         | array                  |
+| name       | 参数名               | 是       |         | string                 |
+| position   | 参数位置             | 是       |         | [header/body/query]    |
+| value      | 参数值               | 是       |         | string                 |
+| conflict   | 参数冲突时的处理方式 | 否       | convert | [origin/convert/error] |
+| error_type | 插件返回报错的类型   | 否       | text    | [text、json]           |
+
+**参数冲突说明**：
+额外参数插件配置了参数A的值，但是直接请求时也传了参数A，此时为参数出现冲突，参数A实际上会接收两个参数值。
+
+- convert：参数出现冲突时，取映射后的参数，即配置的值
+- origin：参数出现冲突时，取映射前的参数，即实际传的值
+- error：请求时报错，”param_name” has a conflict.
+
+#### 请求参数
+
+| 参数名       | 说明     | 必填 | 值可能性                                  | 参数位置 |
+| :----------- | :------- | :--- | :---------------------------------------- | :------- |
+| Content-Type | 数据类型 | 是   | x-www-form-urlencoded 或 application/json | header   |
+
+若配置示例里的 test 参数为表单参数，则请求头部填写 Conent-Type:x-www-form-urlencoded。
+若配置示例里的 test 参数为Json参数，则请求头部需加 Conent-Type:application/json。
+
+
+
+#### Open API 请求示例
+
+##### 全局配置
+
+```shell
+curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
+-H 'Content-Type:application/json' \
+-d '{
+    "plugins":[{
+        "id":"eolinker.com:apinto:extra_params",
+        "name":"my_extra_params",
+        "type":"service",
+        "status":"enable"
+    }]
+}'
+```
+
+##### 配置带有额外参数插件的service服务
+
+以在请求头部加参数为例，全局插件具体配置点此进行[跳转](/docs/plugins)。
+
+**备注**：匿名服务配置的是apinto官方示例接口，将返回请求的相关信息。
+
+```shell
+curl -X POST  'http://127.0.0.1:9400/api/service' \
+-H 'Content-Type:application/json' \
+-d '{
+    "name": "param",
+    "driver": "http",
+    "timeout": 3000,
+    "retry": 3,
+    "scheme": "http",
+    "anonymous": {
+        "type": "round-robin",
+        "config": "demo-apinto.eolink.com:8280"
+    },
+    "plugins": {
+        "my_extra_params":{
+            "disable": false,
+            "config":{
+                "params": [{
+                "name": "demo_param",
+                "position": "header",
+                "value": "1",
+                "conflict": "Convert"
+                }],
+            "error_type": "text"
+            }
+        }
+    }
+}'
+```
+
+##### 绑定路由
+
+```shell
+curl -X POST  'http://127.0.0.1:9400/api/router' \
+-H 'Content-Type:application/json' \
+-d '{
+    "name":"params",
+    "driver":"http",
+    "listen":8080,
+    "rules":[{
+        "location":"/demo"
+    }],
+    "target":"param@service"
+}'
+```
+
+##### 接口请求示例
+
+```shell
+curl -X GET 'http://127.0.0.1:8080/demo'
+```
+
+##### 接口访问返回示例
+
+```json
+{
+    "body":"",
+    "header":{
+        "Accept":[
+            "*/*"
+        ],
+        "Demo_param":[
+            "1"
+        ],
+        "User-Agent":[
+            "curl/7.75.0"
+        ],
+        "X-Forwarded-For":[
+            "127.0.0.1,127.0.0.1"
+        ]
+    },
+    "host":"127.0.0.1:8080",
+    "method":"GET",
+    "path":"/demo",
+    "query":{
+
+    },
+    "url":"/demo"
+}
+```
+
