@@ -9,15 +9,15 @@ Apinto document project, which includes the use tutorials, development documents
 
 ```bash
 .
-├── README.md						# 本文档
-├── index.md						# 首页
-├── components/					    # markdown 文档中需要运行的vue组件，例如定制化的首页
-├── .vuepress/					    # vuepress配置，构建后的静态资源也在该文件夹下。
-├── assets/						    # 静态资源，主要是放置图片
-├── public/						    # 不需要编译的公共资源，如 favicon.ico,logo等
-├── docs/                           # 各详细文档
-├── package.json				    # 依赖配置
-└── yarn.lock						# 依赖配置
+├── README.md       # 本文档
+├── index.md        # 首页
+├── components/     # markdown 文档中需要运行的vue组件，例如定制化的首页
+├── .vuepress/      # vuepress配置，构建后的静态资源也在该文件夹下。
+├── assets/         # 静态资源，主要是放置图片
+├── public/	        # 不需要编译的公共资源，如 favicon.ico,logo等
+├── docs/           # 各详细文档
+├── package.json    # 依赖配置
+└── yarn.lock       # 依赖配置
 ```
 
 ### 如何开始编辑
@@ -68,6 +68,6 @@ VuePress 提供了一些配置选项，用于控制`.md`文档的细节，目前
 $ yarn build
 ```
 
-构建成功后，会在`/.vitepress`下创建名为 `dist/`的文件夹，其中内容即是构建后的静态资源，如果需要在本地预览，可以运行`yarn serve`命令，在本地临时启动一个静态资源服务器，即可预览构建后的最终效果。
+构建成功后，会在`/.vuepress`下创建名为 `dist/`的文件夹，其中内容即是构建后的静态资源，如果需要在本地预览，可以运行`yarn serve`命令，在本地临时启动一个静态资源服务器，即可预览构建后的最终效果。
 
 也可以将`dist/`中的内容放置到正式服务器上浏览。
