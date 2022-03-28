@@ -14,7 +14,7 @@ Apinto document project, which includes the use tutorials, development documents
 ├── components/     # markdown 文档中需要运行的vue组件，例如定制化的首页
 ├── .vuepress/      # vuepress配置，构建后的静态资源也在该文件夹下。
 ├── assets/         # 静态资源，主要是放置图片
-├── public/	        # 不需要编译的公共资源，如 favicon.ico,logo等
+├── public/         # 不需要编译的公共资源，如 favicon.ico,logo等
 ├── docs/           # 各详细文档
 ├── package.json    # 依赖配置
 └── yarn.lock       # 依赖配置
