@@ -5,9 +5,12 @@ module.exports = {
   description: '一款基于 Golang 开发的微服务网关',
   public: path.resolve(basedir, './public'),
   head: [['link', { rel: 'icon', href: '/images/logo.svg' }]],
-  home: '/docs/index.md',
   themeConfig: {
     logo: '/images/logo.svg',
+    home: '/docs/',
+    docsRepo: 'https://github.com/eolinker/apinto-docs',
+    docsBranch: 'main',
+
     repo: 'https://github.com/eolinker/apinto',
     repoLabel: 'Github',
     navbar: [
@@ -17,8 +20,26 @@ module.exports = {
       { text: "下载", link: "https://github.com/eolinker/apinto/releases" },
     ],
     sidebar: getSideBar(),
-
   },
+  plugins: [
+    [
+      '@vuepress/register-components',
+      {
+        componentsDir: path.resolve(basedir, './components'),
+      },
+    ],
+    [
+      '@vuepress/plugin-search',
+      {
+        locales: {
+          '/': {
+            placeholder: 'Search',
+          },
+          
+        },
+      },
+    ]
+  ],
 }
 
 function getSideBar(){
