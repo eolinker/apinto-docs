@@ -43,8 +43,5 @@ body:
     attributes:
       label: Environment
       description: Share your environment details. Reports without proper environment details will likely be closed.
-      value: |
-        - APINTO version (run `apinto version`):
-        - Operating system (run `uname -a`):
     validations:
       required: true
