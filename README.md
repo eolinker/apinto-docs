@@ -58,7 +58,7 @@ VuePress 提供了一些配置选项，用于控制`.md`文档的细节，目前
 ...markdown 语法内容...
 ```
 
-关于自定义组件的注册和使用，具体可以参照官方文档的[egister-components](https://v2.vuepress.vuejs.org/reference/plugin/register-components.html)。
+关于自定义组件的注册和使用，具体可以参照官方文档的[register-components](https://v2.vuepress.vuejs.org/reference/plugin/register-components.html)。
 
 ### 如何构建
 
