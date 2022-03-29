@@ -16,7 +16,18 @@ module.exports = {
     navbar: [
       { text: "首页", link: "https://www.apinto.com/", target: "_self" },
       { text: "文档", link: "/docs/index.md" },
-      { text: "论坛", link: "https://community.apinto.com/" },
+      { text: "社区", children: [
+        {
+          text: '论坛',
+          link: "https://community.apinto.com/",
+        },
+        {
+          text: 'Contributor',
+          link: "/contributor/contributer.md",
+        },
+        
+        ], 
+      },
       { text: "下载", link: "https://github.com/eolinker/apinto/releases" },
     ],
     sidebar: getSideBar(),
