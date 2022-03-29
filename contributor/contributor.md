@@ -23,4 +23,4 @@ title: Contributor
 
 
 ## All Contributors
-<Contributer />
+<Contributor />

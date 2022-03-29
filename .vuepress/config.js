@@ -23,8 +23,8 @@ module.exports = {
         },
         {
           text: 'Contributor',
-          link: "/contributor/contributer.md",
-        },
+          link: "/contributor/contributor.md",
+        }
         
         ], 
       },
