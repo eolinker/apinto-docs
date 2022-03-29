@@ -10,12 +10,12 @@ module.exports = {
     home: '/docs/',
     docsRepo: 'https://github.com/eolinker/apinto-docs',
     docsBranch: 'main',
-
     repo: 'https://github.com/eolinker/apinto',
     repoLabel: 'Github',
     navbar: [
       { text: "首页", link: "https://www.apinto.com/", target: "_self" },
       { text: "文档", link: "/docs/index.md" },
+      
       { text: "社区", children: [
         {
           text: '论坛',
@@ -28,6 +28,7 @@ module.exports = {
         
         ], 
       },
+      { text: "博客", link: "https://blog.apinto.com" },
       { text: "下载", link: "https://github.com/eolinker/apinto/releases" },
     ],
     sidebar: getSideBar(),
