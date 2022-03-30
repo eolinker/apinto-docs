@@ -55,7 +55,7 @@ Docker部署教程[点此](https://hub.docker.com/repository/docker/eolinker/api
 
 APINTO容器有两个可挂载的目录：
 
-* `/var/lib/apinto`:目录内有data(数据文件放置目录),log(日志放置目录),extends(扩展仓库目录)
+* `/var/lib/apinto`:目录内有**data**(数据文件放置目录),**log**(日志放置目录),**extends**(扩展仓库目录)
 
 * `/etc/apinto`:存放了config.yml文件，该文件用于指定节点的路由监听端口，ssl证书等信息。详细信息
 
@@ -66,6 +66,8 @@ APINTO容器有两个可挂载的目录：
 ### 创建Service
 
 以NodePort类型为例，端口配置请以应用的配置文件为标准。
+
+注意：该服务需要与APINTO的pod在同一命名空间内。
 
 ```yaml
 apiVersion: v1
@@ -111,21 +113,23 @@ spec:
       containers:
       - name: apinto-gateway # 容器名字
         image: eolinker/apinto-gateway:latest
-        imagePullPolicy: IfNotPresent 
+        imagePullPolicy: Always
         lifecycle:
           postStart: #容器运行加入集群脚本
             exec:
-              command: ["/bin/sh", "-c", "nohup sh /apinto/join.sh >nohup.out 2>&1 &"]
+              command: ["/bin/bash", "-c", "nohup bash /apinto/join.sh >nohup.out 2>&1 &"]
           preStop:  #容器关闭前运行离开集群脚本
             exec:
-              command: ["/bin/sh","-c","sh /apinto/leave.sh"]
+              command: ["/bin/bash","-c","bash /apinto/leave.sh"]
         env:
         - name: POD_IP #将pod_id加入环境变量
           valueFrom:
             fieldRef:
               fieldPath: status.podIP
-        - name: SVC_NAME  #将服务名加入环境变量
+        - name: SVC_NAME  #将apinto服务名加入环境变量
           value: "apinto-gateway-svc"
+        - name: SVC_NAMESPACE #指定apinto服务所在命名空间
+          value: "default"
         - name: APINTO_ADMIN_PORT
           value: "9400"
         - name: SVC_TOKEN  #将访问k8s集群的TOKEN加入环境变量
@@ -135,6 +139,7 @@ spec:
 **备注**：
 
 * 若k8s集群开启了token访问模式，则需要在配置内传入token作为环境变量
+* 需指定apinto服务名以及其命名空间作为POD环境变量
 * 若只想部署单个POD，可以将配置文件内的`lifecycle`和`env`环境变量删除。
 
 
@@ -240,14 +245,14 @@ spec:
     containers:
     - name: apinto-gateway 
       image: eolinker/apinto-gateway:latest 
-      imagePullPolicy: IfNotPresent 
+      imagePullPolicy: Always 
       lifecycle:
         postStart: #容器运行前启动加入集群脚本
           exec:
-            command: ["/bin/sh", "-c", "nohup sh /apinto/join.sh >nohup.out 2>&1 &"]
+            command: ["/bin/bash", "-c", "nohup bash /apinto/join.sh >nohup.out 2>&1 &"]
         preStop:  #容器关闭前运行离开集群脚本
           exec:
-            command: ["/bin/sh","-c","sh /apinto/leave.sh"]
+            command: ["/bin/bash","-c","bash /apinto/leave.sh"]
       volumeMounts:  #目录挂载
       - mountPath: /var/lib/apinto
         name: pv-local
@@ -256,8 +261,10 @@ spec:
         valueFrom:
           fieldRef:
             fieldPath: status.podIP
-      - name: SVC_NAME  #将服务名加入环境变量
+      - name: SVC_NAME  #将apinto服务名加入环境变量
         value: "apinto-gateway-svc"
+      - name: SVC_NAMESPACE #指定apinto服务所在命名空间
+        value: "default"
       - name: APINTO_ADMIN_PORT
         value: "9400"
       - name: SVC_TOKEN  #将master节点的TOKEN加入环境变量
@@ -343,14 +350,14 @@ spec:
     containers:
     - name: nfs-apinto 
       image: eolinker/apinto-gateway:latest
-      imagePullPolicy: IfNotPresent
+      imagePullPolicy: Always
       lifecycle:
         postStart: #容器运行前启动加入集群脚本
           exec:
-            command: ["/bin/sh", "-c", "nohup sh /apinto/join.sh >nohup.out 2>&1 &"]
+            command: ["/bin/bash", "-c", "nohup bash /apinto/join.sh >nohup.out 2>&1 &"]
         preStop:  #容器关闭前运行离开集群脚本
           exec:
-            command: ["/bin/sh","-c","sh /apinto/leave.sh"]
+            command: ["/bin/bash","-c","bash /apinto/leave.sh"]
       volumeMounts:
       - mountPath: /var/lib/apinto
         name: pv-nfs
@@ -361,6 +368,8 @@ spec:
             fieldPath: status.podIP
       - name: SVC_NAME  #将服务名加入环境变量
         value: "apinto-gateway-svc"
+      - name: SVC_NAMESPACE #指定apinto服务所在命名空间
+        value: "default"
       - name: APINTO_ADMIN_PORT
         value: "9400"
       - name: SVC_TOKEN  #将master节点的TOKEN加入环境变量
@@ -528,5 +537,4 @@ spec:
 ##### 创建POD
 
 yaml文件参考静态NFS的POD，不再赘述。
-
 
