@@ -1,1 +1,0 @@
-const e={key:"v-2fdd538a",path:"/docs/cli/",title:"cli\u547D\u4EE4",lang:"en-US",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1648200166e3,contributors:[{name:"zeke",email:"526756656@qq.com",commits:1}]},filePathRelative:"docs/cli/index.md"};export{e as data};

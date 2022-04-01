@@ -1,1 +1,0 @@
-const e={key:"v-2c628bab",path:"/docs/router/",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1648200166e3,contributors:[{name:"zeke",email:"526756656@qq.com",commits:1}]},filePathRelative:"docs/router/index.md"};export{e as data};

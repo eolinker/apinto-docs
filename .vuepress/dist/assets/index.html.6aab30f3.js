@@ -1,1 +1,0 @@
-const e={key:"v-68959328",path:"/docs/auth/",title:"\u8BBF\u95EE\u9274\u6743",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"\u914D\u7F6E\u6D41\u7A0B\uFF1A",slug:"\u914D\u7F6E\u6D41\u7A0B",children:[]}],git:{updatedTime:1648200166e3,contributors:[{name:"zeke",email:"526756656@qq.com",commits:1}]},filePathRelative:"docs/auth/index.md"};export{e as data};
