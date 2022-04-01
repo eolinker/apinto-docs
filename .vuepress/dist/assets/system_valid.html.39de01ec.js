@@ -1,0 +1,1 @@
+const t={key:"v-038a998d",path:"/docs/formatter/system_valid.html",title:"\u7CFB\u7EDF\u53EF\u7528\u503C",lang:"en-US",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1648200166e3,contributors:[{name:"zeke",email:"526756656@qq.com",commits:1}]},filePathRelative:"docs/formatter/system_valid.md"};export{t as data};
