@@ -1,7 +1,7 @@
 const path = require('path');
 const basedir = path.resolve(__dirname, '..')
 module.exports = {
-  title: 'Apinto',
+  title: 'APINTO',
   description: '一款基于 Golang 开发的微服务网关',
   public: path.resolve(basedir, './public'),
   head: [['link', { rel: 'icon', href: '/images/logo.svg' }]],
@@ -10,12 +10,16 @@ module.exports = {
     home: '/docs/',
     docsRepo: 'https://github.com/eolinker/apinto-docs',
     docsBranch: 'main',
-    repo: 'https://github.com/eolinker/apinto',
-    repoLabel: 'Github',
     navbar: [
       { text: "首页", link: "https://www.apinto.com/", target: "_self" },
-      { text: "文档", link: "/docs/index.md" },
-      
+      { 
+        text: "文档", 
+        children:[
+          {
+            text:"Apinto",link: "/docs/index.md"
+          }
+        ],
+      },
       { text: "社区", children: [
         {
           text: '论坛',
@@ -29,7 +33,23 @@ module.exports = {
         ], 
       },
       { text: "博客", link: "https://blog.apinto.com" },
-      { text: "下载", link: "https://github.com/eolinker/apinto/releases" },
+      { 
+        text: "下载", 
+        children:[
+          {
+            text:"Apinto",link: "https://github.com/eolinker/apinto/releases"
+          }
+        ],
+        
+      },
+      {
+        text: "Github",
+        children:[
+          {
+            text:"Apinto",link: "https://github.com/eolinker/apinto"
+          }
+        ],
+      }
     ],
     sidebar: getSideBar(),
   },
