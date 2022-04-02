@@ -1,7 +1,7 @@
 const path = require('path');
 const basedir = path.resolve(__dirname, '..')
 module.exports = {
-  title: '',
+  title: ' ',
   description: '一款基于 Golang 开发的微服务网关',
   public: path.resolve(basedir, './public'),
   head: [['link', { rel: 'icon', href: '/images/logo.svg' }]],
