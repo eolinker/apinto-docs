@@ -1,6 +1,6 @@
 ---
 home: true
-title: Apinto
+heroText: APINTO
 ---
 # APINTO
 ![Go Report Card](https://goreportcard.com/badge/github.com/eolinker/apinto)&nbsp;

@@ -3,6 +3,9 @@
     --navbar-height: 4.2rem;
     --navbar-padding-v: 1rem;
 }
+.navbar span.site-name {
+    font-size: 0;
+}
 .navbar-items-wrapper .search-box>input {
     width: 15rem;
 }
