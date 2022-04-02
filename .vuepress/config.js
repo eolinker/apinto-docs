@@ -1,12 +1,12 @@
 const path = require('path');
 const basedir = path.resolve(__dirname, '..')
 module.exports = {
-  title: 'APINTO',
+  title: '',
   description: '一款基于 Golang 开发的微服务网关',
   public: path.resolve(basedir, './public'),
   head: [['link', { rel: 'icon', href: '/images/logo.svg' }]],
   themeConfig: {
-    logo: '/images/logo.svg',
+    logo: '/images/logo.png',
     home: '/docs/',
     docsRepo: 'https://github.com/eolinker/apinto-docs',
     docsBranch: 'main',
@@ -65,7 +65,7 @@ module.exports = {
       {
         locales: {
           '/': {
-            placeholder: 'Search',
+            placeholder: '搜索...',
           },
           
         },

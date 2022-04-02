@@ -1,3 +1,16 @@
 :root {
     --content-width: 75%;
+    --navbar-height: 4.2rem;
+    --navbar-padding-v: 1rem;
+}
+.navbar-items-wrapper .search-box>input {
+    width: 15rem;
+}
+.navbar {
+    border-bottom: 5px solid #e9e7e7;
+}
+.navbar-dropdown-wrapper .navbar-dropdown-title, .navbar-item a.external-link, .navbar-dropdown-wrapper .navbar-dropdown .navbar-dropdown-item a {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2b2b2b;
 }
