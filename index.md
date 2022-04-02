@@ -1,6 +1,7 @@
 ---
 home: true
 heroText: APINTO
+title: 一款基于 Golang 开发的微服务网关
 ---
 # APINTO
 ![Go Report Card](https://goreportcard.com/badge/github.com/eolinker/apinto)&nbsp;
