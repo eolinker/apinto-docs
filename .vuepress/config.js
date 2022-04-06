@@ -12,7 +12,7 @@ module.exports = {
     docsRepo: 'https://github.com/eolinker/apinto-docs',
     docsBranch: 'main',
     navbar: [
-      { text: "首页", link: "https://www.apinto.com/", target: "_self" },
+      { text: "首页", link: "https://www.apinto.com/"},
       { 
         text: "文档", 
         children:[
@@ -33,7 +33,7 @@ module.exports = {
         
         ], 
       },
-      { text: "博客", link: "https://blog.apinto.com" },
+      { text: "博客", link: "https://www.apinto.com/?page_id=15" },
       { 
         text: "下载", 
         children:[
