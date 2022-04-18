@@ -28,7 +28,7 @@ module.exports = {
         },
         {
           text: 'Contributor',
-          link: "/contributor/contributor.md",
+          link: "/view/contributor.md",
         }
         
         ], 
@@ -189,6 +189,10 @@ function getSideBar(){
           '/docs/cli/extender_info.md',
           '/docs/cli/extender_version.md',
         ],
+      },
+      {
+        text: 'Open Api',
+        link: '/view/open.md',
       },
     ],
   }
