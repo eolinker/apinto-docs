@@ -4,7 +4,7 @@
 
 ### 命令
 ```
-./apinto extender upgrade {group}:{project}
+./apinto extender version {group}:{project}
 ```
 
 参数说明：
