@@ -6,19 +6,24 @@
 
 
 
+### 文件日志过程图解
+
+![](http://data.eolinker.com/course/gfE3gYq468410a54454d0d778dc4f3b747f7d96598292d5.png)
+
+### OpenAPI配置日志
 #### 配置参数说明
 
-| 参数              | 说明                                            | 是否必填 | 默认值 | 值可能性        |
-| ----------------- | ----------------------------------------------- | -------- | ------ | --------------- |
-| name              | 必填，实例名                                    | 是       |        | string          |
-| driver            | 必填，驱动名，填file_output                     | 是       |        | string          |
-| config            | 必填，输出器配置                                | 是       |        | object          |
-| config->file      | 必填，日志文件的文件名                          | 是       |        | string          |
-| config->dir       | 必填，日志文件的目录路径                        | 是       |        | string          |
-| config->period    | 必填，更替日志文件的周期时间，可选day、hour其一 | 是       |        | ["day","hour"]  |
-| config->expire    | 选填，旧日志文件的保存时间，单位为天            | 否       | 3      | int             |
-| config->type      | 选填，formatter的类型                           | 否       | "line" | ["line","json"] |
-| config->formatter | 必填，formatter的输出内容                       | 是       |        | object          |
+| 参数        | 说明                                      | 是否必填 | 默认值 | 值可能性        |
+| ----------- | ----------------------------------------- | -------- | ------ | --------------- |
+| name        | 实例名                                    | 是       |        | string          |
+| driver      | 驱动名                                    | 是       |        | "file"   |
+| description | 描述                                      | 否       |        | string          |
+| file        | 日志文件的文件名                          | 是       |        | string          |
+| dir         | 日志文件的目录路径                        | 是       |        | string          |
+| period      | 更替日志文件的周期时间，可选day、hour其一 | 是       |        | ["day","hour"]  |
+| expire      | 旧日志文件的保存时间，单位为天            | 否       | 3      | int             |
+| type        | formatter的类型                           | 否       | "line" | ["line","json"] |
+| formatter   | formatter的输出内容                       | 是       |        | object          |
 
 **注意**：
 
@@ -27,19 +32,25 @@
 
 
 
-### 文件日志过程图解
-
-![](http://data.eolinker.com/course/gfE3gYq468410a54454d0d778dc4f3b747f7d96598292d5.png)
-
-### OpenAPI配置日志
-
-#### 请求参数说明
-
-![](http://data.eolinker.com/course/DaCvQiM5d2fd9d5b89302c1e8066219b013596ff81d8cf6.png)
-
 #### 返回参数说明
 
-![](http://data.eolinker.com/course/vWNnCRf260e277847d34be26d24ade8a5539c569bb44d3c.png)
+| 参数名      | 类型   | 是否必含 | 说明                                      |
+| ----------- | ------ | -------- | ----------------------------------------- |
+| id          | string | 是       | 实例id                                    |
+| name        | string | 是       | 实例名                                    |
+| driver      | string | 是       | 驱动名                                    |
+| description | string | 是       | 描述                                      |
+| profession  | string | 是       | 模块名                                    |
+| create      | string | 是       | 创建时间                                  |
+| update      | string | 是       | 更新时间                                  |
+| file        | string | 是       | 日志文件的文件名                          |
+| dir         | string | 是       | 日志文件的目录路径                        |
+| period      | string | 是       | 更替日志文件的周期时间，可选day、hour其一 |
+| expire      | int    | 是       | 旧日志文件的保存时间，单位为天            |
+| type        | string | 是       | formatter的类型                           |
+| formatter   | object | 是       | formatter的输出内容                       |
+
+
 
 #### 创建文件输出器示例
 
@@ -49,18 +60,18 @@ curl -X POST  \
   -H 'Content-Type:application/json' \
   -d '{
 	"name": "demo_file",
-	"driver": "file_output",
-	"config": {
-		"dir": "/var/log",
-		"file": "demo",
-		"period": "day",
-		"expire": 1,
-		"type": "line",
-		"formatter": {
-			"fields": ["$request_id", "$request", "$status", "@time", "@proxy", "$response_time"],
-			"time": ["$msec", "$time_iso8601", "$time_local"],
-			"proxy": ["$proxy_uri", "$proxy_scheme", "$proxy_addr"]
-		}
+	"driver": "file",
+	"description": "示例文件输出器",
+
+	"dir": "/var/log",
+	"file": "demo",
+	"period": "day",
+	"expire": 1,
+	"type": "line",
+	"formatter": {
+		"fields": ["$request_id", "$request", "$status", "@time", "@proxy", "$response_time"],
+		"time": ["$msec", "$time_iso8601", "$time_local"],
+		"proxy": ["$proxy_uri", "$proxy_scheme", "$proxy_addr"]
 	}
 }'
 ```
@@ -69,12 +80,23 @@ curl -X POST  \
 
 ```json
 {
-	"create": "2021-12-24 18:27:58",
-	"driver": "file_output",
+	"create": "2022-06-14 12:02:31",
+	"description": "示例文件输出器",
+	"dir": "/var/log",
+	"driver": "file",
+	"expire": 1,
+	"file": "demo",
+	"formatter": {
+		"fields": ["$request_id", "$request", "$status", "@time", "@proxy", "$response_time"],
+		"proxy": ["$proxy_uri", "$proxy_scheme", "$proxy_addr"],
+		"time": ["$msec", "$time_iso8601", "$time_local"]
+	},
 	"id": "demo_file@output",
 	"name": "demo_file",
+	"period": "day",
 	"profession": "output",
-	"update": "2021-12-24 18:27:58"
+	"type": "line",
+	"update": "2022-06-14 12:02:31"
 }
 ```
 
