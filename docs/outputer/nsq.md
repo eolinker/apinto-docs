@@ -24,6 +24,7 @@ NSQ输出器能够将特定的日志信息输出到指定nsqd的topic中.
 
 **注意**：
 
+* nsq_conf配置在dashboard上不可见，仅能通过openAPI来配置。
 * address参数可配置多个nsqd地址，用于负载均衡，所使用算法为轮询调度算法。同一个消息时仅会发送至其中一个nsqd。若某个nsqd连接不上，将会使用其他的nsqd进行发送。
 * 若配置了auth_secret，同时nsq_conf内也配置了auth_secret, 则以nsq_conf的为准。
 * nsq_conf用于生产者的配置信息，连接至address内的nsqd的所有生产者共用同一个配置。可配置的信息如鉴权`auth_secret`字段。更多配置字段见[这里](https://pkg.go.dev/github.com/nsqio/go-nsq#Config)。
