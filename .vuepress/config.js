@@ -144,11 +144,6 @@ function getSideBar(){
         text: 'formatter',
         link: '/docs/formatter/index.md',
         collapsible: true,
-        children: [
-        '/docs/formatter/line.md', 
-        '/docs/formatter/json.md', 
-        '/docs/formatter/system_valid.md'
-      ],
       },
 
       {
