@@ -40,7 +40,7 @@
 | name        | 实例名                                    | 是       |        | string          |
 | driver      | 负载类别                                  | 是       |        | "http_proxy"    |
 | description | 描述                                      | 否       |        | string          |
-| scheme      | 请求服务发现所使用的协议                  | 是       |        | ["http","https] |
+| scheme      | 请求服务发现所使用的协议                  | 是       |        | ["http","https"] |
 | type        | 负载均衡算法,暂只支持round-robin          | 是       |        | ["round-robin"] |
 | discovery   | 服务发现ID                                | 是       |        | string          |
 | config      | 负载配置，所填内容依据discovery字段而定。 | 是       |        | string          |

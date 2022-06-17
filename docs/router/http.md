@@ -229,7 +229,7 @@ query_sex：男
 | 参数              | 说明                                | 是否必填 | 默认值 | 值可能性     |
 | ----------------- | ----------------------------------- | -------- | ------ | ------------ |
 | name              | 实例名                              | 是       |        | string       |
-| driver            | 驱动名                              | 是       |        | "nsqd"       |
+| driver            | 驱动名                              | 是       |        | "http"       |
 | description       | 描述                                | 否       |        | string       |
 | disable           | 禁用路由，默认为false，表示开启状态 | 否       | false  | bool         |
 | listen            | 监听端口                            | 是       |        | int          |
@@ -281,7 +281,7 @@ curl -X POST  \
 	"name": "complex_router",
 	"driver": "http",
 	"desc": "一个匹配规则较复杂的路由",
-	"listen": 8080,
+	"listen": 8099,
 	"method": [
 		"GET",
 		"POST"
@@ -319,7 +319,7 @@ curl -X POST  \
 	"driver": "http",
 	"host": ["*.com"],
 	"id": "complex_router@router",
-	"listen": 8080,
+	"listen": 8099,
 	"method": ["GET", "POST"],
 	"name": "complex_router",
 	"plugins": null,
@@ -350,18 +350,18 @@ curl -X POST  \
 	"name": "simple_router",
 	"driver": "http",
 	"description": "一个匹配规则较简单的路由",
-	"listen": 8080,
+	"listen": 8099,
 	"rules": [{
-			"location": "/simple_anonymous_one"
-		},
-		{
-			"location": "/simple_anonymous_two"
-		}
+	  "location": "/simple_anonymous_one"
+	  },
+	  {
+	  "location": "/simple_anonymous_two"
+	  }
 	],
 	"target": "anonymous_service@service"
 }'
 
-#请求http://127.0.0.1:8080/simple_anonymous_one和http://127.0.0.1:8080/simple_anonymous_two均可命中此路由
+#请求http://127.0.0.1:8099/simple_anonymous_one和http://127.0.0.1:8099/simple_anonymous_two均可命中此路由
 ```
 
 **注意**：该路由内配置的监听端口`listen`必须在config.yml配置文件里的监听端口列表中存在。
@@ -376,7 +376,7 @@ curl -X POST  \
 	"driver": "http",
 	"host": null,
 	"id": "simple_router@router",
-	"listen": 8080,
+	"listen": 8099,
 	"method": null,
 	"name": "simple_router",
 	"plugins": null,

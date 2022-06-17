@@ -23,7 +23,7 @@
 | name                | 实例名                                                       | 是       |        | string          |
 | driver              | 服务驱动类型                                                 | 是       |        | "http_proxy"    |
 | description         | 描述                                                         | 否       |        | string          |
-| scheme              | 请求所使用的协议                                             | 否       | http   | ["http","https] |
+| scheme              | 请求所使用的协议                                             | 否       | http   | ["http","https"] |
 | retry               | 重试次数                                                     | 是       |        | int             |
 | timeout             | 超时时间，单位:毫秒                                          | 是       |        | int             |
 | upstream            | 负载ID                                                       | 否       |        | string          |
