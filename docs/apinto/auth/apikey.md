@@ -11,15 +11,15 @@
 
 #### 配置参数说明
 
-| 参数名           | 说明                                                         | 是否必填 | 默认值 | 值可能性     |
-| ---------------- | ------------------------------------------------------------ | -------- | ------ | ------------ |
+| 参数名           | 说明                                                        | 是否必填 | 默认值 | 值可能性     |
+| ---------------- |-----------------------------------------------------------| -------- | ------ | ------------ |
 | name             | 实例名                                                       | 是       |        | string       |
-| driver           | 所使用的鉴权类别                                             | 是       |        | "apikey"     |
-| description      | 描述                                                         | 否       |        | string       |
-| hide_credentials | 是否隐藏证书字段                                | 否       | false  | bool         |
-| user             | 密钥列表                                                     | 是       |        | object_array |
-| user -> apikey   | api密钥                                                      | 是       |        | string       |
-| user -> expire   | 过期时间 类型是unix时间戳 范围>=0 值为0表示永久有效          | 是       |        | int          |
+| driver           | 所使用的鉴权类别                                                  | 是       |        | "apikey"     |
+| description      | 描述                                                        | 否       |        | string       |
+| hide_credentials | 是否隐藏请求中鉴权密钥的字段                                            | 否       | false  | bool         |
+| user             | 密钥列表                                                      | 是       |        | object_array |
+| user -> apikey   | api密钥                                                     | 是       |        | string       |
+| user -> expire   | 过期时间 类型是unix时间戳 范围>=0 值为0表示永久有效                           | 是       |        | int          |
 | user -> labels   | 标签，object中的键值对会被均赋值到通过该密钥鉴权后的请求的上下文中，可被插件使用，例如access-log。 | 否       |        | object       |
 
 
@@ -35,7 +35,7 @@
 | profession       | string       | 是       | 模块名           |
 | create           | string       | 是       | 创建时间         |
 | update           | string       | 是       | 更新时间         |
-| hide_credentials | bool         | 是       | 是否隐藏证书字段 |
+| hide_credentials | bool         | 是       | 是否隐藏请求中鉴权密钥的字段  |
 | user             | object_array | 是       | 密钥列表         |
 
 **备注**：返回体内的user参考请求配置参数，在此不再赘述。

@@ -55,19 +55,19 @@ header.playload.signature
 
 #### 配置参数说明
 
-| 参数名                        | 说明                                                         | 是否必填 | 默认值 | 值可能性                                                     |
-| ----------------------------- | ------------------------------------------------------------ | -------- | ------ | ------------------------------------------------------------ |
+| 参数名                        | 说明                                                        | 是否必填 | 默认值 | 值可能性                                                     |
+| ----------------------------- |-----------------------------------------------------------| -------- | ------ | ------------------------------------------------------------ |
 | name                          | 实例名                                                       | 是       |        | string                                                       |
-| driver                        | 所使用的鉴权类别                                             | 是       |        | "jwt"                                                        |
-| description                   | 描述                                                         | 否       |        | string                                                       |
-| hide_credentials              | 是否隐藏证书字段                                             | 否       | false  | bool                                                         |
-| signature_is_base64           | secret 或 rsa_public_key是否使用了base64算法进行加密         | 否       | false  | bool                                                         |
-| claims_to_verify              | jwt需要进行验证的字段，仅支持:exp,nbf                        | 否       |        | string_array                                                 |
-| credentials                   | 证书列表                                                     | 是       |        | object_array                                                 |
+| driver                        | 所使用的鉴权类别                                                  | 是       |        | "jwt"                                                        |
+| description                   | 描述                                                        | 否       |        | string                                                       |
+| hide_credentials              | 是否隐藏请求中鉴权密钥的字段                                            | 否       | false  | bool                                                         |
+| signature_is_base64           | secret 或 rsa_public_key是否使用了base64算法进行加密                  | 否       | false  | bool                                                         |
+| claims_to_verify              | jwt需要进行验证的字段，仅支持:exp,nbf                                  | 否       |        | string_array                                                 |
+| credentials                   | 密钥列表                                                      | 是       |        | object_array                                                 |
 | credentials -> iss            | 签发人                                                       | 是       |        | string                                                       |
-| credentials -> secret         | 密钥  使用HS256,HS384,HS512时必填                            | 否       |        | string                                                       |
-| credentials -> rsa_public_key | rsa公钥  使用RS256,RS384,RS512,ES256,ES384,ES512时必填       | 否       |        | string                                                       |
-| credentials -> algorithm      | 所使用的加密算法                                             | 是       |        | ["HS256","HS384","HS512","RS256","RS384","RS512","ES256","ES384","ES512"] |
+| credentials -> secret         | 密钥  使用HS256,HS384,HS512时必填                                | 否       |        | string                                                       |
+| credentials -> rsa_public_key | rsa公钥  使用RS256,RS384,RS512,ES256,ES384,ES512时必填           | 否       |        | string                                                       |
+| credentials -> algorithm      | 所使用的加密算法                                                  | 是       |        | ["HS256","HS384","HS512","RS256","RS384","RS512","ES256","ES384","ES512"] |
 | credentials -> labels         | 标签，object中的键值对会被均赋值到通过该密钥鉴权后的请求的上下文中，可被插件使用，例如access-log。 | 否       |        | object                                                       |
 
 **注意事项**：
@@ -88,10 +88,10 @@ header.playload.signature
 | profession          | string       | 是       | 模块名                                               |
 | create              | string       | 是       | 创建时间                                             |
 | update              | string       | 是       | 更新时间                                             |
-| hide_credentials    | bool         | 是       | 是否隐藏证书字段                                     |
+| hide_credentials    | bool         | 是       | 是否隐藏请求中鉴权密钥的字段                                     |
 | signature_is_base64 | bool         | 是       | secret 或 rsa_public_key是否使用了base64算法进行加密 |
 | claims_to_verify    | string_array | 是       | jwt需要进行验证的字段，仅支持:exp,nbf                |
-| credentials         | object_array | 是       | 证书列表                                             |
+| credentials         | object_array | 是       | 密钥列表                                             |
 
 **备注**：返回体内的credentials参考请求配置参数，在此不再赘述。
 

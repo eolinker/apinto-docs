@@ -15,7 +15,7 @@
 | name             | 实例名                                                       | 是       |        | string       |
 | driver           | 所使用的鉴权类别                                             | 是       |        | "basic"      |
 | description      | 描述                                                         | 否       |        | string       |
-| hide_credentials | 是否隐藏证书字段                                             | 否       | false  | bool         |
+| hide_credentials | 是否隐藏请求中鉴权密钥的字段                                               | 否       | false  | bool         |
 | user             | 用户列表                                                     | 是       |        | object_array |
 | user -> username | 用户名                                                       | 是       |        | string       |
 | user -> password | 用户密码                                                     | 是       |        | string       |
@@ -35,7 +35,7 @@
 | profession       | string       | 是       | 模块名           |
 | create           | string       | 是       | 创建时间         |
 | update           | string       | 是       | 更新时间         |
-| hide_credentials | bool         | 是       | 是否隐藏证书字段 |
+| hide_credentials | bool         | 是       | 是否隐藏请求中鉴权密钥的字段  |
 | user             | object_array | 是       | 用户列表         |
 
 **备注**：返回体内的user参考请求配置参数，在此不再赘述。
