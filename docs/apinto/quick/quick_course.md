@@ -24,7 +24,7 @@
 
 ```yaml
 listen:   # 节点的路由监听端口
-  - 8080
+  - 8099
 ssl:
   listen:
     - port: 443       #https端口
@@ -60,7 +60,7 @@ curl -X POST http://127.0.0.1:9400/api/service \
 -d '{
     "name": "apintoapi",
     "driver": "http",
-    "desc": "访问demo",
+    "description": "访问官方示例接口",
     "timeout": 3000,
     "anonymous": {"type": "round-robin","config": "demo-apinto.eolink.com:8280"},
     "retry": 3,
@@ -68,28 +68,7 @@ curl -X POST http://127.0.0.1:9400/api/service \
 }'
 ```
 
-请求参数说明如下：
-
-![](http://data.eolinker.com/course/aASF6GB56e2fb17cc85eb54fe99728aec52082cf00d3a6b.png)
-
-
-
-返回数据示例：
-
-```json
-{
-    "id":"apintoapi@service",
-    "name":"apintoapi",
-    "driver":"http",
-    "profession":"service",
-	"create":"2021-10-28 17:42:12",
-	"update":"2021-10-28 17:42:12"
-}
-```
-
-返回数据说明如下：
-
-![](http://data.eolinker.com/course/u74G56bce2625c3563719666a0253e94d9451955ff4c1bc.png)
+服务配置参数说明[点此](/docs/apinto/service/http.md)进行跳转
 
 
 
@@ -104,7 +83,7 @@ curl -X POST http://127.0.0.1:9400/api/router \
     "name": "apintoapi",
     "driver": "http",
     "desc": "http",
-    "listen": 8080,
+    "listen": 8099,
     "rules": [{
         "location": "/demo"
     }],
@@ -114,26 +93,7 @@ curl -X POST http://127.0.0.1:9400/api/router \
 
 **注意**：路由配置的`listen`必须在config.yml中的路由监听端口列表中存在。
 
-
-
-请求参数说明如下：
-
-![](http://data.eolinker.com/course/CDudfKj61f72a76faf19f2c88bf2f6b979a851f29730c88.png)
-
-返回数据示例：
-```json
-{
-    "id":"apintoapi@router",
-    "name":"apintoapi",
-    "driver":"http",
-    "profession":"router",
-    "create":"2021-10-28 17:51:49",
-    "update":"2021-10-28 17:51:49"
-}
-```
-返回数据说明如下：
-
-![](http://data.eolinker.com/course/ZyPW36jb5d2f88cf4e94e5e3b116fa716b547c2e54d1209.png)
+路由配置参数说明[点此](/docs/apinto/router/http.md)进行跳转
 
 
 至此，带有路由的服务转发配置完成
@@ -141,7 +101,7 @@ curl -X POST http://127.0.0.1:9400/api/router \
 #### 访问服务
 
 ```shell
-curl 'http://127.0.0.1:8080/demo'
+curl 'http://127.0.0.1:8099/demo'
 ```
 
 #### 返回结果
@@ -160,7 +120,7 @@ curl 'http://127.0.0.1:8080/demo'
             "127.0.0.1,127.0.0.1"
         ]
     },
-    "host":"127.0.0.1:8080",
+    "host":"127.0.0.1:8099",
     "method":"GET",
     "path":"/demo",
     "query":{

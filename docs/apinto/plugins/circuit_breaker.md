@@ -44,17 +44,17 @@
 
 #### 配置参数说明
 
-| 参数名           | 说明                                                         | 是否必填 | 默认值 | 值可能性      |
-| ---------------- | ------------------------------------------------------------ | -------- | ------ | ------------- |
-| match_codes      | 熔断匹配状态码                                               | 是       |        | string        |
-| monitor_period   | 监控期，单位为秒                                             | 否       | 30     | 大于0的整型   |
-| minimum_requests | 最低熔断阀值，达到熔断状态的最少请求次数                     | 是       |        | 大于0的整型   |
-| failure_percent  | 监控期内的请求错误率                                         | 是       |        | 浮点数，(0,1] |
-| break_period     | 熔断期，单位为秒                                             | 否       | 30     | 大于0的整型   |
-| success_counts   | 连续请求成功次数，半开放状态下请求成功次数达到后会转变成健康状态 | 是       |        | 大于0的整型   |
-| breaker_code     | 熔断状态下返回的响应状态码                                   | 是       |        | [200,599]     |
-| headers          | 熔断状态下新增的返回头部值                                   | 否       |        | object        |
-| body             | 熔断状态下的返回响应体                                       | 否       |        | string        |
+| 参数名           | 说明                                                         | 是否必填 | 默认值 | 值可能性       |
+| ---------------- | ------------------------------------------------------------ | -------- | ------ | -------------- |
+| match_codes      | 熔断匹配状态码                                               | 是       |        | string         |
+| monitor_period   | 监控期，单位为秒                                             | 否       | 30     | int            |
+| minimum_requests | 最低熔断阀值，达到熔断状态的最少请求次数                     | 是       |        | int            |
+| failure_percent  | 监控期内的请求错误率                                         | 是       |        | float64，(0,1] |
+| break_period     | 熔断期，单位为秒                                             | 否       | 30     | int            |
+| success_counts   | 连续请求成功次数，半开放状态下请求成功次数达到后会转变成健康状态 | 是       |        | int            |
+| breaker_code     | 熔断状态下返回的响应状态码, 闭区间范围为[200,599]            | 是       |        | int            |
+| headers          | 熔断状态下新增的返回头部值                                   | 否       |        | object         |
+| body             | 熔断状态下的返回响应体                                       | 否       |        | string         |
 
 **注意事项**：
 
@@ -89,7 +89,6 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
     "plugins":[{
         "id":"eolinker.com:apinto:circuit_breaker",
         "name":"my_circuit_breaker",
-        "type":"service",
         "status":"enable"
     }]
 }'
@@ -99,13 +98,13 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 
 **配置说明**：见上面的配置示例。
 
-全局插件具体配置点此进行[跳转](/docs/plugins)。
+全局插件具体配置点此进行[跳转](/docs/apinto/plugins)。
 
 **备注**：匿名服务配置的是apinto官方示例接口，将返回请求的相关信息。
 
 ```shell
 curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/json' -d '{
-    "name": "my_circuit_breaker",
+    "name": "circuit_breaker_service",
     "driver": "http",
     "timeout": 3000,
     "retry": 3,
@@ -141,20 +140,20 @@ curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/j
 curl -X POST  'http://127.0.0.1:9400/api/router' \
 -H 'Content-Type:application/json' \
 -d '{
-    "name":"params",
+    "name":"circuit_breaker_router",
     "driver":"http",
-    "listen":8080,
+    "listen":8099,
     "rules":[{
-        "location":"/demo"
+        "location":"/demo/circuit_breaker"
     }],
-    "target":"my_circuit_breaker@service"
+    "target":"circuit_breaker_service@service"
 }'
 ```
 
 ##### 接口请求示例
 
 ```shell
-curl -i -X GET 'http://127.0.0.1:8080/demo' -H 'Content-Type:application/json'
+curl -i -X GET 'http://127.0.0.1:8099/demo/circuit_breaker' -H 'Content-Type:application/json'
 ```
 
 ##### 接口访问返回示例

@@ -13,15 +13,16 @@
 
 #### 配置参数说明
 
-| 参数名            | 说明                                                         | 值可能性               |
-| ----------------- | ------------------------------------------------------------ | ---------------------- |
-| allow_origins     | 选填，允许跨域访问的 Origin，格式如： `scheme` :// `host` : `port` ，多个值之间用英文逗号间隔，允许全部源用 \*，默认为 * | https://www.eolink.com |
-| allow_methods     | 选填，允许通过的请求方式，比如: `GET` ， `POST` 等，多个值之间用英文逗号间隔，允许全部方法方法用  \*，默认为 * | POST,GET,OPTION        |
-| allow_headers     | 选填，允许跨域访问时请求方携带哪些非 **CORS 规范**以外的 Header，多个值之间用英文逗号间隔，允许全部请求头部用 \*，默认为 * | *                      |
-| allow_credentials | 选填，请求中是否携带cookie，若allow_credentials为true，那么将不能在其他选项中使用 \*，（也可以在启用了 allow_credentials后使用 ** 强制允许所有 Header 都通过，但请注意这样存在安全隐患） | true/false             |
-| expose_headers    | 选填，允许跨域访问时响应方携带哪些非 **CORS 规范** 以外的 Header，多个值之间用英文逗号间隔，允许获取全部返回头部用*，默认为 * | *                      |
-| max_age           | 选填，浏览器缓存 CORS 结果的最大时间，单位为秒，在这个时间范围内浏览器会复用上一次的检查结果，默认为5 | 5                      |
-| response_type     | 选填，插件返回报错的类型，默认为text                         | text/json              |
+
+| 参数名            | 说明                                                         | 是否必填 | 默认值 | 值可能性                         |
+| ----------------- | ------------------------------------------------------------ | -------- | ------ | -------------------------------- |
+| allow_origins     | 选填，允许跨域访问的 Origin，格式如： `scheme://host:port` ，多个值之间用英文逗号间隔，允许全部源用 \* | 否       | *      | string, 如https://www.eolink.com |
+| allow_methods     | 选填，允许通过的请求方式，比如: `GET` ， `POST` 等，多个值之间用英文逗号间隔，允许全部方法方法用  \* | 否       | *      | POST,GET,OPTION                  |
+| allow_headers     | 选填，允许跨域访问时请求方携带哪些非 **CORS 规范**以外的 Header，多个值之间用英文逗号间隔，允许全部请求头部用 \* | 否       | *      | *                                |
+| allow_credentials | 选填，请求中是否携带cookie，若allow_credentials为true，那么将不能在其他选项中使用 \*，（也可以在启用了 allow_credentials后使用 ** 强制允许所有 Header 都通过，但请注意这样存在安全隐患） | 否       |        | bool                             |
+| expose_headers    | 选填，允许跨域访问时响应方携带哪些非 **CORS 规范** 以外的 Header，多个值之间用英文逗号间隔，允许获取全部返回头部用* | 否       | *      | *                                |
+| max_age           | 选填，浏览器缓存 CORS 结果的最大时间，单位为秒，在这个时间范围内浏览器会复用上一次的检查结果 | 否       | 5      | int                              |
+| response_type     | 插件返回报错的类型                                           | 否       | text   | ["text","json"]                  |
 
 
 
@@ -79,18 +80,51 @@
 
 ##### 全局配置
 
-在使用跨域插件之前，需要在全局插件配置中将name为**cors**的插件状态设置为enable，具体配置点此[跳转](/docs/plugins)
+```shell
+curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
+-H 'Content-Type:application/json' \
+-d '{
+    "plugins":[{
+        "id":"eolinker.com:apinto:cors",
+        "name":"my_cors",
+        "status":"enable"
+    }]
+}'
+```
+
+在使用跨域插件之前，需要在全局插件配置中将name为**cors**的插件状态设置为enable，具体配置点此[跳转](/docs/apinto/plugins)
 
 ##### 配置带有跨域插件的service服务
 
 **备注**：匿名服务配置的是apinto官方示例接口，将返回请求的相关信息。
 
 ```sh
-curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/json' -d '{"name": "demo","driver": "http","timeout": 3000,"retry": 3,"desc":"使用跨域插件","scheme": "https","anonymous": {"type": "round-robin","config": "demo-apinto.eolink.com:8280"},"plugins": {"cors":{"disable": false, "config":{"allow_origins":"*","allow_methods":"POST"}}}}' 
+curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/json' \
+-d '{
+  "name": "cors_service",
+  "driver": "http",
+  "timeout": 3000,
+  "retry": 3,
+  "description": "使用跨域插件",
+  "scheme": "https",
+  "anonymous": {
+    "type": "round-robin",
+    "config": "demo-apinto.eolink.com:8280"
+  },
+  "plugins": {
+    "my_cors": {
+	 "disable": false,
+	 "config": {
+	  "allow_origins": "*",
+	  "allow_methods": "POST"
+	 }
+    }
+  }
+}' 
 ```
 
 ```
-成功创建id为demo@service的服务
+成功创建id为cors_service@service的服务
 ```
 
 ##### 绑定路由
@@ -98,16 +132,23 @@ curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/j
 将上一步生成的服务id绑定至路由的target字段
 
 ```sh
-curl -X POST  \
-  'http://127.0.0.1:9400/api/router' \
-  -H 'Content-Type:application/json' \
-  -d '{"name":"demo","driver":"http","desc":"该路由的目标服务使用了跨域插件","listen":8080,"rules":[{"location":"/demo"}],"target":"demo@service"}'
+curl -X POST 'http://127.0.0.1:9400/api/router' -H 'Content-Type:application/json' \
+-d '{
+  "name": "cors_router",
+  "driver": "http",
+  "description": "该路由的目标服务使用了跨域插件",
+  "listen": 8099,
+  "rules": [{
+    "location": "/demo/cors"
+  }],
+  "target": "cors_service@service"
+}'
 ```
 
 ##### 接口请求示例
 
 ```sh
-curl -i -X POST -H 'Content-Type:application/json' 'http://127.0.0.1:8080/demo'
+curl -i -X POST 'http://127.0.0.1:8099/demo/cors' -H 'Content-Type:application/json'
 ```
 
 ##### 接口访问返回示例

@@ -13,39 +13,6 @@
 
 
 
-### yaml配置鉴权
-
-```yaml
-auth:
-  -
-    name: ak/sk_1
-    driver: aksk 
-    hide_credentials: true 
-    user:
-  -
-    ak: 4c897cfdfca60a59983adc2627942e7e
-    sk: 6bb8eee91f88336dd95b88a66709f0a3286ce1abf73453acc4619bc142d64040
-    expire: 1658740726
-```
-
-**注意**：若yaml文件发生变动，需要重启网关。
-
-
-
-#### 配置参数
-
-| 参数名           | 说明                                                | 是否必填 | 默认值 | 值可能性     |
-| ---------------- | --------------------------------------------------- | -------- | ------ | ------------ |
-| name             | 实例名                                              | 是       |        | string       |
-| driver           | 所使用的鉴权类别                                    | 是       |        | ["aksk"]     |
-| hide_credentials | 是否隐藏证书字段 默认为false                        | 否       | false  | bool         |
-| user             | 密钥列表                                            | 是       |        | object_array |
-| user -> ak       | access key                                          | 是       |        | string       |
-| user -> sk       | secret key                                          | 是       |        | string       |
-| user -> expire   | 过期时间 类型是unix时间戳 范围>=0 值为0表示永久有效 | 是       |        | int          |
-
-
-
 ### 使用说明
 
 #### 一、构造规范请求
@@ -345,7 +312,42 @@ curl -X GET "http://www.demo.com:6689/demo/login?parm1=value1&parm2=" -H "conten
 
 
 ### OpenAPI配置鉴权及进行请求的示例
-##### 请求中鉴权参数填写位置说明
+
+
+#### 请求参数说明
+
+| 参数名           | 说明                                                         | 是否必填 | 默认值 | 值可能性     |
+| ---------------- | :----------------------------------------------------------- | -------- | ------ | ------------ |
+| name             | 实例名                                                       | 是       |        | string       |
+| driver           | 所使用的鉴权类别                                             | 是       |        | "aksk"       |
+| description      | 描述                                                         | 否       |        | string       |
+| hide_credentials | 是否隐藏证书字段                                             | 否       | false  | bool         |
+| user             | 密钥列表                                                     | 是       |        | object_array |
+| user -> ak       | access key                                                   | 是       |        | string       |
+| user -> sk       | secret key                                                   | 是       |        | string       |
+| user -> expire   | 过期时间 类型是unix时间戳 范围>=0 值为0表示永久有效          | 是       |        | int          |
+| user -> labels   | 标签，object中的键值对会被均赋值到通过该密钥鉴权后的请求的上下文中，可被插件使用，例如access-log。 | 否       |        | object       |
+
+
+
+#### 返回参数说明
+
+| 参数名           | 类型         | 是否必含 | 说明             |
+| ---------------- | ------------ | -------- | ---------------- |
+| id               | string       | 是       | 实例id           |
+| name             | string       | 是       | 实例名           |
+| driver           | string       | 是       | 驱动名           |
+| description      | string       | 是       | 描述             |
+| profession       | string       | 是       | 模块名           |
+| create           | string       | 是       | 创建时间         |
+| update           | string       | 是       | 更新时间         |
+| hide_credentials | bool         | 是       | 是否隐藏证书字段 |
+| user             | object_array | 是       | 密钥列表         |
+
+**备注**：返回体内的user参考请求配置参数，在此不再赘述。
+
+
+#### 请求中鉴权参数填写位置说明
 
 | 参数名             | 说明     | 必填 | 值可能性            | 参数位置 |
 | ------------------ | -------- | ---- | ------------------- | -------- |
@@ -354,31 +356,21 @@ curl -X GET "http://www.demo.com:6689/demo/login?parm1=value1&parm2=" -H "conten
 
 
 
-##### 请求参数说明
-
-![](http://data.eolinker.com/course/EeQW7FW5d4e4ac865e2149c037c5183ffa7b8a97585d7a7.png)
-
-
-
-##### 返回参数说明
-
-![](http://data.eolinker.com/course/Up3FcE56ea9365a8b5b624eb7037a75969e0945194f7dad.png)
-
 #### 全局配置
 
-在使用aksk鉴权插件之前，需要在全局插件配置中将鉴权插件状态设置为enable，具体配置点此[跳转](/docs/plugins)
+在使用aksk鉴权插件之前，需要在全局插件配置中将鉴权插件状态设置为enable，具体配置点此[跳转](/docs/apinto/plugins)
 
 ```shell
 curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' -H 'Content-Type:application/json' -d '{
 	"plugins":[{
 		"id":"eolinker.com:apinto:auth",
-		"name":"auth",
-		"type":"service",
+		"name":"myAuth",
 		"status":"enable"
 	}]
 }'
 ```
 
+##### 
 
 
 #### 创建鉴权
@@ -387,7 +379,17 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' -H 'Content-Type:applic
 curl -X POST  \
   'http://127.0.0.1:9400/api/auth' \
   -H 'Content-Type:application/json' \
-  -d '{"name":"aksk_1","driver":"aksk","desc":"aksk鉴权，当前仅配置一对aksk","user":[{"ak":"19823ef8f417b489515570c83e3d397f","sk":"8f8154ff07f7153eea59a2ba44b5fcfe443dba1e4c45f87c549e6a05f699145d","expire":0}]}'
+  -d '{
+	"name": "demo_aksk",
+	"driver": "aksk",
+	"description": "aksk鉴权，当前仅配置一对aksk",
+	"user": [{
+		"ak": "19823ef8f417b489515570c83e3d397f",
+		"sk": "8f8154ff07f7153eea59a2ba44b5fcfe443dba1e4c45f87c549e6a05f699145d",
+		"expire": 0,
+		"labels": {"authType": "aksk"}
+	}]
+}'
 ```
 
 
@@ -396,17 +398,27 @@ curl -X POST  \
 
 ```json
 {
-    "id": "aksk_1@auth",
-    "name": "aksk_1",
-    "driver": "aksk",
-    "profession": "auth",
-    "create": "2021-08-06 17:57:33",
-    "update": "2021-08-06 17:57:33"
+	"create": "2022-06-13 17:06:39",
+	"description": "aksk鉴权，当前仅配置一对aksk",
+	"driver": "aksk",
+	"hide_credentials": false,
+	"id": "demo_aksk@auth",
+	"name": "demo_aksk",
+	"profession": "auth",
+	"update": "2022-06-13 17:06:39",
+	"user": [{
+		"ak": "19823ef8f417b489515570c83e3d397f",
+		"expire": 0,
+		"labels": {
+			"authType": "aksk"
+		},
+		"sk": "8f8154ff07f7153eea59a2ba44b5fcfe443dba1e4c45f87c549e6a05f699145d"
+	}]
 }
 ```
 
 ```
-返回的鉴权ID为aksk_1@auth
+返回的鉴权ID为demo_aksk@auth
 ```
 
 
@@ -421,11 +433,30 @@ curl -X POST  \
 curl -X POST  \
   'http://127.0.0.1:9400/api/service' \
   -H 'Content-Type:application/json' \
-  -d '{"name":"auth_aksk_service","driver":"http","desc":"使用aksk鉴权的服务","timeout":10000,"anonymous":{"type":"round-robin","config":"demo-apinto.eolink.com:8280"},"retry":3,"plugins":{"auth":{"disable":false,"config":{"auth":["aksk_1@auth"]}}},"scheme":"http"}'
+  -d '{
+	"name": "aksk_service",
+	"driver": "http",
+	"description": "使用aksk鉴权的服务",
+	"timeout": 10000,
+	"anonymous": {
+		"type": "round-robin",
+		"config": "demo-apinto.eolink.com:8280"
+	},
+	"retry": 3,
+	"scheme": "http",
+	"plugins": {
+		"myAuth": {
+			"disable": false,
+			"config": {
+				"auth": ["demo_aksk@auth"]
+			}
+		}
+	}
+}'
 ```
 
 ```
-返回的serviceID为auth_aksk_service@service
+返回的serviceID为aksk_service@service
 ```
 
 
@@ -438,7 +469,17 @@ curl -X POST  \
 curl -X POST  \
   'http://127.0.0.1:9400/api/router' \
   -H 'Content-Type:application/json' \
-  -d '{"name":"auth_aksk_router","driver":"http","desc":"该路由的目标服务使用了aksk鉴权","listen":8080,"host":["www.demo.com"],"rules":[{"location":"/demo/login"}],"target":"auth_aksk_service@service"}'
+  -d '{
+	"name": "aksk_router",
+	"driver": "http",
+	"description": "该路由的目标服务使用了aksk鉴权",
+	"listen": 8099,
+	"host": ["www.demo.com"],
+	"rules": [{
+		"location": "/demo/login"
+	}],
+	"target": "aksk_service@service"
+}'
 ```
 
 
@@ -446,49 +487,39 @@ curl -X POST  \
 #### 请求示例
 
 ```shell
-curl -X GET 'http://127.0.0.1:8080/demo/login?parm1=value1&parm2=' -H 'Host:www.demo.com' -H 'Content-Type:application/json'  -H 'x-gateway-date:20200605T104456Z' -H 'Authorization-Type:aksk'   -H 'Authorization:HMAC-SHA256 Access=19823ef8f417b489515570c83e3d397f, SignedHeaders=content-type;host;x-gateway-date, Signature=3909cd0042fed21287e64b2436adb10ad12894c9beeb69f932efee872fd589ab'
+curl -X GET 'http://127.0.0.1:8099/demo/login?parm1=value1&parm2=' \
+-H 'Host:www.demo.com' \
+-H 'Content-Type:application/json' \
+-H 'x-gateway-date:20200605T104456Z' \
+-H 'Authorization-Type:aksk' \
+-H 'Authorization:HMAC-SHA256 Access=19823ef8f417b489515570c83e3d397f, SignedHeaders=content-type;host;x-gateway-date, Signature=3909cd0042fed21287e64b2436adb10ad12894c9beeb69f932efee872fd589ab'
 ```
+
+
 
 #### 请求返回示例
 
 ```json
 {
-    "body":"",
-    "header":{
-        "Accept":[
-            "*/*"
-        ],
-        "Authorization":[
-            "HMAC-SHA256 Access=19823ef8f417b489515570c83e3d397f, SignedHeaders=content-type;host;x-gateway-date, Signature=3909cd0042fed21287e64b2436adb10ad12894c9beeb69f932efee872fd589ab"
-        ],
-        "Authorization-Type":[
-            "aksk"
-        ],
-        "Content-Type":[
-            "application/json"
-        ],
-        "User-Agent":[
-            "curl/7.68.0"
-        ],
-        "X-Forwarded-For":[
-            "127.0.0.1,127.0.0.1"
-        ],
-        "X-Gateway-Date":[
-            "20200605T104456Z"
-        ]
-    },
-    "host":"www.demo.com",
-    "method":"GET",
-    "path":"/demo/login",
-    "query":{
-        "parm1":[
-            "value1"
-        ],
-        "parm2":[
-            ""
-        ]
-    },
-    "url":"/demo/login?parm1=value1\u0026parm2="
+	"body": "",
+	"header": {
+		"Accept": ["*/*"],
+		"Authorization": ["HMAC-SHA256 Access=19823ef8f417b489515570c83e3d397f, SignedHeaders=content-type;host;x-gateway-date, Signature=3909cd0042fed21287e64b2436adb10ad12894c9beeb69f932efee872fd589ab"],
+		"Authorization-Type": ["aksk"],
+		"Content-Type": ["application/json"],
+		"User-Agent": ["curl/7.68.0"],
+		"X-Forwarded-For": ["127.0.0.1,127.0.0.1"],
+		"X-Gateway-Date": ["20200605T104456Z"]
+	},
+	"host": "www.demo.com",
+	"method": "GET",
+	"path": "/demo/login",
+	"query": {
+		"parm1": ["value1"],
+		"parm2": [""]
+	},
+	"remote_addr": "127.0.0.1:4524",
+	"url": "/demo/login?parm1=value1\u0026parm2="
 }
 ```
 

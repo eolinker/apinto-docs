@@ -40,14 +40,14 @@
 
 #### 配置参数说明
 
-| 参数名     | 说明                 | 是否必填 | 默认值  | 取值范围               |
-| ---------- | -------------------- | -------- | ------- | ---------------------- |
-| params     | 额外参数列表         |          |         | array                  |
-| name       | 参数名               | 是       |         | string                 |
-| position   | 参数位置             | 是       |         | [header/body/query]    |
-| value      | 参数值               | 是       |         | string                 |
-| conflict   | 参数冲突时的处理方式 | 否       | convert | [origin/convert/error] |
-| error_type | 插件返回报错的类型   | 否       | text    | [text、json]           |
+| 参数名             | 说明                 | 是否必填 | 默认值  | 取值范围                     |
+| ------------------ | -------------------- | -------- | ------- | ---------------------------- |
+| params             | 额外参数列表         | 是       |         | array                        |
+| params -> name     | 参数名               | 是       |         | string                       |
+| params -> position | 参数位置             | 是       |         | ["header","body","query"]    |
+| params -> value    | 参数值               | 是       |         | string                       |
+| params -> conflict | 参数冲突时的处理方式 | 否       | convert | ["origin","convert","error"] |
+| error_type         | 插件返回报错的类型   | 否       | text    | ["text","json"]              |
 
 **参数冲突说明**：
 额外参数插件配置了参数A的值，但是直接请求时也传了参数A，此时为参数出现冲突，参数A实际上会接收两个参数值。
@@ -78,7 +78,6 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
     "plugins":[{
         "id":"eolinker.com:apinto:extra_params",
         "name":"my_extra_params",
-        "type":"service",
         "status":"enable"
     }]
 }'
@@ -86,7 +85,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 
 ##### 配置带有额外参数插件的service服务
 
-以在请求头部加参数为例，全局插件具体配置点此进行[跳转](/docs/plugins)。
+以在请求头部加参数为例，全局插件具体配置点此进行[跳转](/docs/apinto/plugins)。
 
 **备注**：匿名服务配置的是apinto官方示例接口，将返回请求的相关信息。
 
@@ -94,7 +93,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 curl -X POST  'http://127.0.0.1:9400/api/service' \
 -H 'Content-Type:application/json' \
 -d '{
-    "name": "param",
+    "name": "extra_param_service",
     "driver": "http",
     "timeout": 3000,
     "retry": 3,
@@ -126,20 +125,20 @@ curl -X POST  'http://127.0.0.1:9400/api/service' \
 curl -X POST  'http://127.0.0.1:9400/api/router' \
 -H 'Content-Type:application/json' \
 -d '{
-    "name":"params",
+    "name":"extra_params_router",
     "driver":"http",
-    "listen":8080,
+    "listen":8099,
     "rules":[{
-        "location":"/demo"
+        "location":"/demo/extra_params"
     }],
-    "target":"param@service"
+    "target":"extra_param_service@service"
 }'
 ```
 
 ##### 接口请求示例
 
 ```shell
-curl -X GET 'http://127.0.0.1:8080/demo'
+curl -X GET 'http://127.0.0.1:8099/demo/extra_params'
 ```
 
 ##### 接口访问返回示例
@@ -161,13 +160,13 @@ curl -X GET 'http://127.0.0.1:8080/demo'
             "127.0.0.1,127.0.0.1"
         ]
     },
-    "host":"127.0.0.1:8080",
+    "host":"127.0.0.1:8099",
     "method":"GET",
-    "path":"/demo",
+    "path":"/demo/extra_params",
     "query":{
 
     },
-    "url":"/demo"
+    "url":"/demo/extra_params"
 }
 ```
 

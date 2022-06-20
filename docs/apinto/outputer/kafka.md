@@ -5,37 +5,53 @@
 Kafka输出器能够将特定的日志信息输出到指定Kafka集群队列中。
 
 
+### OpenAPI配置日志
 
 #### 配置参数说明
 
-| 参数                   | 说明                                                         | 是否必填 | 默认值 | 值可能性                          |
-| ---------------------- | ------------------------------------------------------------ | -------- | ------ | --------------------------------- |
-| name                   | 必填，实例名                                                 | 是       |        |                                   |
-| driver                 | 必填，驱动名，填kafka_output                                 | 是       |        | kafka_output                      |
-| config                 | 必填，输出器配置                                             | 是       |        |                                   |
-| config->topic          | 必填，消息topic                                              | 是       |        |                                   |
-| config->address        | 必填，kafka地址,多个地址用,分割                              | 是       |        | 127.0.0.1:9092,127.0.0.2:9092     |
-| config->timeout        | 选填，超时时间，单位为second,默认为10秒                      | 否       | 10     |                                   |
-| config->version        | 选填，使用的kafka版本，格式如：0.11.0.0，默认为最新稳定版    | 否       |        | 0.11.0.0                          |
-| config->partition_type | 选填，partition的选择方式，默认采用hash，选择hash时，若partition_key为空，则采用随机选择random | 否       | hash   | [random,robin,hash,manual]        |
-| config->partition      | 选填，partitionType为manual时，该项指定分区号，默认为0       | 否       | 0      | 0                                 |
-| config->partition_key  | 选填，partitionType为hash时，该项指定hash值                  | 否       |        | 形如$read_ip，具体可参考formatter |
-| config->type           | 选填，formatter的类型                                        | 否       | "line" | ["line","json"]                   |
-| config->formatter      | 必填，formatter的输出内容                                    | 是       |        |                                   |
+| 参数           | 说明                                                         | 是否必填 | 默认值 | 值可能性                                  |
+| -------------- | ------------------------------------------------------------ | -------- | ------ | ----------------------------------------- |
+| name           | 实例名                                                       | 是       |        | string                                    |
+| driver         | 驱动名                                                       | 是       |        | "kafka_output"                            |
+| description    | 描述                                                         | 是       |        | string                                    |
+| topic          | 消息topic                                                    | 是       |        | string                                    |
+| address        | kafka地址,多个地址用,分割                                    | 是       |        | "127.0.0.1:9092,127.0.0.2:9092"           |
+| timeout        | 超时时间，单位为second                                       | 否       | 10     | int                                       |
+| version        | 使用的kafka版本，格式如：0.11.0.0，默认为最新稳定版          | 否       |        | "0.11.0.0"                                |
+| partition_type | partition的选择方式，默认采用hash，选择hash时，若partition_key为空，则采用随机选择random | 否       | hash   | ["random","robin","hash","manual"]        |
+| partition      | partitionType为manual时，该项指定分区号                      | 否       | 0      | int                                       |
+| partition_key  | partitionType为hash时，该项指定hash值                        | 否       |        | string, 形如$read_ip，具体可参考formatter |
+| type           | formatter的类型                                              | 否       | "line" | ["line","json"]                           |
+| formatter      | formatter的输出内容                                          | 是       |        | object                                    |
 
 **注意**：
 
-* formatter的配置教程[点此](/docs/formatter)进行跳转
+* formatter的配置教程[点此](/docs/apinto/formatter)进行跳转
 
-### OpenAPI配置日志
 
-#### 请求参数说明
-
-![](http://data.eolinker.com/course/xFqhCTX0014962c9a5c249dd8b36003ac53949cde9e3229.png)
 
 #### 返回参数说明
 
-![](http://data.eolinker.com/course/vWNnCRf260e277847d34be26d24ade8a5539c569bb44d3c.png)
+| 参数名         | 类型   | 是否必含 | 说明                                                         |
+| -------------- | ------ | -------- | ------------------------------------------------------------ |
+| id             | string | 是       | 实例id                                                       |
+| name           | string | 是       | 实例名                                                       |
+| driver         | string | 是       | 驱动名                                                       |
+| description    | string | 是       | 描述                                                         |
+| profession     | string | 是       | 模块名                                                       |
+| create         | string | 是       | 创建时间                                                     |
+| update         | string | 是       | 更新时间                                                     |
+| topic          | string | 是       | 消息topic                                                    |
+| address        | string | 是       | kafka地址,多个地址用,分割                                    |
+| timeout        | int    | 是       | 超时时间，单位为second                                       |
+| version        | string | 是       | 使用的kafka版本，格式如：0.11.0.0，为空则默认为最新稳定版    |
+| partition_type | string | 是       | partition的选择方式，默认采用hash，选择hash时，若partition_key为空，则采用随机选择random |
+| partition      | int    | 是       | partitionType为manual时，该项指定分区号                      |
+| partition_key  | string | 是       | partitionType为hash时，该项指定hash值                        |
+| type           | string | 是       | formatter的类型                                              |
+| formatter      | object | 是       | formatter的输出内容                                          |
+
+
 
 #### 创建文件输出器示例
 
@@ -46,35 +62,47 @@ curl -X POST  \
   -d '{
 	"name": "demo_kafka",
 	"driver": "kafka_output",
-	"config": {
-		"topic":"test",
-		"address":"127.0.0.1:9092,127.0.0.2:9092,127.0.0.3:9092",
-		"partition_type":"manual",
-		"partition":0,
-		"type": "line",
-		"formatter": {
-			"fields": ["$request_id", "$request", "$status", "@time", "@proxy", "$response_time"],
-			"time": ["$msec", "$time_iso8601", "$time_local"],
-			"proxy": ["$proxy_uri", "$proxy_scheme", "$proxy_addr"]
-		}
+	"topic": "test",
+	"address": "127.0.0.1:9092,127.0.0.2:9092,127.0.0.3:9092",
+	"partition_type": "manual",
+	"partition": 0,
+	"type": "line",
+	"formatter": {
+		"fields": ["$request_id", "$request", "$status", "@time", "@proxy", "$response_time"],
+		"time": ["$msec", "$time_iso8601", "$time_local"],
+		"proxy": ["$proxy_uri", "$proxy_scheme", "$proxy_addr"]
 	}
-}
+}'
 ```
 
 #### 返回结果示例
 
 ```json
 {
-	"create": "2021-12-24 18:27:58",
+	"create": "2022-06-14 17:11:00",
 	"driver": "kafka_output",
 	"id": "demo_kafka@output",
 	"name": "demo_kafka",
+	"description": "",
 	"profession": "output",
-	"update": "2021-12-24 18:27:58"
+	"update": "2022-06-14 17:11:00",
+	"topic": "test",
+	"address": "127.0.0.1:9092,127.0.0.2:9092,127.0.0.3:9092",
+	"partition_type": "manual",
+	"partition": 0,
+	"timeout": 0,
+	"version": "",
+	"partition_key": "",
+	"type": "line",
+	"formatter": {
+		"fields": ["$request_id", "$request", "$status", "@time", "@proxy", "$response_time"],
+		"proxy": ["$proxy_uri", "$proxy_scheme", "$proxy_addr"],
+		"time": ["$msec", "$time_iso8601", "$time_local"]
+	}
 }
 ```
 
 ### Kafka输出器使用
 
-Kafka输出器可用于access-log插件的日志输出，[点此](/docs/plugins/access_log.md)跳转至access-log插件。
+Kafka输出器可用于access-log插件的日志输出，[点此](/docs/apinto/plugins/access_log.md)跳转至access-log插件。
 

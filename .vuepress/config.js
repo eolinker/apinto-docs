@@ -147,11 +147,6 @@ function getSideBar(){
         text: 'formatter',
         link: '/docs/apinto/formatter/index.md',
         collapsible: true,
-        children: [
-        '/docs/apinto/formatter/line.md', 
-        '/docs/apinto/formatter/json.md', 
-        '/docs/apinto/formatter/system_valid.md'
-      ],
       },
 
       {
@@ -184,13 +179,7 @@ function getSideBar(){
           '/docs/apinto/cli/restart.md', 
           '/docs/apinto/cli/join.md', 
           '/docs/apinto/cli/leave.md', 
-          '/docs/apinto/cli/info.md', 
-          '/docs/apinto/cli/extender_install.md', 
-          '/docs/apinto/cli/extender_upgrade.md', 
-          '/docs/apinto/cli/extender_uninstall.md',
-          '/docs/apinto/cli/extender_download.md',
-          '/docs/apinto/cli/extender_info.md',
-          '/docs/apinto/cli/extender_version.md',
+          '/docs/apinto/cli/info.md',
         ],
       },
       {

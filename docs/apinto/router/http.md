@@ -222,48 +222,86 @@ query_sex：男
 
 ### OpenAPI配置路由
 
-服务配置教程[点此](/docs/service/http.md)进行跳转
+服务配置教程[点此](/docs/apinto/service/http.md)进行跳转
 
-##### 请求参数说明
+#### 配置参数说明
 
-![](http://data.eolinker.com/course/QErwwRqee27a611dba1f6341473cefbbe5ba0771eb1d176.png)
+| 参数              | 说明                                | 是否必填 | 默认值 | 值可能性     |
+| ----------------- | ----------------------------------- | -------- | ------ | ------------ |
+| name              | 实例名                              | 是       |        | string       |
+| driver            | 驱动名                              | 是       |        | "http"       |
+| description       | 描述                                | 否       |        | string       |
+| disable           | 禁用路由，默认为false，表示开启状态 | 否       | false  | bool         |
+| listen            | 监听端口                            | 是       |        | int          |
+| method            | 请求方式                            | 否       |        | array_string |
+| host              | host列表                            | 否       |        | array_string |
+| rules             | 规则列表                            | 否       |        | array_object |
+| rules -> location | 路径规则                            | 否       |        | string       |
+| rules -> header   | header请求头规则                    | 否       |        | object       |
+| rules -> query    | query参数规则                       | 否       |        | object       |
+| target            | 目标服务                            | 是       |        | string       |
+| plugins           | 插件配置                            | 否       |        | object       |
+
+**备注**：
+
+* `method`、`host`、`rules`均可配置多个，实际请求满足其中一个即可。
+* plugins具体配置[点此](/docs/apinto/plugins)进行跳转。
+
+#### 返回参数说明
 
 
-##### 返回参数说明
+| 参数名      | 类型         | 是否必含 | 说明     |
+| ----------- | ------------ | -------- | -------- |
+| id          | string       | 是       | 实例id   |
+| name        | string       | 是       | 实例名   |
+| driver      | string       | 是       | 驱动名   |
+| description | string       | 是       | 描述     |
+| profession  | string       | 是       | 模块名   |
+| create      | string       | 是       | 创建时间 |
+| update      | string       | 是       | 更新时间 |
+| disable     | bool         | 是       | 禁用路由 |
+| listen      | int          | 是       | 监听端口 |
+| method      | array_string | 是       | 请求方式 |
+| host        | string       | 是       | host列表 |
+| rules       | array_object | 是       | 规则列表 |
+| target      | string       | 是       | 目标服务 |
+| plugins     | object       | 是       | 插件配置 |
 
-![](http://data.eolinker.com/course/ZyPW36jb5d2f88cf4e94e5e3b116fa716b547c2e54d1209.png)
+备注：返回体内的rules参考请求配置参数，在此不再赘述。
 
-#### 创建路由
+#### 创建规则较复杂的路由
+
+**备注**：已经存在id为`anonymous_service@service`的服务。
 
 ```shell
 curl -X POST  \
   'http://127.0.0.1:9400/api/router' \
   -H 'Content-Type:application/json' \
   -d '{
-    "name": "complex_router",
-    "driver": "http",
-    "desc": "一个较复杂匹配规则的路由",
-    "listen": 8080,
-    "host": ["*.com"],
-    "rules": [
-        {
-            "location": "/demo",
-            "header": {"name":"**"},
-            "query": {
-                "id": "!=123"
-            }
-        }
-    ],
-    "target": "annoymous@service",
-    "method": [
-        "GET",
-        "POST"
-    ]
+	"name": "complex_router",
+	"driver": "http",
+	"desc": "一个匹配规则较复杂的路由",
+	"listen": 8099,
+	"method": [
+		"GET",
+		"POST"
+	],
+	"host": ["*.com"],
+	"rules": [{
+		"location": "/demo",
+		"header": {
+			"name": "**"
+		},
+		"query": {
+			"id": "!=123"
+		}
+	}],
+	"target": "anonymous_service@service"
 }'
 
 #当http请求同时满足以下条件时才能匹配这个路由
 #method为GET或者POST
-#请求host的值后缀为.com
+#请求头内host的值后缀为.com
 #请求路径uri为/demo
 #头部存在name这个key，且对应值不为空值
 #请求参数里包含key为id，且值不为123
@@ -275,12 +313,84 @@ curl -X POST  \
 
 ```json
 {
-    "id": "complex_router@router",
-    "name": "complex_router",
-    "driver": "http",
-    "profession": "router",
-    "create": "2021-08-05 19:17:03",
-    "update": "2021-08-05 19:17:03"
+	"create": "2022-06-16 12:06:05",
+	"description": "一个匹配规则较复杂的路由",
+	"disable": false,
+	"driver": "http",
+	"host": ["*.com"],
+	"id": "complex_router@router",
+	"listen": 8099,
+	"method": ["GET", "POST"],
+	"name": "complex_router",
+	"plugins": null,
+	"profession": "router",
+	"rules": [{
+		"header": {
+			"name": "**"
+		},
+		"location": "/demo",
+		"query": {
+			"id": "!=123"
+		}
+	}],
+	"target": "anonymous_service@service",
+	"update": "2022-06-16 12:06:05"
 }
 ```
 
+#### 创建规则较简单的路由
+
+**备注**：已经存在id为`anonymous_service@service`的服务。
+
+```shell
+curl -X POST  \
+  'http://127.0.0.1:9400/api/router' \
+  -H 'Content-Type:application/json' \
+  -d '{
+	"name": "simple_router",
+	"driver": "http",
+	"description": "一个匹配规则较简单的路由",
+	"listen": 8099,
+	"rules": [{
+	  "location": "/simple_anonymous_one"
+	  },
+	  {
+	  "location": "/simple_anonymous_two"
+	  }
+	],
+	"target": "anonymous_service@service"
+}'
+
+#请求http://127.0.0.1:8099/simple_anonymous_one和http://127.0.0.1:8099/simple_anonymous_two均可命中此路由
+```
+
+**注意**：该路由内配置的监听端口`listen`必须在config.yml配置文件里的监听端口列表中存在。
+
+#### 返回结果示例
+
+```json
+{
+	"create": "2022-06-16 12:13:40",
+	"description": "一个匹配规则较简单的路由",
+	"disable": false,
+	"driver": "http",
+	"host": null,
+	"id": "simple_router@router",
+	"listen": 8099,
+	"method": null,
+	"name": "simple_router",
+	"plugins": null,
+	"profession": "router",
+	"rules": [{
+		"header": null,
+		"location": "/simple_anonymous_one",
+		"query": null
+	}, {
+		"header": null,
+		"location": "/simple_anonymous_two",
+		"query": null
+	}],
+	"target": "anonymous_service@service",
+	"update": "2022-06-16 12:13:40"
+}
+```
