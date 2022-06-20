@@ -114,6 +114,64 @@
 
 **插件执行顺序**: 以上述配置为例，`first_extra_params`的执行顺序高于`second_extra_params`。
 
+
+
+### router、service引用插件配置
+
+在全局插件中启用了某个插件之后，可以在`router`或`service`中引用并配置它。
+
+#### 配置参数说明
+
+
+| 参数名                   | 说明                         | 是否必填 | 默认值 | 值可能性 |
+| ------------------------ | :--------------------------- | -------- | ------ | -------- |
+| plugins                  | 插件列表                     | 是       |        | object   |
+| plugins -> {plugin_name} | 单个插件配置                 | 是       |        | object   |
+| {plugin_name}-> disable  | 关闭插件                     | 是       |        | bool     |
+| {plugin_name}-> config   | 具体配置视所使用的插件而不同 | 是       |        | object   |
+
+#### 配置示例
+
+以在服务中配置额外参数插件和access_log插件为例
+
+```shell
+curl - X POST 'http://127.0.0.1:9400/api/service'\ 
+-H 'Content-Type:application/json'\ 
+-d '{
+  "name": "extra_param_service",
+  "driver": "http",
+  "timeout": 3000,
+  "retry": 3,
+  "scheme": "http",
+  "anonymous": {
+	  "type": "round-robin",
+	  "config": "demo-apinto.eolink.com:8280"
+  },
+  "plugins": {
+	  "my_access_log": {
+		  "disable": false,
+		  "config": {
+			  "output": ["demo_file@output"]
+		  }
+	  },
+	  "my_extra_params": {
+		  "disable": false,
+		  "config": {
+			  "params": [{
+				  "name": "demo_param",
+				  "position": "query",
+				  "value": "1",
+				  "conflict": "Convert"
+			  }],
+			  "error_type": "text"
+		  }
+	  }
+  }
+}'
+```
+
+
+
 ### Open API配置插件示例
 
 **获取全局插件配置接口**：GET /api/setting/plugin
