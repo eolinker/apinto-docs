@@ -8,7 +8,7 @@ Apinto 完全基于 Golang 开发，不基于现有第三方产品，因此具�
 1.下载安装包并解压
 
 ```shell
-wget https://github.com/eolinker/apinto/releases/download/v0.5.1/apinto-v0.5.1.linux.x64.tar.gz && tar -zxvf apinto-v0.5.1.linux.x64.tar.gz && cd apinto
+wget https://github.com/eolinker/apinto/releases/download/v0.6.0/apinto-v0.6.0.linux.x64.tar.gz && tar -zxvf apinto-v0.6.0.linux.x64.tar.gz && cd apinto
 ```
 
 2.启动网关：

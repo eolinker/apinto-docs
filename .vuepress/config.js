@@ -101,7 +101,7 @@ function getSideBar(){
       {
         text: '路由',
         collapsible: true,
-        children: ['/docs/router/http.md'],
+          children: ['/docs/router/http.md'],
       },
       {
         text: '服务',
@@ -144,11 +144,6 @@ function getSideBar(){
         text: 'formatter',
         link: '/docs/formatter/index.md',
         collapsible: true,
-        children: [
-        '/docs/formatter/line.md', 
-        '/docs/formatter/json.md', 
-        '/docs/formatter/system_valid.md'
-      ],
       },
 
       {
@@ -181,13 +176,7 @@ function getSideBar(){
           '/docs/cli/restart.md', 
           '/docs/cli/join.md', 
           '/docs/cli/leave.md', 
-          '/docs/cli/info.md', 
-          '/docs/cli/extender_install.md', 
-          '/docs/cli/extender_upgrade.md', 
-          '/docs/cli/extender_uninstall.md',
-          '/docs/cli/extender_download.md',
-          '/docs/cli/extender_info.md',
-          '/docs/cli/extender_version.md',
+          '/docs/cli/info.md',
         ],
       },
       {

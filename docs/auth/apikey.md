@@ -6,43 +6,43 @@
 
 
 
-### yaml配置鉴权
-
-```yaml
-auth:
-  -
-    name: apikey_1
-    driver: apikey
-    hide_credentials: true 
-    user:
-      -
-        apikey: eolinker
-        expire: 0
-      -
-        apikey: apinto
-        expire: 1627013522
-```
-
-**注意**：若yaml文件发生变动，需要重启网关。
-
-
-
-##### 配置参数
-
-| 参数名           | 说明                                                | 是否必填 | 默认值 | 值可能性     |
-| ---------------- | --------------------------------------------------- | -------- | ------ | ------------ |
-| name             | 实例名                                              | 是       |        | string       |
-| driver           | 所使用的鉴权类别                                    | 是       |        | ["apikey"]   |
-| hide_credentials | 是否隐藏证书字段 默认为false                        | 否       | false  | bool         |
-| user             | 密钥列表                                            | 是       |        | object_array |
-| user -> apikey   | api密钥                                             | 是       |        | string       |
-| user -> expire   | 过期时间 类型是unix时间戳 范围>=0 值为0表示永久有效 | 是       |        | int          |
-
-
-
 
 ### OpenAPI配置鉴权及进行请求的示例
-##### 请求中鉴权参数填写位置说明
+
+#### 配置参数说明
+
+| 参数名           | 说明                                                         | 是否必填 | 默认值 | 值可能性     |
+| ---------------- | ------------------------------------------------------------ | -------- | ------ | ------------ |
+| name             | 实例名                                                       | 是       |        | string       |
+| driver           | 所使用的鉴权类别                                             | 是       |        | "apikey"     |
+| description      | 描述                                                         | 否       |        | string       |
+| hide_credentials | 是否隐藏证书字段                                | 否       | false  | bool         |
+| user             | 密钥列表                                                     | 是       |        | object_array |
+| user -> apikey   | api密钥                                                      | 是       |        | string       |
+| user -> expire   | 过期时间 类型是unix时间戳 范围>=0 值为0表示永久有效          | 是       |        | int          |
+| user -> labels   | 标签，object中的键值对会被均赋值到通过该密钥鉴权后的请求的上下文中，可被插件使用，例如access-log。 | 否       |        | object       |
+
+
+
+#### 返回参数说明
+
+| 参数名           | 类型         | 是否必含 | 说明             |
+| ---------------- | ------------ | -------- | ---------------- |
+| id               | string       | 是       | 实例id           |
+| name             | string       | 是       | 实例名           |
+| driver           | string       | 是       | 驱动名           |
+| description      | string       | 是       | 描述             |
+| profession       | string       | 是       | 模块名           |
+| create           | string       | 是       | 创建时间         |
+| update           | string       | 是       | 更新时间         |
+| hide_credentials | bool         | 是       | 是否隐藏证书字段 |
+| user             | object_array | 是       | 密钥列表         |
+
+**备注**：返回体内的user参考请求配置参数，在此不再赘述。
+
+
+
+#### 请求中鉴权参数填写位置说明
 
 | 参数名             | 说明     | 必填 | 值可能性                                     | 参数位置 |
 | ------------------ | -------- | ---- | -------------------------------------------- | -------- |
@@ -55,19 +55,21 @@ auth:
 
 
 
-##### 请求参数说明
-
-![](http://data.eolinker.com/course/N2ItXUYbaa5dcdc8039f2acde8b9e9b838597ef8baa0572.png)
-
-
-
-##### 返回参数说明
-
-![](http://data.eolinker.com/course/Up3FcE56ea9365a8b5b624eb7037a75969e0945194f7dad.png)
-
 #### 全局配置
 
 在使用apikey鉴权插件之前，需要在全局插件配置中将鉴权插件状态设置为enable，具体配置点此[跳转](/docs/plugins)
+
+```shell
+curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' -H 'Content-Type:application/json' -d '{
+   "plugins":[{
+      "id":"eolinker.com:apinto:auth",
+      "name":"myAuth",
+      "status":"enable"
+   }]
+}'
+```
+
+
 
 #### 创建鉴权
 
@@ -75,7 +77,18 @@ auth:
 curl -X POST  \
   'http://127.0.0.1:9400/api/auth' \
   -H 'Content-Type:application/json' \
-  -d '{"name":"apikey_1","driver":"apikey","desc":"apikey鉴权","user":[{"apikey":"apinto","expire":0},{"apikey":"eolinker","expire":1659776375}]}'
+  -d '{
+	"name": "demo_apikey",
+	"driver": "apikey",
+	"description": "apikey鉴权",
+	"user": [{
+		"apikey": "apinto",
+		"expire": 0
+	}, {
+		"apikey": "eolinker",
+		"expire": 1659776375
+	}]
+}'
 ```
 
 
@@ -84,17 +97,28 @@ curl -X POST  \
 
 ```json
 {
-    "id": "apikey_1@auth",
-    "name": "apikey_1",
-    "profession": "auth",
-    "driver": "apikey",
-    "create": "2021-08-06 17:00:09",
-    "update": "2021-08-06 17:00:09"
+	"create": "2022-06-13 17:46:26",
+	"description": "apikey鉴权",
+	"driver": "apikey",
+	"hide_credentials": false,
+	"id": "demo_apikey@auth",
+	"name": "demo_apikey",
+	"profession": "auth",
+	"update": "2022-06-13 17:46:26",
+	"user": [{
+		"apikey": "apinto",
+		"expire": 0,
+		"labels": null
+	}, {
+		"apikey": "eolinker",
+		"expire": 1659776375,
+		"labels": null
+	}]
 }
 ```
 
 ```
-返回的鉴权ID为apikey_1@auth
+返回的鉴权ID为demo_apikey@auth
 ```
 
 
@@ -109,24 +133,30 @@ curl -X POST  \
 curl -X POST  \
   'http://127.0.0.1:9400/api/service' \
   -H 'Content-Type:application/json' \
-  -d '{"name":"auth_apikey_service","driver":"http","desc":"使用apikey鉴权的服务","timeout":10000,"anonymous":{"type":"round-robin","config":"demo-apinto.eolink.com:8280"},"retry":3,"plugins":{"auth":{"disable":false,"config":{"auth":["apikey_1@auth"]}}},"scheme":"https"}'
+  -d '{
+	"name": "apikey_service",
+	"driver": "http",
+	"description": "使用apikey鉴权的服务",
+	"timeout": 10000,
+	"anonymous": {
+		"type": "round-robin",
+		"config": "demo-apinto.eolink.com:8280"
+	},
+	"retry": 3,
+	"scheme": "https",
+	"plugins": {
+	  "myAuth": {
+		"disable": false,
+		  "config": {
+			"auth": ["demo_apikey@auth"]
+		  }
+		}
+	  }
+    }'
 ```
 
-##### 返回结果示例
-
-```json
-{
-	"id": "auth_apikey_service@service",
-	"name": "auth_apikey_service",
-    "driver": "http",
-	"profession": "service",
-    "create": "2021-10-29 10:38:31",
-	"update": "2021-10-29 10:38:31"
-}
 ```
-
-```
-返回的serviceID为auth_apikey_service@service
+返回的serviceID为apikey_service@service
 ```
 
 
@@ -139,20 +169,16 @@ curl -X POST  \
 curl -X POST  \
   'http://127.0.0.1:9400/api/router' \
   -H 'Content-Type:application/json' \
-  -d '{"name":"auth_apikey_router","driver":"http","desc":"该路由的目标服务使用了apikey鉴权","listen":8080,"host":["www.demo.com"],"target":"auth_apikey_service@service"}'
-```
-
-##### 返回结果示例
-
-```json
-{
-	"id": "auth_apikey_router@router",
-	"name": "auth_apikey_router",
-    "driver": "http",
-	"profession": "router",
-    "create": "2021-10-29 10:43:29",
-	"update": "2021-10-29 10:43:29"
-}
+  -d '{
+	"name": "apikey_router",
+	"driver": "http",
+	"description": "该路由的目标服务使用了apikey鉴权",
+	"listen": 8099,
+	"rules": [{
+		"location": "/demo/apikey"
+	}],
+	"target": "apikey_service@service"
+}'
 ```
 
 
@@ -161,14 +187,35 @@ curl -X POST  \
 
 ```shell
 curl -X GET  \
-  'http://127.0.0.1:8080/' \
-  -H 'Host:www.demo.com'\
+  'http://127.0.0.1:8099/demo/apikey' \
   -H 'Content-Type:application/x-www-form-urlencoded' \
   -H 'Authorization-Type:apikey' \
   -H 'Authorization:apinto'
 ```
 
-返回状态码200及demo接口反馈内容
+
+
+#### 请求返回示例
+
+```json
+{
+  "body": "",
+  "header": {
+    "Accept": ["*/*"],
+    "Authorization": ["apinto"],
+    "Authorization-Type": ["apikey"],
+    "Content-Type": ["application/x-www-form-urlencoded"],
+    "User-Agent": ["curl/7.68.0"],
+    "X-Forwarded-For": ["127.0.0.1,127.0.0.1"]
+  },
+  "host": "127.0.0.1:8099",
+  "method": "GET",
+  "path": "/demo/apikey",
+  "query": {},
+  "remote_addr": "127.0.0.1:1089",
+  "url": "/demo/apikey"
+}
+```
 
 
 

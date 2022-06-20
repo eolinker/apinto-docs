@@ -39,7 +39,7 @@
 | --------- | ------------------------------------------------------------ | -------- | ------ | ---------------- |
 | scheme    | 设置转发请求的scheme                                         | 否       | http   | ["http","https"] |
 | uri       | 设置转发请求的新uri地址                                      | 否       |        | string           |
-| regex_uri | 对原uri进行正则替换并将其设置到转发请求的新uri地址。该字符串数组有两个值，第一个表示匹配请求的uri所需要的正则表达式，第二个表示匹配成功后所需要的uri替换正则表达式。 | 否       |        | string_array     |
+| regex_uri | 对原uri进行正则替换并将其设置到转发请求的新uri地址。该字符串数组有两个值，第一个表示匹配请求的uri所需要的正则表达式，第二个表示匹配成功后所需要的uri替换正则表达式。 | 否       |        | array_string     |
 | host      | 设置转发请求的新host地址                                     | 否       |        | string           |
 | headers   | 能对转发请求的头部值进行新增或删除                           | 否       |        | object           |
 
@@ -59,7 +59,6 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
     "plugins":[{
         "id":"eolinker.com:apinto:proxy_rewrite",
         "name":"my_proxy_rewrite",
-        "type":"service",
         "status":"enable"
     }]
 }'
@@ -75,7 +74,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 
 ```shell
 curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/json' -d '{
-    "name": "param",
+    "name": "proxy_rewrite_service",
     "driver": "http",
     "timeout": 3000,
     "retry": 3,
@@ -108,22 +107,20 @@ curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/j
 curl -X POST  'http://127.0.0.1:9400/api/router' \
 -H 'Content-Type:application/json' \
 -d '{
-    "name":"params",
+    "name":"proxy_rewrite_router",
     "driver":"http",
-    "listen":8080,
+    "listen":8099,
     "rules":[{
-        "location":"/demo"
+        "location":"/demo/proxy_rewrite"
     }],
-    "target":"param@service"
+    "target":"proxy_rewrite_service@service"
 }'
 ```
 
 ##### 接口请求示例
 
 ```shell
-curl -X GET 'http://127.0.0.1:8080/demo' \
--H 'Content-Type:application/json'\
--H 'a:1'
+curl -X GET 'http://127.0.0.1:8099/demo/proxy_rewrite' -H 'Content-Type:application/json' -H 'a:1'
 ```
 
 ##### 接口访问返回示例
@@ -139,7 +136,7 @@ curl -X GET 'http://127.0.0.1:8080/demo' \
             "2"
         ],
         "Content-Type":[
-            "application/json-H"
+            "application/json"
         ],
         "User-Agent":[
             "curl/7.75.0"
@@ -150,10 +147,10 @@ curl -X GET 'http://127.0.0.1:8080/demo' \
     },
     "host":"1.1.1.1",
     "method":"GET",
-    "path":"/test",
+    "path":"/demo/proxy_rewrite",
     "query":{
 
     },
-    "url":"/test"
+    "url":"/demo/proxy_rewrite"
 }
 ```

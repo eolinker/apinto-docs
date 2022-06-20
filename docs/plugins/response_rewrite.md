@@ -34,14 +34,14 @@
 
 #### 配置参数说明
 
-| 参数名      | 说明                                   | 是否必填 | 默认值 | 值可能性     |
-| ----------- | -------------------------------------- | -------- | ------ | ------------ |
-| status_code | 新响应状态码                           | 是       |        | [200,598]    |
-| body        | 新响应体                               | 否       |        | string       |
-| body_base64 | 新响应体的配置内容是否已经过base64加密 | 否       | false  | [true,false] |
-| headers     | 新增的响应头部信息                     | 否       |        | object       |
-| match       | 匹配条件                               | 是       |        | object       |
-| match->code | 匹配状态码                             | 是       |        | int_array    |
+| 参数名      | 说明                                   | 是否必填 | 默认值 | 值可能性  |
+| ----------- | -------------------------------------- | -------- | ------ | --------- |
+| status_code | 新响应状态码, 闭区间范围为[200,598]    | 是       |        | int       |
+| body        | 新响应体                               | 否       |        | string    |
+| body_base64 | 新响应体的配置内容是否已经过base64加密 | 否       | false  | bool      |
+| headers     | 新增的响应头部信息                     | 否       |        | object    |
+| match       | 匹配条件                               | 是       |        | object    |
+| match->code | 匹配状态码                             | 是       |        | array_int |
 
 **注意事项**：
 
@@ -55,12 +55,12 @@
 curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 -H 'Content-Type:application/json' \
 -d '{
-	"plugins": [{
-		"id": "eolinker.com:apinto:response_rewrite",
-		"name": "response_rewrite",
-		"type": "service",
-		"status": "enable"
-	}]
+  "plugins": [{
+    "id": "eolinker.com:apinto:response_rewrite",
+    "name": "my_response_rewrite",
+    "type": "service",
+	"status": "enable"
+  }]
 }'
 ```
 
@@ -72,32 +72,33 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 
 
 ```shell
-curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/json' -d '{
-	"name": "response_rewrite_service",
-	"driver": "http",
-	"timeout": 3000,
-	"retry": 3,
-	"scheme": "http",
-	"anonymous": {
-		"type": "round-robin",
-		"config": "demo-apinto.eolink.com:8280"
+curl -X POST 'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/json' \
+-d '{
+ "name": "response_rewrite_service",
+ "driver": "http",
+ "timeout": 3000,
+ "retry": 3,
+ "scheme": "http",
+ "anonymous": {
+  "type": "round-robin",
+  "config": "demo-apinto.eolink.com:8280"
+ },
+ "plugins": {
+  "my_response_rewrite": {
+  "disable": false,
+  "config": {
+    "status_code": 201,
+    "body": "eyLph43lhpnlk43lupTkvZNCb2R5In0=",
+    "body_base64": true,
+    "headers": {
+     "demo_header": "1"
 	},
-	"plugins": {
-		"response_rewrite": {
-			"disable": false,
-			"config": {
-				"status_code": 201,
-				"body": "eyLph43lhpnlk43lupTkvZNCb2R5In0=",
-				"body_base64": true,
-				"headers": {
-					"demo_header": "1"
-				},
-				"match": {
-					"code": [404,200]
-				}
-			}
-		}
+	"match": {
+	 "code": [ 404, 200 ]
 	}
+   }
+  }
+ }
 }' 
 ```
 
@@ -109,9 +110,9 @@ curl -X POST  'http://127.0.0.1:9400/api/router' \
 -d '{
     "name":"response_rewrite_router",
     "driver":"http",
-    "listen":8080,
+    "listen":8099,
     "rules":[{
-        "location":"/demo"
+        "location":"/demo/response_rewrite"
     }],
     "target":"response_rewrite_service@service"
 }'
@@ -120,7 +121,7 @@ curl -X POST  'http://127.0.0.1:9400/api/router' \
 ##### 接口请求示例
 
 ```shell
-curl -i -X GET 'http://127.0.0.1:8080/demo' -H 'Content-Type:application/json'
+curl -i -X GET 'http://127.0.0.1:8099/demo/response_rewrite' -H 'Content-Type:application/json'
 ```
 
 ##### 接口访问返回示例

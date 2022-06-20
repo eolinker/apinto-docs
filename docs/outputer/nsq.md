@@ -6,37 +6,51 @@ NSQ输出器能够将特定的日志信息输出到指定nsqd的topic中.
 
 
 
+### OpenAPI配置日志
+
 #### 配置参数说明
 
-| 参数              | 说明                | 是否必填 | 默认值 | 值可能性        |
-| ----------------- | ------------------- | -------- | ------ | --------------- |
-| name              | 实例名              | 是       |        | string          |
-| driver            | 驱动名，填nsqd      | 是       |        | string          |
-| config            | 输出器配置          | 是       |        | object          |
-| config->topic     | 所指定的topic       | 是       |        | string          |
-| config->address   | nsqd地址列表        | 是       |        | []string        |
-| config->nsq_conf  | nsq生产者配置       | 否       |        | object          |
-| config->type      | formatter的类型     | 否       | "line" | ["line","json"] |
-| config->formatter | formatter的输出内容 | 是       |        | object          |
+| 参数        | 说明                | 是否必填 | 默认值 | 值可能性        |
+| ----------- | ------------------- | -------- | ------ | --------------- |
+| name        | 实例名              | 是       |        | string          |
+| driver      | 驱动名              | 是       |        | "nsqd"          |
+| description | 描述                | 否       |        | string          |
+| topic       | 所指定的topic       | 是       |        | string          |
+| address     | nsqd地址列表        | 是       |        | array_string    |
+| auth_secret | nsqd的鉴权密钥      | 否       |        | string          |
+| nsq_conf    | nsq生产者配置       | 否       |        | object          |
+| type        | formatter的类型     | 否       | "line" | ["line","json"] |
+| formatter   | formatter的输出内容 | 是       |        | object          |
 
 **注意**：
 
+* nsq_conf配置在dashboard上不可见，仅能通过openAPI来配置。
 * address参数可配置多个nsqd地址，用于负载均衡，所使用算法为轮询调度算法。同一个消息时仅会发送至其中一个nsqd。若某个nsqd连接不上，将会使用其他的nsqd进行发送。
+* 若配置了auth_secret，同时nsq_conf内也配置了auth_secret, 则以nsq_conf的为准。
 * nsq_conf用于生产者的配置信息，连接至address内的nsqd的所有生产者共用同一个配置。可配置的信息如鉴权`auth_secret`字段。更多配置字段见[这里](https://pkg.go.dev/github.com/nsqio/go-nsq#Config)。
-
 * formatter的配置教程[点此](/docs/formatter)进行跳转。
 
 
 
-### OpenAPI配置日志
-
-#### 请求参数说明
-
-![](http://data.eolinker.com/course/n7KwItm88836440a2caf46feea1f6db55324ed57198a007.png)
-
 #### 返回参数说明
 
-![](http://data.eolinker.com/course/SzT1bw405b41a501a71803cbb5a12b72fb37ecbe49bf95b.png)
+| 参数名      | 类型         | 是否必含 | 说明                |
+| ----------- | ------------ | -------- | ------------------- |
+| id          | string       | 是       | 实例id              |
+| name        | string       | 是       | 实例名              |
+| driver      | string       | 是       | 驱动名              |
+| description | string       | 是       | 描述                |
+| profession  | string       | 是       | 模块名              |
+| create      | string       | 是       | 创建时间            |
+| update      | string       | 是       | 更新时间            |
+| topic       | string       | 是       | 所指定的topic       |
+| address     | array_string | 是       | nsqd地址列表        |
+| auth_secret | string       | 是       | nsqd的鉴权密钥      |
+| nsq_conf    | object       | 是       | nsq生产者配置       |
+| type        | string       | 是       | formatter的类型     |
+| formatter   | object       | 是       | formatter的输出内容 |
+
+
 
 #### 创建NSQ输出器示例
 
@@ -47,18 +61,17 @@ curl -X POST  \
   -d '{
 	"name": "demo_nsqlog",
 	"driver": "nsqd",
-	"config": {
-		"topic": "test",
-		"address": ["192.168.1.3:4150","192.168.1.4:4150","192.168.1.5:4150"],
-		"nsq_conf":{
-			"auth_secret":"token"
-		 },
-		"type": "line",
-		"formatter": {
-			"fields": ["$request_id", "$request", "$status", "@time", "@proxy", "$response_time"],
-			"time": ["$msec", "$time_iso8601", "$time_local"],
-			"proxy": ["$proxy_uri", "$proxy_scheme", "$proxy_addr"]
-		}
+	"topic": "test",
+	"address": ["192.168.1.3:4150", "192.168.1.4:4150", "192.168.1.5:4150"],
+	"auth_secret": "auth_token",
+	"nsq_conf": {
+		"read_timeout": 30
+	},
+	"type": "line",
+	"formatter": {
+		"fields": ["$request_id", "$request", "$status", "@time", "@proxy", "$response_time"],
+		"time": ["$msec", "$time_iso8601", "$time_local"],
+		"proxy": ["$proxy_uri", "$proxy_scheme", "$proxy_addr"]
 	}
 }'
 ```
@@ -67,12 +80,22 @@ curl -X POST  \
 
 ```json
 {
+	"address": ["192.168.1.3:4150", "192.168.1.4:4150", "192.168.1.5:4150"],
+	"auth_secret": "auth_token",
+	"create": "2022-06-14 17:11:00",
+	"description": "",
+	"driver": "nsqd",
+	"formatter": {
+		"fields": ["$request_id", "$request", "$status", "@time", "@proxy", "$response_time"],
+		"proxy": ["$proxy_uri", "$proxy_scheme", "$proxy_addr"],
+		"time": ["$msec", "$time_iso8601", "$time_local"]
+	},
 	"id": "demo_nsqlog@output",
 	"name": "demo_nsqlog",
-  "driver": "nsqd",
 	"profession": "output",
-  "create": "2021-12-29 12:14:22",
-	"update": "2021-12-29 12:14:22"
+	"topic": "test",
+	"type": "line",
+	"update": "2022-06-14 17:11:00"
 }
 ```
 

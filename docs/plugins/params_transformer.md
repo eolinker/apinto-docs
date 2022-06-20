@@ -42,17 +42,16 @@
 
 #### 配置参数说明
 
-| 参数名         | 说明                                               | 是否必填 | 默认值 | 值可能性            |
-| -------------- | -------------------------------------------------- | -------- | ------ | ------------------- |
-| name           | 待映射参数名称                                     | 是       |        | string              |
-| position       | 待映射参数所在位置                                 | 是       |        | [body/header/query] |
-| proxy_name     | 目标参数名称                                       | 是       |        | string              |
-| proxy_position | 目标参数所在位置                                   | 是       |        | string              |
-| required       | 待映射参数是否必含，如为true，该参数不存在时会报错 | 否       | false  | [true/false]        |
-| remove         | 映射后删除原参数                                   | 否       | false  | [true/false]        |
-| error_type     | 插件返回报错的类型                                 | 否       | text   | text/json           |
-
-若error_type为空或取值范围之外，视为使用默认值text。
+| 参数名                   | 说明                                               | 是否必填 | 默认值 | 值可能性                  |
+| ------------------------ | -------------------------------------------------- | -------- | ------ | ------------------------- |
+| params                   | 映射参数列表                                       | 是       |        | array_object              |
+| params -> name           | 待映射参数名称                                     | 是       |        | string                    |
+| params -> position       | 待映射参数所在位置                                 | 是       |        | ["body","header","query"] |
+| params -> proxy_name     | 目标参数名称                                       | 是       |        | string                    |
+| params -> proxy_position | 目标参数所在位置                                   | 是       |        | string                    |
+| params -> required       | 待映射参数是否必含，如为true，该参数不存在时会报错 | 否       | false  | bool                      |
+| remove                   | 映射后删除原参数                                   | 否       | false  | bool                      |
+| error_type               | 插件返回报错的类型                                 | 否       | text   | ["text","json"]           |
 
 #### Open API 请求示例
 
@@ -65,7 +64,6 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
     "plugins":[{
         "id":"eolinker.com:apinto:params_transformer",
         "name":"my_params_transformer",
-        "type":"service",
         "status":"enable"
     }]
 }'
@@ -81,7 +79,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 
 ```shell
 curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/json' -d '{
-    "name": "param",
+    "name": "params_trans_service",
     "driver": "http",
     "timeout": 3000,
     "retry": 3,
@@ -116,20 +114,20 @@ curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/j
 curl -X POST  'http://127.0.0.1:9400/api/router' \
 -H 'Content-Type:application/json' \
 -d '{
-    "name":"params",
+    "name":"params_trans_router",
     "driver":"http",
-    "listen":8080,
+    "listen":8099,
     "rules":[{
-        "location":"/demo"
+        "location":"/demo/params_trans"
     }],
-    "target":"param@service"
+    "target":"params_trans_service@service"
 }'
 ```
 
 ##### 接口请求示例
 
 ```shell
-curl -X GET 'http://127.0.0.1:8080/demo?a=test_plugin' -H 'Content-Type:application/json'
+curl -X GET 'http://127.0.0.1:8099/demo/params_trans?a=test_plugin' -H 'Content-Type:application/json'
 ```
 
 ##### 接口访问返回示例
@@ -151,13 +149,13 @@ curl -X GET 'http://127.0.0.1:8080/demo?a=test_plugin' -H 'Content-Type:applicat
             "127.0.0.1,127.0.0.1"
         ]
     },
-    "host":"127.0.0.1:8080",
+    "host":"127.0.0.1:8099",
     "method":"GET",
-    "path":"/demo",
+    "path":"/demo/params_trans",
     "query":{
 
     },
-    "url":"/demo"
+    "url":"/demo/params_trans"
 }
 ```
 

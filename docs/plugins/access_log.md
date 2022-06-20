@@ -22,24 +22,20 @@
 ##### 配置输出器（以文件输出器为例）
 
 ```shell
-curl -X POST  \
-  'http://127.0.0.1:9400/api/output' \
-  -H 'Content-Type:application/json' \
-  -d '{
-	"name": "demo_file",
-	"driver": "file_output",
-	"config": {
-		"dir": "/var/log",
-		"file": "demo",
-		"period": "day",
-		"expire": 1,
-		"type": "line",
-		"formatter": {
-			"fields": ["$request_id", "$request", "$status", "@time", "@proxy", "$response_time"],
-			"time": ["$msec", "$time_iso8601", "$time_local"],
-			"proxy": ["$proxy_uri", "$proxy_scheme", "$proxy_addr"]
-		}
-	}
+curl -X POST 'http://127.0.0.1:9400/api/output' -H 'Content-Type:application/json' \
+-d '{
+  "name": "demo_file",
+  "driver": "file",
+  "dir": "/var/log",
+  "file": "demo",
+  "period": "day",
+  "expire": 1,
+  "type": "line",
+  "formatter": {
+    "fields": ["$request_id", "$request", "$status", "@time", "@proxy", "$response_time"],
+    "time": ["$msec", "$time_iso8601", "$time_local"],
+    "proxy": ["$proxy_uri", "$proxy_scheme", "$proxy_addr"]
+  }
 }'
 ```
 
@@ -56,7 +52,6 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
     "plugins":[{
         "id":"eolinker.com:apinto:access_log",
         "name":"my_access_log",
-        "type":"router",
         "status":"enable"
     }]
 }'
@@ -74,23 +69,23 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 curl -X POST  'http://127.0.0.1:9400/api/service' \
 -H 'Content-Type:application/json' \
 -d '{
-	"name": "access_log_service",
-	"driver": "http",
-	"timeout": 3000,
-	"retry": 3,
-	"scheme": "http",
-	"anonymous": {
-		"type": "round-robin",
-		"config": "demo-apinto.eolink.com:8280"
-	},
-	"plugins": {
-		"my_access_log": {
-			"disable": false,
-			"config": {
-				"output": ["demo_file@output"]
-			}
-		}
-	}
+  "name": "access_log_service",
+  "driver": "http",
+  "timeout": 3000,
+  "retry": 3,
+  "scheme": "http",
+  "anonymous": {
+    "type": "round-robin",
+    "config": "demo-apinto.eolink.com:8280"
+  },
+  "plugins": {
+    "my_access_log": {
+    "disable": false,
+    "config": {
+      "output": ["demo_file@output"]
+    }
+   }
+  }
 }' 
 ```
 
@@ -104,9 +99,9 @@ curl -X POST  'http://127.0.0.1:9400/api/router' \
 -d '{
     "name":"access_log_router",
     "driver":"http",
-    "listen":8080,
+    "listen":8099,
     "rules":[{
-        "location":"/demo"
+        "location":"/demo/access_log"
     }],
     "target":"access_log_service@service"
 }'
@@ -117,7 +112,7 @@ curl -X POST  'http://127.0.0.1:9400/api/router' \
 ##### 接口请求示例
 
 ```shell
-curl -i -X GET 'http://127.0.0.1:8080/demo'
+curl -i -X GET 'http://127.0.0.1:8099/demo/access_log'
 ```
 
 
