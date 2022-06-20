@@ -9,7 +9,7 @@
 
 能够记录到达网关的http请求的访问日志，通过配置的输出器将筛选后的信息输出到特定的地方。
 
-**备注**：输出器的教程[点此](/docs/outputer/file.md)进行跳转。
+**备注**：输出器的教程[点此](/docs/apinto/outputer/file.md)进行跳转。
 
 #### 配置参数说明
 
@@ -61,7 +61,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 
 ##### 配置带有access-log插件的service服务
 
-全局插件具体配置点此进行[跳转](/docs/plugins)。
+全局插件具体配置点此进行[跳转](/docs/apinto/plugins)。
 
 **备注**：匿名服务配置的是apinto官方示例接口，将返回请求的相关信息。
 

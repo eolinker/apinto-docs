@@ -112,7 +112,7 @@ header.playload.signature
 
 #### 全局配置
 
-在使用jwt鉴权插件之前，需要在全局插件配置中将鉴权插件状态设置为enable，具体配置点此[跳转](/docs/plugins)
+在使用jwt鉴权插件之前，需要在全局插件配置中将鉴权插件状态设置为enable，具体配置点此[跳转](/docs/apinto/plugins)
 
 ```shell
 curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \

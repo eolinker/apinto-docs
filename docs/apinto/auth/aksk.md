@@ -358,7 +358,7 @@ curl -X GET "http://www.demo.com:6689/demo/login?parm1=value1&parm2=" -H "conten
 
 #### 全局配置
 
-在使用aksk鉴权插件之前，需要在全局插件配置中将鉴权插件状态设置为enable，具体配置点此[跳转](/docs/plugins)
+在使用aksk鉴权插件之前，需要在全局插件配置中将鉴权插件状态设置为enable，具体配置点此[跳转](/docs/apinto/plugins)
 
 ```shell
 curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' -H 'Content-Type:application/json' -d '{

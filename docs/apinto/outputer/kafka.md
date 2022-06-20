@@ -26,7 +26,7 @@ Kafka输出器能够将特定的日志信息输出到指定Kafka集群队列中�
 
 **注意**：
 
-* formatter的配置教程[点此](/docs/formatter)进行跳转
+* formatter的配置教程[点此](/docs/apinto/formatter)进行跳转
 
 
 
@@ -104,5 +104,5 @@ curl -X POST  \
 
 ### Kafka输出器使用
 
-Kafka输出器可用于access-log插件的日志输出，[点此](/docs/plugins/access_log.md)跳转至access-log插件。
+Kafka输出器可用于access-log插件的日志输出，[点此](/docs/apinto/plugins/access_log.md)跳转至access-log插件。
 

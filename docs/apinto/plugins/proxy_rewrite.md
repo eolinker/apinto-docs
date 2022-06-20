@@ -68,7 +68,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 
 **配置说明**：将转发请求的`scheme`设置为http，`uri`设置为test ,`host`设置为 `1.1.1.1`，同时请求头部中删掉`a` 和新增`b:2`。
 
-全局插件具体配置点此进行[跳转](/docs/plugins)。
+全局插件具体配置点此进行[跳转](/docs/apinto/plugins)。
 
 **备注**：匿名服务配置的是apinto官方示例接口，将返回请求的相关信息。
 

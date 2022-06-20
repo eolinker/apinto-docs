@@ -35,7 +35,7 @@
 **备注**：
 
 * scheme: 若服务配置了负载，则负载的scheme是优先于服务的scheme的。
-* plugins具体配置[点此](/docs/plugins)进行跳转。
+* plugins具体配置[点此](/docs/apinto/plugins)进行跳转。
 
 #### 返回参数说明
 
@@ -118,7 +118,7 @@ curl -X POST  \
 
 upstream字段填上配置了服务发现的负载。
 
-此处已经配置id为`consul_upstream@upstream`的负载，负载配置教程[点此](/docs/upstream/http.md)进行跳转
+此处已经配置id为`consul_upstream@upstream`的负载，负载配置教程[点此](/docs/apinto/upstream/http.md)进行跳转
 
 ```shell
 curl -X POST  \

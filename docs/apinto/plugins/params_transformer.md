@@ -73,7 +73,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 
 配置插件说明：将转发请求里query参数a映射为header里的b，并且删除query里的原参数a。
 
-全局插件具体配置点此进行[跳转](/docs/plugins)。
+全局插件具体配置点此进行[跳转](/docs/apinto/plugins)。
 
 **备注**：匿名服务配置的是apinto官方示例接口，将返回请求的相关信息。
 

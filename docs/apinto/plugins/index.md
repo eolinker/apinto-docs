@@ -25,17 +25,17 @@
 
 | 插件名称                                       | 字段名             | 说明                                                         |
 | ---------------------------------------------- | ------------------ | ------------------------------------------------------------ |
-| [额外参数](/docs/plugins/extra_params.md)       | extra_params       | 转发时在请求中携带自定义参数                                 |
-| [参数映射](/docs/plugins/params_transformer.md) | params_transformer | 转发时将请求中的原参数映射成自定义参数                       |
-| [转发重写](/docs/plugins/proxy_rewrite.md)      | proxy_rewrite      | 转发时对请求的host、scheme、uri进行重写，同时能在请求头加入自定义参数 |
-| [IP黑白名单](/docs/plugins/ip_restriction.md)   | ip_restriction     | 对访问的客户端ip进行黑白限制                                 |
-| [流量控制](/docs/plugins/rate_limiting.md)      | rate_limiting      | 控制请求在单位时间内的访问次数                               |
-| [鉴权](/docs/plugins/auth.md)                   | auth               | 对请求进行权限校验                                           |
-| [响应重写](/docs/plugins/response_rewrite.md)   | response_rewrite   | 用于重写网关返回的状态码、响应体、头部                       |
-| [API熔断](/docs/plugins/circuit_breaker.md)     | circuit_breaker    | 用于停止对不可用API的转发                                    |
-| [跨域CORS](/docs/plugins/cors.md)               | cors               | 设置跨域的头部字段，实现跨域功能                             |
-| [gzip压缩](/docs/plugins/gzip.md)               | gzip               | 将响应进行gzip压缩，以提高传输效率                           |
-| [access_log](/docs/plugins/access_log.md)       | access_log         | 记录到达网关的http请求的访问日志                             |
+| [额外参数](/docs/apinto/plugins/extra_params.md)       | extra_params       | 转发时在请求中携带自定义参数                                 |
+| [参数映射](/docs/apinto/plugins/params_transformer.md) | params_transformer | 转发时将请求中的原参数映射成自定义参数                       |
+| [转发重写](/docs/apinto/plugins/proxy_rewrite.md)      | proxy_rewrite      | 转发时对请求的host、scheme、uri进行重写，同时能在请求头加入自定义参数 |
+| [IP黑白名单](/docs/apinto/plugins/ip_restriction.md)   | ip_restriction     | 对访问的客户端ip进行黑白限制                                 |
+| [流量控制](/docs/apinto/plugins/rate_limiting.md)      | rate_limiting      | 控制请求在单位时间内的访问次数                               |
+| [鉴权](/docs/apinto/plugins/auth.md)                   | auth               | 对请求进行权限校验                                           |
+| [响应重写](/docs/apinto/plugins/response_rewrite.md)   | response_rewrite   | 用于重写网关返回的状态码、响应体、头部                       |
+| [API熔断](/docs/apinto/plugins/circuit_breaker.md)     | circuit_breaker    | 用于停止对不可用API的转发                                    |
+| [跨域CORS](/docs/apinto/plugins/cors.md)               | cors               | 设置跨域的头部字段，实现跨域功能                             |
+| [gzip压缩](/docs/apinto/plugins/gzip.md)               | gzip               | 将响应进行gzip压缩，以提高传输效率                           |
+| [access_log](/docs/apinto/plugins/access_log.md)       | access_log         | 记录到达网关的http请求的访问日志                             |
 
 ### 全局插件配置
 

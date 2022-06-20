@@ -23,7 +23,7 @@ syslog输出器能够将程序运行中产生的日志内容输出远端的syslo
 
 **注意**：
 
-* formatter的配置教程[点此](/docs/formatter)进行跳转
+* formatter的配置教程[点此](/docs/apinto/formatter)进行跳转
 
 
 
@@ -96,5 +96,5 @@ curl -X POST  \
 
 ### syslog输出器使用
 
-syslog输出器可用于access-log插件的日志输出，[点此](/docs/plugins/access_log.md)跳转至access-log插件。
+syslog输出器可用于access-log插件的日志输出，[点此](/docs/apinto/plugins/access_log.md)跳转至access-log插件。
 

@@ -68,7 +68,7 @@ curl -X POST http://127.0.0.1:9400/api/service \
 }'
 ```
 
-服务配置参数说明[点此](/docs/service/http.md)进行跳转
+服务配置参数说明[点此](/docs/apinto/service/http.md)进行跳转
 
 
 
@@ -93,7 +93,7 @@ curl -X POST http://127.0.0.1:9400/api/router \
 
 **注意**：路由配置的`listen`必须在config.yml中的路由监听端口列表中存在。
 
-路由配置参数说明[点此](/docs/router/http.md)进行跳转
+路由配置参数说明[点此](/docs/apinto/router/http.md)进行跳转
 
 
 至此，带有路由的服务转发配置完成

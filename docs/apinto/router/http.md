@@ -222,7 +222,7 @@ query_sex：男
 
 ### OpenAPI配置路由
 
-服务配置教程[点此](/docs/service/http.md)进行跳转
+服务配置教程[点此](/docs/apinto/service/http.md)进行跳转
 
 #### 配置参数说明
 
@@ -245,7 +245,7 @@ query_sex：男
 **备注**：
 
 * `method`、`host`、`rules`均可配置多个，实际请求满足其中一个即可。
-* plugins具体配置[点此](/docs/plugins)进行跳转。
+* plugins具体配置[点此](/docs/apinto/plugins)进行跳转。
 
 #### 返回参数说明
 
