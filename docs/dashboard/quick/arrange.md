@@ -68,7 +68,7 @@ account_list: # 账号列表
 
 （2）在后台运行
 
-``` 
+```
 nohup ./apinto-dashboard > logs/stdout_apinto-dashboard_"$(date \"+%Y%m%d-%H%M%S\")".log 2>&1 &
 ```
 

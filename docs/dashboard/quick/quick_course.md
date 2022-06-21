@@ -22,7 +22,8 @@
 
 ## 配置步骤
 
-1、创建服务
+### 创建服务
+
 （1）进入服务列表界面，点击"创建"按钮
 ![](http://data.eolinker.com/course/qTd4By5be2b56753239d88af929fdf38db2fcd512dba856.png)
 （2）填写服务信息
@@ -41,7 +42,7 @@
 
 （3）填写完后提交即可
 
-2、绑定路由 
+### 绑定路由 
 
 （1）创建路由
 ![](http://data.eolinker.com/course/M4T9yvl9fbd2e774ff9525e8581395f70c5b91a06550f6b.png)
@@ -62,7 +63,7 @@
 
 （3）填写完后提交即可
 
-3、调用服务
+### 调用服务
 ```shell
 curl -i 'http://127.0.0.1:8099/demo'
 ```
