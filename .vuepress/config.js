@@ -206,7 +206,7 @@ function dashboard() {
       text: '快速开始',
       collapsible: true,
       children: [
-        '/docs/' + name + '/quick/introduction.md',
+        // '/docs/' + name + '/quick/introduction.md',
         '/docs/' + name + '/quick/arrange.md',
         '/docs/' + name + '/quick/quick_course.md'
       ],

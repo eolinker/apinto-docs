@@ -20,10 +20,6 @@
 域名 -> 请求方式 -> location -> header（key根据单词字母升序进行排序） -> query（key根据单词字母升序进行排序）   
 
 
-      
-上图指标匹配顺序为：host>method>location>header:token>header:user>query:id
-共六个指标
-
 #### 指标值匹配规则
 
 | 匹配类型               | 规则    | 说明                                             |
