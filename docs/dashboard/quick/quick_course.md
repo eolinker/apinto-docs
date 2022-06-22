@@ -78,7 +78,7 @@ Content-Type: text/plain; charset=utf-8
 Content-Length: 225
 Set-Cookie: uid=1; Path=/; Max-Age=86400000000000
 
-{"body":"","header":{"Accept":["*/*"],"User-Agent":["curl/7.79.1"],"X-Forwarded-For":["127.0.0.1,127.0.0.1"]},"host":"127.0.0.1:8099","method":"GET","path":"/demo","query":{},"remote_addr":"61.144.147.89:56221","url":"/demo"}%
+{"body":"","header":{"Accept":["*/*"],"User-Agent":["curl/7.79.1"],"X-Forwarded-For":["127.0.0.1,127.0.0.1"]},"host":"127.0.0.1:8099","method":"GET","path":"/demo","query":{},"remote_addr":"61.144.147.89:56221","url":"/demo"}
 ```
 
 

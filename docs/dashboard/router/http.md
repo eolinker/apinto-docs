@@ -166,3 +166,41 @@ query_sex：男
 请求B（GET http://www.apinto.com/user/login?classID=1&sex=男 ）：该请求匹配路由B，转发到serviceB
 ```
 
+### 路由操作
+1、创建路由
+![](http://data.eolinker.com/course/M4T9yvl9fbd2e774ff9525e8581395f70c5b91a06550f6b.png)
+2、配置路由
+![](http://data.eolinker.com/course/lJ5gGdud7e51acaf1e1fc0df8dc3c406cf69cd69d0429ff.png)
+
+绑定服务
+![](http://data.eolinker.com/course/qYA5SrQ3e250e35ca1ddc66c36d0169bec9a9a7f17261eb.png)
+
+字段描述说明
+
+| 字段 |说明|
+|--|---|
+| 端口号 |路由监听端口号，该端口必须是**apinto**程序的config.yml中已经存在的端口号，详情请点击[程序配置说明](/docs/apinto/quick/quick_course.md#程序配置说明)|
+|请求方式|客户端访问网关的请求方式，路由匹配规则之一|
+|域名|客户端访问网关时请求的域名地址，路由匹配规则之一|
+|路由规则 | 可规定客户端请求的请求URL，请求头部参数、query参数的条件，路由规则说明请参考[路由规则](#路由匹配规则)|
+
+3、填写完后提交即可
+
+### 调用服务
+```shell
+curl -i 'http://127.0.0.1:8099/demo'
+```
+
+返回结果
+
+```json
+HTTP/1.1 200 OK
+Server: fasthttp
+Date: Tue, 21 Jun 2022 08:36:00 GMT
+Content-Type: text/plain; charset=utf-8
+Content-Length: 225
+Set-Cookie: uid=1; Path=/; Max-Age=86400000000000
+
+{"body":"","header":{"Accept":["*/*"],"User-Agent":["curl/7.79.1"],"X-Forwarded-For":["127.0.0.1,127.0.0.1"]},"host":"127.0.0.1:8099","method":"GET","path":"/demo","query":{},"remote_addr":"61.144.147.89:56221","url":"/demo"}
+```
+
