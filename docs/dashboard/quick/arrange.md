@@ -15,7 +15,7 @@ wget https://github.com/eolinker/apinto-dashboard/releases/download/v1.0.1-beta/
 zone: zh_cn # 时区，根据时区获取当地语言的前端渲染页面，可选项：zh_cn｜ja_jp｜ en_us，当前版本仅支持zh_cn
 default: upstream
 apinto:		# Apinto openAPI地址列表，若有多个节点，可填写多个节点的openAPI地址
-  - "http://127.0.0.1:9400"   
+  - "http://127.0.0.1:9400"
 port: 8081    # dashboard监听端口
 user_details:	# 用户账号获取渠道
   type: file	# 文件，当前版本只支持读取文件
@@ -24,13 +24,8 @@ professions:    # 流程阶段，下面配置中的name和profession为dashboard
   - name: services    # dashboard模块：服务
     profession: service # apinto模块：服务
     i18n_name:    # 国际化语言名称
-      zh_cn: 服务    # 中文描述
-      en_us: services    # 英文描述
-  - name: upstreams    # dashboard模块：上游
-    profession: upstream    # apinto模块：上游
-    i18n_name:
-      zh_cn: 上游
-      en_us: upstreams
+      zh_cn: 上游服务   # 中文描述
+      en_us: upstream services  # 英文描述
   - name: discoveries    # dashboard模块：服务发现
     profession: discovery    # apinto模块：服务发现
     i18n_name:

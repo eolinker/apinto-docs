@@ -8,22 +8,23 @@
 另外，Apinto Dashboard提供良好的用户操作体验，简化了配置流程，不管先前是否接触过网关产品，都可快速上手使用。
 
 ### 特性
-1、通过UI界面动态更新**Apinto**网关配置
+#### 通过UI界面动态更新**Apinto**网关配置
 
 ![Apinto Dashboard与Apinto交互流程图](http://data.eolinker.com/course/fJuUBps1c6317b59fcb35d659957c75b544dcaf27f8e2b7.jpeg)
 
-2、动态加载模版，根据需要开启/隐藏相关界面
+#### 动态加载模版，根据需要开启/隐藏相关界面
 
 修改文件**config.yml**的**professions**配置，即可在侧边栏中隐藏/显示
 
 配置信息：
-![](http://data.eolinker.com/course/Ltt4WFy22598b7d102900d9e564e7d0779d76ef85080c4e.png)
+
+![](http://data.eolinker.com/course/ip7RnzBa908b2c8ab3183d719066abb0865d46ede5c1a7d.png)
 
 导航栏：
 
-![](http://data.eolinker.com/course/rbfp1q71134eb23fe84fa245e442849de3997a342d7b8b3.png)
+![](http://data.eolinker.com/course/1yiNEwTaa1635ec93aed98a4b405c814b5382a0874ec388.png)
 
-3、Json Scheme交互，自动约束操作数据
+#### Json Scheme交互，自动约束操作数据
 
 Json Scheme数据返回示例：
 
@@ -32,11 +33,11 @@ Json Scheme数据返回示例：
 页面渲染
 
 ![](http://data.eolinker.com/course/vtE9kZX6d13d702ec1bd1c016ac985f56a3aea08c15fc19.png)
-4、提供丰富的操作日志，监控配置变更记录
+#### 提供丰富的操作日志，监控配置变更记录
 
 ![](http://data.eolinker.com/course/HwvG1pmee276f230367135b6b6bdcaa4c503ae36c8d3516.png)
 
-5、友好的操作体验，自动获取流程依赖
+#### 友好的操作体验，自动获取流程依赖
 
 ![](http://data.eolinker.com/course/g1zgZHla0f217fad3f14b7f024b36410785fd491cf4b26b.png)
 
