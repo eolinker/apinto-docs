@@ -6,7 +6,7 @@
 1. 下载并解压安装包
 
 ```
-wget https://github.com/eolinker/apinto-dashboard/releases/download/v1.0.1-beta/apinto-dashboard-v1.0.1-beta.linux.x64.tar.gz && tar -zxvf apinto-dashboard-v1.0.1-beta.linux.x64.tar.gz && cd apinto-dashboard
+wget https://github.com/eolinker/apinto-dashboard/releases/download/v1.0.1-beta/apinto-dashboard-v1.0.2-beta.linux.x64.tar.gz && tar -zxvf apinto-dashboard-v1.0.2-beta.linux.x64.tar.gz && cd apinto-dashboard
 ```
 
 2. 编辑配置文件config.yml
@@ -69,7 +69,7 @@ account_list: # 账号列表
 （2）在后台运行
 
 ```
-nohup ./apinto-dashboard > logs/stdout_apinto-dashboard_"$(date \"+%Y%m%d-%H%M%S\")".log 2>&1 &
+nohup ./apinto-dashboard > logs/stdout_apinto-dashboard_"$(date '+%Y%m%d-%H%M%S')".log 2>&1 &
 ```
 
 4. 浏览器打开**Apinto Dashboard**地址，本示例在本地部署，因此ip为127.0.0.1，端口为8081
