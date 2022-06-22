@@ -222,11 +222,11 @@ function dashboard() {
       collapsible: true,
       children: ['/docs/' + name + '/router/http.md'],
     },
-    // {
-    //   text: '服务',
-    //   collapsible: true,
-    //   children: ['/docs/' + name + '/service/http.md'],
-    // },
+    {
+      text: '服务',
+      collapsible: true,
+      children: ['/docs/' + name + '/service/http.md'],
+    },
     // {
     //   text: '负载均衡',
     //   collapsible: true,

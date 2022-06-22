@@ -9,149 +9,27 @@
 
 ### 功能描述
 
-**服务**是一组可用的api，用于网关转发。可配置负载或匿名服务。
+**服务**：具有相同策略（如流量策略、鉴权策略、负载策略）的一组API或后端微服务，如订单服务、人脸识别服务、天气服务等
 
 
+### 配置示例
+1、进入服务列表界面，点击"创建"按钮
 
-### OpenAPI配置服务
+![](http://data.eolinker.com/course/qTd4By5be2b56753239d88af929fdf38db2fcd512dba856.png)
 
-#### 请求参数说明
+2、填写服务信息
 
+![](http://data.eolinker.com/course/xA1MCEw6fe484a4f77e1d1c27d17848cc3f3af77ec5a5f8.png)
 
-| 参数名              | 说明                                                         | 是否必填 | 默认值 | 值可能性        |
-| ------------------- | :----------------------------------------------------------- | -------- | ------ | --------------- |
-| name                | 实例名                                                       | 是       |        | string          |
-| driver              | 服务驱动类型                                                 | 是       |        | "http_proxy"    |
-| description         | 描述                                                         | 否       |        | string          |
-| scheme              | 请求所使用的协议                                             | 否       | http   | ["http","https"] |
-| retry               | 重试次数                                                     | 是       |        | int             |
-| timeout             | 超时时间，单位:毫秒                                          | 是       |        | int             |
-| upstream            | 负载ID                                                       | 否       |        | string          |
-| anonymous           | 匿名服务                                                     | 否       |        | object          |
-| anonymous -> type   | 负载均衡算法，暂时只支持round-robin                          | 是       |        | string          |
-| anonymous -> config | 匿名服务地址，可以填多个，配置格式是是静态接入地址及其权重，格式：addr1 weight1;addr2 weight2;...用分号进行分割。addr可以填域名或者ip地址。weight可省略，默认为1 | 是       |        | string          |
-| plugins             | 插件配置                                                     | 否       |        | object          |
+字段描述说明
 
-**备注**：
+| 字段     | 描述                                                                                                                                                                            |
+|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 请求超时时间 | 请求后端服务的最大等待时间，单位：ms，最小值：1                                                                                                                                                     |
+| 失败重试次数 | 当请求后端服务超时时，重新发送该请求的次数                                                                                                                                                         |
+| 请求协议   | 请求后端服务的协议，目前支持http、https                                                                                                                                                      |
+| 服务发现   | 后端服务地址列表，可选择匿名上游或已有动态服务发现，服务发现的具体概念请查看[服务发现说明](/docs/dashboard/discovery.md)                                                                                                  |
+| 负载均衡算法 | 分配负载上游的算法<br>round-robin：权重轮询算法                ｜                                                                                                                              |
+| 静态配置   | 当服务发现选择匿名上游时弹出<br><br>配置格式：{域名/ip}:{port} {weight} <br> 示例：demo.apinto.com:8280 100 <br><br> 可配置多个上游地址，中间用英文分号**;**隔开<br>示例：demo.apinto.com:8280 100;demo.gokuapi.com:8280 10 |
 
-* scheme: 若服务配置了负载，则负载的scheme是优先于服务的scheme的。
-* plugins具体配置[点此](/docs/apinto/plugins)进行跳转。
-
-#### 返回参数说明
-
-
-| 参数名      | 类型   | 是否必含 | 说明                |
-| ----------- | ------ | -------- | ------------------- |
-| id          | string | 是       | 实例id              |
-| name        | string | 是       | 实例名              |
-| driver      | string | 是       | 驱动名              |
-| description | string | 是       | 描述                |
-| profession  | string | 是       | 模块名              |
-| create      | string | 是       | 创建时间            |
-| update      | string | 是       | 更新时间            |
-| scheme      | string | 是       | 请求所使用的协议    |
-| retry       | int    | 是       | 重试次数            |
-| timeout     | int    | 是       | 超时时间，单位:毫秒 |
-| upstream    | string | 是       | 负载ID              |
-| anonymous   | object | 是       | 匿名服务地址        |
-| plugins     | object | 是       | 插件配置            |
-
-**备注**：返回体内的anonymous参考请求配置参数，在此不再赘述。
-
-#### 不同场景下的配置示例
-
-* 普通场景
-* 高可用场景
-
-
-
-##### 一、普通场景，不需高可用的服务配置示例
-
-通过anonymous字段直接配置上游地址
-
-**备注**：匿名服务配置的是apinto官方示例接口, 并且该示例不配置插件。
-
-```shell
-curl -X POST  \
-  'http://127.0.0.1:9400/api/service' \
-  -H 'Content-Type:application/json' \
-  -d '{
-	"name": "annoymous_service",
-	"driver": "http",
-	"description": "配置匿名服务",
-	"timeout": 3000,
-	"retry": 3,
-	"scheme": "https",
-	"anonymous": {
-		"type": "round-robin",
-		"config": "demo-apinto.eolink.com:8280"
-	}
-}'
-```
-
-**返回结果示例**
-
-```json
-{
-	"create": "2022-06-16 11:00:45",
-	"description": "配置匿名服务",
-	"driver": "http",
-	"id": "annoymous_service@service",
-	"name": "annoymous_service",
-	"profession": "service",
-	"retry": 3,
-	"scheme": "https",
-	"timeout": 3000,
-	"update": "2022-06-16 11:00:45",
-	"upstream": "",
-	"anonymous": {
-		"config": "demo-apinto.eolink.com:8280",
-		"type": "round-robin"
-	},
-	"plugins": null
-}
-```
-
-
-
-##### 二、高可用场景，高可用的服务配置示例
-
-upstream字段填上配置了服务发现的负载。
-
-此处已经配置id为`consul_upstream@upstream`的负载，负载配置教程[点此](/docs/apinto/upstream/http.md)进行跳转
-
-```shell
-curl -X POST  \
-  'http://127.0.0.1:9400/api/service' \
-  -H 'Content-Type:application/json' \
-  -d '{
-	"name": "consul_upstream_service",
-	"driver": "http",
-	"description": "配置了负载的服务",
-	"scheme": "http",
-	"timeout": 3000,
-	"retry": 3,
-	"upstream": "consul_upstream@upstream"
-}'
-```
-
-**返回结果示例**
-
-```json
-{
-	"create": "2022-06-16 11:05:35",
-	"description": "配置了负载的服务",
-	"driver": "http",
-	"id": "consul_upstream_service@service",
-	"name": "consul_upstream_service",
-	"profession": "service",
-	"retry": 3,
-	"scheme": "http",
-	"timeout": 3000,
-	"update": "2022-06-16 11:05:35",
-	"upstream": "consul_upstream@upstream"
-	"anonymous": null,
-	"plugins": null
-}
-```
-
+3、填写完后提交即可
