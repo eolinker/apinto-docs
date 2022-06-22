@@ -89,7 +89,7 @@ function apinto() {
   return [
     {
       text: '关于Apinto',
-      link: '/docs/apinto/index.md',
+      link: '/docs/index.md',
     },
     {
       text: '快速开始',
@@ -190,7 +190,7 @@ function apinto() {
     },
     {
       text: 'Open Api',
-      link: '/view/open.md',
+      link: '/docs/apinto/open.md',
     },
   ]
 }
