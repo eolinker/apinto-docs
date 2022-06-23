@@ -79,10 +79,8 @@ curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/j
     "timeout": 3000,
     "retry": 3,
     "scheme": "http",
-    "anonymous": {
-        "type": "round-robin",
-        "config": "demo-apinto.eolink.com:8280"
-    },
+    "nodes": ["demo-apinto.eolink.com:8280"],
+    "balance": "round-robin",
     "plugins": {
         "my_proxy_rewrite":{
             "disable": false,

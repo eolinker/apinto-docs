@@ -19,8 +19,7 @@
 
 * 全局插件加入鉴权插件配置
 * 创建鉴权，获取鉴权id
-* 鉴权id绑定服务，获取服务id
-* 服务id绑定路由
+* 服务或路由配置鉴权插件，在插件内引用鉴权id
 
 
 
@@ -31,7 +30,7 @@
 服务配置教程[点此](/docs/apinto/service/http.md)进行跳转
 
 
-![](http://data.eolinker.com/course/VLuGFHb49e061c9e4182ead46bff6aa89520721a2f3cc72.png)
+![](http://data.eolinker.com/course/cHeruWp166412c6a8e5f156ae8e56532444aaf0240ca6cc.png)
 
 
 

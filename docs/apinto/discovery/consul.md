@@ -97,21 +97,24 @@ curl -X POST  \
 
 
 
-#### 创建负载
+#### 创建服务
 
-**服务发现id绑定负载**：上一步生成的服务发现id绑定至负载的discovery字段
+**服务发现id绑定服务**：上一步生成的服务发现id绑定至服务的discovery字段
 
 ```shell
 curl -X POST  \
-  'http://127.0.0.1:9400/api/upstream' \
+  'http://127.0.0.1:9400/api/service' \
   -H 'Content-Type:application/json' \
   -d '{
-	"name": "consul_upstream",
-	"driver": "http_proxy",
-	"discovery": "demo_consul@discovery",
-	"config": "consul",
+	"name": "consul_service",
+	"driver": "http",
+	"description": "配置了consul服务发现的服务",
 	"scheme": "http",
-	"type": "round-robin"
+	"timeout": 3000,
+	"retry": 3,
+	"discovery": "demo_consul@discovery",
+	"service": "redis",
+	"balance": "round-robin"
 }'
 ```
 

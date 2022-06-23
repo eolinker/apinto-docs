@@ -95,23 +95,26 @@ curl -X POST  \
 
 
 
-#### 创建负载
+#### 创建服务
 
-**服务发现id绑定负载**：上一步生成的服务发现id绑定至下面的discovery字段
+**服务发现id绑定服务**：上一步生成的服务发现id绑定至服务的discovery字段
 
 **注意**：若eureka注册中心不可用时则不能创建成功。
 
 ```shell
 curl -X POST  \
-  'http://127.0.0.1:9400/api/upstream' \
+  'http://127.0.0.1:9400/api/service' \
   -H 'Content-Type:application/json' \
   -d '{
-	"name": "eureka_upstream",
-	"driver": "http_proxy",
-	"discovery": "demo_eureka@discovery",
-	"config": "redis",
+	"name": "eureka_service",
+	"driver": "http",
+	"description": "配置了eureka服务发现的服务",
 	"scheme": "http",
-	"type": "round-robin"
+	"timeout": 3000,
+	"retry": 3,
+	"discovery": "demo_eureka@discovery",
+	"service": "redis",
+	"balance": "round-robin"
 }'
 ```
 

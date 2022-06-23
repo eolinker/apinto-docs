@@ -64,10 +64,8 @@ curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/j
   "retry": 3,
   "desc": "使用gzip插件",
   "scheme": "https",
-  "anonymous": {
-    "type": "round-robin",
-    "config": "demo-apinto.eolink.com:8280"
-  },
+  "nodes": ["demo-apinto.eolink.com:8280"],
+  "balance": "round-robin",
   "plugins": {
     "gzip": {
     "disable": false,

@@ -117,11 +117,11 @@ function apinto() {
       collapsible: true,
       children: ['/docs/apinto/service/http.md'],
     },
-    {
-      text: '负载均衡',
-      collapsible: true,
-      children: ['/docs/apinto/upstream/http.md'],
-    },
+    // {
+    //   text: '负载均衡',
+    //   collapsible: true,
+    //   children: ['/docs/apinto/upstream/http.md'],
+    // },
     {
       text: '服务发现',
       link: '/docs/apinto/discovery/index.md',

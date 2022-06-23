@@ -9,8 +9,6 @@ Nacos注册中心自带健康检查，从该注册中心获取节点时可以获
 
 
 
-
-
 ### OpenAPI配置服务发现
 
 #### 请求参数说明
@@ -102,19 +100,22 @@ curl -X POST  \
 
 #### 创建负载
 
-**服务发现id绑定负载**：上一步生成的服务发现id绑定至下面的discovery字段
+**服务发现id绑定服务**：上一步生成的服务发现id绑定至服务的discovery字段
 
 ```shell
 curl -X POST  \
-  'http://127.0.0.1:9400/api/upstream' \
+  'http://127.0.0.1:9400/api/service' \
   -H 'Content-Type:application/json' \
   -d '{
-	"name": "nacos_upstream",
-	"driver": "http_proxy",
-	"discovery": "demo_nacos@discovery",
-	"config": "redis",
+	"name": "nacos_service",
+	"driver": "http",
+	"description": "配置了nacos服务发现的服务",
 	"scheme": "http",
-	"type": "round-robin"
+	"timeout": 3000,
+	"retry": 3,
+	"discovery": "demo_nacos@discovery",
+	"service": "redis",
+	"balance": "round-robin"
 }'
 ```
 

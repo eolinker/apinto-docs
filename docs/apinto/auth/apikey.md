@@ -138,12 +138,10 @@ curl -X POST  \
 	"driver": "http",
 	"description": "使用apikey鉴权的服务",
 	"timeout": 10000,
-	"anonymous": {
-		"type": "round-robin",
-		"config": "demo-apinto.eolink.com:8280"
-	},
 	"retry": 3,
 	"scheme": "https",
+	"nodes": ["demo-apinto.eolink.com:8280"],
+	"balance": "round-robin",
 	"plugins": {
 	  "myAuth": {
 		"disable": false,

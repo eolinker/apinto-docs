@@ -58,7 +58,7 @@
 
 * **disable**
 
-  禁用状态：表示插件处于禁用状态，即便某个路由|服务|负载配置了该插件也不会生效。
+  禁用状态：表示插件处于禁用状态，即便某个路由|服务配置了该插件也不会生效。
 
 * **enable**
 
@@ -143,10 +143,8 @@ curl - X POST 'http://127.0.0.1:9400/api/service'\
   "timeout": 3000,
   "retry": 3,
   "scheme": "http",
-  "anonymous": {
-	  "type": "round-robin",
-	  "config": "demo-apinto.eolink.com:8280"
-  },
+  "nodes": ["demo-apinto.eolink.com:8280"],
+  "balance": "round-robin",
   "plugins": {
 	  "my_access_log": {
 		  "disable": false,
@@ -211,10 +209,8 @@ curl -X POST  'http://127.0.0.1:9400/api/service' \
     "timeout": 3000,
     "retry": 3,
     "scheme": "http",
-    "anonymous": {
-        "type": "round-robin",
-        "config": "demo-apinto.eolink.com:8280"
-    },
+    "nodes": ["demo-apinto.eolink.com:8280"],
+    "balance": "round-robin",
     "plugins": {
         "my_extra_params":{
             "disable": false,
@@ -318,10 +314,8 @@ curl -X POST  'http://127.0.0.1:9400/api/service' \
     "timeout": 3000,
     "retry": 3,
     "scheme": "http",
-    "anonymous": {
-        "type": "round-robin",
-        "config": "demo-apinto.eolink.com:8280"
-    }
+    "nodes": ["demo-apinto.eolink.com:8280"],
+    "balance": "round-robin"
 }' 
 ```
 
