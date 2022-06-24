@@ -49,6 +49,7 @@
 
 （1）创建路由
 ![](http://data.eolinker.com/course/M4T9yvl9fbd2e774ff9525e8581395f70c5b91a06550f6b.png)
+
 （2）配置路由
 ![](http://data.eolinker.com/course/lJ5gGdud7e51acaf1e1fc0df8dc3c406cf69cd69d0429ff.png)
 
