@@ -28,20 +28,24 @@ wget https://github.com/eolinker/apinto/releases/download/v0.6.2/apinto-v0.6.2.l
 git clone https://github.com/eolinker/apinto.git && cd apinto
 ```
 
-2.编译脚本，编译后的可执行文件输出到项目下的out文件夹内
+2.编译脚本，编译后的可执行文件输出到当前目录下的out文件夹内
 
 ```
 ./build/cmd/build.sh  
 ```
 
-3.进入out文件夹并且运行程序
+3.进入程序所在目录并且运行程序
 
-```
+```shell
 cd out
+cd apinto-{time_stamp} #apinto-{time_stamp}目录是按编译时间生成的
+cp config.yml.tmp config.yml #拷贝模板配置文件作为程序运行的配置文件
 ./apinto start
 ```
 
-**备注**：由于代码会不定时更新，不推荐使用该方式进行安装。
+**备注**：
+
+* 由于代码会不定时更新，不推荐使用该方式进行安装。
 
 
 
