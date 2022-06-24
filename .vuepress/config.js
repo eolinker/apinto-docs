@@ -211,27 +211,16 @@ function dashboard() {
         '/docs/' + name + '/quick/quick_course.md'
       ],
     },
-    // {
-    //   text: '系统配置',
-    //   link: '/docs/' + name + '/system/index.md',
-    //   collapsible: true,
-    //   children: ['/docs/' + name + '/system/error_log.md'],
-    // },
     {
       text: '路由',
       collapsible: true,
       children: ['/docs/' + name + '/router/http.md'],
     },
     {
-      text: '服务',
+      text: '上游服务',
       collapsible: true,
       children: ['/docs/' + name + '/service/http.md'],
     },
-    // {
-    //   text: '负载均衡',
-    //   collapsible: true,
-    //   children: ['/docs/' + name + '/upstream/http.md'],
-    // },
     // {
     //   text: '服务发现',
     //   link: '/docs/' + name + '/discovery/index.md',
@@ -264,11 +253,6 @@ function dashboard() {
     //     '/docs/' + name + '/outputer/http.md',
     //     '/docs/' + name + '/outputer/nsq.md'
     //   ],
-    // },
-    // {
-    //   text: 'formatter',
-    //   link: '/docs/' + name + '/formatter/index.md',
-    //   collapsible: true,
     // },
     //
     // {
