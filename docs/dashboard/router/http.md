@@ -168,12 +168,16 @@ query_sex：男
 
 ### 路由操作
 1、创建路由
-![](http://data.eolinker.com/course/M4T9yvl9fbd2e774ff9525e8581395f70c5b91a06550f6b.png)
+
+![](http://data.eolinker.com/course/BfIkiMXf712ad3343567e0a90c8f77b55b5f744aaec037a.gif)
+
 2、配置路由
-![](http://data.eolinker.com/course/lJ5gGdud7e51acaf1e1fc0df8dc3c406cf69cd69d0429ff.png)
+
+![](http://data.eolinker.com/course/v2HUXH3c1d45481518c2bee7da7e8ba03e1d0b850f3c837.gif)
 
 绑定服务
-![](http://data.eolinker.com/course/qYA5SrQ3e250e35ca1ddc66c36d0169bec9a9a7f17261eb.png)
+
+![](http://data.eolinker.com/course/MHVylzp0606eb76442714f7655b9cf535f151f615400cda.gif)
 
 字段描述说明
 
