@@ -7,6 +7,17 @@
 
 另外，Apinto Dashboard提供良好的用户操作体验，简化了配置流程，不管先前是否接触过网关产品，都可快速上手使用。
 
+<iframe
+src="https://data.eolink.com/video%2F%E4%BB%8B%E7%BB%8D%E8%A7%86%E9%A2%91.mp4"
+scrolling="no"
+border="0"
+frameborder="no"
+framespacing="0"
+allowfullscreen="true"
+height=600
+width=800>
+</iframe>
+
 ### 特性
 #### 通过UI界面动态更新**Apinto**网关配置
 
@@ -43,8 +54,10 @@ Json Scheme数据返回示例：
 
 ### 联系我们
 
-- **帮助文档**：[https://help.apinto.com](https://help.apinto.com/)
-
+- **帮助文档**：[https://help.apinto.com](https://help.apinto.com/docs)
+- **Github**：
+  - [Apinto](https://github.com/eolinker/apinto)
+  - [Apinto Dashboard](https://github.com/eolinker/apinto-dashboard)
 - **QQ群**: 725853895
 - **Slack**：[加入我们](https://join.slack.com/t/slack-zer6755/shared_invite/zt-u7wzqp1u-aNA0XK9Bdb3kOpN03jRmYQ)
 - **官网**：[https://www.apinto.com](https://www.apinto.com/)

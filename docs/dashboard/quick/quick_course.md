@@ -26,11 +26,11 @@
 
 （1）进入上游服务列表界面，点击"创建"按钮
 
-![](http://data.eolinker.com/course/qTd4By5be2b56753239d88af929fdf38db2fcd512dba856.png)
+![](http://data.eolinker.com/course/6TSQnZd8a59f9199df82de617b1553d27fb0d0ec459a057.gif)
 
 （2）填写服务信息
 
-![](http://data.eolinker.com/course/xA1MCEw6fe484a4f77e1d1c27d17848cc3f3af77ec5a5f8.png)
+![](http://data.eolinker.com/course/N4jzuJr88a74af678119baca551eaaf806fa3224b091c0f.gif)
 
 字段描述说明
 
@@ -48,13 +48,13 @@
 ### 绑定路由 
 
 （1）创建路由
-![](http://data.eolinker.com/course/M4T9yvl9fbd2e774ff9525e8581395f70c5b91a06550f6b.png)
+![](http://data.eolinker.com/course/BfIkiMXf712ad3343567e0a90c8f77b55b5f744aaec037a.gif)
 
 （2）配置路由
-![](http://data.eolinker.com/course/lJ5gGdud7e51acaf1e1fc0df8dc3c406cf69cd69d0429ff.png)
+![](http://data.eolinker.com/course/v2HUXH3c1d45481518c2bee7da7e8ba03e1d0b850f3c837.gif)
 
 绑定上一步创建的服务
-![](http://data.eolinker.com/course/qYA5SrQ3e250e35ca1ddc66c36d0169bec9a9a7f17261eb.png)
+![](http://data.eolinker.com/course/MHVylzp0606eb76442714f7655b9cf535f151f615400cda.gif)
 
 字段描述说明
 

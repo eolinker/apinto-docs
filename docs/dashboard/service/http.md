@@ -1,4 +1,4 @@
-# HTTP服务
+# HTTP上游服务
 
 
 | 类别 | 属性     |
@@ -9,17 +9,17 @@
 
 ### 功能描述
 
-**服务**：具有相同策略（如流量策略、鉴权策略、负载策略）的一组API或后端微服务，如订单服务、人脸识别服务、天气服务等
+**上游服务**：具有相同策略（如流量策略、鉴权策略、负载策略）的一组API或后端微服务，如订单服务、人脸识别服务、天气服务等
 
 
 ### 配置示例
-1、进入服务列表界面，点击"创建"按钮
+1、进入上游服务列表界面，点击"创建"按钮
 
-![](http://data.eolinker.com/course/qTd4By5be2b56753239d88af929fdf38db2fcd512dba856.png)
+![](http://data.eolinker.com/course/6TSQnZd8a59f9199df82de617b1553d27fb0d0ec459a057.gif)
 
 2、填写服务信息
 
-![](http://data.eolinker.com/course/xA1MCEw6fe484a4f77e1d1c27d17848cc3f3af77ec5a5f8.png)
+![](http://data.eolinker.com/course/N4jzuJr88a74af678119baca551eaaf806fa3224b091c0f.gif)
 
 字段描述说明
 

@@ -73,5 +73,7 @@ nohup ./apinto-dashboard > logs/stdout_apinto-dashboard_"$(date '+%Y%m%d-%H%M%S'
 
 5. 在浏览器中输入账号密码登录即可
 
+![](http://data.eolinker.com/course/dZGltwI35d227dc2c5682824cedf40629ef3ea8114d6a37.gif)
+
 至此，部署启用教程已结束，如需了解更多使用教程，请点击[更多](https://help.apinto.com/docs/dashboard)（教程文档正在赶工中）
 
