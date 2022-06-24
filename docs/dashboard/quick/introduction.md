@@ -10,7 +10,7 @@
 ### 特性
 #### 通过UI界面动态更新**Apinto**网关配置
 
-![Apinto Dashboard与Apinto交互流程图](http://data.eolinker.com/course/fJuUBps1c6317b59fcb35d659957c75b544dcaf27f8e2b7.jpeg)
+![Apinto Dashboard与Apinto交互流程图](http://data.eolinker.com/course/MXusAaW54d24cbe0a7696488bc60c4dd4ebd51ac849f82e.jpeg)
 
 #### 动态加载模版，根据需要开启/隐藏相关界面
 
@@ -35,11 +35,11 @@ Json Scheme数据返回示例：
 ![](http://data.eolinker.com/course/vtE9kZX6d13d702ec1bd1c016ac985f56a3aea08c15fc19.png)
 #### 提供丰富的操作日志，监控配置变更记录
 
-![](http://data.eolinker.com/course/HwvG1pmee276f230367135b6b6bdcaa4c503ae36c8d3516.png)
+![](http://data.eolinker.com/course/U4evKHwe17c2c604e87b8ef4dfc02bc2df70ada3defc700.gif)
 
 #### 友好的操作体验，自动获取流程依赖
 
-![](http://data.eolinker.com/course/g1zgZHla0f217fad3f14b7f024b36410785fd491cf4b26b.png)
+![](http://data.eolinker.com/course/5nXF8e70bc415849aa0e86479e9e409a1fc40d21cf3061b.gif)
 
 ### 联系我们
 
