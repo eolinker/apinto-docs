@@ -1,130 +1,42 @@
-# 静态负载
+# 静态服务发现
+
+### 概念描述
+
+**节点**：部署了后端服务的机器。
+
+**健康检查**：定时检查节点是否可用，若节点不可用，则将其加入异常节点列表中，网关转发时将会忽略该节点。
+
+**静态服务发现**：配置节点地址，在转发时会根据算法转发到对应的节点。
 
 
+### 配置示例
+1、创建静态服务发现
 
-### 功能描述
+![](http://data.eolinker.com/course/NVXljnp231a18d0f81f9d256aeffa1468b5f1fa402d2853.gif)
 
-静态服务发现提供了服务的接入地址，方便网关在转发时进行负载均衡处理。
+2、配置静态服务发现
 
-静态服务可选择是否进行健康检查。
+![](http://data.eolinker.com/course/yggqVRl891f112297ac3724dbfe95d9fd74afaa48691f6c.gif)
 
+字段描述说明
 
+| 字段           | 描述                                   |
+|--------------|--------------------------------------|
+| 请求协议         | 转发时请求后端接口的协议，可能性：HTTP/HTTPS          |
+| 是否开启健康检查     | 是否定时检查节点健康状态，当开启，下述配置必填              |
+| 健康检查配置-请求协议  | 健康检查时访问节点的协议，可能性：HTTP/HTTPS          |
+| 健康检查配置-请求方式  | 健康检查时访问的请求方式，可能性：GET/POST/PUT        |
+| 健康检查配置-请求URL | 健康检查时访问的url                ｜         |
+| 健康检查配置-成功状态码 | 健康检查时，当返回响应的状态码和该值一致时，则判定为健康，否则判定为异常 |
+| 健康检查配置-检查频率  | 健康检查的周期，单位：s                         |
+| 健康检查配置-超时时间  | 每次健康检查的超时时间，当响应时间超过该阈值时，判定为异常，单位：s   |
 
-**健康检查**：节点转发时若发现后端服务地址异常，节点就会在转发列表中剔除该IP，并把该IP加入到健康检查的列表中；当IP的检查结果为成功时，则会重新加入到转发列表。
+3、绑定上游服务，并在服务内配置静态地址信息
 
-### OpenAPI配置服务发现
+![](http://data.eolinker.com/course/M1JNFhl1f7c3b434df6698237f0db677132e98ed2e66a1c.gif)
 
-#### 配置参数
+字段描述说明
 
-
-| 参数名                 | 说明                         | 是否必填 | 默认值 | 值可能性                     |
-| ---------------------- | :--------------------------- | -------- | ------ | ---------------------------- |
-| name                   | 实例名                       | 是       |        | string                       |
-| driver                 | 所使用的服务发现类别         | 是       |        | "static"                     |
-| description            | 描述                         | 否       |        | string                       |
-| scheme                 | 请求服务发现地址时使用的协议 | 否       | "http" | ["http","https]              |
-| health_on              | 是否开启健康检查             | 否       | false  | bool                         |
-| health                 | 健康检查配置                 | 否       |        | object                       |
-| health -> scheme       | 请求协议                     | 是       |        | ["http","https","tcp","udp"] |
-| health -> method       | 请求方法                     | 是       |        | string                       |
-| health -> url          | 节点的健康检查接口url        | 是       |        | string                       |
-| health -> success_code | 成功状态码                   | 是       |        | int                          |
-| health -> period       | 健康检查周期，单位: s        | 是       |        | int                          |
-| health -> timeout      | 超时时间，单位: ms           | 是       |        | int                          |
-
-
-
-#### 返回参数说明
-
-
-| 参数名      | 类型   | 是否必含 | 说明                         |
-| ----------- | ------ | -------- | ---------------------------- |
-| id          | string | 是       | 实例id                       |
-| name        | string | 是       | 实例名                       |
-| driver      | string | 是       | 驱动名                       |
-| description | string | 是       | 描述                         |
-| profession  | string | 是       | 模块名                       |
-| create      | string | 是       | 创建时间                     |
-| update      | string | 是       | 更新时间                     |
-| scheme      | string | 是       | 请求服务发现地址时使用的协议 |
-| health_on   | bool   | 是       | 是否开启健康检查             |
-| health      | object | 是       | 健康检查配置                 |
-
-**备注**：返回体内的health参考请求配置参数，在此不再赘述。
-
-
-
-#### 配置带健康检查的静态服务发现
-
-```shell
-curl -X POST  \
-  'http://127.0.0.1:9400/api/discovery' \
-  -H 'Content-Type:application/json' \
-  -d '{
-  	"name": "demo_static",
-	"driver": "static",
-	"description": "开启健康检查的static服务发现",
-	"scheme": "http",
-	"health_on": true,
-	"health": {
-		"scheme": "http",
-		"method": "GET",
-		"url": "/health/check",
-		"success_code": 200,
-		"timeout": 3000,
-		"period": 30
-	}
-}'
-```
-
-
-
-#### 结果示例
-
-```json
-{
-	"id": "demo_static@discovery",
-	"name": "demo_static",
-	"driver": "static",
-	"description": "开启健康检查的static服务发现",
-	"profession": "discovery",
-	"create": "2022-06-15 10:18:36",
-	"update": "2022-06-15 10:18:36",
-	"scheme": "http",  
-	"health_on": true,
-	"health": {
-		"method": "GET",
-		"period": 30,
-		"scheme": "http",
-		"success_code": 200,
-		"timeout": 3000,
-		"url": "/health/check"
-	}
-}
-```
-
-```
-返回的discoveryID为demo_static@discovery
-```
-
-
-
-#### 创建负载
-
-**服务发现id绑定负载**：上一步生成的服务发现id绑定至下面的discovery字段
-
-```shell
-curl -X POST  \
-  'http://127.0.0.1:9400/api/upstream' \
-  -H 'Content-Type:application/json' \
-  -d '{
-	"name": "static_upstream",
-	"driver": "http_proxy",
-	"discovery": "demo_static@discovery",
-	"config": "127.0.0.1:8580 weight=1000;10.1.1.2 weight=10",
-	"scheme": "http",
-	"type": "round-robin"
-}'
-```
-
-
+| 字段     | 描述                                                                                                                                                                          |
+|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 服务名 or 配置   | 当选择静态服务发现时填写<br><br>配置格式：{域名/ip}:{port} {weight} <br> 示例：demo.apinto.com:8280 100 <br><br> 可配置多个上游地址，中间用英文分号**;**隔开<br>示例：demo.apinto.com:8280 100;demo.gokuapi.com:8280 10 |

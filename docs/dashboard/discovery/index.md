@@ -1,30 +1,23 @@
 # 服务发现
 
-**服务发现**：通过请求注册到注册中心的服务实例来获取这些实例提供的服务。
+**服务发现**：又名服务注册，后端服务启动时，会自行将服务注册到服务注册中心中，如：consul、eureka、nacos等。此时，注册中心中有该服务有该服务的相关信息，包括服务访问地址、服务调用参数等信息。客户端可以通过使用服务名等标识对后端服务进行调用。
 
-* 模块名称：服务发现
+当后端服务启动/停止时，将会发送请求告知注册中心，触发注册中心的新增/删除事件
 
-* 功能支持：
+![](http://data.eolinker.com/course/HYdFKzVdcd035b99b8b4035f95a5d1f5ae826acd0319d4e.svg+xml)
 
-| 功能                                            | driver配置字段 | 属性         |
-| ----------------------------------------------- | -------------- | ------------ |
-| [consul](/docs/apinto/discovery/consul.md)       | consul         | 动态服务发现 |
-| [eureka](/docs/apinto/discovery/eureka.md)       | eureka         | 动态服务发现 |
-| [nacos](/docs/apinto/discovery/nacos.md)         | nacos          | 动态服务发现 |
-| [静态服务发现](/docs/apinto/discovery/static.md) | static         | 静态服务     |
+未使用网关时，注册到服务注册中心的服务的调用情况：
 
+![](http://data.eolinker.com/course/Z5nNZM9a5e8feb50b652abbd4eb6fbe50af57a86e6031e8.svg+xml)
 
-### 配置流程：
+启用网关后，注册到服务注册中心的服务的调用情况：
 
-* 创建服务发现
-* 服务发现id绑定负载
-* 负载id绑定服务
-* 服务id绑定路由
+![](http://data.eolinker.com/course/2BldyIQ66951b680a9438d1f76850d221b64b4ba010b738.svg+xml)
 
-
-
-#### 配置流程示例图：
-
-负载配置教程[点此](/docs/apinto/upstream/http.md)进行跳转
-
-![](http://data.eolinker.com/course/DhT6F8496871469222d3e16a97d1964154a2e49f1326850.png)
+### 支持的服务发现
+| 功能                                            | driver配置字段 | 类型     |
+|-----------------------------------------------| -------------- |--------|
+| [consul](/docs/dashboard/discovery/consul.md) | consul         | 动态服务发现 |
+| [eureka](/docs/dashboard/discovery/eureka.md)    | eureka         | 动态服务发现 |
+| [nacos](/docs/dashboard/discovery/nacos.md)      | nacos          | 动态服务发现 |
+| [静态服务发现](/docs/dashboard/discovery/static.md)    | static         | 静态服务   |
