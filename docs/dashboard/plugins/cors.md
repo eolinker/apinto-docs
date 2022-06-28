@@ -60,20 +60,6 @@
 | Via                 | 告诉服务器，这个请求是由哪些代理发出的。                     | Via: 1.0 fred, 1.1 itbilu.com.com (Apache/1.1)          | 固定       |
 | Warning             | 一个一般性的警告，表示在实体内容体中可能存在错误。           | Warning: 199 Miscellaneous warning                      | 固定       |
 
-#### 配置示例
-
-```sh
-{
-    "allow_origin": "*",
-    "allow_methods": "POST,GET",
-    "allow_headers": "*",
-    "allow_credentials": "true",
-    "expose_headers": "*",
-    "max_age":5
-    "response_type":"json"
-}
-```
-
 ### 全局开启跨域插件
 
 ![](http://data.eolinker.com/course/2vbuvuk602a945d0371991f784eefadcf60b9dfad02e61a.gif)
