@@ -52,7 +52,7 @@
 | plugins -> status | 插件状态                                                  | 是       |        | string       |
 | plugins -> config | 插件的全局配置，当status=global时生效，内容由对应插件决定 | 是       |        | object       |
 
-在配置过程中，`id`为插件的驱动ID，可重复使用，`name`为插件的执行别名，全局唯一，在router、service配置时填写。如额外参数插件ID为`eolinker.com:apinto:extra_params`，配置的`name`为`extra_params1`，在router、service阶段时使用该插件时填写的名称为`extra_params1`，则可进行调用。
+在配置过程中，`id`为插件的驱动ID，`name`为插件的执行别名，全局唯一，在router、service配置时填写。如额外参数插件ID为`eolinker.com:apinto:extra_params`，配置的`name`为`extra_params1`，在router、service阶段时使用该插件时填写的名称为`extra_params1`，则可进行调用。
 
 全局插件有三个**状态**：
 
@@ -83,7 +83,7 @@
     "plugins":[
         {
             "id":"eolinker.com:apinto:extra_params",
-            "name":"first_extra_params",
+            "name":"my_extra_params",
             "status":"global",
             "config":{
                 "params":[
@@ -98,21 +98,21 @@
             }
         },
         {
-            "id":"eolinker.com:apinto:extra_params",
-            "name":"second_extra_params",
+            "id":"eolinker.com:apinto:access_log",
+            "name":"my_access_log",
             "status":"enable"
         }
     ]
 }
 ```
 
-**配置说明**：全局配置了两个插件，这两个插件均为额外参数插件。
+**配置说明**：全局配置了两个插件，这两个插件分别为额外参数插件和access_log插件。
 
-第一个插件别名为`first_extra_params`，是个全局插件，当转发路径上的router|service均没有配置该插件时才生效。
+第一个插件别名为`my_extra_params`，是个全局插件，当转发路径上的router|service均没有配置该插件时才生效。
 
-第二个插件别名为`second_extra_params`，全局启用了，想要使用这个插件，需要在转发路径上的router|service配置具体参数。
+第二个插件别名为`my_access_log`，全局启用了，想要使用这个插件，需要在转发路径上的router|service配置具体参数。
 
-**插件执行顺序**: 以上述配置为例，`first_extra_params`的执行顺序高于`second_extra_params`。
+**插件执行顺序**: 以上述配置为例，`my_extra_params`的执行顺序高于`my_access_log`。
 
 
 

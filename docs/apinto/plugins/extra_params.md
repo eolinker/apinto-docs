@@ -83,7 +83,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 }'
 ```
 
-##### 配置带有额外参数插件的service服务
+##### 配置带有额外参数插件的服务
 
 以在请求头部加参数为例，全局插件具体配置点此进行[跳转](/docs/apinto/plugins)。
 

@@ -20,11 +20,9 @@
 
 注：熔断机制中的连续请求成功次数（success_counts）指的是 **熔断状态码** 除外的请求数。
 
-### Open Api
+### 配置示例
 
-#### 配置示例
-
-**示例说明**：当响应状态码为404或504时，判断为失败的请求。若300秒内总请求数 >= 5次，且请求失败率（失败请求数/总次数）>= 50%， 则api进入熔断状态30秒，期间接受到的请求直接返回，并且响应状态码重写201，响应头部新增`"demo": "1"`, 响应体body重写为`{已熔断}`。30秒后进入半开放状态，连续3次成功请求才进入健康状态，否则请求失败一次也会重新进入熔断状态。
+**示例说明**：当响应状态码为404或504时，判断为失败的请求。若300秒内总请求数 >= 5次，且请求失败率（失败请求数/总次数）>= 50%， 则api进入熔断状态30秒，期间接受到的请求直接返回，并且响应状态码重写201，响应头部新增`"demo": "1"`, 熔断时响应体body重写为`{已熔断}`。30秒后进入半开放状态，连续3次成功请求才进入健康状态，否则请求失败一次也会重新进入熔断状态。
 
 ```json
 {
@@ -42,7 +40,7 @@
 }
 ```
 
-#### 配置参数说明
+### 配置参数说明
 
 | 参数名           | 说明                                                         | 是否必填 | 默认值 | 值可能性       |
 | ---------------- | ------------------------------------------------------------ | -------- | ------ | -------------- |
@@ -60,9 +58,7 @@
 
 * headers配置参数是对响应头部信息的新增或修改。
 
-
-
-**响应信息**
+#### **响应信息**
 
 插件开启，每次均会在响应信息中新增三个头部：
 
@@ -76,97 +72,12 @@
   * success_counts： 成功请求次数
   * fail_counts：失败请求次数
 
+### 全局开启API熔断插件
 
+![](http://data.eolinker.com/course/1VIzpqg178a85b2e99cc73242966bbe661cd877c8f78ede.gif)
 
-#### Open API 请求示例
+### 配置带有API熔断插件的服务
 
-##### 全局配置
+**配置说明**：当响应状态码为404或504时，判断为失败的请求。若300秒内总请求数 >= 5次，且请求失败率（失败请求数/总次数）>= 50%， 则api进入熔断状态30秒，期间接受到的请求直接返回，并且响应状态码重写201，熔断时响应体body重写为`{"已熔断"}`。30秒后进入半开放状态，连续3次成功请求才进入健康状态，否则请求失败一次也会重新进入熔断状态。
 
-```shell
-curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
--H 'Content-Type:application/json' \
--d '{
-    "plugins":[{
-        "id":"eolinker.com:apinto:circuit_breaker",
-        "name":"my_circuit_breaker",
-        "status":"enable"
-    }]
-}'
-```
-
-##### 配置带有API熔断插件的service服务
-
-**配置说明**：见上面的配置示例。
-
-全局插件具体配置点此进行[跳转](/docs/apinto/plugins)。
-
-**备注**：匿名服务配置的是apinto官方示例接口，将返回请求的相关信息。
-
-```shell
-curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/json' -d '{
-    "name": "circuit_breaker_service",
-    "driver": "http",
-    "timeout": 3000,
-    "retry": 3,
-    "scheme": "http",
-    "anonymous": {
-        "type": "round-robin",
-        "config": "demo-apinto.eolink.com:8280"
-    },
-    "plugins": {
-        "my_circuit_breaker":{
-            "disable": false,
-            "config":{
-                "match_codes": "404,504",
-                "monitor_period": 300,
-                "minimum_requests": 5,
-                "failure_percent": 0.5,
-                "break_period": 30,
-                "success_counts": 3,
-                "breaker_code": 201,
-                "headers": {
-                    "demo": "1"
-                },
-                "body": "{已熔断}"
-            }
-        }
-    }
-}' 
-```
-
-##### 绑定路由
-
-```shell
-curl -X POST  'http://127.0.0.1:9400/api/router' \
--H 'Content-Type:application/json' \
--d '{
-    "name":"circuit_breaker_router",
-    "driver":"http",
-    "listen":8099,
-    "rules":[{
-        "location":"/demo/circuit_breaker"
-    }],
-    "target":"circuit_breaker_service@service"
-}'
-```
-
-##### 接口请求示例
-
-```shell
-curl -i -X GET 'http://127.0.0.1:8099/demo/circuit_breaker' -H 'Content-Type:application/json'
-```
-
-##### 接口访问返回示例
-
-```text
-HTTP/1.1 200 OK
-Server: fasthttp
-Date: Mon, 13 Dec 2021 04:08:01 GMT
-Content-Type: text/plain; charset=utf-8
-Content-Length: 262
-Fail-Counts: 0
-Success-Counts: 1
-Monitor-Info: {"circuit_breaker_state":0,"fail_counts":0,"success_counts":1,"trip_time":1639368480,"start_time":1639368480,"recovering_success_counts":0}
-
-....
-```
+![](http://data.eolinker.com/course/zWPbe3Je3b0e7f582c1cee404184028ee8ef13247525368.gif)

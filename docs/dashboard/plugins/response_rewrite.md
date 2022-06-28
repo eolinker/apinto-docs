@@ -12,9 +12,7 @@
 
 **注意事项**：对状态码和响应体body是重写覆盖，但对头部信息是新增或修改。
 
-### Open Api
-
-#### 配置示例
+### 配置示例
 
 **示例说明**：当响应状态码为200或者404时，响应状态码将被重写为201，响应头部设置`demo_header: "1"`，body被覆盖为`{"重写响应体Body"}`(以下配置的body已经过base64加密)。
 
@@ -32,7 +30,7 @@
 }
 ```
 
-#### 配置参数说明
+### 配置参数说明
 
 | 参数名      | 说明                                   | 是否必填 | 默认值 | 值可能性  |
 | ----------- | -------------------------------------- | -------- | ------ | --------- |
@@ -47,93 +45,12 @@
 
 * match->code参数是int数组，同时每个值得范围是[200,598]。
 
-#### Open API 请求示例
+### 全局开启响应重写插件
 
-##### 全局配置
+![](http://data.eolinker.com/course/2lJTYWQb4fba940c8fbc5c96d94aec29f8d77e0f27a3b31.gif)
 
-```shell
-curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
--H 'Content-Type:application/json' \
--d '{
-  "plugins": [{
-    "id": "eolinker.com:apinto:response_rewrite",
-    "name": "my_response_rewrite",
-    "type": "service",
-	"status": "enable"
-  }]
-}'
-```
+### 配置带有响应重写插件的服务
 
-##### 配置带有响应重写插件的service服务
+**配置说明**：当响应状态码为200时，响应状态码将被重写为201，响应头部设置`apinto: "1"`，body被覆盖为`{"重写响应体"}`。
 
-**配置说明**：当响应状态码为200或者404时，响应状态码将被重写为201，响应头部设置`demo_header: "1"`，body被覆盖为`{"重写响应体Body"}`(以下配置的body已经过base64加密)。
-
-全局插件具体配置点此进行[跳转](/docs/apinto/plugins)。
-
-
-```shell
-curl -X POST 'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/json' \
--d '{
- "name": "response_rewrite_service",
- "driver": "http",
- "timeout": 3000,
- "retry": 3,
- "scheme": "http",
- "anonymous": {
-  "type": "round-robin",
-  "config": "demo-apinto.eolink.com:8280"
- },
- "plugins": {
-  "my_response_rewrite": {
-  "disable": false,
-  "config": {
-    "status_code": 201,
-    "body": "eyLph43lhpnlk43lupTkvZNCb2R5In0=",
-    "body_base64": true,
-    "headers": {
-     "demo_header": "1"
-	},
-	"match": {
-	 "code": [ 404, 200 ]
-	}
-   }
-  }
- }
-}' 
-```
-
-##### 绑定路由
-
-```shell
-curl -X POST  'http://127.0.0.1:9400/api/router' \
--H 'Content-Type:application/json' \
--d '{
-    "name":"response_rewrite_router",
-    "driver":"http",
-    "listen":8099,
-    "rules":[{
-        "location":"/demo/response_rewrite"
-    }],
-    "target":"response_rewrite_service@service"
-}'
-```
-
-##### 接口请求示例
-
-```shell
-curl -i -X GET 'http://127.0.0.1:8099/demo/response_rewrite' -H 'Content-Type:application/json'
-```
-
-##### 接口访问返回示例
-
-```text
-HTTP/1.1 201 Created
-Server: fasthttp
-Date: Mon, 13 Dec 2021 03:36:50 GMT
-Content-Type: text/plain; charset=utf-8
-Content-Length: 23
-Demo_header: 1
-
-{"重写响应体Body"}
-```
-
+![](http://data.eolinker.com/course/VWe4L8paa37a389a31f5c286091fa99417861c774f12099.gif)
