@@ -9,9 +9,7 @@
 
 设置跨域的头部字段，实现跨域功能。
 
-### Open Api
-
-#### 配置参数说明
+### 配置参数说明
 
 
 | 参数名            | 说明                                                         | 是否必填 | 默认值 | 值可能性                         |
@@ -62,108 +60,12 @@
 | Via                 | 告诉服务器，这个请求是由哪些代理发出的。                     | Via: 1.0 fred, 1.1 itbilu.com.com (Apache/1.1)          | 固定       |
 | Warning             | 一个一般性的警告，表示在实体内容体中可能存在错误。           | Warning: 199 Miscellaneous warning                      | 固定       |
 
-#### 配置示例
+### 全局开启跨域插件
 
-```sh
-{
-    "allow_origin": "*",
-    "allow_methods": "POST,GET",
-    "allow_headers": "*",
-    "allow_credentials": "true",
-    "expose_headers": "*",
-    "max_age":5
-    "response_type":"json"
-}
-```
+![](http://data.eolinker.com/course/2vbuvuk602a945d0371991f784eefadcf60b9dfad02e61a.gif)
 
-#### Open API请求配置示例
+### 配置带有跨域插件的服务
 
-##### 全局配置
+以默认配置
 
-```shell
-curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
--H 'Content-Type:application/json' \
--d '{
-    "plugins":[{
-        "id":"eolinker.com:apinto:cors",
-        "name":"my_cors",
-        "status":"enable"
-    }]
-}'
-```
-
-在使用跨域插件之前，需要在全局插件配置中将name为**cors**的插件状态设置为enable，具体配置点此[跳转](/docs/apinto/plugins)
-
-##### 配置带有跨域插件的service服务
-
-**备注**：匿名服务配置的是apinto官方示例接口，将返回请求的相关信息。
-
-```sh
-curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/json' \
--d '{
-  "name": "cors_service",
-  "driver": "http",
-  "timeout": 3000,
-  "retry": 3,
-  "description": "使用跨域插件",
-  "scheme": "https",
-  "anonymous": {
-    "type": "round-robin",
-    "config": "demo-apinto.eolink.com:8280"
-  },
-  "plugins": {
-    "my_cors": {
-	 "disable": false,
-	 "config": {
-	  "allow_origins": "*",
-	  "allow_methods": "POST"
-	 }
-    }
-  }
-}' 
-```
-
-```
-成功创建id为cors_service@service的服务
-```
-
-##### 绑定路由
-
-将上一步生成的服务id绑定至路由的target字段
-
-```sh
-curl -X POST 'http://127.0.0.1:9400/api/router' -H 'Content-Type:application/json' \
--d '{
-  "name": "cors_router",
-  "driver": "http",
-  "description": "该路由的目标服务使用了跨域插件",
-  "listen": 8099,
-  "rules": [{
-    "location": "/demo/cors"
-  }],
-  "target": "cors_service@service"
-}'
-```
-
-##### 接口请求示例
-
-```sh
-curl -i -X POST 'http://127.0.0.1:8099/demo/cors' -H 'Content-Type:application/json'
-```
-
-##### 接口访问返回示例
-
-当使用GET方法请求上述服务时，会受跨域插件的限制（因为只允许POST请求），获得如下反馈：
-
-```sh
-HTTP/1.1 403 Forbidden
-Content-Type: text/plain; charset=utf-8
-Content-Length: 42
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Headers: *
-Access-Control-Allow-Methods: POST
-Access-Control-Expose-Headers: *
-Access-Control-Allow-Credentials: false
-
-[CORS] Request method 'GET' is not allowed
-```
+![](http://data.eolinker.com/course/nDR7fVc3a838ba8c4a520f85eed7812b4b18db4a87dc997.gif)

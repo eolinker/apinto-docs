@@ -16,31 +16,7 @@
 - 若参数类型为表单时，映射插件支持同名参数的使用。
 - 使用该插件时请保证Content-Type为 application/x-www-form-urlencoded、 multipart/form-data 或 application/json。
 
-### Open Api
-
-#### 配置示例
-
-**示例说明**：将转发请求的query参数a映射到头部header中的b，并且删除原参数。
-
-```json
-{
-    "params":[
-        {
-            "name":"a",
-            "position":"query",
-            "proxy_name":"b",
-            "proxy_position":"header",
-            "required":true
-        }
-    ],
-    "remove":true,
-    "error_type":"text"
-}
-```
-
-
-
-#### 配置参数说明
+### 配置参数说明
 
 | 参数名                   | 说明                                               | 是否必填 | 默认值 | 值可能性                  |
 | ------------------------ | -------------------------------------------------- | -------- | ------ | ------------------------- |
@@ -53,109 +29,17 @@
 | remove                   | 映射后删除原参数                                   | 否       | false  | bool                      |
 | error_type               | 插件返回报错的类型                                 | 否       | text   | ["text","json"]           |
 
-#### Open API 请求示例
+### 全局开启该插件
 
-##### 全局配置
+![](http://data.eolinker.com/course/nIjmFAn051b881172d989f3d9f2e6a8f5a76275af212c48.gif)
 
-```shell
-curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
--H 'Content-Type:application/json' \
--d '{
-    "plugins":[{
-        "id":"eolinker.com:apinto:params_transformer",
-        "name":"my_params_transformer",
-        "status":"enable"
-    }]
-}'
-```
 
-##### 配置带有参数映射插件的service服务
 
-配置插件说明：将转发请求里query参数a映射为header里的b，并且删除query里的原参数a。
+### 配置带有参数映射插件的服务
 
-全局插件具体配置点此进行[跳转](/docs/apinto/plugins)。
+![](http://data.eolinker.com/course/HapAnkkdbb9b124f3b749ed219d71c88572822f94f1dd90.gif)
 
-**备注**：匿名服务配置的是apinto官方示例接口，将返回请求的相关信息。
 
-```shell
-curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/json' -d '{
-    "name": "params_trans_service",
-    "driver": "http",
-    "timeout": 3000,
-    "retry": 3,
-    "scheme": "http",
-    "anonymous": {
-        "type": "round-robin",
-        "config": "demo-apinto.eolink.com:8280"
-    },
-    "plugins": {
-        "my_params_transformer":{
-            "disable": false,
-            "config":{
-                "params": [{
-                "name": "a",
-                "position": "query",
-                "proxy_name":"b",
-                "proxy_position":"header",
-                "required":true,
-                "conflict": "Convert"
-                }],
-            "remove": true,
-            "error_type": "text"
-            }
-        }
-    }
-}' 
-```
 
-##### 绑定路由
 
-```shell
-curl -X POST  'http://127.0.0.1:9400/api/router' \
--H 'Content-Type:application/json' \
--d '{
-    "name":"params_trans_router",
-    "driver":"http",
-    "listen":8099,
-    "rules":[{
-        "location":"/demo/params_trans"
-    }],
-    "target":"params_trans_service@service"
-}'
-```
-
-##### 接口请求示例
-
-```shell
-curl -X GET 'http://127.0.0.1:8099/demo/params_trans?a=test_plugin' -H 'Content-Type:application/json'
-```
-
-##### 接口访问返回示例
-
-```json
-{
-    "body":"",
-    "header":{
-        "Accept":[
-            "*/*"
-        ],
-        "B":[
-            "test_plugin"
-        ],
-        "User-Agent":[
-            "curl/7.75.0"
-        ],
-        "X-Forwarded-For":[
-            "127.0.0.1,127.0.0.1"
-        ]
-    },
-    "host":"127.0.0.1:8099",
-    "method":"GET",
-    "path":"/demo/params_trans",
-    "query":{
-
-    },
-    "url":"/demo/params_trans"
-}
-```
 

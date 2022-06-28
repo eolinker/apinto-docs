@@ -16,28 +16,6 @@
 
 
 
-### Open Api
-
-#### 配置示例
-
-**示例说明**：在转发请求的头部header里加上`test:test_value`, 若转发header里本身已存在test，且冲突处理方式为conflict，则采用插件内配置的值。
-
-```json
-{
-    "params":[
-        {
-            "name":"test",
-            "position":"header",
-            "value":"test_value",
-            "conflict": "convert",
-        }
-    ],
-    "error_type":"text"
-}
-```
-
-
-
 #### 配置参数说明
 
 | 参数名             | 说明                 | 是否必填 | 默认值  | 取值范围                     |
@@ -67,106 +45,15 @@
 
 
 
-#### Open API 请求示例
+### 配置额外参数全局插件
 
-##### 全局配置
+开启插件教程[点此](/docs/dashboard/plugins/index.md)进行跳转。
 
-```shell
-curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
--H 'Content-Type:application/json' \
--d '{
-    "plugins":[{
-        "id":"eolinker.com:apinto:extra_params",
-        "name":"my_extra_params",
-        "status":"enable"
-    }]
-}'
-```
+![](http://data.eolinker.com/course/5KvDHZs12fa33a027fc4d08dba4322b5d01814723d5aee9.gif)
 
-##### 配置带有额外参数插件的service服务
 
-以在请求头部加参数为例，全局插件具体配置点此进行[跳转](/docs/apinto/plugins)。
 
-**备注**：匿名服务配置的是apinto官方示例接口，将返回请求的相关信息。
 
-```shell
-curl -X POST  'http://127.0.0.1:9400/api/service' \
--H 'Content-Type:application/json' \
--d '{
-    "name": "extra_param_service",
-    "driver": "http",
-    "timeout": 3000,
-    "retry": 3,
-    "scheme": "http",
-    "anonymous": {
-        "type": "round-robin",
-        "config": "demo-apinto.eolink.com:8280"
-    },
-    "plugins": {
-        "my_extra_params":{
-            "disable": false,
-            "config":{
-                "params": [{
-                "name": "demo_param",
-                "position": "header",
-                "value": "1",
-                "conflict": "Convert"
-                }],
-            "error_type": "text"
-            }
-        }
-    }
-}'
-```
 
-##### 绑定路由
 
-```shell
-curl -X POST  'http://127.0.0.1:9400/api/router' \
--H 'Content-Type:application/json' \
--d '{
-    "name":"extra_params_router",
-    "driver":"http",
-    "listen":8099,
-    "rules":[{
-        "location":"/demo/extra_params"
-    }],
-    "target":"extra_param_service@service"
-}'
-```
-
-##### 接口请求示例
-
-```shell
-curl -X GET 'http://127.0.0.1:8099/demo/extra_params'
-```
-
-##### 接口访问返回示例
-
-```json
-{
-    "body":"",
-    "header":{
-        "Accept":[
-            "*/*"
-        ],
-        "Demo_param":[
-            "1"
-        ],
-        "User-Agent":[
-            "curl/7.75.0"
-        ],
-        "X-Forwarded-For":[
-            "127.0.0.1,127.0.0.1"
-        ]
-    },
-    "host":"127.0.0.1:8099",
-    "method":"GET",
-    "path":"/demo/extra_params",
-    "query":{
-
-    },
-    "url":"/demo/extra_params"
-}
-```
 

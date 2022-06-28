@@ -94,7 +94,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 }'
 ```
 
-##### 配置带有API熔断插件的service服务
+##### 配置带有API熔断插件的服务
 
 **配置说明**：见上面的配置示例。
 

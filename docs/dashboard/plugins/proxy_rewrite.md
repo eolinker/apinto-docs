@@ -14,26 +14,7 @@
 
 * 对uri的重写支持正则替换
 
-### Open Api
-
-#### 配置示例
-
-**示例说明**：将转发请求的`scheme`设置为http，`uri`设置为test ,`host`设置为 `1.1.1.1`，同时请求头部中删掉`a` 和新增`b:1`。
-
-```json
-{
-    "scheme":"http",
-    "uri":"/test",
-    "regex_uri":["demo","test"],
-    "host":"1.1.1.1",
-    "headers":{
-        "a":"",
-        "b":"1"
-    }
-}
-```
-
-#### 配置参数说明
+### 配置参数说明
 
 | 参数名    | 说明                                                         | 是否必填 | 默认值 | 值可能性         |
 | --------- | ------------------------------------------------------------ | -------- | ------ | ---------------- |
@@ -48,109 +29,13 @@
 * uri和regex_uri均用于修改uri，uri和regex_uri不能同时为空，至少一项有值。若同时有值，则uri的值优先。
 * 想要删除转发请求头部里的值，只需要将对应的值设置为空字符串即可。
 
-#### Open API 请求示例
+### 全局开启转发重写插件
 
-##### 全局配置
+![](http://data.eolinker.com/course/d14eqRs76212a8b3ea6f4d8d5382942cb5036a947eebb40.gif)
 
-```shell
-curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
--H 'Content-Type:application/json' \
--d '{
-    "plugins":[{
-        "id":"eolinker.com:apinto:proxy_rewrite",
-        "name":"my_proxy_rewrite",
-        "status":"enable"
-    }]
-}'
-```
+### 配置带有转发重写插件的服务
 
-##### 配置带有转发重写插件的service服务
+**配置说明**：将转发请求的`scheme`设置为http，`uri`设置为`/apinto/demo` ,`host`设置为 `127.0.0.1`，同时请求头部中新增`apinto:demo`。
 
-**配置说明**：将转发请求的`scheme`设置为http，`uri`设置为test ,`host`设置为 `1.1.1.1`，同时请求头部中删掉`a` 和新增`b:2`。
+![](http://data.eolinker.com/course/nmLyWQYf770150c255656bfb2f20726e3f1baed4d6b1d7d.gif)
 
-全局插件具体配置点此进行[跳转](/docs/apinto/plugins)。
-
-**备注**：匿名服务配置的是apinto官方示例接口，将返回请求的相关信息。
-
-```shell
-curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/json' -d '{
-    "name": "proxy_rewrite_service",
-    "driver": "http",
-    "timeout": 3000,
-    "retry": 3,
-    "scheme": "http",
-    "anonymous": {
-        "type": "round-robin",
-        "config": "demo-apinto.eolink.com:8280"
-    },
-    "plugins": {
-        "my_proxy_rewrite":{
-            "disable": false,
-            "config":{
-             "scheme": "http",
-             "uri": "/test",
-             "regex_uri": ["demo","test"],
-             "host": "1.1.1.1",
-             "headers":{
-               "a": "",
-               "b": "2"
-              }
-            }
-        }
-    }
-}' 
-```
-
-##### 绑定路由
-
-```shell
-curl -X POST  'http://127.0.0.1:9400/api/router' \
--H 'Content-Type:application/json' \
--d '{
-    "name":"proxy_rewrite_router",
-    "driver":"http",
-    "listen":8099,
-    "rules":[{
-        "location":"/demo/proxy_rewrite"
-    }],
-    "target":"proxy_rewrite_service@service"
-}'
-```
-
-##### 接口请求示例
-
-```shell
-curl -X GET 'http://127.0.0.1:8099/demo/proxy_rewrite' -H 'Content-Type:application/json' -H 'a:1'
-```
-
-##### 接口访问返回示例
-
-```json
-{
-    "body":"",
-    "header":{
-        "Accept":[
-            "*/*"
-        ],
-        "B":[
-            "2"
-        ],
-        "Content-Type":[
-            "application/json"
-        ],
-        "User-Agent":[
-            "curl/7.75.0"
-        ],
-        "X-Forwarded-For":[
-            "127.0.0.1,127.0.0.1"
-        ]
-    },
-    "host":"1.1.1.1",
-    "method":"GET",
-    "path":"/demo/proxy_rewrite",
-    "query":{
-
-    },
-    "url":"/demo/proxy_rewrite"
-}
-```
