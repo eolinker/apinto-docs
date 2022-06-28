@@ -17,7 +17,7 @@
 
 ![](http://data.eolinker.com/course/6TSQnZd8a59f9199df82de617b1553d27fb0d0ec459a057.gif)
 
-2、填写服务信息
+2、填写服务信息并提交
 
 ![](http://data.eolinker.com/course/N4jzuJr88a74af678119baca551eaaf806fa3224b091c0f.gif)
 
@@ -32,4 +32,3 @@
 | 负载均衡算法 | 分配负载上游的算法<br>round-robin：权重轮询算法                ｜                                                                                                                              |
 | 静态配置   | 当服务发现选择匿名上游时弹出<br><br>配置格式：{域名/ip}:{port} {weight} <br> 示例：demo.apinto.com:8280 100 <br><br> 可配置多个上游地址，中间用英文分号**;**隔开<br>示例：demo.apinto.com:8280 100;demo.gokuapi.com:8280 10 |
 
-3、填写完后提交即可

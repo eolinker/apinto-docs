@@ -221,17 +221,17 @@ function dashboard() {
       collapsible: true,
       children: ['/docs/' + name + '/service/http.md'],
     },
-    // {
-    //   text: '服务发现',
-    //   link: '/docs/' + name + '/discovery/index.md',
-    //   collapsible: true,
-    //   children: [
-    //     '/docs/' + name + '/discovery/static.md',
-    //     '/docs/' + name + '/discovery/consul.md',
-    //     '/docs/' + name + '/discovery/eureka.md',
-    //     '/docs/' + name + '/discovery/nacos.md'
-    //   ],
-    // },
+    {
+      text: '服务发现',
+      link: '/docs/' + name + '/discovery/index.md',
+      collapsible: true,
+      children: [
+        '/docs/' + name + '/discovery/static.md',
+        '/docs/' + name + '/discovery/consul.md',
+        // '/docs/' + name + '/discovery/eureka.md',
+        // '/docs/' + name + '/discovery/nacos.md'
+      ],
+    },
     // {
     //   text: '访问鉴权',
     //   link: '/docs/' + name + '/auth/index.md',
