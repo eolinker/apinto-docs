@@ -229,7 +229,7 @@ function dashboard() {
         '/docs/' + name + '/discovery/static.md',
         '/docs/' + name + '/discovery/consul.md',
         // '/docs/' + name + '/discovery/eureka.md',
-        // '/docs/' + name + '/discovery/nacos.md'
+        '/docs/' + name + '/discovery/nacos.md'
       ],
     },
     // {

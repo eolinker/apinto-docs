@@ -2,120 +2,25 @@
 
 ### 功能描述
 
-Eureka服务发现为网关动态地提供了服务的接入地址，网关可以基于这些地址进行负载均衡处理。
+Eureka服务发现：只需要填写Eureka的地址，网关即可定时从Eureka中获取健康的节点列表，在转发时网关选择其中一个健康的节点进行转发操作。
 
-Eureka注册中心自带健康检查，从该注册中心获取节点时可以获取到稳定健康的节点。
+Eureka注册中心自带健康检查，从该注册中心获取节点时可以获取到稳定健康的节点，因此网关不做健康检查操作。
 
+### 配置示例
+1、新建服务发现，**Driver**选择**eureka**，将自动弹出配置页面
 
+![](http://data.eolinker.com/course/i4lwFrCfdfa0e08b9bd0fc85a62ac56893c00ee193cb994.gif)
+2、配置**Eureka**信息
 
-### OpenAPI配置服务发现
+![](http://data.eolinker.com/course/GYZHv4V00e931ba681919e7cc1abdaedd8c5cdb04c1b2c3.gif)
+字段描述说明
 
-#### 请求参数说明
+| 字段      | 描述                                                      |
+|---------|---------------------------------------------------------|
+| 请求协议    | 请求Nacos的协议类型，可能性：HTTP/HTTPS                             |
+| Eureka地址 | Eureka地址列表，填写各个节点的地址，需要填写到访问url，如/eureka                |
+| 参数      | 访问Eureka时需要传递的参数，按需填入 |           
 
-| 参数名           | 说明                                                         | 是否必填 | 默认值 | 值可能性        |
-| ---------------- | :----------------------------------------------------------- | -------- | ------ | --------------- |
-| name             | 实例名                                                       | 是       |        | string          |
-| driver           | 所使用的服务发现类别                                         | 是       |        | "eureka"        |
-| description      | 描述                                                         | 否       |        | string          |
-| scheme           | 请求服务发现地址时使用的协议                                 | 否       | "http" | ["http","https] |
-| config           | 服务发现配置                                                 | 是       |        | object          |
-| config-> address | nacos地址列表                                                | 是       |        | array_string    |
-| config-> params  | 参数信息,如{"token":"XXX","namespace":"default","username":"XXX","password":"xxx"} | 是       |        | object          |
+3、绑定上游服务，输入Eureka里的服务名
 
-
-
-#### 返回参数说明
-
-
-| 参数名      | 类型   | 是否必含 | 说明                         |
-| ----------- | ------ | -------- | ---------------------------- |
-| id          | string | 是       | 实例id                       |
-| name        | string | 是       | 实例名                       |
-| driver      | string | 是       | 驱动名                       |
-| description | string | 是       | 描述                         |
-| profession  | string | 是       | 模块名                       |
-| create      | string | 是       | 创建时间                     |
-| update      | string | 是       | 更新时间                     |
-| scheme      | string | 是       | 请求服务发现地址时使用的协议 |
-| config      | object | 是       | 服务发现配置                 |
-
-**备注**：返回体内的config参考请求配置参数，在此不再赘述。
-
-
-
-#### 创建eureka服务发现
-
-若有命名空间字段，则在params里填入。
-
-```shell
-curl -X POST  \
-  'http://127.0.0.1:9400/api/discovery' \
-  -H 'Content-Type:application/json' \
-  -d '{
-  	"name": "demo_eureka",
-	"driver": "eureka",
-	"scheme": "http",
-	"config": {
-		"address": ["127.0.0.1:8761"],
-		"params": {
-			"username": "test",
-			"password": "test"
-		}
-	}
-}'
-```
-
-
-
-#### 结果示例
-
-```json
-{
-	"config": {
-		"address": ["127.0.0.1:8761"],
-		"params": {
-			"password": "test",
-			"username": "test"
-		}
-	},
-	"create": "2022-06-15 11:22:27",
-	"description": "",
-	"driver": "eureka",
-	"id": "demo_eureka@discovery",
-	"name": "demo_eureka",
-	"profession": "discovery",
-	"scheme": "http",
-	"update": "2022-06-15 11:22:27"
-}
-```
-
-```
-返回的discoveryID为demo_eureka@discovery
-```
-
-
-
-#### 创建负载
-
-**服务发现id绑定负载**：上一步生成的服务发现id绑定至下面的discovery字段
-
-**注意**：若eureka注册中心不可用时则不能创建成功。
-
-```shell
-curl -X POST  \
-  'http://127.0.0.1:9400/api/upstream' \
-  -H 'Content-Type:application/json' \
-  -d '{
-	"name": "eureka_upstream",
-	"driver": "http_proxy",
-	"discovery": "demo_eureka@discovery",
-	"config": "redis",
-	"scheme": "http",
-	"type": "round-robin"
-}'
-```
-
-
-
-
-
+![](http://data.eolinker.com/course/QgCqr1J75add4b23c750dcc14c9cb15d2ea4e1a784a63e1.gif)
