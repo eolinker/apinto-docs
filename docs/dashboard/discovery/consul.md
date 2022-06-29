@@ -12,7 +12,7 @@ Consul注册中心自带健康检查，从该注册中心获取节点时可以�
 ![](http://data.eolinker.com/course/1iKgNhy026b7e73c1566f5524468d62ff2091666f10c7fd.gif)
 2、配置**Consul**信息
 
-![](http://data.eolinker.com/course/y2e7Uenae79a588ea0ed4ee125596912e88517e8627d521.gif)
+![](http://data.eolinker.com/course/XicL6G465a95c5d4d46adc76bc219765dd5d543279b7f7f.gif)
 
 字段描述说明
 
