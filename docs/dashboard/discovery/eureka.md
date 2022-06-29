@@ -23,4 +23,7 @@ Eureka注册中心自带健康检查，从该注册中心获取节点时可以�
 
 3、绑定上游服务，输入Eureka里的服务名
 
-![](http://data.eolinker.com/course/QgCqr1J75add4b23c750dcc14c9cb15d2ea4e1a784a63e1.gif)
+绑定过程时网关会做校验，当服务名不存在时则会新建失败
+![](http://data.eolinker.com/course/bMT6KFmd1ae3f382ea114e719ad96a7332851b008651491.png)
+
+![](http://data.eolinker.com/course/eTtNilpbcead1954fcbf4c902a7a0d79696f1bf1da6a287.gif)
