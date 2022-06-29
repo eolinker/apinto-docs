@@ -89,7 +89,7 @@ function apinto() {
   return [
     {
       text: '关于Apinto',
-      link: '/docs/apinto/index.md',
+      link: '/docs/index.md',
     },
     {
       text: '快速开始',
@@ -117,11 +117,11 @@ function apinto() {
       collapsible: true,
       children: ['/docs/apinto/service/http.md'],
     },
-    {
-      text: '负载均衡',
-      collapsible: true,
-      children: ['/docs/apinto/upstream/http.md'],
-    },
+    // {
+    //   text: '负载均衡',
+    //   collapsible: true,
+    //   children: ['/docs/apinto/upstream/http.md'],
+    // },
     {
       text: '服务发现',
       link: '/docs/apinto/discovery/index.md',
@@ -190,7 +190,7 @@ function apinto() {
     },
     {
       text: 'Open Api',
-      link: '/view/open.md',
+      link: '/docs/apinto/open.md',
     },
   ]
 }
@@ -255,25 +255,24 @@ function dashboard() {
     //   ],
     // },
     //
-    // {
-    //   text: '插件系统',
-    //   link: '/docs/' + name + '/plugins/index.md',
-    //   collapsible: true,
-    //   children: [
-    //     '/docs/' + name + '/plugins/plugin_build.md',
-    //     '/docs/' + name + '/plugins/extra_params.md',
-    //     '/docs/' + name + '/plugins/params_transformer.md',
-    //     '/docs/' + name + '/plugins/proxy_rewrite.md',
-    //     '/docs/' + name + '/plugins/ip_restriction.md',
-    //     '/docs/' + name + '/plugins/rate_limiting.md',
-    //     '/docs/' + name + '/plugins/auth.md',
-    //     '/docs/' + name + '/plugins/response_rewrite.md',
-    //     '/docs/' + name + '/plugins/circuit_breaker.md',
-    //     '/docs/' + name + '/plugins/cors.md',
-    //     '/docs/' + name + '/plugins/gzip.md',
-    //     '/docs/' + name + '/plugins/access_log.md',
-    //
-    //   ],
-    // },
+    {
+      text: '插件系统',
+      link: '/docs/' + name + '/plugins/index.md',
+      collapsible: true,
+      children: [
+        '/docs/' + name + '/plugins/extra_params.md',
+        '/docs/' + name + '/plugins/params_transformer.md',
+        '/docs/' + name + '/plugins/proxy_rewrite.md',
+        '/docs/' + name + '/plugins/ip_restriction.md',
+        '/docs/' + name + '/plugins/rate_limiting.md',
+        '/docs/' + name + '/plugins/auth.md',
+        '/docs/' + name + '/plugins/response_rewrite.md',
+        '/docs/' + name + '/plugins/circuit_breaker.md',
+        '/docs/' + name + '/plugins/cors.md',
+        '/docs/' + name + '/plugins/gzip.md',
+        '/docs/' + name + '/plugins/access_log.md',
+
+      ],
+    },
   ]
 }

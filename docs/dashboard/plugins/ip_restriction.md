@@ -34,9 +34,7 @@ location / {
     }
 ```
 
-### Open Api
-
-#### 插件配置参数
+### 插件配置参数
 
 
 | 参数名        | 说明               | 是否必填 | 默认值 | 取值范围          |
@@ -46,103 +44,13 @@ location / {
 | ip_black_list | IP黑名单列表       | 是       |        | array_string      |
 | response_type | 插件返回报错的类型 | 是       |        | ["text","json"]   |
 
+### 全局开启IP黑白名单插件
 
-#### 配置示例
+![](http://data.eolinker.com/course/kP26Shh00ec1c553cf66097b07c41a3deccdc131fc7a4d3.gif)
 
-```
-{
-    "ip_list_type":"black",
-    "ip_white_list":["127.0.0.1"],
-    "ip_black_list":["127.0.0.2"],
-    "response_type":"text"
-}
-```
+### 配置带有IP黑白名单插件的服务
 
-#### Open API请求示例
+以开启白名单为例。
 
-##### 全局配置
-
-在使用IP黑白名单插件之前，需要在全局插件配置中将name为ip_restriction的插件状态设置为enable，具体配置点此[跳转](/docs/apinto/plugins)
-
-```shell
-curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
--H 'Content-Type:application/json' \
--d '{
-    "plugins":[{
-        "id":"eolinker.com:apinto:ip_restriction",
-        "name":"my_ip_restriction",
-        "status":"enable"
-    }]
-}'
-```
-
-##### 配置带有IP黑白名单插件的service服务
-
-**备注**：匿名服务配置的是apinto官方示例接口，将返回请求的相关信息。
-
-```sh
-curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/json' \
--d '{
-  "name": "ip_restriction_service",
-  "driver": "http",
-  "timeout": 3000,
-  "retry": 3,
-  "description": "使用黑白ip插件",
-  "scheme": "https",
-  "anonymous": {
-	"type": "round-robin",
-	"config": "demo-apinto.eolink.com:8280"
-  },
-  "plugins": {
-	"my_ip_restriction": {
-	"disable": false,
-	"config": {
-	  "ip_list_type": "black",
-	  "ip_black_list": ["127.0.0.1"]
-	  }
-	}
-  }
-}' 
-```
-
-```
-成功创建id为ip_restriction_service@service的服务
-```
-
-##### 绑定路由
-
-将上一步生成的服务id绑定至路由的target字段
-
-```sh
-curl -X POST 'http://127.0.0.1:9400/api/router' \
-  -H 'Content-Type:application/json' \
-  -d '{
-  "name": "ip_restriction_router",
-  "driver": "http",
-  "description": "该路由的目标服务使用了黑白ip插件",
-  "listen": 8099,
-  "rules": [{
-	"location": "/demo/ip_restriction"
-  }],
-  "target": "ip_restriction_service@service"
-}'
-```
-
-##### 接口请求示例
-
-```sh
-curl -X POST 'http://127.0.0.1:8099/demo/ip_restriction' -H 'Content-Type:application/json'
-```
-
-##### 接口访问返回示例
-
-127.0.0.1为黑名单中的ip，故返回403
-
-```sh
-HTTP/1.1 403 Forbidden
-Content-Type: text/plain
-Content-Length: 18
-
-[ip_restriction] Illegal IP!
-```
+![](http://data.eolinker.com/course/8FKRTG2cc2a4e556e6673901204ecf3058533b7340694eb.gif)
 

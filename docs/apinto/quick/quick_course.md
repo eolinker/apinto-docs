@@ -62,9 +62,10 @@ curl -X POST http://127.0.0.1:9400/api/service \
     "driver": "http",
     "description": "访问官方示例接口",
     "timeout": 3000,
-    "anonymous": {"type": "round-robin","config": "demo-apinto.eolink.com:8280"},
     "retry": 3,
-    "scheme": "http"
+    "scheme": "http",
+    "nodes": ["demo-apinto.eolink.com:8280"],
+    "balance": "round-robin"
 }'
 ```
 
@@ -82,7 +83,7 @@ curl -X POST http://127.0.0.1:9400/api/router \
 -d '{
     "name": "apintoapi",
     "driver": "http",
-    "desc": "http",
+    "description": "路由示例",
     "listen": 8099,
     "rules": [{
         "location": "/demo"

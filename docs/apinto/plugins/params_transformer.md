@@ -69,7 +69,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 }'
 ```
 
-##### 配置带有参数映射插件的service服务
+##### 配置带有参数映射插件的服务
 
 配置插件说明：将转发请求里query参数a映射为header里的b，并且删除query里的原参数a。
 
@@ -84,10 +84,8 @@ curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/j
     "timeout": 3000,
     "retry": 3,
     "scheme": "http",
-    "anonymous": {
-        "type": "round-robin",
-        "config": "demo-apinto.eolink.com:8280"
-    },
+    "nodes": ["demo-apinto.eolink.com:8280"],
+    "balance": "round-robin",
     "plugins": {
         "my_params_transformer":{
             "disable": false,

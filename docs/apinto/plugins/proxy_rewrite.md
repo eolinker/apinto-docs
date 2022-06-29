@@ -64,7 +64,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 }'
 ```
 
-##### 配置带有转发重写插件的service服务
+##### 配置带有转发重写插件的服务
 
 **配置说明**：将转发请求的`scheme`设置为http，`uri`设置为test ,`host`设置为 `1.1.1.1`，同时请求头部中删掉`a` 和新增`b:2`。
 
@@ -79,10 +79,8 @@ curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/j
     "timeout": 3000,
     "retry": 3,
     "scheme": "http",
-    "anonymous": {
-        "type": "round-robin",
-        "config": "demo-apinto.eolink.com:8280"
-    },
+    "nodes": ["demo-apinto.eolink.com:8280"],
+    "balance": "round-robin",
     "plugins": {
         "my_proxy_rewrite":{
             "disable": false,

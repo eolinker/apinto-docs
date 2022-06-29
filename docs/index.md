@@ -98,7 +98,7 @@ Apinto是一个基于 Golang 开发的微服务网关，能够实现高性能 HT
 1.下载安装包并解压（此处以v0.5.1版本的安装包示例）
 
 ```
-wget https://github.com/eolinker/apinto/releases/download/v0.5.1/apinto-v0.5.1.linux.x64.tar.gz && tar -zxvf apinto-v0.5.1.linux.x64.tar.gz && cd apinto
+wget https://github.com/eolinker/apinto/releases/download/v0.6.3/apinto-v0.6.3.linux.x64.tar.gz && tar -zxvf apinto-v0.6.3.linux.x64.tar.gz && cd apinto
 ```
 
 2.启动网关：
@@ -127,5 +127,4 @@ EOLINK 是领先的 API 管理服务供应商，为全球超过3000家企业提�
 官方网站：[https://www.eolink.com](https://www.eolink.com "EOLINKER官方网站")
 
 免费下载PC桌面端：[https://www.eolink.com/pc/](https://www.eolink.com/pc/ "免费下载PC客户端")
-
 

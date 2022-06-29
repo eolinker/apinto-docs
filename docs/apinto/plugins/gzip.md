@@ -51,7 +51,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 
 在使用流量控制插件之前，需要在全局插件配置中将name为rate_limiting的插件状态设置为enable，具体配置点此[跳转](/docs/apinto/plugins)
 
-##### 配置带有gzip压缩插件的service服务
+##### 配置带有gzip压缩插件的服务
 
 **备注**：匿名服务配置的是apinto官方示例接口，将返回请求的相关信息。
 
@@ -64,10 +64,8 @@ curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/j
   "retry": 3,
   "desc": "使用gzip插件",
   "scheme": "https",
-  "anonymous": {
-    "type": "round-robin",
-    "config": "demo-apinto.eolink.com:8280"
-  },
+  "nodes": ["demo-apinto.eolink.com:8280"],
+  "balance": "round-robin",
   "plugins": {
     "gzip": {
     "disable": false,

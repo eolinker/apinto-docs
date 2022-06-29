@@ -94,7 +94,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 }'
 ```
 
-##### 配置带有API熔断插件的service服务
+##### 配置带有API熔断插件的服务
 
 **配置说明**：见上面的配置示例。
 
@@ -109,10 +109,8 @@ curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/j
     "timeout": 3000,
     "retry": 3,
     "scheme": "http",
-    "anonymous": {
-        "type": "round-robin",
-        "config": "demo-apinto.eolink.com:8280"
-    },
+    "nodes": ["demo-apinto.eolink.com:8280"],
+    "balance": "round-robin",
     "plugins": {
         "my_circuit_breaker":{
             "disable": false,

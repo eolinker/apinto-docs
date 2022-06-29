@@ -280,7 +280,7 @@ curl -X POST  \
   -d '{
 	"name": "complex_router",
 	"driver": "http",
-	"desc": "一个匹配规则较复杂的路由",
+	"description": "一个匹配规则较复杂的路由",
 	"listen": 8099,
 	"method": [
 		"GET",

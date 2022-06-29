@@ -17,14 +17,13 @@
 ### 配置流程：
 
 * 创建服务发现
-* 服务发现id绑定负载
-* 负载id绑定服务
+* 服务发现id绑定服务
 * 服务id绑定路由
 
 
 
 #### 配置流程示例图：
 
-负载配置教程[点此](/docs/apinto/upstream/http.md)进行跳转
+服务配置教程[点此](/docs/apinto/service/http.md)进行跳转
 
-![](http://data.eolinker.com/course/DhT6F8496871469222d3e16a97d1964154a2e49f1326850.png)
+![](http://data.eolinker.com/course/vDBaJuib5e9438c36c8ff5c17ff4ab06ed99e70fe61f78d.png)

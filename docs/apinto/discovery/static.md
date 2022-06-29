@@ -10,7 +10,7 @@
 
 
 
-**健康检查**：节点转发时若发现后端服务地址异常，节点就会在转发列表中剔除该IP，并把该IP加入到健康检查的列表中；当IP的检查结果为成功时，则会重新加入到转发列表。
+**健康检查**：定期检查转发地址的健康状况。
 
 ### OpenAPI配置服务发现
 
@@ -107,24 +107,28 @@ curl -X POST  \
 返回的discoveryID为demo_static@discovery
 ```
 
+127.0.0.1:8580 weight=1000;10.1.1.2 weight=10
 
+#### 创建服务
 
-#### 创建负载
+**服务发现id绑定服务**：上一步生成的服务发现id绑定至服务的discovery字段
 
-**服务发现id绑定负载**：上一步生成的服务发现id绑定至下面的discovery字段
+**备注**：当使用静态服务发现，service填写的是静态接入地址
 
 ```shell
 curl -X POST  \
-  'http://127.0.0.1:9400/api/upstream' \
+  'http://127.0.0.1:9400/api/service' \
   -H 'Content-Type:application/json' \
   -d '{
-	"name": "static_upstream",
-	"driver": "http_proxy",
-	"discovery": "demo_static@discovery",
-	"config": "127.0.0.1:8580 weight=1000;10.1.1.2 weight=10",
+	"name": "static_service",
+	"driver": "http",
+	"description": "配置了static服务发现的服务",
 	"scheme": "http",
-	"type": "round-robin"
+	"timeout": 3000,
+	"retry": 3,
+	"discovery": "demo_static@discovery",
+	"service": "127.0.0.1:8580 weight=1000;10.1.1.2 weight=10",
+	"balance": "round-robin"
 }'
 ```
-
 

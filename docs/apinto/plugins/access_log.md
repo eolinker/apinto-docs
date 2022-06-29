@@ -59,7 +59,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 
 
 
-##### 配置带有access-log插件的service服务
+##### 配置带有access-log插件的服务
 
 全局插件具体配置点此进行[跳转](/docs/apinto/plugins)。
 
@@ -74,10 +74,8 @@ curl -X POST  'http://127.0.0.1:9400/api/service' \
   "timeout": 3000,
   "retry": 3,
   "scheme": "http",
-  "anonymous": {
-    "type": "round-robin",
-    "config": "demo-apinto.eolink.com:8280"
-  },
+  "nodes": ["demo-apinto.eolink.com:8280"],
+  "balance": "round-robin",
   "plugins": {
     "my_access_log": {
     "disable": false,

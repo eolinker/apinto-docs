@@ -24,6 +24,12 @@ Apinto document project, which includes the use tutorials, development documents
 
 #### 第一步
 
+环境准备： 需要安装12.20.0或14.13.0或大于等于15.0.0版本的node
+
+依赖安装：确保项目下`package.json`文件内的依赖已用yarn安装。
+
+#### 第二步
+
 运行 VuePress 环境
 
 ```bash
@@ -32,7 +38,7 @@ $ yarn dev
 
 运行成功后，可以在`localhost:8080/`实时查看编辑结果。
 
-#### 第二步
+#### 第三步
 
 用编辑器打开项目 `/docs/` 目录下需要编辑的`.md`文档，或新建`.md`文档，进行编辑。`.md`文件和`.vue`的变动，都可以在步骤一所打开的页面上实时看到最终效果。
 

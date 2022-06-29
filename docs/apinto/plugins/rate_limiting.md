@@ -58,7 +58,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 }'
 ```
 
-##### 配置带有流量控制插件的service服务
+##### 配置带有流量控制插件的服务
 
 **备注**：匿名服务配置的是apinto官方示例接口，将返回请求的相关信息。
 
@@ -71,10 +71,8 @@ curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/j
   "retry": 3,
   "description": "使用流控插件",
   "scheme": "https",
-  "anonymous": {
-	"type": "round-robin",
-	"config": "demo-apinto.eolink.com:8280"
-  },
+  "nodes": ["demo-apinto.eolink.com:8280"],
+  "balance": "round-robin",
   "plugins": {
 	"my_rate_limiting": {
 	  "disable": false,
