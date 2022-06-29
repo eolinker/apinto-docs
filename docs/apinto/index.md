@@ -4,7 +4,8 @@
 ![LICENSE](https://img.shields.io/github/license/eolinker/Apinto.svg?style=flat-square)&nbsp;
 ![](https://shields.io/github/downloads/eolinker/apinto/total)&nbsp;
 ![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)&nbsp;
-![apinto-水平蓝](https://user-images.githubusercontent.com/25589530/149460352-751a2146-42ad-49f7-8b98-41aa889d631d.png)
+![apinto-水平蓝](https://user-images.githubusercontent.com/25589530/149460352-751a2146-42ad-49f7-8b98-41aa889d631d.png)&nbsp;
+![Star](https://img.shields.io/github/stars/eolinker/apinto)
 
 ------------
 
