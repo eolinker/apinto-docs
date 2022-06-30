@@ -304,10 +304,47 @@ Authorization: HMAC-SHA256 Access=19823ef8f417b489515570c83e3d397f, SignedHeader
 Curl方式样例如下：
 
 ```shell
-curl -X GET "http://www.demo.com:6689/demo/login?parm1=value1&parm2=" -H "content-type: application/json" -H "x-gateway-date: 20200605T104456Z" -H "host: www.demo.com"  -H "Authorization-Type: AK/SK" -H "Authorization: HMAC-SHA256 Access=19823ef8f417b489515570c83e3d397f, SignedHeaders=content-type;host;x-gateway-date, Signature=3909cd0042fed21287e64b2436adb10ad12894c9beeb69f932efee872fd589ab" 
+curl -X GET "http://www.demo.com:6689/demo/login?parm1=value1&parm2=" \
+-H "content-type: application/json" -H "x-gateway-date: 20200605T104456Z" \
+-H "host: www.demo.com"  -H "Authorization-Type: AK/SK" \
+-H "Authorization: HMAC-SHA256 Access=19823ef8f417b489515570c83e3d397f, SignedHeaders=content-type;host;x-gateway-date, Signature=3909cd0042fed21287e64b2436adb10ad12894c9beeb69f932efee872fd589ab" 
 ```
 
 **上述请求样例仅作示范**
 
+### 配置示例
+1、新增全局鉴权插件，若该全局插件已存在，可跳过该步骤
 
+![](http://data.eolinker.com/course/CbYNcwya4077c176b6ef26537e7e6f10607f521143b7e62.gif)
 
+2、新建鉴权，**Driver**选项选择**aksk**，界面会自动渲染
+
+![](http://data.eolinker.com/course/enxr4uU692c3b14dbbba5b836a4c209c5bbe835d2f28057.gif)
+
+3、编辑鉴权信息，可添加多个**aksk**信息
+
+![](http://data.eolinker.com/course/ShMQELV3eab9407995a81c326ce590ba419b2fb39d5a78e.gif)
+
+字段描述说明
+
+| 字段 | 描述                                                        |
+|--|-----------------------------------------------------------|
+| 是否隐藏证书 | 网关转发时是否将**Authorization**字段删除 |
+| Access Key| 请求时携带的访问密钥，放在**Authorization**头部中|
+| Secret Access Key | 对请求体、请求信息加密的密钥|
+| 用户标签 | 当**ak/sk**信息被命中时，会将相关标签带入请求的过程中，如：在access日志中打印相关内容 |
+| 过期时间| ak/sk**信息有效期，不填则为不过期|
+
+4、绑定上游服务/路由，此处示例以绑定上游服务为例，凡匹配到该上游服务的请求都需要进行鉴权
+
+![](http://data.eolinker.com/course/QGv56Bme86fe5553ffa684149fdbbf0e869fd4cf9cbb5a8.gif)
+
+5、路由绑定服务，教程[跳转](/docs/dashboard/router)
+
+6、请求接口，并带上以下头部信息
+|Header|描述|值可能性|
+|---|---|---|
+|Authorization-Type|声明待校验的鉴权类型|ak/sk、aksk 、AK/SK|
+|Authorization|token值，token生成方式请[点击](#使用说明)||
+
+具体使用请参考[使用示例](#使用说明)

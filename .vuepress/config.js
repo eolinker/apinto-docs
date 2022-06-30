@@ -232,17 +232,17 @@ function dashboard() {
         '/docs/' + name + '/discovery/nacos.md'
       ],
     },
-    // {
-    //   text: '访问鉴权',
-    //   link: '/docs/' + name + '/auth/index.md',
-    //   collapsible: true,
-    //   children: [
-    //     '/docs/' + name + '/auth/aksk.md',
-    //     '/docs/' + name + '/auth/apikey.md',
-    //     '/docs/' + name + '/auth/basic.md',
-    //     '/docs/' + name + '/auth/jwt.md'
-    //   ],
-    // },
+    {
+      text: '访问鉴权',
+      link: '/docs/' + name + '/auth/index.md',
+      collapsible: true,
+      children: [
+        '/docs/' + name + '/auth/aksk.md',
+        '/docs/' + name + '/auth/apikey.md',
+        '/docs/' + name + '/auth/basic.md',
+        '/docs/' + name + '/auth/jwt.md'
+      ],
+    },
     // {
     //   text: '输出器',
     //   collapsible: true,
