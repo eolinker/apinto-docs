@@ -192,6 +192,10 @@ function apinto() {
       text: 'Open Api',
       link: '/docs/apinto/open.md',
     },
+    {
+      text: 'FAQ',
+      link: '/docs/apinto/faq/index.md',
+    },
   ]
 }
 
