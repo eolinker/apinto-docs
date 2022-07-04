@@ -2,9 +2,15 @@
 
 ## 为什么APINTO没有启动成功？
 
-启动时请确保APINTO程序同目录下存在`config.yml`配置文件，同时`config.yml`文件内配置的端口没有被占用。
+APINTO启动失败可能是以下原因：
 
-另外`config.yml`的读取路径可以由[系统配置文件](https://help.apinto.com/docs/apinto/system/)`apinto.yml`决定。若不存在`apinto.yml`，则`config.yml`默认读取路径是当前目录。
+* config.yml配置文件不存在
+* config.yml配置的监听端口已经被占用
+* 初始化配置文件夹时权限不足
+
+若非上述原因，可以开启DEBUG模式来进行下一步排查。
+
+备注：`config.yml`的读取路径可以由[系统配置文件](https://help.apinto.com/docs/apinto/system/)`apinto.yml`决定。若不存在`apinto.yml`，则`config.yml`默认读取路径是当前目录。
 
 ## 命令行配置太麻烦，APINTO 是否有控制台界面？
 
