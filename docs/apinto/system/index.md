@@ -8,11 +8,15 @@
 - 扩展仓库目录
 - 错误日志详细配置
 
-### 默认配置文件路径
+### 系统配置文件路径
+
   ```
   /etc/apinto/apinto.yml
   ```
+**注意**：APINTO运行时会先判断当前目录下是否存在`apinto.yml`,若不存在，再读取`/etc/apinto/apinto.yml`。
+
 ### 配置实例
+
 ```yaml
 # 数据文件放置目录
 data_dir: /var/lib/apinto
