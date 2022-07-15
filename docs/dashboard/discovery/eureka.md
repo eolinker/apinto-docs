@@ -21,6 +21,8 @@ Eureka注册中心自带健康检查，从该注册中心获取节点时可以�
 | Eureka地址 | Eureka地址列表，填写各个节点的地址，需要填写到访问url，如/eureka                |
 | 参数      | 访问Eureka时需要传递的参数，按需填入 |           
 
+**备注**：若eureka地址配置了basic鉴权，则鉴权信息需要配置在eureka地址，如：{username}:{password}@{eureka_address}/eureka
+
 3、绑定上游服务，输入Eureka里的服务名
 
 绑定过程时网关会做校验，当服务名不存在时则会新建失败
