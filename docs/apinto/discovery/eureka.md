@@ -12,15 +12,17 @@ Eureka注册中心自带健康检查，从该注册中心获取节点时可以�
 
 #### 请求参数说明
 
-| 参数名           | 说明                                                         | 是否必填 | 默认值 | 值可能性        |
-| ---------------- | :----------------------------------------------------------- | -------- | ------ | --------------- |
-| name             | 实例名                                                       | 是       |        | string          |
-| driver           | 所使用的服务发现类别                                         | 是       |        | "eureka"        |
-| description      | 描述                                                         | 否       |        | string          |
-| scheme           | 请求服务发现地址时使用的协议                                 | 否       | "http" | ["http","https] |
-| config           | 服务发现配置                                                 | 是       |        | object          |
-| config-> address | nacos地址列表                                                | 是       |        | array_string    |
-| config-> params  | 参数信息,如{"token":"XXX","namespace":"default","username":"XXX","password":"xxx"} | 是       |        | object          |
+| 参数名           | 说明                               | 是否必填 | 默认值 | 值可能性        |
+| ---------------- | :--------------------------------- | -------- | ------ | --------------- |
+| name             | 实例名                             | 是       |        | string          |
+| driver           | 所使用的服务发现类别               | 是       |        | "eureka"        |
+| description      | 描述                               | 否       |        | string          |
+| scheme           | 请求服务发现地址时使用的协议       | 否       | "http" | ["http","https] |
+| config           | 服务发现配置                       | 是       |        | object          |
+| config-> address | eureka地址列表                     | 是       |        | array_string    |
+| config-> params  | 参数信息,如{"namespace":"default"} | 是       |        | object          |
+
+**备注**： 若eureka地址配置了basic鉴权，则鉴权信息需要配置在eureka地址，如：{username}:{password}@{eureka_address}/eureka
 
 
 
@@ -56,10 +58,9 @@ curl -X POST  \
 	"driver": "eureka",
 	"scheme": "http",
 	"config": {
-		"address": ["127.0.0.1:8761"],
+		"address": ["root:123456@127.0.0.1:8761/eureka"],
 		"params": {
-			"username": "test",
-			"password": "test"
+			"namespace": "default"
 		}
 	}
 }'
@@ -72,10 +73,9 @@ curl -X POST  \
 ```json
 {
 	"config": {
-		"address": ["127.0.0.1:8761"],
+		"address": ["root:123456@127.0.0.1:8761/eureka"],
 		"params": {
-			"password": "test",
-			"username": "test"
+			"namespace": "default"
 		}
 	},
 	"create": "2022-06-15 11:22:27",
