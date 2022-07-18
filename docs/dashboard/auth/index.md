@@ -23,5 +23,5 @@
 
 ![](http://data.eolinker.com/course/VLuGFHb49e061c9e4182ead46bff6aa89520721a2f3cc72.png)
 
-
+绑定鉴权时可以绑定多个，访问接口时只需要其中一个鉴权通过即可
 
