@@ -151,7 +151,7 @@ function apinto() {
     },
     {
       text: 'formatter',
-      link: '/docs/apinto/formatter/index.md',
+      link: '/docs/formatter/index.md',
       collapsible: true,
     },
 
@@ -243,18 +243,19 @@ function dashboard() {
         '/docs/' + name + '/auth/jwt.md'
       ],
     },
-    // {
-    //   text: '输出器',
-    //   collapsible: true,
-    //   children: [
-    //       '/docs/' + name + '/outputer/file.md',
-    //     '/docs/' + name + '/outputer/syslog.md',
-    //     '/docs/' + name + '/outputer/kafka.md',
-    //     '/docs/' + name + '/outputer/http.md',
-    //     '/docs/' + name + '/outputer/nsq.md'
-    //   ],
-    // },
-    //
+    {
+      text: '输出器',
+      link: '/docs/' + name + '/outputer/index.md',
+      collapsible: true,
+      children: [
+          '/docs/' + name + '/outputer/file.md',
+        // '/docs/' + name + '/outputer/syslog.md',
+        // '/docs/' + name + '/outputer/kafka.md',
+        // '/docs/' + name + '/outputer/http.md',
+        // '/docs/' + name + '/outputer/nsq.md'
+      ],
+    },
+
     {
       text: '插件系统',
       link: '/docs/' + name + '/plugins/index.md',
