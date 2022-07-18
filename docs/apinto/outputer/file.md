@@ -32,7 +32,7 @@
 **注意**：
 
 * period字段：表示新建一个日志文件的周期时间，新建日志文件的同时会将旧日志文件的文件名由filename.log修改为filename-文件修改时间.log
-* formatter的配置教程[点此](/docs/apinto/formatter)进行跳转
+* formatter的配置教程[点此](/docs/formatter)进行跳转
 
 
 

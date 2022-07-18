@@ -23,7 +23,7 @@ syslog输出器能够将程序运行中产生的日志内容输出远端的syslo
 
 **注意**：
 
-* formatter的配置教程[点此](/docs/apinto/formatter)进行跳转
+* formatter的配置教程[点此](/docs/formatter)进行跳转
 
 
 

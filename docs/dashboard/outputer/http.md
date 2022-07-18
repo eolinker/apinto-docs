@@ -23,7 +23,7 @@ HTTP输出器能够将程序运行中产生的日志内容会被封装成http请
 
 **注意**：
 
-* formatter的配置教程[点此](/docs/apinto/formatter)进行跳转
+* formatter的配置教程[点此](/docs/formatter)进行跳转
 
 
 
