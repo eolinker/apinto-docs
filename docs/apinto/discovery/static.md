@@ -107,7 +107,7 @@ curl -X POST  \
 返回的discoveryID为demo_static@discovery
 ```
 
-127.0.0.1:8580 weight=1000;10.1.1.2 weight=10
+
 
 #### 创建服务
 

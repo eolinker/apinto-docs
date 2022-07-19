@@ -28,16 +28,18 @@
 | timeout             | 超时时间，单位:毫秒                                          | 是       |        | int             |
 | discovery  | 服务发现ID                                                   | 否       |        | string          |
 | service           | 所在注册中心的服务名 或者 静态服务发现配置            | 否       |        | string          |
-| nodes | 匿名服务地址，可以填多个，配置格式是是静态接入地址及其权重，格式：addr weight。addr可以填域名或者ip地址。weight可省略，默认为1 | 否       |        | array_string    |
+| nodes | 匿名服务地址，可以填多个。配置格式是是静态接入地址及其权重，格式：addr weight。addr可以填域名或者ip地址。weight可省略，默认为1 | 否       |        | array_string    |
 | balance | 负载均衡算法，暂时只支持round-robin                          | 是       |        | string          |
 | plugins             | 插件配置                                                     | 否       |        | object          |
 
 **备注**：
 
 * **service参数配置说明**：具体填写内容根据discovery参数所使用的服务发现driver类型而定。
-  - 若使用nacos，consul，eureka注册中心，service字段填注册中心内的服务名。
-  - 若使用静态服务发现，则配置填入静态接入地址及其权重，格式为：**addr1 weight1;addr2 weight2;** 不同地址之间用分号进行分割
-* discovery和nodes必须选填其中一个，若都填了，则使用discovery。
+  - 若使用nacos，consul，eureka注册中心，service字段填注册中心内的服务名。如："redis"。
+  - 若使用静态服务发现，则配置填入静态接入地址及其权重，格式为：**addr1 weight=num1;addr2 weight=num2;** 不同地址之间用分号进行分割，addr可以填域名或者ip地址，weight可省略，默认为1。如：`"172.17.0.3:80;172.17.0.4:80" weight=100`
+* **nodes参数配置说明**：匿名服务地址，字符串数组。格式为：**addr weight=num**。addr可以填域名或者ip地址。weight可省略，默认为1。如`["172.17.0.3","172.17.0.4:80 weight=10","demoHost.com weight=100"]`
+* 若使用服务发现则需要填写`discovery`和`service`；使用匿名服务则填写`nodes`。
+* 服务发现和匿名服务必须选填其中一个，若都填了，则最终使用服务发现。
 * plugins具体配置[点此](/docs/apinto/plugins)进行跳转。
 
 #### 返回参数说明
