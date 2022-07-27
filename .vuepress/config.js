@@ -42,6 +42,9 @@ module.exports = {
         children:[
           {
             text:"Apinto",link: "https://github.com/eolinker/apinto/releases"
+          },
+          {
+            text:"Apinto Dashboard",link: "https://github.com/eolinker/apinto-dashboard/releases"
           }
         ],
         
@@ -51,6 +54,9 @@ module.exports = {
         children:[
           {
             text:"Apinto",link: "https://github.com/eolinker/apinto"
+          },
+          {
+            text:"Apinto Dashboard",link: "https://github.com/eolinker/apinto-dashboard"
           }
         ],
       }
@@ -95,7 +101,7 @@ function apinto() {
       text: '快速开始',
       collapsible: true,
       children: [
-        '/docs/apinto/quick/introduction.md',
+        // '/docs/apinto/quick/introduction.md',
         '/docs/apinto/quick/arrange.md',
         '/docs/apinto/quick/quick_start.md',
         '/docs/apinto/quick/quick_course.md'
@@ -206,7 +212,7 @@ function dashboard() {
       text: '快速开始',
       collapsible: true,
       children: [
-        '/docs/' + name + '/quick/introduction.md',
+        // '/docs/' + name + '/quick/introduction.md',
         '/docs/' + name + '/quick/arrange.md',
         '/docs/' + name + '/quick/quick_course.md'
       ],
