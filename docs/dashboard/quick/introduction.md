@@ -8,7 +8,7 @@
 另外，Apinto Dashboard提供良好的用户操作体验，简化了配置流程，不管先前是否接触过网关产品，都可快速上手使用。
 
 <iframe
-src="https://data.eolink.com/video%2F%E4%BB%8B%E7%BB%8D%E8%A7%86%E9%A2%91.mp4"
+src="https://public.eolinker.com/video/Apinto_Dashboard_introduction.mp4"
 scrolling="no"
 border="0"
 frameborder="no"

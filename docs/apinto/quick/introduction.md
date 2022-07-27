@@ -30,6 +30,3 @@
 | 流量控制     | 拦截异常流量
 
 
-## 产品功能设计展望
-
-![](http://data.eolinker.com/course/cPGClfE703b982a98dd4ac81f67b9e5108d02e7637855b2.png)

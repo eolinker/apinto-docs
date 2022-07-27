@@ -1,7 +1,7 @@
 # 部署
 由于**Apinto Dashboard**是**Apinto**的可视化UI项目，因此在部署该项目前，需要确保**Apinto**项目已经部署完成。
 
-若未部署**Apinto**，请参考教程[Apinto快速部署](https://github.com/eolinker/apinto/#get-start)
+若未部署**Apinto**，请参考教程[Apinto快速部署](/docs/apinto/quick/arrange)
 
 1. 下载并解压安装包
 
