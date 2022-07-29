@@ -19,6 +19,6 @@ Nacos注册中心自带健康检查，从该注册中心获取节点时可以获
 | Nacos地址 | Nacos地址列表，填写各个节点的地址                            |
 | 参数      | 访问Nacos时需要传递的参数，按需填入，可不填<br>username：用户名<br>password：密码 |
 
-3、绑定上游服务，输入Nacos里的服务名
+2、绑定上游服务，输入Nacos里的服务名
 
 ![](http://data.eolinker.com/course/QgCqr1J75add4b23c750dcc14c9cb15d2ea4e1a784a63e1.gif)
