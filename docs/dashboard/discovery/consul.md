@@ -7,20 +7,18 @@ Consul服务发现：只需要填写Consul的地址，网关即可定时从Consu
 Consul注册中心自带健康检查，从该注册中心获取节点时可以获取到稳定健康的节点，因此网关不做健康检查操作。
 
 ### 配置示例
-1、新建服务发现，**Driver**选择**consul**，将自动弹出配置页面
+1、新建并配置**Consul**信服务发现，**Driver**选择**consul**，将自动弹出配置页面
 
-![](http://data.eolinker.com/course/1iKgNhy026b7e73c1566f5524468d62ff2091666f10c7fd.gif)
-2、配置**Consul**信息
+![](http://data.eolinker.com/course/d6qzdNI1122ff99b90d9f89ca9b38857ca001b98cbc93bc.gif)
 
-![](http://data.eolinker.com/course/XicL6G465a95c5d4d46adc76bc219765dd5d543279b7f7f.gif)
+
 
 字段描述说明
 
-| 字段           | 描述                                                        |
-|--------------|-----------------------------------------------------------|
-| 请求协议         | 请求consul的协议类型，可能性：HTTP/HTTPS                              |
-| Consul地址     | consul地址列表，填写各个节点的地址                                      |
-| 参数           | 访问consul时需要传递的参数，按需填入，可不填<br>namespace：命名空间<br>token：访问令牌 |           
+| 字段       | 描述                                                         |
+| ---------- | ------------------------------------------------------------ |
+| Consul地址 | consul地址列表，填写各个节点的地址                           |
+| 参数       | 访问consul时需要传递的参数，按需填入，可不填<br>namespace：命名空间<br>token：访问令牌 |
 
 3、绑定上游服务，输入Consul里的服务名
 
