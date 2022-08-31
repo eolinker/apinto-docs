@@ -89,7 +89,7 @@ curl -X POST  \
 	"timeout": 3000,
 	"retry": 3,
 	"scheme": "https",
-	"nodes": ["demo-apinto.eolink.com:8280"],
+	"nodes": ["demo.apinto.com:8280"],
 	"balance": "round-robin"
 }'
 ```
@@ -110,7 +110,7 @@ curl -X POST  \
 	"update": "2022-06-16 11:00:45",
 	"discovery": "",
     "service": "",
-    "nodes": ["demo-apinto.eolink.com:8280"],
+    "nodes": ["demo.apinto.com:8280"],
 	"balance": "round-robin",
 	"plugins": null
 }

@@ -127,7 +127,7 @@ curl -X POST  \
 	"timeout": 10000,
 	"retry": 3,
 	"scheme": "https",
-	"nodes": ["demo-apinto.eolink.com:8280"],
+	"nodes": ["demo.apinto.com:8280"],
 	"balance": "round-robin",
 	"plugins": {
 		"myAuth": {

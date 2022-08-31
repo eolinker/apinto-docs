@@ -89,7 +89,7 @@ curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/j
   "retry": 3,
   "description": "使用黑白ip插件",
   "scheme": "https",
-  "nodes": ["demo-apinto.eolink.com:8280"],
+  "nodes": ["demo.apinto.com:8280"],
   "balance": "round-robin",
   "plugins": {
 	"my_ip_restriction": {
