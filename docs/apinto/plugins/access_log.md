@@ -74,7 +74,7 @@ curl -X POST  'http://127.0.0.1:9400/api/service' \
   "timeout": 3000,
   "retry": 3,
   "scheme": "http",
-  "nodes": ["demo-apinto.eolink.com:8280"],
+  "nodes": ["demo.apinto.com:8280"],
   "balance": "round-robin",
   "plugins": {
     "my_access_log": {
@@ -118,5 +118,5 @@ curl -i -X GET 'http://127.0.0.1:8099/demo/access_log'
 ##### 访问日志示例
 
 ```text
-a72e12f9-e33a-4425-b7c2-7e48b0b598bf    GET /demo HTTP/1.1      200     "1640601794 2021-12-27T18:43:14.294+08:00 2021-12-27 18:43:14"  "http://demo-apinto.eolink.com:8280/demo http demo-apinto.eolink.com:8280"  1389
+a72e12f9-e33a-4425-b7c2-7e48b0b598bf    GET /demo HTTP/1.1      200     "1640601794 2021-12-27T18:43:14.294+08:00 2021-12-27 18:43:14"  "http://demo.apinto.com:8280/demo http demo.apinto.com:8280"  1389
 ```

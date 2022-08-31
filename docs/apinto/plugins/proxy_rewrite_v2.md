@@ -103,7 +103,7 @@ curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/j
     "retry": 3, 
     "scheme": "http", 
     "nodes": [
-        "demo-apinto.eolink.com:8280"
+        "demo.apinto.com:8280"
     ], 
     "balance": "round-robin", 
     "plugins": {
