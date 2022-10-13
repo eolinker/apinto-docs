@@ -22,7 +22,7 @@ Nacos注册中心自带健康检查，从该注册中心获取节点时可以获
 | scheme(**已废弃，apinto版本0.7.0起**) | 请求服务发现地址时使用的协议                                 | 否       | "http" | ["http","https] |
 | config                                | 服务发现配置                                                 | 是       |        | object          |
 | config-> address                      | nacos地址列表                                                | 是       |        | array_string    |
-| config-> params                       | 参数信息,如{"token":"XXX","namespace":"default","username":"XXX","password":"xxx"} | 是       |        | object          |
+| config-> params                       | 参数信息,如{"token":"XXX","namespaceId":"default","username":"XXX","password":"xxx"} | 是       |        | object          |
 
 
 
