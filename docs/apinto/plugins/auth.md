@@ -1,4 +1,4 @@
-# 鉴权
+# 鉴权（v0.8.x废弃）
 ### 插件名称
 
 | 名称 | 字段 | 属性     |
@@ -15,6 +15,8 @@
 | APIKey | 用户鉴权（静态token） |
 | Basic  | 用户鉴权（静态token） |
 | JWT    | 用户鉴权（动态token） |
+
+该插件于v0.8.x版本废弃，应用插件（eolinker.com:apinto:plugin_app）将替代鉴权插件，应用插件教程请[点击](/docs/apinto/plugins/app.md)
 
 ### Open Api
 

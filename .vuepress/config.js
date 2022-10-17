@@ -140,7 +140,7 @@ function apinto() {
       ],
     },
     {
-      text: '访问鉴权',
+      text: '访问鉴权（v0.8.x版本废弃）',
       link: '/docs/apinto/auth/index.md',
       collapsible: true,
       children: [
@@ -238,17 +238,17 @@ function dashboard() {
         '/docs/' + name + '/discovery/nacos.md'
       ],
     },
-    {
-      text: '访问鉴权',
-      link: '/docs/' + name + '/auth/index.md',
-      collapsible: true,
-      children: [
-        '/docs/' + name + '/auth/aksk.md',
-        '/docs/' + name + '/auth/apikey.md',
-        '/docs/' + name + '/auth/basic.md',
-        '/docs/' + name + '/auth/jwt.md'
-      ],
-    },
+    // {
+    //   text: '访问鉴权',
+    //   link: '/docs/' + name + '/auth/index.md',
+    //   collapsible: true,
+    //   children: [
+    //     '/docs/' + name + '/auth/aksk.md',
+    //     '/docs/' + name + '/auth/apikey.md',
+    //     '/docs/' + name + '/auth/basic.md',
+    //     '/docs/' + name + '/auth/jwt.md'
+    //   ],
+    // },
     {
       text: '输出器',
       link: '/docs/' + name + '/outputer/index.md',
