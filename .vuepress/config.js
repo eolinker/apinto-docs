@@ -123,11 +123,6 @@ function apinto() {
       collapsible: true,
       children: ['/docs/apinto/service/http.md'],
     },
-    // {
-    //   text: '负载均衡',
-    //   collapsible: true,
-    //   children: ['/docs/apinto/upstream/http.md'],
-    // },
     {
       text: '服务发现',
       link: '/docs/apinto/discovery/index.md',
@@ -137,6 +132,15 @@ function apinto() {
         '/docs/apinto/discovery/consul.md',
         '/docs/apinto/discovery/eureka.md',
         '/docs/apinto/discovery/nacos.md'
+      ],
+    },
+    {
+      text: '应用',
+      link: '/docs/apinto/app/index.md',
+      collapsible: true,
+      children: [
+        '/docs/apinto/app/auth.md',
+        '/docs/apinto/app/extra-param.md'
       ],
     },
     {
