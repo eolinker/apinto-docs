@@ -123,11 +123,6 @@ function apinto() {
       collapsible: true,
       children: ['/docs/apinto/service/http.md'],
     },
-    // {
-    //   text: '负载均衡',
-    //   collapsible: true,
-    //   children: ['/docs/apinto/upstream/http.md'],
-    // },
     {
       text: '服务发现',
       link: '/docs/apinto/discovery/index.md',
@@ -140,7 +135,16 @@ function apinto() {
       ],
     },
     {
-      text: '访问鉴权',
+      text: '应用',
+      link: '/docs/apinto/app/index.md',
+      collapsible: true,
+      children: [
+        '/docs/apinto/app/auth.md',
+        '/docs/apinto/app/extra-param.md'
+      ],
+    },
+    {
+      text: '访问鉴权（v0.8.x版本废弃）',
       link: '/docs/apinto/auth/index.md',
       collapsible: true,
       children: [
@@ -243,17 +247,17 @@ function dashboard() {
         '/docs/' + name + '/discovery/nacos.md'
       ],
     },
-    {
-      text: '访问鉴权',
-      link: '/docs/' + name + '/auth/index.md',
-      collapsible: true,
-      children: [
-        '/docs/' + name + '/auth/aksk.md',
-        '/docs/' + name + '/auth/apikey.md',
-        '/docs/' + name + '/auth/basic.md',
-        '/docs/' + name + '/auth/jwt.md'
-      ],
-    },
+    // {
+    //   text: '访问鉴权',
+    //   link: '/docs/' + name + '/auth/index.md',
+    //   collapsible: true,
+    //   children: [
+    //     '/docs/' + name + '/auth/aksk.md',
+    //     '/docs/' + name + '/auth/apikey.md',
+    //     '/docs/' + name + '/auth/basic.md',
+    //     '/docs/' + name + '/auth/jwt.md'
+    //   ],
+    // },
     {
       text: '输出器',
       link: '/docs/' + name + '/outputer/index.md',

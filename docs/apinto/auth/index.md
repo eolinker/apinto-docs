@@ -31,6 +31,3 @@
 
 
 ![](http://data.eolinker.com/course/cHeruWp166412c6a8e5f156ae8e56532444aaf0240ca6cc.png)
-
-
-
