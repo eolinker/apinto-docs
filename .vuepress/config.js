@@ -116,7 +116,7 @@ function apinto() {
     {
       text: '路由',
       collapsible: true,
-      children: ['/docs/apinto/router/http.md','/docs/apinto/router/http_v0.8.x.md'],
+      children: ['/docs/apinto/router/http.md','/docs/apinto/router/http_v0.7.x.md'],
     },
     {
       text: '服务',
@@ -253,17 +253,23 @@ function dashboard() {
         '/docs/' + name + '/discovery/nacos.md'
       ],
     },
-    // {
-    //   text: '访问鉴权',
-    //   link: '/docs/' + name + '/auth/index.md',
-    //   collapsible: true,
-    //   children: [
-    //     '/docs/' + name + '/auth/aksk.md',
-    //     '/docs/' + name + '/auth/apikey.md',
-    //     '/docs/' + name + '/auth/basic.md',
-    //     '/docs/' + name + '/auth/jwt.md'
-    //   ],
-    // },
+    {
+      text: '应用',
+      link: '/docs/' + name + '/app/index.md',
+      collapsible: true,
+      children: [
+        '/docs/' + name + '/app/auth.md',
+        '/docs/' + name + '/app/extra-param.md'
+      ],
+    },
+    {
+      text: '插件模版',
+      link: '/docs/' + name + '/template/index.md',
+      collapsible: true,
+      children: [
+      ],
+    },
+
     {
       text: '输出器',
       link: '/docs/' + name + '/outputer/index.md',

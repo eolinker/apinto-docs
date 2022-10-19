@@ -7,13 +7,10 @@
 
 ### 功能描述
 
-开启该插件后，不需要用户传某些参数值，网关会在转发时自动带上这些参数，支持header、body、query参数。
-额外参数仅支持 **表单** 类型与 **json** 类型：
-
-- formdata的参数值须为string类型，头部补充Conent-Type:x-www-form-urlencoded。
-- 若额外参数是json类型，需在头部补充Content-Type:application/json。
-- 参数类型为表单时支持同名参数。
-
+> * 将参数添加到转发请求的请求头、query、body中
+> * 目前仅支持静态额外参数
+> * 可用于上游服务的静态token校验
+> * body额外参数仅支持表单和json格式，即`content-type`仅支持`application/x-www-form-urlencoded`、`multipart/form-data`、`application/json`
 
 
 ### Open Api

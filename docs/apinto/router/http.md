@@ -1,6 +1,5 @@
 
-# HTTP 协议路由-v0.7及之前版本
-
+# HTTP 协议路由-v0.8.x版本
 
 | 类别 | 属性     |
 | ---- | -------- |
@@ -8,37 +7,19 @@
 
 
 
-### 功能描述
+## 功能描述
 
 路由是完成网关转发步骤的第一步，该路由类型能使网关可接收http请求并匹配到目标服务。
 
-### 路由匹配规则
-路由可配置五种指标，分别是host、method、location、header、query，除了location外，其它指标均可配置多个。且每个指标的值可配置一种匹配规则。
+## 路由匹配规则
+路由可配置五种指标，分别是host、method、location、header、query。
 
-#### 指标匹配顺序
+### 指标匹配顺序
 **优先级递减**
-host -> method -> location -> header（key根据单词字母升序进行排序） -> query（key根据单词字母升序进行排序）   
-
-```yaml
-host:
-  - str
-method: 
-  - str
-rules:
-  - location: str
-    header: 
-      user: str
-      token: str
-    query:
-      id: str
-      
-此时指标匹配顺序为：host>method>location>header:token>header:user>query:id
-共六个指标
-```
+host -> method -> location -> header（key根据单词字母升序进行排序） -> query（key根据单词字母升序进行排序）
 
 
-
-#### 指标值匹配规则
+### 指标值匹配规则
 
 | 匹配类型               | 规则    | 说明                                             |
 | ---------------------- | ------- | ------------------------------------------------ |
@@ -56,44 +37,11 @@ rules:
 
 **优先级**：全等匹配 > 前缀匹配 > 后缀匹配 > 子串匹配 > 非等匹配 > 空值匹配 > 存在匹配 > 不存在匹配 > 区分大小写的正则匹配 > 不区分大小写的正则匹配 > 任意匹配
 
-以上所有匹配规则仅支持host、method、location、header、query的字符串值（以下用str来表示）。
-
-如：
-
-```yaml
-host:
-  - str
-method: 
-  - str
-rules:
-  - location: str
-    header: 
-      user: str
-      token: str
-    query:
-      id: str
-      
-#示例      
-host:
-  - www.eolinker.* #前缀匹配
-  - *.eolinker.com #后缀匹配
-  - *.com* #子串匹配
-method: 
-  -GET  #全等匹配
-rules:
-  - location: * #任意匹配,任何情况下都能匹配成功
-    header: 
-      user: ** #存在匹配，要求值存在且不为空值
-      content-type: !=application/json #非等匹配,如不等于application/json都能匹配
-    query:
-      id: $ #空值匹配，要求值为空值
-      name: ! #不存在匹配   
-
-```
+以上所有匹配规则仅支持host、method、location、header、query的字符串值。
 
 
 
-#### 匹配优先级
+### 匹配优先级
 
 以下优先级递减
 
@@ -102,11 +50,12 @@ rules:
 * 在同指标下，按指标值的匹配规则优先级。
 
 * 在同指标、同指标值匹配规则下，按指标值长度递增，若长度相同则按字母升序。
+
 * 同时满足多条路由，指标数量多的路由优先匹配。
 
 
 
-(1)当一个请求满足多个路由时，指标匹配顺序优先级最高
+(1) 当一个请求满足多个路由时，指标匹配顺序优先级最高
 
 如下面的配置（下述配置有header为请求头部信息，对应的key为“_”后的字段，query同）：
 
@@ -133,7 +82,7 @@ query_sex: 男
 
 
 
-(2)当一个请求满足多个路由且指标匹配顺序相同时，指标值匹配规则优先级更高
+(2) 当一个请求满足多个路由且指标匹配顺序相同时，指标值匹配规则优先级更高
 
 如下面的配置（下述配置有header为请求头部信息，对应的key为“_”后的字段，query同）：
 
@@ -161,7 +110,7 @@ query_classID: 1
 
 
 
-(3)当一个请求满足多个路由且指标匹配顺序和指标值匹配规则优先级相同时，根据指标值单词字母升序的优先级进行匹配
+(3) 当一个请求满足多个路由且指标匹配顺序和指标值匹配规则优先级相同时，根据指标值单词字母升序的优先级进行匹配
 
 如下面的配置（下述配置有header为请求头部信息，对应的key为“_”后的字段，query同）：
 
@@ -189,7 +138,7 @@ query_name：zhang*
 
 
 
-(4)当一个请求满足多个路由且指标匹配顺序相同，同时一个路由为另一个路由的子集时，满足指标数量更多的优先
+(4) 当一个请求满足多个路由且指标匹配顺序相同，同时一个路由为另一个路由的子集时，满足指标数量更多的优先
 
 如下面的配置（下述配置有header为请求头部信息，对应的key为“_”后的字段，query同）：
 
@@ -220,31 +169,39 @@ query_sex：男
 
 
 
-### OpenAPI配置路由
+## 配置说明
 
-服务配置教程[点此](/docs/apinto/service/http.md)进行跳转
+路由需要绑定服务，因此在创建路由前，需要确保上游服务已经存在，上游服务的配置教程[点此](/docs/apinto/service/http.md)进行跳转
 
 #### 配置参数说明
 
-| 参数              | 说明                                | 是否必填 | 默认值 | 值可能性     |
-| ----------------- | ----------------------------------- | -------- | ------ | ------------ |
-| name              | 实例名                              | 是       |        | string       |
-| driver            | 驱动名                              | 是       |        | "http"       |
-| description       | 描述                                | 否       |        | string       |
-| disable           | 禁用路由，默认为false，表示开启状态 | 否       | false  | bool         |
-| listen            | 监听端口                            | 是       |        | int          |
-| method            | 请求方式                            | 否       |        | array_string |
-| host              | host列表                            | 否       |        | array_string |
-| rules             | 规则列表                            | 否       |        | array_object |
-| rules -> location | 路径规则                            | 否       |        | string       |
-| rules -> header   | header请求头规则                    | 否       |        | object       |
-| rules -> query    | query参数规则                       | 否       |        | object       |
-| target            | 目标服务                            | 是       |        | string       |
-| plugins           | 插件配置                            | 否       |        | object       |
+| 参数             | 类型       | 是否必填 | 值可能性                                   | 说明                                                   |
+|----------------|----------|------|----------------------------------------|------------------------------------------------------|
+| name           | string   | 是    |                                        | 路由名称，格式：支持英文、数字、下划线                                  |
+| driver         | string   | 是    | http                                   |                                                      |
+| listen         | int      | 是    |                                        | 路由监听端口，需要和启动时配置的config.yml文件配合使用，当定义该文件未监听的端口时，该监听无效 |
+| method         | []string | 是    | GET、POST、PUT、PATCH、DELETE、HEAD、OPTIONS | 请求方式                                                 |
+| host           | []string | 否    |                                        | 客户                                                   |
+| location       | string   | 是    |                                        | 客户端请求路径                                              |
+| rules          | object数组 | 否    |                                        | 匹配参数规则，支持header、query                                |
+| rules -> type  | string   | 否    | header、query                           | 参数类型                                                 |
+| rules -> name  | string   | 否    |                                        | 参数名                                                  |
+| rules -> value | string   | 否    |                                        | 参数值                                                  |
+| service        | string   | 是    |                                        | 服务id                                                 |
+| template       | string   | 否    |                                        | 插件模版id                                               |
+| disable        | bool     | 否    | false                                  | 是否禁用路由                                               |
+| plugins        | object数组 | 否    |                                        | 插件列表                                                 |
+| retry          | int      | 否    | 0                                      | 超时重试次数                                               |
+| time_out       | int      | 否    |                                        | 超时时间，当为0时不设置超时，单位：ms，0为不设置超时                         |
+| description    | string   | 否    |                                        | 路由描述                                                 |
+
+
+
+
 
 **备注**：
 
-* `method`、`host`、`rules`均可配置多个，实际请求满足其中一个即可。
+* `method`、`host`均可配置多个，实际请求满足其中一个即可。
 * plugins具体配置[点此](/docs/apinto/plugins)进行跳转。
 
 #### 返回参数说明
@@ -286,17 +243,17 @@ curl -X POST  \
 		"GET",
 		"POST"
 	],
+	"location": "/demo",
 	"host": ["*.com"],
-	"rules": [{
-		"location": "/demo",
-		"header": {
-			"name": "**"
-		},
-		"query": {
-			"id": "!=123"
-		}
-	}],
-	"target": "anonymous_service@service"
+	"rules": [
+	  {
+	    "type":"header",
+	    "name":"user",
+	    "value":"apinto"
+	  }
+	],
+	"service": "anonymous_service@service",
+	"template": ""
 }'
 
 #当http请求同时满足以下条件时才能匹配这个路由
@@ -324,16 +281,16 @@ curl -X POST  \
 	"name": "complex_router",
 	"plugins": null,
 	"profession": "router",
-	"rules": [{
-		"header": {
-			"name": "**"
-		},
-		"location": "/demo",
-		"query": {
-			"id": "!=123"
-		}
-	}],
-	"target": "anonymous_service@service",
+    "location": "/demo",
+	"rules": [
+      {
+        "type":"header",
+        "name":"user",
+        "value":"apinto"
+      }
+	],
+	"service": "anonymous_service@service",
+	"template": "",
 	"update": "2022-06-16 12:06:05"
 }
 ```
@@ -351,14 +308,10 @@ curl -X POST  \
 	"driver": "http",
 	"description": "一个匹配规则较简单的路由",
 	"listen": 8099,
-	"rules": [{
-	  "location": "/simple_anonymous_one"
-	  },
-	  {
-	  "location": "/simple_anonymous_two"
-	  }
-	],
-	"target": "anonymous_service@service"
+	"location": "/simple_anonymous_one",
+	"rules": [],
+	"service": "anonymous_service@service",
+	"template":""
 }'
 
 #请求http://127.0.0.1:8099/simple_anonymous_one和http://127.0.0.1:8099/simple_anonymous_two均可命中此路由
@@ -381,16 +334,10 @@ curl -X POST  \
 	"name": "simple_router",
 	"plugins": null,
 	"profession": "router",
-	"rules": [{
-		"header": null,
-		"location": "/simple_anonymous_one",
-		"query": null
-	}, {
-		"header": null,
-		"location": "/simple_anonymous_two",
-		"query": null
-	}],
-	"target": "anonymous_service@service",
+    "location": "/simple_anonymous_one",
+	"rules": [],
+	"service": "anonymous_service@service",
+    "template":"",
 	"update": "2022-06-16 12:13:40"
 }
 ```
