@@ -116,7 +116,7 @@ function apinto() {
     {
       text: '路由',
       collapsible: true,
-      children: ['/docs/apinto/router/http.md'],
+      children: ['/docs/apinto/router/http.md','/docs/apinto/router/http_v0.8.x.md'],
     },
     {
       text: '服务',
@@ -164,7 +164,13 @@ function apinto() {
       link: '/docs/formatter/index.md',
       collapsible: true,
     },
-
+    {
+      text: '插件模版',
+      link: '/docs/apinto/template/index.md',
+      collapsible: true,
+      children: [
+      ],
+    },
     {
       text: '插件系统',
       link: '/docs/apinto/plugins/index.md',

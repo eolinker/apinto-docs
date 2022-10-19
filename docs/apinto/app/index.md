@@ -16,7 +16,7 @@
 | description | string                     | 应用描述                                                    |
 
 完整配置示例
-```shell
+```json
 {
     "labels": {},
     "disable": false,
@@ -120,7 +120,7 @@
                         "sk": "dajshdhjerfvjhwakbdkfjrbv"
                     }
                 }
-            ],
+            ]
         }
     ],
     "description": "示例"
@@ -387,7 +387,7 @@ curl -X POST 'http://127.0.0.1:9400/api/setting/plugin' -H 'Content-Type:applica
 }
 ```
 响应内容如下：
-```shell
+```json
 {
     "additional": [
         {
@@ -509,6 +509,8 @@ curl -X POST 'http://127.0.0.1:9400/api/setting/plugin' -H 'Content-Type:applica
 
 以路由为例：
 ```shell
+curl -X POST 'http://127.0.0.1:9400/api/router/demo@router' -H 'Content-Type:application/json' \
+-d '
 {
     "listen": 8099,
     "method": [
@@ -530,6 +532,6 @@ curl -X POST 'http://127.0.0.1:9400/api/setting/plugin' -H 'Content-Type:applica
     "retry": 0,
     "time_out": 0,
     "description": ""
-}
+}'
 ```
 
