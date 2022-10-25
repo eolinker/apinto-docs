@@ -8,16 +8,28 @@ Apinto 完全基于 Golang 开发，不基于现有第三方产品，因此具�
 1.下载安装包并解压
 
 ```shell
-wget https://github.com/eolinker/apinto/releases/download/v0.8.0/apinto-v0.8.0.linux.x64.tar.gz && tar -zxvf apinto-v0.8.0.linux.x64.tar.gz && cd apinto
+wget https://github.com/eolinker/apinto/releases/download/v0.8.2/apinto_v0.8.2_linux_amd64.tar.gz && tar -zxvf apinto_v0.8.2_linux_amd64.tar.gz && cd apinto
 ```
 
-2.启动网关：
+2.执行安装脚本：
 
 ```shell
-./apinto start
+sh install.sh install
 ```
 
-**备注**：若网关启动不成功可以在/var/log/apinto目录下的日志文件排查原因，一般是路由监听端口被占用的情况，可以在apinto执行文件相同目录下的config.yml修改路由监听端口，具体配置详情[点此跳转](/docs/apinto/quick/quick_course.md)。
+安装完成后，`/etc/apinto`目录下会生成两个默认配置文件：
+
+- **apinto.yml**：存放程序运行的系统配置，包括日志存放信息、插件加载信息、快照存放信息等
+
+- **config.yml**：存放程序运行的IP和端口配置。
+
+3.启动网关
+
+```
+apinto start
+```
+
+**备注**：若网关启动不成功可以在`/var/log/apinto`目录下的日志文件排查原因，一般是路由监听端口被占用的情况，可以修改`config.yml`内的路由监听端	口，具体配置详情[点此跳转](/docs/apinto/quick/quick_course.md)。
 
 ## 编译源码进行安装
 访问https://github.com/eolinker/apinto ，下载源码后可执行编译脚本或者打包成安装包
@@ -39,8 +51,8 @@ git clone https://github.com/eolinker/apinto.git && cd apinto
 ```shell
 cd out
 cd apinto-{time_stamp} #apinto-{time_stamp}目录是按编译时间生成的
-cp config.yml.tmp config.yml #拷贝模板配置文件作为程序运行的配置文件
-./apinto start
+sh install.sh install #执行安装脚本
+apinto start
 ```
 
 **备注**：
@@ -57,15 +69,15 @@ Docker部署教程[点此](https://hub.docker.com/repository/docker/eolinker/api
 
 ## Kubernetes集群部署应用
 
-APINTO容器有两个可挂载的目录：
+APINTO容器有一个可挂载文件和两个可挂载的目录：
 
-* `/var/lib/apinto`:目录内有**data**(数据文件放置目录),**log**(日志放置目录),**extends**(扩展仓库目录)
+* **/apinto/config.yml**：运行配置文件，包括openAPI端口、网关转发端口等信息,详细信息[点此](/docs/apinto/quick/quick_course.md )进行跳转。
 
-* `/etc/apinto`:存放了config.yml文件，该文件用于指定节点的路由监听端口，ssl证书等信息。详细信息
+- **/var/lib/apinto**：Apinto快照数据目录
 
-  [点此](/docs/apinto/quick/quick_course.md )进行跳转。
+- **/var/log/apinto**：Apinto运行日志存放目录
 
-**备注**：`/etc/apinto`目录不挂载的话将会使用默认配置文件，默认admin端口为9400，http端口为8080。
+**备注**：`/etc/apinto`目录不挂载的话将会使用默认配置文件，默认admin端口为9400，http端口为8099。
 
 ### 创建Service
 
