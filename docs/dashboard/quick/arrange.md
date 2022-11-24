@@ -6,8 +6,12 @@
 1. 下载并解压安装包
 
 ```
-wget https://github.com/eolinker/apinto-dashboard/releases/download/v1.1.0-beta/apinto-dashboard-v1.1.0-beta.linux.x64.tar.gz && tar -zxvf apinto-dashboard-v1.1.0-beta.linux.x64.tar.gz && cd apinto-dashboard
+wget https://github.com/eolinker/apinto-dashboard/releases/download/v1.1.3-beta/apinto-dashboard_v1.1.3-beta_linux_amd64.tar.gz && tar -zxvf apinto-dashboard_v1.1.3-beta_linux_amd64.tar.gz && cd apinto-dashboard
 ```
+
+Apinto-Dashboard支持在arm64、i386、amd64架构上运行。
+
+请根据需要下载对应架构及系统的安装包，安装包下载请[点击](https://github.com/eolinker/apinto-dashboard/releases)跳转
 
 2. 编辑配置文件config.yml
 

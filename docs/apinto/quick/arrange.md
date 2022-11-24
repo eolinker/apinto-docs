@@ -8,8 +8,12 @@ Apinto 完全基于 Golang 开发，不基于现有第三方产品，因此具�
 1.下载安装包并解压
 
 ```shell
-wget https://github.com/eolinker/apinto/releases/download/v0.8.0/apinto-v0.8.0.linux.x64.tar.gz && tar -zxvf apinto-v0.8.0.linux.x64.tar.gz && cd apinto
+wget https://github.com/eolinker/apinto/releases/download/v0.8.4/apinto_v0.8.4_linux_amd64.tar.gz && tar -zxvf apinto_v0.8.4_linux_amd64.tar.gz && cd apinto
 ```
+
+Apinto支持在arm64、i386、amd64架构上运行。
+
+请根据需要下载对应架构及系统的安装包，安装包下载请[点击](https://github.com/eolinker/apinto/releases)跳转
 
 2.启动网关：
 
@@ -84,7 +88,7 @@ spec:
   type: NodePort # 默认为ClusterIP 集群内可访问，NodePort 节点可访问，LoadBalancer负载均衡模式
   ports:
     - port: 8080      #默认http端口
-    	name: apintohttp
+      name: apintohttp
       targetPort: 8080  # 容器端口
       nodePort: 31080   # 节点端口，范围固定 30000 ~ 32767
     - port: 9400      #默认admin端口
