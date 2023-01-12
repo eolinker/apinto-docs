@@ -5,7 +5,8 @@
 ![](https://shields.io/github/downloads/eolinker/apinto/total)&nbsp;
 ![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)&nbsp;
 ![Star](https://img.shields.io/github/stars/eolinker/apinto)&nbsp;
-![apinto-水平蓝](https://user-images.githubusercontent.com/25589530/149460352-751a2146-42ad-49f7-8b98-41aa889d631d.png)
+---
+![](http://data.eolinker.com/course/eaC48Js3400ffd03c21e36b3eea434dce22d7877a3194f6.png)
 
 ------------
 
