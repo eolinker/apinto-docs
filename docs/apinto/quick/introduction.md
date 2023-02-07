@@ -1,5 +1,5 @@
 # 简介
-**Apinto** 是 EOLINKER 旗下基于 Golang 开发的微服务开源网关，其设计基于框架 **[eosc](https://github.com/eolinker/eosc)**
+**Apinto** 是 EOLINK 旗下基于 Golang 开发的微服务开源网关，其设计基于框架 **[eosc](https://github.com/eolinker/eosc)**
 
 **Apinto** 实现了高性能 HTTP API 转发、API 访问权限控制等功能，能够快速帮助企业进行 API 服务治理、提高 API 服务的稳定性和安全性。
 

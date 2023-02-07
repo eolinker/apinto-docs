@@ -29,7 +29,7 @@ Apinto是一个基于 Golang 开发的微服务网关，能够实现高性能 HT
 
 **Apinto**是运行在企业系统服务边界上的API网关。当您构建网站、App、IOT甚至是开放API交易时，Apinto 能够帮你将内部系统中重复的组件抽取出来并放置在Apinto网关上运行，如进行用户授权、访问控制、防火墙、数据转换等；并且Apinto 提供服务编排的功能，让企业可以快速从各类服务上获取需要的数据，对业务实现快速响应。
 
-**Apinto** 是 EOLINKER 旗下基于 Golang 开发的微服务开源网关，其设计基于框架 **[eosc](https://github.com/eolinker/eosc)**
+**Apinto** 是 EOLINK 旗下基于 Golang 开发的微服务开源网关，其设计基于框架 **[eosc](https://github.com/eolinker/eosc)**
 
 **Apinto** 实现了高性能 HTTP API 转发、API 访问权限控制等功能，能够快速帮助企业进行 API 服务治理、提高 API 服务的稳定性和安全性。
 
@@ -120,7 +120,7 @@ Apinto是一个基于 Golang 开发的微服务网关，能够实现高性能 HT
 
 EOLINK 是领先的 API 管理服务供应商，为全球超过3000家企业提供专业的 API 研发管理、API自动化测试、API监控、API网关等服务。是首家为ITSS（中国电子工业标准化技术协会）制定API研发管理行业规范的企业。
 
-官方网站：[https://www.eolink.com](https://www.eolink.com "EOLINKER官方网站")
+官方网站：[https://www.eolink.com](https://www.eolink.com "EOLINK官方网站")
 
 免费下载PC桌面端：[https://www.eolink.com/pc/](https://www.eolink.com/pc/ "免费下载PC客户端")
 

@@ -1,5 +1,5 @@
 
-# HTTP 协议路由-v0.8.x版本
+# HTTP 协议路由
 
 | 类别 | 属性     |
 | ---- | -------- |
@@ -207,22 +207,23 @@ query_sex：男
 #### 返回参数说明
 
 
-| 参数名      | 类型         | 是否必含 | 说明     |
-| ----------- | ------------ | -------- | -------- |
-| id          | string       | 是       | 实例id   |
-| name        | string       | 是       | 实例名   |
-| driver      | string       | 是       | 驱动名   |
-| description | string       | 是       | 描述     |
-| profession  | string       | 是       | 模块名   |
-| create      | string       | 是       | 创建时间 |
-| update      | string       | 是       | 更新时间 |
-| disable     | bool         | 是       | 禁用路由 |
-| listen      | int          | 是       | 监听端口 |
-| method      | array_string | 是       | 请求方式 |
-| host        | string       | 是       | host列表 |
-| rules       | array_object | 是       | 规则列表 |
-| target      | string       | 是       | 目标服务 |
-| plugins     | object       | 是       | 插件配置 |
+| 参数名         | 类型           | 是否必含 | 说明               |
+|-------------|--------------|------|------------------|
+| id          | string       | 是    | 实例id             |
+| name        | string       | 是    | 实例名              |
+| driver      | string       | 是    | 驱动名              |
+| description | string       | 是    | 描述               |
+| profession  | string       | 是    | 模块名              |
+| create      | string       | 是    | 创建时间             |
+| update      | string       | 是    | 更新时间             |
+|  websocket  | bool         | 否    | 是否开启websocket通信  |
+| disable     | bool         | 是    | 禁用路由             |
+| listen      | int          | 是    | 监听端口             |
+| method      | array_string | 是    | 请求方式             |
+| host        | string       | 是    | host列表           |
+| rules       | array_object | 是    | 规则列表             |
+| target      | string       | 是    | 目标服务             |
+| plugins     | object       | 是    | 插件配置             |
 
 备注：返回体内的rules参考请求配置参数，在此不再赘述。
 
@@ -295,7 +296,7 @@ curl -X POST  \
 }
 ```
 
-#### 创建规则较简单的路由
+### 配置http路由路由
 
 **备注**：已经存在id为`anonymous_service@service`的服务。
 
@@ -340,4 +341,22 @@ curl -X POST  \
     "template":"",
 	"update": "2022-06-16 12:13:40"
 }
+```
+### 配置Websocket路由
+在http路由的基础上带上`websocket`参数即可
+```shell
+curl -X POST  \
+  'http://127.0.0.1:9400/api/router' \
+  -H 'Content-Type:application/json' \
+  -d '{
+	"name": "websocket_router",
+	"driver": "http",
+	"websocket": true,
+	"description": "websocket路由",
+	"listen": 8099,
+	"location": "/simple_anonymous_one",
+	"rules": [],
+	"service": "anonymous_service@service",
+	"template":""
+}'
 ```

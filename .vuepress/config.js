@@ -165,6 +165,14 @@ function apinto() {
       collapsible: true,
     },
     {
+      text: '证书',
+      // link: '/docs/apinto/template/index.md',
+      collapsible: true,
+      children: [
+        '/docs/apinto/certificate/server.md'
+      ],
+    },
+    {
       text: '插件模版',
       link: '/docs/apinto/template/index.md',
       collapsible: true,
@@ -260,6 +268,14 @@ function dashboard() {
       children: [
         '/docs/' + name + '/app/auth.md',
         '/docs/' + name + '/app/extra-param.md'
+      ],
+    },
+    {
+      text: '证书',
+      // link: '/docs/' + name + '/template/index.md',
+      collapsible: true,
+      children: [
+        '/docs/' + name + '/certificate/server.md',
       ],
     },
     {
