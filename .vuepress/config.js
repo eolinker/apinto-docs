@@ -116,7 +116,7 @@ function apinto() {
     {
       text: '路由',
       collapsible: true,
-      children: ['/docs/apinto/router/http.md','/docs/apinto/router/http_v0.7.x.md'],
+      children: ['/docs/apinto/router/http.md','/docs/apinto/router/http_v0.7.x.md','/docs/apinto/router/dubbo2.md'],
     },
     {
       text: '服务',
