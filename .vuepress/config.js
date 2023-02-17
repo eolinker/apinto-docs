@@ -101,7 +101,6 @@ function apinto() {
       text: '快速开始',
       collapsible: true,
       children: [
-        // '/docs/apinto/quick/introduction.md',
         '/docs/apinto/quick/arrange.md',
         '/docs/apinto/quick/quick_start.md',
         '/docs/apinto/quick/quick_course.md'
@@ -116,7 +115,12 @@ function apinto() {
     {
       text: '路由',
       collapsible: true,
-      children: ['/docs/apinto/router/http.md','/docs/apinto/router/http_v0.7.x.md'],
+      children: [
+        '/docs/apinto/router/http.md',
+        // '/docs/apinto/router/http_v0.7.x.md',
+        '/docs/apinto/router/dubbo2.md',
+        '/docs/apinto/router/grpc.md'
+      ],
     },
     {
       text: '服务',
@@ -143,21 +147,27 @@ function apinto() {
         '/docs/apinto/app/extra-param.md'
       ],
     },
-    {
-      text: '访问鉴权（v0.8.x版本废弃）',
-      link: '/docs/apinto/auth/index.md',
-      collapsible: true,
-      children: [
-        '/docs/apinto/auth/aksk.md',
-        '/docs/apinto/auth/apikey.md',
-        '/docs/apinto/auth/basic.md',
-        '/docs/apinto/auth/jwt.md'
-      ],
-    },
+    // {
+    //   text: '访问鉴权（v0.8.x版本废弃）',
+    //   link: '/docs/apinto/auth/index.md',
+    //   collapsible: true,
+    //   children: [
+    //     '/docs/apinto/auth/aksk.md',
+    //     '/docs/apinto/auth/apikey.md',
+    //     '/docs/apinto/auth/basic.md',
+    //     '/docs/apinto/auth/jwt.md'
+    //   ],
+    // },
     {
       text: '输出器',
       collapsible: true,
-      children: ['/docs/apinto/outputer/file.md', '/docs/apinto/outputer/syslog.md', '/docs/apinto/outputer/kafka.md', '/docs/apinto/outputer/http.md', '/docs/apinto/outputer/nsq.md'],
+      children: [
+        '/docs/apinto/outputer/file.md',
+        '/docs/apinto/outputer/syslog.md',
+        '/docs/apinto/outputer/kafka.md',
+        '/docs/apinto/outputer/http.md',
+        '/docs/apinto/outputer/nsq.md']
+      ,
     },
     {
       text: 'formatter',
@@ -166,7 +176,6 @@ function apinto() {
     },
     {
       text: '证书',
-      // link: '/docs/apinto/template/index.md',
       collapsible: true,
       children: [
         '/docs/apinto/certificate/server.md'
@@ -189,6 +198,8 @@ function apinto() {
         '/docs/apinto/plugins/params_transformer.md',
         '/docs/apinto/plugins/proxy_rewrite.md',
         '/docs/apinto/plugins/proxy_rewrite_v2.md',
+        '/docs/apinto/plugins/dubbo2-proxy-rewrite.md',
+        '/docs/apinto/plugins/grpc-proxy_rewrite.md',
         '/docs/apinto/plugins/ip_restriction.md',
         '/docs/apinto/plugins/rate_limiting.md',
         '/docs/apinto/plugins/auth.md',
@@ -197,7 +208,6 @@ function apinto() {
         '/docs/apinto/plugins/cors.md',
         '/docs/apinto/plugins/gzip.md',
         '/docs/apinto/plugins/access_log.md',
-
       ],
     },
     {
@@ -243,7 +253,11 @@ function dashboard() {
     {
       text: '路由',
       collapsible: true,
-      children: ['/docs/' + name + '/router/http.md'],
+      children: [
+        '/docs/' + name + '/router/http.md',
+        '/docs/' + name + '/router/dubbo2.md',
+        '/docs/' + name + '/router/grpc.md'
+      ],
     },
     {
       text: '上游服务',
@@ -308,6 +322,8 @@ function dashboard() {
         '/docs/' + name + '/plugins/params_transformer.md',
         '/docs/' + name + '/plugins/proxy_rewrite.md',
         '/docs/' + name + '/plugins/proxy_rewrite_v2.md',
+        '/docs/' + name + '/plugins/dubbo2-proxy-rewrite.md',
+        '/docs/' + name + '/plugins/grpc-proxy_rewrite.md',
         '/docs/' + name + '/plugins/ip_restriction.md',
         '/docs/' + name + '/plugins/rate_limiting.md',
         '/docs/' + name + '/plugins/auth.md',
