@@ -35,7 +35,7 @@
 
 **优先级**：全等匹配 > 前缀匹配 > 后缀匹配 > 子串匹配 > 非等匹配 > 空值匹配 > 存在匹配 > 不存在匹配 > 区分大小写的正则匹配 > 不区分大小写的正则匹配 > 任意匹配
 
-以上所有匹配规则仅支持header的字符串值。
+以上所有匹配规则仅支持service_name+method_name、header的字符串值。
 
 
 ## 配置说明
@@ -49,7 +49,7 @@
 | name           | string   | 是    |                 | 路由名称，格式：支持英文、数字、下划线                                  |
 | driver         | string   | 是    | dubbo2          |                                                      |
 | listen         | int      | 是    |                 | 路由监听端口，需要和启动时配置的config.yml文件配合使用，当定义该文件未监听的端口时，该监听无效 |
-| method_name    | string   | 是    | GetUser         | 服务的方法名                                               |
+| method_name    | string   | 否    | GetUser         | 服务的方法名，不填只匹配服务名                                      |
 | service_name   | string   | 是    | api.UserService | 服务名                                                  |
 | rules          | object数组 | 否    |                 | 匹配参数规则，支持header                                      |
 | rules -> type  | string   | 否    | header          | 参数类型                                                 |
@@ -80,7 +80,7 @@
 | update       | string       | 是    | 更新时间   |
 | disable      | bool         | 是    | 禁用路由   |
 | listen       | int          | 是    | 监听端口   |
-| method_name  | string       | 是    | 服务的方法名 |
+| method_name  | string       | 否    | 服务的方法名 |
 | service_name | string       | 是    | 服务名    |
 | rules        | array_object | 是    | 规则列表   |
 | target       | string       | 是    | 目标服务   |
@@ -176,6 +176,11 @@ curl -X POST  \
 ```
 
 **注意**：该路由内配置的监听端口`listen`必须在config.yml配置文件里的监听端口列表中存在。
+```yaml
+gateway: # 网关服务配置
+  listen_urls: # 监听地址
+    - tcp://0.0.0.0:8099
+```
 
 #### 返回结果示例
 
@@ -184,7 +189,7 @@ curl -X POST  \
   "create": "2022-06-16 12:13:40",
   "description": "一个匹配规则较简单的路由",
   "disable": false,
-  "driver": "http",
+  "driver": "dubbo2",
   "id": "simple_router@router",
   "listen": 8099,
   "service_name": "api.UserService",
