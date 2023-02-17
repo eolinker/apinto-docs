@@ -8,10 +8,10 @@ Apinto 完全基于 Golang 开发，不基于现有第三方产品，因此具�
 1.下载安装包并解压
 
 ```shell
-wget https://github.com/eolinker/apinto/releases/download/v0.9.0/apinto_v0.9.0_linux_amd64.tar.gz && tar -zxvf apinto_v0.9.0_linux_amd64.tar.gz && cd apinto
+wget https://github.com/eolinker/apinto/releases/download/v0.10.0/apinto_v0.10.0_linux_amd64.tar.gz && tar -zxvf apinto_v0.10.0_linux_amd64.tar.gz && cd apinto
 ```
 
-Apinto支持在arm64、i386、amd64架构上运行。
+Apinto支持在arm64、amd64架构上运行。
 
 请根据需要下载对应架构及系统的安装包，安装包下载请[点击](https://github.com/eolinker/apinto/releases)跳转
 
