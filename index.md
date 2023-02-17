@@ -60,7 +60,7 @@ Apinto是一个基于 Golang 开发的微服务网关，能够实现高性能 HT
 | SSL证书    | 管理多个证书                                                                                 |
 | 访问域名     | 可为网关设置访问域名                                                                             |
 | 健康检查     | 支持对负载的节点进行健康检查，确保服务健壮性                                                                 |
-| 协议       | HTTP/HTTPS、Webservice、Restful                                                          |
+| 协议       | HTTP/HTTPS、Webservice、Restful、SOAP、gRPC、Dubbo2                                         |
 | 插件化      | 流程插件化，按需加载所需模块                                                                         |
 | OPEN API | 支持使用open api配置网关                                                                       |
 | 日志       | 提供节点的运行日志，可根据日志设置的等级输出                                                                 |
@@ -85,14 +85,12 @@ Apinto是一个基于 Golang 开发的微服务网关，能够实现高性能 HT
 - .....
 
 #### 2022年迭代计划
-
 ![](http://data.eolinker.com/course/NjYrbqx2804eb7d3b0216009f9bbcdeb483f6f5354815ba.jpeg)
 
 
 ## 产品功能设计展望
 
-![](http://data.eolinker.com/course/cPGClfE703b982a98dd4ac81f67b9e5108d02e7637855b2.png)
-
+![](http://data.eolinker.com/course/QDcZqTD6d2e3811ea57e436ffd32a10a8ffd72eaa9c037d.png)
 
 ### 基准测试
 
