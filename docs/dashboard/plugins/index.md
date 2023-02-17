@@ -18,6 +18,7 @@
 | [额外参数](/docs/dashboard/plugins/extra_params.md)       | extra_params       | 转发时在请求中携带自定义参数                                 |
 | [参数映射](/docs/dashboard/plugins/params_transformer.md) | params_transformer | 转发时将请求中的原参数映射成自定义参数                       |
 | [转发重写](/docs/dashboard/plugins/proxy_rewrite.md)      | proxy_rewrite      | 转发时对请求的host、scheme、uri进行重写，同时能在请求头加入自定义参数 |
+| [dubbo2协议转发重写](/docs/apinto/plugins/dubbo2-proxy-rewrite.md) | dubbo2-proxy-rewrite      | 转发时，对dubbo2协议请求的service_name、method_name进行重写，同时能对attachment加入自定义参数 |
 | [IP黑白名单](/docs/dashboard/plugins/ip_restriction.md)   | ip_restriction     | 对访问的客户端ip进行黑白限制                                 |
 | [流量控制](/docs/dashboard/plugins/rate_limiting.md)      | rate_limiting      | 控制请求在单位时间内的访问次数                               |
 | [鉴权](/docs/dashboard/plugins/auth.md)                   | auth               | 对请求进行权限校验                                           |

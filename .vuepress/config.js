@@ -189,6 +189,7 @@ function apinto() {
         '/docs/apinto/plugins/params_transformer.md',
         '/docs/apinto/plugins/proxy_rewrite.md',
         '/docs/apinto/plugins/proxy_rewrite_v2.md',
+        '/docs/apinto/plugins/dubbo2-proxy-rewrite.md',
         '/docs/apinto/plugins/ip_restriction.md',
         '/docs/apinto/plugins/rate_limiting.md',
         '/docs/apinto/plugins/auth.md',
@@ -243,7 +244,7 @@ function dashboard() {
     {
       text: '路由',
       collapsible: true,
-      children: ['/docs/' + name + '/router/http.md'],
+      children: ['/docs/' + name + '/router/http.md','/docs/' + name + '/router/dubbo2.md'],
     },
     {
       text: '上游服务',
@@ -308,6 +309,7 @@ function dashboard() {
         '/docs/' + name + '/plugins/params_transformer.md',
         '/docs/' + name + '/plugins/proxy_rewrite.md',
         '/docs/' + name + '/plugins/proxy_rewrite_v2.md',
+        '/docs/' + name + '/plugins/dubbo2-proxy-rewrite.md',
         '/docs/' + name + '/plugins/ip_restriction.md',
         '/docs/' + name + '/plugins/rate_limiting.md',
         '/docs/' + name + '/plugins/auth.md',
