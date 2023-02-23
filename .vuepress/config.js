@@ -208,6 +208,7 @@ function apinto() {
         '/docs/apinto/plugins/cors.md',
         '/docs/apinto/plugins/gzip.md',
         '/docs/apinto/plugins/access_log.md',
+        '/docs/apinto/plugins/prometheus.md',
       ],
     },
     {
