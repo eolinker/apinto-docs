@@ -23,7 +23,7 @@
 | method                             | 方法名                                                 | 是    |        | string       |
 | params                         | 对转发的body内容进行匹配，匹配成功后读取并解析成dubbo2协议所需要数据             | 是    |        | array_object |
 | params -> class_name     | 对应java中的className   获取方法（user.getClass().getName()） | 是    |        | string       |
-| params -> field_name   | 从body中提取的字段名,不填默认读取整个body                           | 否    |        | string       |
+| params -> field_name   | 从body中提取的字段名,不填默认读取整个body                           | 否 （仅params长度为0时可不填）   |        | string       |
 
 #### 配置示例
 
