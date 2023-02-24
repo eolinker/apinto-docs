@@ -333,6 +333,8 @@ proxy:
 
 | 字段名称               | 字段描述                                                     | 备注 |
 | ---------------------- | ------------------------------------------------------------ | ---- |
+| node                   | 节点id                                                       |      |
+| cluster                | 集群id                                                       |      |
 | query                  | 请求中query参数字段，会对键值对里的值进行url_encode编码。    |      |
 | query_{name}           | 请求中query参数字段，变量名中的后半部分{name}可以替换成任意query字段，值会进行url_encode编码。 |      |
 | uri                    | 请求中的当前URI(不带请求参数，参数位于$args)，可以不同于浏览器传递的$request_uri的值，它可以通过内部重定向，或者使用index指令进行修改，$uri不包含主机名，如"/foo/bar.html" |      |
@@ -362,8 +364,11 @@ proxy:
 | proxy_query            | 转发请求的所有query参数，键值对里的值进行url encode编码。    |      |
 | proxy_query_{name}     | 转发请求query参数，变量名中的后半部分{name}可以替换成任意query字段，值会进行url_encode编码。 |      |
 | proxy_uri              | 转发请求的uri,不包含主机名，例如："/cnphp/test.php?arg=freemouse" |      |
+| proxy_host             | 转发请求头部中的host                                         |      |
+| proxy_status           | 转发请求的状态码                                             |      |
 | proxy_method           | 转发请求的http方法                                           |      |
 | proxy_scheme           | 转发请求的协议                                               |      |
+| proxy_path             | 转发请求的路径，不包含query参数                              |      |
 | proxy_body             | 转发请求的请求体                                             |      |
 | proxy_addr             | 上游服务的地址（IP或域名，包括端口）                         |      |
 | response               | 响应数据，直接输出原格式                                     |      |

@@ -7,11 +7,11 @@
 
 ### 功能描述
 
-通过给路由或服务配置该插件，当请求到达网关时，能够将请求的信息和配置的指标列表发送给指定的prometheus输出器，由各个prometheus输出器内同名的指标处理并采集请求内的信息。
+通过给路由配置该插件，当请求到达网关时，能够将请求的信息和配置的指标列表发送给指定的prometheus输出器，由各个prometheus输出器内同名的指标处理并采集请求内的信息。
 
 
 
-**备注**：输出器的教程[点此](/docs/apinto/outputer/file.md)进行跳转。
+**备注**：输出器的教程[点此](/docs/apinto/outputer/prometheus.md)进行跳转。
 
 #### 配置参数说明
 
@@ -48,7 +48,16 @@ curl -X POST 'http://127.0.0.1:9400/api/output' -H 'Content-Type:application/jso
 
 返回的输出器id为`test_prometheus@output`
 
-**示例说明**：prometheus实际拉取的metrics路径为`/apinto/test`(默认在配置的路径前加上/apinto/)，配置指标名为`apinto_request_total`，采集request_total请求总数，标签配置的指标分别为request_status，program，api，service。
+**示例说明**：prometheus实际拉取的metrics路径为`/apinto/test`(默认在配置的路径前加上/apinto/)，配置指标名为`apinto_request_total`，采集request_total请求总数。
+指标配置的标签分别为:
+
+| 标签名         | 标签值                               |
+| -------------- | ------------------------------------ |
+| request_status | $status 表示取变量请求状态码         |
+| program        | 常量apinto                           |
+| api            | $api表示取变量  `该请求的路由名`     |
+| service        | $service表示取变量  `该请求的服务名` |
+
 
 ##### 全局配置
 

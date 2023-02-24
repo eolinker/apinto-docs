@@ -166,7 +166,8 @@ function apinto() {
         '/docs/apinto/outputer/syslog.md',
         '/docs/apinto/outputer/kafka.md',
         '/docs/apinto/outputer/http.md',
-        '/docs/apinto/outputer/nsq.md']
+        '/docs/apinto/outputer/nsq.md',
+        '/docs/apinto/outputer/prometheus.md']
       ,
     },
     {
