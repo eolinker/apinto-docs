@@ -166,7 +166,8 @@ function apinto() {
         '/docs/apinto/outputer/syslog.md',
         '/docs/apinto/outputer/kafka.md',
         '/docs/apinto/outputer/http.md',
-        '/docs/apinto/outputer/nsq.md']
+        '/docs/apinto/outputer/nsq.md',
+        '/docs/apinto/outputer/prometheus.md']
       ,
     },
     {
@@ -208,6 +209,7 @@ function apinto() {
         '/docs/apinto/plugins/cors.md',
         '/docs/apinto/plugins/gzip.md',
         '/docs/apinto/plugins/access_log.md',
+        '/docs/apinto/plugins/prometheus.md',
       ],
     },
     {
