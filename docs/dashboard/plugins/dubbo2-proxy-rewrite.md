@@ -10,7 +10,6 @@
 
 该插件是dubbo2转发重写插件，用于对上游代理信息进行重写，支持对`service`、`method` 的重写，同时支持对转发请求的attachment的键值进行新增,修改或者删除。
 
-### Open Api
 
 #### 配置示例
 
@@ -33,6 +32,8 @@
 
 ### 使用方法
 1. 全局插件创建dubbo2-proxy-rewrite插件
+   
    ![](http://data.eolinker.com/course/wWlVkQx67b176063e90150b309f9ddfecbeac1583466ab8.png)
+
 2. 创建dubbo2路由时添加该插件
    ![](http://data.eolinker.com/course/CzSh1df94e1dcbc9acb7d7ca95d89160bc849fdd518b066.png)

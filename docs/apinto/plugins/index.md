@@ -29,6 +29,8 @@
 | [参数映射](/docs/apinto/plugins/params_transformer.md)    | params_transformer | 转发时将请求中的原参数映射成自定义参数                       |
 | [转发重写](/docs/apinto/plugins/proxy_rewrite.md)         | proxy_rewrite      | 转发时对请求的host、scheme、uri进行重写，同时能在请求头加入自定义参数 |
 | [dubbo2协议转发重写](/docs/apinto/plugins/dubbo2-proxy-rewrite.md) | dubbo2-proxy-rewrite      | 转发时，对dubbo2协议请求的service_name、method_name进行重写，同时能对attachment加入自定义参数 |
+| [http协议转dubbo2协议](/docs/apinto/plugins/http-to-dubbo2.md)    | http-to-dubbo2       | 将http请求转换成dubbo2请求 |
+| [dubbo2协议转http协议](/docs/apinto/plugins/dubbo2-to-http.md)    | dubbo2-to-http       | 将dubbo2请求转换成http请求                                                 |
 | [IP黑白名单](/docs/apinto/plugins/ip_restriction.md)      | ip_restriction     | 对访问的客户端ip进行黑白限制                                 |
 | [流量控制](/docs/apinto/plugins/rate_limiting.md)         | rate_limiting      | 控制请求在单位时间内的访问次数                               |
 | [鉴权](/docs/apinto/plugins/auth.md)                    | auth               | 对请求进行权限校验                                           |
