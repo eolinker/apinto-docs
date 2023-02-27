@@ -308,6 +308,7 @@ function dashboard() {
       collapsible: true,
       children: [
           '/docs/' + name + '/outputer/file.md',
+          '/docs/' + name + '/outputer/prometheus.md',
         // '/docs/' + name + '/outputer/syslog.md',
         // '/docs/' + name + '/outputer/kafka.md',
         // '/docs/' + name + '/outputer/http.md',
@@ -334,6 +335,7 @@ function dashboard() {
         '/docs/' + name + '/plugins/cors.md',
         '/docs/' + name + '/plugins/gzip.md',
         '/docs/' + name + '/plugins/access_log.md',
+        '/docs/' + name + '/plugins/prometheus.md',
 
       ],
     },
