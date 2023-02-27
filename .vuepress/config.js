@@ -212,6 +212,8 @@ function apinto() {
         '/docs/apinto/plugins/gzip.md',
         '/docs/apinto/plugins/access_log.md',
         '/docs/apinto/plugins/prometheus.md',
+        '/docs/apinto/plugins/http-to-grpc.md',
+        '/docs/apinto/plugins/grpc-to-http.md',
       ],
     },
     {
@@ -290,7 +292,6 @@ function dashboard() {
     },
     {
       text: '证书',
-      // link: '/docs/' + name + '/template/index.md',
       collapsible: true,
       children: [
         '/docs/' + name + '/certificate/server.md',
@@ -303,7 +304,13 @@ function dashboard() {
       children: [
       ],
     },
-
+    {
+      text: '编码器',
+      collapsible: true,
+      children: [
+        '/docs/' + name + '/transcode/protobuf.md',
+      ],
+    },
     {
       text: '输出器',
       link: '/docs/' + name + '/outputer/index.md',
@@ -311,10 +318,6 @@ function dashboard() {
       children: [
           '/docs/' + name + '/outputer/file.md',
           '/docs/' + name + '/outputer/prometheus.md',
-        // '/docs/' + name + '/outputer/syslog.md',
-        // '/docs/' + name + '/outputer/kafka.md',
-        // '/docs/' + name + '/outputer/http.md',
-        // '/docs/' + name + '/outputer/nsq.md'
       ],
     },
 
@@ -340,6 +343,8 @@ function dashboard() {
         '/docs/' + name + '/plugins/gzip.md',
         '/docs/' + name + '/plugins/access_log.md',
         '/docs/' + name + '/plugins/prometheus.md',
+        '/docs/' + name + '/plugins/http-to-grpc.md',
+        '/docs/' + name + '/plugins/grpc-to-http.md',
 
       ],
     },
