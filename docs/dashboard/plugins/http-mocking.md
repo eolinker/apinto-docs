@@ -74,7 +74,7 @@
 ### 使用方法
 1. 全局插件创建http-mocking插件
 
-   ![](http://data.eolinker.com/course/WK3nlVPd00214d3629a5ad88ccff14a90ba72f2b77cf4d0.png)
+   ![](http://data.eolinker.com/course/1PGkZDje17a4150dd8590360c9cb92915df44ccc08511dd.gif)
 
 2. 创建http路由时添加该插件
 
