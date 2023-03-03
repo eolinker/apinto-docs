@@ -5,11 +5,9 @@
 ![](https://shields.io/github/downloads/eolinker/apinto/total)&nbsp;
 ![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)&nbsp;
 ![Star](https://img.shields.io/github/stars/eolinker/apinto)&nbsp;
----
-![](http://data.eolinker.com/course/eaC48Js3400ffd03c21e36b3eea434dce22d7877a3194f6.png)
-
 ------------
-
+![](http://data.eolinker.com/course/eaC48Js3400ffd03c21e36b3eea434dce22d7877a3194f6.png)
+-----
 Apinto是一个基于 Golang 开发的微服务网关，能够实现高性能 HTTP API 转发、多租户管理、API 访问权限控制等目的，拥有强大的自定义插件系统可以自行扩展，能够快速帮助企业进行 API 服务治理、提高 API 服务的稳定性和安全性。未来我们将提供插件市场，通过**Apinto**强大的插件拓展能力，用户可像乐高积木一样根据需要自行拓展**Apinto**的插件，丰富**Apinto**的能力。
 
 注意：**main**分支为开发主要分支，频繁更新可能导致使用不稳定，若需要使用稳定版本，请查看[release](https://github.com/eolinker/apinto/releases)
@@ -41,7 +39,7 @@ Apinto是一个基于 Golang 开发的微服务网关，能够实现高性能 HT
 
 **Apinto**具有以下优势：
 
-- 完全开源：Apinto 项目由 Eolink 发起并长期维护，我们希望与全球开发者共同打造微服务生态的基础设施。
+- 完全开源：Apinto 项目由 Eolinker 发起并长期维护，我们希望与全球开发者共同打造微服务生态的基础设施。
 - 优异的性能表现：相同环境下，Apinto比Nginx、Kong等产品快约50%，并且在稳定性上也有所优化。
 - 丰富的功能：Apinto 提供了一个标准网关应有的所有功能，并且你可以快速连接你的各个微服务以及管理网络流量。
 - 极低的使用和维护成本：Apinto 是纯 Go 语言开发的开源网关，没有繁琐的部署，没有外部产品依赖，只需要下载并运行即可，极为简单。
@@ -62,7 +60,7 @@ Apinto是一个基于 Golang 开发的微服务网关，能够实现高性能 HT
 | SSL证书    | 管理多个证书                                                                                 |
 | 访问域名     | 可为网关设置访问域名                                                                             |
 | 健康检查     | 支持对负载的节点进行健康检查，确保服务健壮性                                                                 |
-| 协议       | HTTP/HTTPS、Webservice、Restful                                                          |
+| 协议       | HTTP/HTTPS、Webservice、Restful、SOAP、gRPC、Dubbo2                                         |
 | 插件化      | 流程插件化，按需加载所需模块                                                                         |
 | OPEN API | 支持使用open api配置网关                                                                       |
 | 日志       | 提供节点的运行日志，可根据日志设置的等级输出                                                                 |
@@ -74,8 +72,6 @@ Apinto是一个基于 Golang 开发的微服务网关，能够实现高性能 HT
 | 转发重写     | 支持对 `scheme`、`uri`、`host` 的重写，同时支持对转发请求的请求头部header的值进行新增或者删除                           |
 | 流量控制     | 拦截异常流量                                                                                 |
 | 可视化UI    | 通过UI界面配置网关转发信息，官方支持项目：[Apinto Dashboard](https://github.com/eolinker/apinto-dashboard) |
-| 插件模版     | 插件配置模版化，减少重复配置操作                                                                       |
-
 
 #### 迭代计划
 
@@ -85,18 +81,16 @@ Apinto是一个基于 Golang 开发的微服务网关，能够实现高性能 HT
 
 - **服务编排**：一个编排API对应多个backend，backend的入参支持客户端传入，也支持backend间的参数传递；backend的返回数据支持字段的过滤、删除、移动、重命名、拆包和封包；编排API能够设定编排调用失败时的异常返回
 
-- **监控**：捕获网关请求数据，并可将其导出到Promethus、Graphite中进行分析
+- **监控**：捕获网关请求数据，并可将其导出到promethus、Graphite中进行分析
 - .....
 
 #### 2022年迭代计划
-
 ![](http://data.eolinker.com/course/NjYrbqx2804eb7d3b0216009f9bbcdeb483f6f5354815ba.jpeg)
 
 
 ## 产品功能设计展望
 
-![](http://data.eolinker.com/course/cPGClfE703b982a98dd4ac81f67b9e5108d02e7637855b2.png)
-
+![](http://data.eolinker.com/course/QDcZqTD6d2e3811ea57e436ffd32a10a8ffd72eaa9c037d.png)
 
 ### 基准测试
 

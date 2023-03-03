@@ -12,10 +12,11 @@
 
 下表为Apinto和Apinto Dashboard的版本联系
 
-| Apinto版本   | Apinto Dashboard版本 |
-| ------------ | -------------------- |
-| 0.8.x        | v1.1.0-beta          |
-| v0.6.x-0.7.x | v1.0.4-beta          |
+| Apinto版本      | Apinto Dashboard版本 |
+|---------------|--------------------|
+| v0.11.x       | v1.2.1-beta        |
+| v0.8.x-0.10.x | v1.1.5-beta        |
+| v0.6.x-0.7.x  | v1.0.4-beta        |
 
 
 ### 什么是Apinto Dashboard
