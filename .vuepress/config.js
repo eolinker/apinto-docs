@@ -345,6 +345,7 @@ function dashboard() {
         '/docs/' + name + '/plugins/prometheus.md',
         '/docs/' + name + '/plugins/http-to-grpc.md',
         '/docs/' + name + '/plugins/grpc-to-http.md',
+        '/docs/' + name + '/plugins/proxy_mirror.md',
 
       ],
     },
