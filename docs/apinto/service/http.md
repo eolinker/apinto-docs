@@ -88,7 +88,7 @@ curl -X POST  \
 	"description": "配置匿名服务",
 	"timeout": 3000,
 	"retry": 3,
-	"scheme": "https",
+	"scheme": "HTTPS",
 	"nodes": ["demo.apinto.com:8280"],
 	"balance": "round-robin"
 }'
@@ -105,7 +105,7 @@ curl -X POST  \
 	"name": "annoymous_service",
 	"profession": "service",
 	"retry": 3,
-	"scheme": "https",
+	"scheme": "HTTPS",
 	"timeout": 3000,
 	"update": "2022-06-16 11:00:45",
 	"discovery": "",
@@ -132,7 +132,7 @@ curl -X POST  \
 	"name": "consul_service",
 	"driver": "http",
 	"description": "配置了consul服务发现的服务",
-	"scheme": "http",
+	"scheme": "HTTP",
 	"timeout": 3000,
 	"retry": 3,
 	"discovery": "consul_demo@discovery",

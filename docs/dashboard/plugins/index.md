@@ -18,6 +18,7 @@
 | [额外参数](/docs/dashboard/plugins/extra_params.md)                 | extra_params         | 转发时在请求中携带自定义参数                                                     |
 | [参数映射](/docs/dashboard/plugins/params_transformer.md)           | params_transformer   | 转发时将请求中的原参数映射成自定义参数                                                |
 | [转发重写](/docs/dashboard/plugins/proxy_rewrite.md)                | proxy_rewrite        | 转发时对请求的host、scheme、uri进行重写，同时能在请求头加入自定义参数                          |
+| [http-mocking](/docs/dashboard/plugins/http-mocking.md)                | http-mocking       |   当执行该插件时，它将随机返回指定格式的模拟数据，并且请求不会转发到上游。                     |
 | [dubbo2协议转发重写](/docs/dashboard/plugins/dubbo2-proxy-rewrite.md) | dubbo2-proxy-rewrite | 转发时，对dubbo2协议请求的service_name、method_name进行重写，同时能对attachment加入自定义参数 |
 | [http协议转dubbo2协议](/docs/dashboard/plugins/http-to-dubbo2.md)    | http-to-dubbo2       | 将http请求转换成dubbo2请求                                                 |
 | [dubbo2协议转http协议](/docs/dashboard/plugins/dubbo2-to-http.md)    | dubbo2-to-http       | 将dubbo2请求转换成http请求                                                 |
