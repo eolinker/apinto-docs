@@ -214,6 +214,7 @@ function apinto() {
         '/docs/apinto/plugins/prometheus.md',
         '/docs/apinto/plugins/http-to-grpc.md',
         '/docs/apinto/plugins/grpc-to-http.md',
+        '/docs/apinto/plugins/proxy_mirror.md',
       ],
     },
     {
