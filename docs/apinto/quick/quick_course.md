@@ -20,6 +20,47 @@
 
 ### 程序配置说明
 
+> 文件名：apinto.yml
+> 存放路径：/etc/apinto/
+> 作用：apinto运行配置文件，配置日志输出目录等相关信息
+
+示例配置：
+```
+# 数据文件放置目录
+data_dir: /var/lib/apinto
+
+# pid文件放置地址
+pid_dir: /var/run/apinto/
+
+# 日志放置目录
+log_dir: /var/log/apinto
+
+# socket放置目录
+socket_dir: /tmp/apinto
+
+# apinto运行配置地址
+config: config.yml
+
+# 扩展仓库目录
+extends_dir: /var/lib/apinto/extenders/
+
+# 错误日志文件名
+error_log_name:  error.log
+
+# 错误日志等级
+error_log_level: error
+
+# 错误日志过期时间，默认单位为天，d|天，h|小时
+error_log_expire: 7d
+
+# 错误日志切割周期，仅支持day、hour
+error_log_period: day
+```
+
+> 文件名：config.yml
+> 存放路径：/etc/apinto/
+> 作用：指定节点的路由监听端口，ssl证书等信息
+
 程序启动前需要配置与程序相同目录下的文件`config.yml`,用于指定节点的路由监听端口，ssl证书等信息。
 
 ```yaml
@@ -49,13 +90,19 @@ peer: # 集群间节点通信配置信息
   #  - cert: server.pem
   #    key: server.key
 
-
 ```
 
 #### 启动程序
 
+1. 安装网关：
 ```shell
-./apinto start
+./install.sh install
+```
+执行该步骤将会生成配置文件`/etc/apinto/apinto.yml`和`/etc/apinto/config.yml`，可根据需要修改。
+
+2. 启动网关
+```shell
+apinto start
 ```
 
 

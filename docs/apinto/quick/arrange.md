@@ -8,17 +8,22 @@ Apinto 完全基于 Golang 开发，不基于现有第三方产品，因此具�
 1.下载安装包并解压
 
 ```shell
-wget https://github.com/eolinker/apinto/releases/download/v0.11.1/apinto_v0.11.1_linux_amd64.tar.gz && tar -zxvf apinto_v0.11.1_linux_amd64.tar.gz && cd apinto
+wget https://github.com/eolinker/apinto/releases/download/v0.12.1/apinto_v0.12.1_linux_amd64.tar.gz && tar -zxvf apinto_v0.12.1_linux_amd64.tar.gz && cd apinto
 ```
 
 Apinto支持在arm64、amd64架构上运行。
 
 请根据需要下载对应架构及系统的安装包，安装包下载请[点击](https://github.com/eolinker/apinto/releases)跳转
 
-2.启动网关：
-
+2.安装网关：
 ```shell
-./apinto start
+./install.sh install
+```
+执行该步骤将会生成配置文件`/etc/apinto/apinto.yml`和`/etc/apinto/config.yml`，可根据需要修改。
+
+3.启动
+```shell
+apinto start
 ```
 
 **备注**：若网关启动不成功可以在/var/log/apinto目录下的日志文件排查原因，一般是路由监听端口被占用的情况，可以在apinto执行文件相同目录下的config.yml修改路由监听端口，具体配置详情[点此跳转](/docs/apinto/quick/quick_course.md)。
