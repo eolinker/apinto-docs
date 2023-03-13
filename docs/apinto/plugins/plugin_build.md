@@ -5,8 +5,8 @@
 
 ```go
 type IExtenderDriverFactory interface {
-    // 创建插件驱动，用于创建插件实例
-	Create(profession string, name string, label string, desc string, params map[string]interface{}) (IExtenderDriver, error)	
+    Render() interface{}
+    Create(profession string, name string, label string, desc string, params map[string]interface{}) (IExtenderDriver, error)
 }
 ```
 
@@ -14,7 +14,7 @@ type IExtenderDriverFactory interface {
 
 ```go
 type IExtenderConfigChecker interface {
-	Check(v interface{}, workers map[RequireId]interface{}) error				// 检查插件配置是否合法
+    Check(v interface{}, workers map[RequireId]IWorker) error//检查插件配置是否合法
 }
 ```
 
@@ -23,7 +23,7 @@ type IExtenderConfigChecker interface {
 ```go
 type IExtenderDriver interface {
 	ConfigType() reflect.Type																	// 获取插件配置类型，使用反射获取
-	Create(id, name string, v interface{}, workers map[RequireId]interface{}) (IWorker, error)	// 创建插件实例方法
+	Create(id, name string, v interface{}, workers map[RequireId]IWorker) (IWorker, error)  	// 创建插件实例方法
 }
 ```
 
@@ -33,7 +33,7 @@ type IExtenderDriver interface {
 type IWorker interface {
 	Id() string															// 返回插件实例ID
 	Start() error														// 插件实例初始化时执行
-	Reset(conf interface{}, workers map[RequireId]interface{}) error  	// 插件实例配置修改时执行
+	Reset(conf interface{}, workers map[RequireId]IWorker) error  	    // 插件实例配置修改时执行
 	Stop() error														// 插件实例被删除时执行
 	CheckSkill(skill string) bool										// 判断当前实例是否实现了skill方法
 }
@@ -43,7 +43,7 @@ type IWorker interface {
 
 ```go
 type IFilter interface {
-	DoFilter(ctx IHttpContext, next IChain) (err error)		// 插件执行主方法
+	DoFilter(ctx EoContext, next IChain) (err error)		// 插件执行主方法
 	Destroy()												// 当插件被移除或关闭时，销毁该插件相关内容
 }
 ```

@@ -13,13 +13,13 @@
 
 #### 配置参数说明
 
-| 参数名                                | 说明                                                  | 是否必填               | 默认值             | 值可能性   |
-|------------------------------------|-----------------------------------------------------|--------------------|-----------------|--------|
-| response_status                            | 响应状态码                                               | 否                  | 200             | int    |
-| content_type                             | 返回响应的 Header Content-Type                           | 是                  | application/json | string |
-| response_example                         | 返回响应的Body，与jsonschema字段二选一            | 否                  |                 | string |
-| response_schema     | 指定响应的jsonschema对象 | 是                  |                 | string |
-| response_header   | 响应头                                                 | 否  |                 | map    |
+| 参数名                                | 值类型                             | 是否必填               | 值可能性   | 默认值             | 说明                                                  |
+|:-----------------------------------|:-------------------|:-------|:----------------|:----------------------------------------------------|:----------------------------------------------------|
+| response_status                            | int                         | 否                  | 200  | 200             | 响应状态码,仅http路由有效                                     |
+| content_type                             | string                       | 是                  | application/json | application/json | 返回响应的 Header Content-Type                           |
+| response_example                         | string                   | 否                  | {"name":"apinto"} |                 | 响应Body，与jsonschema字段二选一      |
+| response_schema     | string | 是                  | JSON Schema格式字符串 |                 | Mock生成的Json Schema语法数据，与响应Body字段二选一 |
+| response_header   | object | 否  | {"name":"apinto"} |                 | 响应头                                                 |
 
 
 **JSON Schema** 在其字段中支持以下类型：

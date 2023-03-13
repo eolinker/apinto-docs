@@ -18,14 +18,14 @@
 
 #### 配置参数说明
 
-| 参数名             | 说明                 | 是否必填 | 默认值  | 取值范围                     |
-| ------------------ | -------------------- | -------- | ------- | ---------------------------- |
-| params             | 额外参数列表         | 是       |         | array                        |
-| params -> name     | 参数名               | 是       |         | string                       |
-| params -> position | 参数位置             | 是       |         | ["header","body","query"]    |
-| params -> value    | 参数值               | 是       |         | string                       |
-| params -> conflict | 参数冲突时的处理方式 | 否       | convert | ["origin","convert","error"] |
-| error_type         | 插件返回报错的类型   | 否       | text    | ["text","json"]              |
+| 参数名             | 值类型       | 是否必填 | 值可能性                     | 默认值  | 说明                 |
+| :----------------- | :----------- | :------- | :--------------------------- | :------ | :------------------- |
+| params             | array_object | 是       |                              |         | 额外参数列表         |
+| params -> name     | string       | 是       | test                         |         | 参数名               |
+| params -> position | string       | 是       | ["header","body","query"]    |         | 参数位置             |
+| params -> value    | string       | 是       | string                       |         | 参数值               |
+| params -> conflict | string       | 否       | ["origin","convert","error"] | convert | 参数冲突时的处理方式 |
+| error_type         | string       | 否       | ["text","json"]              | text    | 插件返回报错的类型   |
 
 **参数冲突说明**：
 额外参数插件配置了参数A的值，但是直接请求时也传了参数A，此时为参数出现冲突，参数A实际上会接收两个参数值。

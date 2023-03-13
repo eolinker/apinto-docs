@@ -194,7 +194,7 @@ function apinto() {
       link: '/docs/apinto/plugins/index.md',
       collapsible: true,
       children: [
-        '/docs/apinto/plugins/plugin_build.md',
+        // '/docs/apinto/plugins/plugin_build.md',
         '/docs/apinto/plugins/extra_params.md',
         '/docs/apinto/plugins/params_transformer.md',
         '/docs/apinto/plugins/proxy_rewrite.md',

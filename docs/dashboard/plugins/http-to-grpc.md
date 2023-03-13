@@ -25,16 +25,15 @@
 
 #### 配置说明
 
-| 参数名         | 说明                                 | 是否必填 | 默认值   | 取值范围 |
-|-------------|------------------------------------|------|-------|------|
-| service     | 服务名称，gRPC调用服务名                     | 否    |       |      |
-| method      | 方法名称，gRPC调用方法名                     | 否    |       |      |
-| authority   | 虚拟主机域名(Authority)                  | 否    |       |      |
-| format      | 请求数据格式                             | 是    | json  | json |
-| reflect     | 反射，若gRPC服务器开启了反射，配置时可设置为true       | 是    | false |
-| protobuf_id | protobuf编码器ID，若reflect为false时，该值必填 | 否    |       |      |
-| header      | 额外头部，转发请求时，会将其拼接到转发的请求头部中一并转发      | 否    |       |      |
-
+| 参数名         | 值类型      | 是否必填 | 值可能性 | 默认值   | 说明                                 |
+|:------------|:-----|:-----|:------|:-----------------------------------|:-----------------------------------|
+| service     | string | 否    | Service.Hello |       | 服务名称，gRPC调用服务名                     |
+| method      | string | 否    | Hello |       | 方法名称，gRPC调用方法名                     |
+| authority   | string | 否    |      |       | 虚拟主机域名(Authority)                  |
+| format      | string | 是    | json |   | 请求数据格式                             |
+| reflect     | bool | 是    || false | 反射，若gRPC服务器开启了反射，配置时可设置为true       |
+| protobuf_id | string | 否    |      |       | protobuf编码器ID，若reflect为false时，该值必填 |
+| header      | map[string]string | 否    | {"name":"apinto"} |       | 额外头部，转发请求时，会将其拼接到转发的请求头部中一并转发      |
 
 * 当服务名称不填时，则默认使用 HTTP请求路径的第一个`/`和第二个`/`之间的值作为服务名
 * 当方法名称不填时，则默认使用 HTTP请求路径的第二个`/`和第三个`/`之间的值作为服务名

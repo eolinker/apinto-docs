@@ -14,14 +14,14 @@
 
 #### 配置参数说明
 
-| 参数名                                | 说明                                                  | 是否必填               | 默认值 | 值可能性         |
-|------------------------------------|-----------------------------------------------------|--------------------| ------ |--------------|
-| path                            | 转发路径                                                | 是                  |        | string       |
-| method                             | http请求方法 默认POST                                     | 是                  |        | string       |
-| content_type                         | 暂时只支持application/json                               | 是                  |        | array_object |
-| params                         | 对转发dubbo2协议的内容进行匹配，匹配成功后读取并解析成json             | 是                  |        | array_object |
-| params -> class_name     | 对应java中的className   获取方法（user.getClass().getName()） | 是                  |        | string       |
-| params -> field_name   | 用于转发给http服务中body内容中的key名（json），不填整个内容转成json         | 否（仅params长度为0时可不填） |        | string       |
+| 参数名                                | 值类型                            | 是否必填               | 值可能性         | 默认值 | 说明                                                  |
+|:-----------------------------------|:-------------------|:-------------| :----- |:----------------------------------------------------|:----------------------------------------------------|
+| path                            | string                      | 是                  | /getUser |        | 转发路径                                                |
+| method                             | string                       | 是                  | POST | POST | http请求方法 默认POST                                     |
+| content_type                         | string                   | 是                  | application/json |        | 暂时只支持application/json                               |
+| params                         | array_object             | 是                  | array_object |        | 对转发dubbo2协议的内容进行匹配，匹配成功后读取并解析成json             |
+| params -> class_name     | string | 是                  | cn.apinto.model.UserInfo |  | 对应java中的className   获取方法（user.getClass().getName()） |
+| params -> field_name   |    | 否（仅params长度为0时可不填） | user_info |  | 用于转发给http服务中body内容中的key名（json），不填整个内容转成json         |
 
 #### 配置示例
 
