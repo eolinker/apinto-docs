@@ -9,7 +9,7 @@
 
 通过给路由配置该插件，当请求到达网关时，能够将请求的信息和配置的指标列表发送给指定的prometheus输出器，由各个prometheus输出器内同名的指标处理并采集请求内的信息。
 
-
+![](http://data.eolinker.com/course/eUCrM7n00732bf46a30d528853f7da77273d513639e8fe5.png)
 
 **备注**：输出器的教程[点此](/docs/dashboard/outputer/prometheus.md)进行跳转。
 
