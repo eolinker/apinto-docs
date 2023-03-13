@@ -12,15 +12,15 @@
 ### 配置参数说明
 
 
-| 参数名            | 说明                                                         | 是否必填 | 默认值 | 值可能性                         |
-| ----------------- | ------------------------------------------------------------ | -------- | ------ | -------------------------------- |
-| allow_origins     | 选填，允许跨域访问的 Origin，格式如： `scheme://host:port` ，多个值之间用英文逗号间隔，允许全部源用 \* | 否       | *      | string, 如https://www.eolink.com |
-| allow_methods     | 选填，允许通过的请求方式，比如: `GET` ， `POST` 等，多个值之间用英文逗号间隔，允许全部方法方法用  \* | 否       | *      | POST,GET,OPTION                  |
-| allow_headers     | 选填，允许跨域访问时请求方携带哪些非 **CORS 规范**以外的 Header，多个值之间用英文逗号间隔，允许全部请求头部用 \* | 否       | *      | *                                |
-| allow_credentials | 选填，请求中是否携带cookie，若allow_credentials为true，那么将不能在其他选项中使用 \*，（也可以在启用了 allow_credentials后使用 ** 强制允许所有 Header 都通过，但请注意这样存在安全隐患） | 否       |        | bool                             |
-| expose_headers    | 选填，允许跨域访问时响应方携带哪些非 **CORS 规范** 以外的 Header，多个值之间用英文逗号间隔，允许获取全部返回头部用* | 否       | *      | *                                |
-| max_age           | 选填，浏览器缓存 CORS 结果的最大时间，单位为秒，在这个时间范围内浏览器会复用上一次的检查结果 | 否       | 5      | int                              |
-| response_type     | 插件返回报错的类型                                           | 否       | text   | ["text","json"]                  |
+| 参数名            | 值类型       | 是否必填 | 值可能性               | 默认值 | 说明                                                         |
+| ----------------- | :----------- | :------- | :--------------------- | :----- | :----------------------------------------------------------- |
+| allow_origins     | string       | 否       | https://www.eolink.com | *      | 选填，允许跨域访问的 Origin，格式如： `scheme://host:port` ，多个值之间用英文逗号间隔，允许全部源用 \* |
+| allow_methods     | string       | 否       | "POST,GET,OPTION"      | *      | 选填，允许通过的请求方式，比如: `GET` ， `POST` 等，多个值之间用英文逗号间隔，允许全部方法方法用  \* |
+| allow_headers     | string       | 否       | *                      | *      | 选填，允许跨域访问时请求方携带哪些非 **CORS 规范**以外的 Header，多个值之间用英文逗号间隔，允许全部请求头部用 \* |
+| allow_credentials | bool         | 否       | false                  |        | 选填，请求中是否携带cookie，若allow_credentials为true，那么将不能在其他选项中使用 \*，（也可以在启用了 allow_credentials后使用 ** 强制允许所有 Header 都通过，但请注意这样存在安全隐患） |
+| expose_headers    | string       | 否       | *                      | *      | 选填，允许跨域访问时响应方携带哪些非 **CORS 规范** 以外的 Header，多个值之间用英文逗号间隔，允许获取全部返回头部用* |
+| max_age           | int          | 否       | 5                      | 5      | 选填，浏览器缓存 CORS 结果的最大时间，单位为秒，在这个时间范围内浏览器会复用上一次的检查结果 |
+| response_type     | string_array | 否       | ["text","json"]        | text   | 插件返回报错的类型                                           |
 
 
 

@@ -39,12 +39,12 @@ location / {
 #### 插件配置参数
 
 
-| 参数名        | 说明               | 是否必填 | 默认值 | 取值范围          |
-| ------------- | ------------------ | -------- | ------ | ----------------- |
-| ip_list_type  | IP名单类型         | 是       |        | ["white","black"] |
-| ip_white_list | IP白名单列表       | 是       |        | array_string      |
-| ip_black_list | IP黑名单列表       | 是       |        | array_string      |
-| response_type | 插件返回报错的类型 | 是       |        | ["text","json"]   |
+| 参数名        | 值类型       | 是否必填 | 值可能性                  | 默认值 | 说明               |
+| ------------- | ------------ | -------- | ------------------------- | ------ | ------------------ |
+| ip_list_type  | string       | 是       | ["white","black"]         |        | IP名单类型         |
+| ip_white_list | array_string | 是       | ["127.0.0.1","127.1.1.1"] |        | IP白名单列表       |
+| ip_black_list | array_string | 是       | ["127.0.0.1","127.1.1.1"] |        | IP黑名单列表       |
+| response_type | string       | 是       | ["text","json"]           |        | 插件返回报错的类型 |
 
 
 #### 配置示例
