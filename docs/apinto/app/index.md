@@ -7,13 +7,13 @@
   * 该模块需要配合全局插件 **eolinker.com:apinto:plugin_app** 使用，插件配置请参考[应用插件](/docs/apinto/plugins/app.md)
 
 ## 配置说明
-| 字段          | 类型                         | 说明                                                      |
-|-------------|----------------------------|---------------------------------------------------------|
-| auth        | object数组                   | 鉴权配置，详细配置请阅读[鉴权文档](/docs/apinto/app/auth.md)            | 
-| additional  | object数组                   | 额外参数配置，详细配置请阅读[额外参数文档](/docs/apinto/app/extra-param.md) | 
-| disable     | bool                       | 是否禁用该应用                                                 |
-| labels      | object (map[string]string) | 应用标签                                                    |
-| description | string                     | 应用描述                                                    |
+| 参数名      | 值类型                     | 是否必填 | 值可能性 | 默认值 | 说明                                                         |
+| ----------- | -------------------------- | -------- | -------- | ------ | ------------------------------------------------------------ |
+| description | string                     | 否       |          |        | 应用描述                                                     |
+| auth        | array_object               | 是       |          |        | 鉴权配置，详细配置请阅读[鉴权文档](/docs/apinto/app/auth.md) |
+| additional  | array_object               | 是       |          |        | 额外参数配置，详细配置请阅读[额外参数文档](/docs/apinto/app/extra-param.md) |
+| disable     | bool                       | 否       |          | false  | 是否禁用该应用                                               |
+| labels      | object (map[string]string) | 否       |          |        | 应用标签                                                     |
 
 完整配置示例
 ```json

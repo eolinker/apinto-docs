@@ -17,20 +17,20 @@
 #### 配置参数
 
 
-| 参数名                                | 说明                         | 是否必填 | 默认值 | 值可能性                     |
-| ------------------------------------- | :--------------------------- | -------- | ------ | ---------------------------- |
-| name                                  | 实例名                       | 是       |        | string                       |
-| driver                                | 所使用的服务发现类别         | 是       |        | "static"                     |
-| description                           | 描述                         | 否       |        | string                       |
-| scheme(**已废弃，apinto版本0.7.0起**) | 请求服务发现地址时使用的协议 | 否       | "http" | ["http","https]              |
-| health_on                             | 是否开启健康检查             | 否       | false  | bool                         |
-| health                                | 健康检查配置                 | 否       |        | object                       |
-| health -> scheme                      | 请求协议                     | 是       |        | ["http","https","tcp","udp"] |
-| health -> method                      | 请求方法                     | 是       |        | string                       |
-| health -> url                         | 节点的健康检查接口url        | 是       |        | string                       |
-| health -> success_code                | 成功状态码                   | 是       |        | int                          |
-| health -> period                      | 健康检查周期，单位: s        | 是       |        | int                          |
-| health -> timeout                     | 超时时间，单位: ms           | 是       |        | int                          |
+| 参数名                                | 值类型 | 是否必填 | 值可能性                     | 默认值 | 说明                         |
+| ------------------------------------- | ------ | -------- | ---------------------------- | ------ | :--------------------------- |
+| name                                  | string | 是       |                              |        | 实例名                       |
+| driver                                | string | 是       | static                       |        | 所使用的服务发现驱动         |
+| description                           | string | 否       |                              |        | 描述                         |
+| scheme(**已废弃，apinto版本0.7.0起**) | string | 否       | ["http","https]              | http   | 请求服务发现地址时使用的协议 |
+| health_on                             | bool   | 否       |                              | false  | 是否开启健康检查             |
+| health                                | object | 否       |                              |        | 健康检查配置                 |
+| health -> scheme                      | string | 是       | ["http","https","tcp","udp"] |        | 请求协议                     |
+| health -> method                      | string | 是       |                              |        | 请求方法                     |
+| health -> url                         | string | 是       |                              |        | 节点的健康检查接口url        |
+| health -> success_code                | int    | 是       |                              |        | 成功状态码                   |
+| health -> period                      | int    | 是       |                              |        | 健康检查周期，单位: s        |
+| health -> timeout                     | int    | 是       |                              |        | 超时时间，单位: ms           |
 
 
 

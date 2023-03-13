@@ -11,18 +11,18 @@
 > * [JWT](/docs/apinto/app/auth/jwt.md)
 
 ## 配置说明
-| 字段名                          | 类型                         | 说明                                  |
-|------------------------------|----------------------------|-------------------------------------|
-| token_name                   | string                     | 参数名                                 |
-| position                     | string                     | 参数位置，参数值可能性：`header`、`query`、`body` |
-| type                         | string                     | 驱动类型，参数值可能性：`basic`                 |
-| users                        | object数组                   | 用户列表                                |
-| users -> expire              | int64                      | 用户过期时间，时间戳格式，当值为0表示不过期              |
-| users -> pattern             | object                     | 用户信息                                |
-| users -> pattern -> username | string                     | 用户名                                 |
-| users -> pattern -> password | string                     | 密码                                  |
-| users -> hide_credential     | bool                       | 转发时是否将鉴权信息隐藏，默认不隐藏。                 |
-| users -> labels              | object (map[string]string) | 用户标签，当basic校验成功后，该标签会加入请求上下文中       |
+| 参数名                       | 值类型                     | 是否必填 | 值可能性            | 默认值 | 说明                                                  |
+| ---------------------------- | -------------------------- | -------- | ------------------- | ------ | ----------------------------------------------------- |
+| token_name                   | string                     | 是       |                     |        | 参数名                                                |
+| position                     | string                     | 是       | header、query、body |        | 参数位置                                              |
+| type                         | string                     | 是       | basic               |        | 驱动类型                                              |
+| users                        | array_object               | 是       |                     |        | 用户列表                                              |
+| users -> expire              | int64                      | 是       |                     |        | 用户过期时间，时间戳格式，当值为0表示不过期           |
+| users -> pattern             | object                     | 是       |                     |        | 用户信息                                              |
+| users -> pattern -> username | string                     | 是       |                     |        | 用户名                                                |
+| users -> pattern -> password | string                     | 是       |                     |        | 密码                                                  |
+| users -> hide_credential     | bool                       | 否       |                     | false  | 转发时是否将鉴权信息隐藏。                            |
+| users -> labels              | object (map[string]string) | 否       |                     |        | 用户标签，当basic校验成功后，该标签会加入请求上下文中 |
 
 ### 配置示例
 ```shell

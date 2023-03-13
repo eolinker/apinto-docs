@@ -226,21 +226,21 @@ query_sex：男
 
 #### 配置参数说明
 
-| 参数              | 说明                                | 是否必填 | 默认值 | 值可能性     |
-| ----------------- | ----------------------------------- | -------- | ------ | ------------ |
-| name              | 实例名                              | 是       |        | string       |
-| driver            | 驱动名                              | 是       |        | "http"       |
-| description       | 描述                                | 否       |        | string       |
-| disable           | 禁用路由，默认为false，表示开启状态 | 否       | false  | bool         |
-| listen            | 监听端口                            | 是       |        | int          |
-| method            | 请求方式                            | 否       |        | array_string |
-| host              | host列表                            | 否       |        | array_string |
-| rules             | 规则列表                            | 否       |        | array_object |
-| rules -> location | 路径规则                            | 否       |        | string       |
-| rules -> header   | header请求头规则                    | 否       |        | object       |
-| rules -> query    | query参数规则                       | 否       |        | object       |
-| target            | 目标服务                            | 是       |        | string       |
-| plugins           | 插件配置                            | 否       |        | object       |
+| 参数名            | 值类型       | 是否必填 | 值可能性 | 默认值 | 说明                                |
+| ----------------- | ------------ | -------- | -------- | ------ | ----------------------------------- |
+| name              | string       | 是       |          |        | 实例名                              |
+| driver            | string       | 是       | "http"   |        | 驱动名                              |
+| description       | string       | 否       |          |        | 描述                                |
+| disable           | bool         | 否       |          | false  | 禁用路由，默认为false，表示开启状态 |
+| listen            | int          | 是       |          |        | 监听端口                            |
+| method            | array_string | 否       |          |        | 请求方式                            |
+| host              | array_string | 否       |          |        | host列表                            |
+| rules             | array_object | 否       |          |        | 规则列表                            |
+| rules -> location | string       | 否       |          |        | 路径规则                            |
+| rules -> header   | object       | 否       |          |        | header请求头规则                    |
+| rules -> query    | object       | 否       |          |        | query参数规则                       |
+| target            | string       | 是       |          |        | 目标服务                            |
+| plugins           | object       | 否       |          |        | 插件配置                            |
 
 **备注**：
 

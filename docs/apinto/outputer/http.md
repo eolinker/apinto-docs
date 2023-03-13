@@ -10,16 +10,16 @@ HTTP输出器能够将程序运行中产生的日志内容会被封装成http请
 
 #### 配置参数说明
 
-| 参数        | 说明                                                         | 是否必填 | 默认值 | 值可能性                                                     |
-| ----------- | ------------------------------------------------------------ | -------- | ------ | ------------------------------------------------------------ |
-| name        | 实例名                                                       | 是       |        | string                                                       |
-| driver      | 驱动名                                        | 是       |        | "http_output"                                                |
-| description | 描述                                                         | 否       |        | string                                                       |
-| method      | 请求外部网络接口所使用的http方法                             | 是       |        | ["GET", "POST", "HEAD", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE"] |
-| url         | 外部提供的网络接口的地址                                     | 是       |        | string                                                       |
-| headers     | 请求的头部信息，可以填请求外部网络接口时需要提供的参数,如鉴权等信息 | 否       |        | object                                                       |
-| type        | formatter的类型                                              | 否       | "line" | ["line","json"]                                              |
-| formatter   | formatter的输出内容                                          | 是       |        | object                                                       |
+| 参数名      | 值类型 | 是否必填 | 值可能性                                                     | 默认值 | 说明                                                         |
+| ----------- | ------ | -------- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ |
+| name        | string | 是       |                                                              |        | 实例名                                                       |
+| driver      | string | 是       | http_output                                                  |        | 驱动名                                                       |
+| description | string | 否       |                                                              |        | 描述                                                         |
+| method      | string | 是       | ["GET", "POST", "HEAD", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE"] |        | 请求外部网络接口所使用的http方法                             |
+| url         | string | 是       |                                                              |        | 外部提供的网络接口的地址                                     |
+| headers     | object | 否       |                                                              |        | 请求的头部信息，可以填请求外部网络接口时需要提供的参数,如鉴权等信息 |
+| type        | string | 否       | ["line","json"]                                              | line   | formatter的类型                                              |
+| formatter   | object | 是       |                                                              |        | formatter的输出内容                                          |
 
 **注意**：
 

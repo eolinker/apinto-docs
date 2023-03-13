@@ -10,17 +10,17 @@ NSQ输出器能够将特定的日志信息输出到指定nsqd的topic中.
 
 #### 配置参数说明
 
-| 参数        | 说明                | 是否必填 | 默认值 | 值可能性        |
-| ----------- | ------------------- | -------- | ------ | --------------- |
-| name        | 实例名              | 是       |        | string          |
-| driver      | 驱动名              | 是       |        | "nsqd"          |
-| description | 描述                | 否       |        | string          |
-| topic       | 所指定的topic       | 是       |        | string          |
-| address     | nsqd地址列表        | 是       |        | array_string    |
-| auth_secret | nsqd的鉴权密钥      | 否       |        | string          |
-| nsq_conf    | nsq生产者配置       | 否       |        | object          |
-| type        | formatter的类型     | 否       | "line" | ["line","json"] |
-| formatter   | formatter的输出内容 | 是       |        | object          |
+| 参数名      | 值类型       | 是否必填 | 值可能性        | 默认值 | 说明                |
+| ----------- | ------------ | -------- | --------------- | ------ | ------------------- |
+| name        | string       | 是       |                 |        | 实例名              |
+| driver      | string       | 是       | nsqd            |        | 驱动名              |
+| description | string       | 否       |                 |        | 描述                |
+| topic       | string       | 是       |                 |        | 所指定的topic       |
+| address     | array_string | 是       |                 |        | nsqd地址列表        |
+| auth_secret | string       | 否       |                 |        | nsqd的鉴权密钥      |
+| nsq_conf    | object       | 否       |                 |        | nsq生产者配置       |
+| type        | string       | 否       | ["line","json"] | line   | formatter的类型     |
+| formatter   | object       | 是       |                 |        | formatter的输出内容 |
 
 **注意**：
 
