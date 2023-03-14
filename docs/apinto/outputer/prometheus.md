@@ -9,7 +9,7 @@
 * 可自定义指标的收集数据的类型
 * 可自定义指标的标签
 
-![](http://data.eolinker.com/course/SzH5uvD5d1ff324a3bbc709314036e59b89bb6dad3cd17b.png)
+![](http://data.eolinker.com/course/fBpPdPX29c584a8348e6a0a7713f1158f7250b73f58b6c7.png)
 
 ### OpenAPI配置日志
 #### 配置参数说明
