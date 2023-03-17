@@ -20,8 +20,12 @@ module.exports = {
             text:"Apinto",link: "/docs/index.md"
           },
           {
+            text:"Apinto Dashboard V2",link: "/docs/dashboard-v2/index.md"
+          },
+          {
             text:"Apinto Dashboard",link: "/docs/dashboard/index.md"
-          }
+          },
+
         ],
       },
       { text: "社区", children: [
@@ -87,7 +91,8 @@ module.exports = {
 function getSideBar(){
   return {
     '/docs': apinto(),
-    "/docs/dashboard": dashboard()
+    "/docs/dashboard": dashboard(),
+    "/docs/dashboard-v2":dashboard_v2(),
   }
 }
 
@@ -238,6 +243,78 @@ function apinto() {
     {
       text: 'FAQ',
       link: '/docs/apinto/faq/index.md',
+    },
+  ]
+}
+
+function dashboard_v2() {
+  let name = "dashboard-v2"
+  return [
+    {
+      text: '关于Apinto dashboard v2',
+      link: '/docs/' + name + '/index.md',
+    },
+    {
+      text: '快速开始',
+      collapsible: true,
+      children: [
+        '/docs/' + name + '/quick/quick_start.md',
+      ],
+    },
+    {
+      text: '基础设施',
+      collapsible: true,
+      children: [
+        '/docs/' + name + '/basic/cluster.md',
+        '/docs/' + name + '/basic/env.md',
+      ],
+    },
+    {
+      text: '上游服务',
+      collapsible: true,
+      children: [
+        '/docs/' + name + '/upstream/upstream.md',
+        '/docs/' + name + '/upstream/discovery.md',
+      ],
+    },
+    {
+      text: 'API管理',
+      collapsible: true,
+      children: [
+        '/docs/' + name + '/api/api.md',
+      ],
+    },
+    {
+      text: '应用管理',
+      collapsible: true,
+      children: [
+        '/docs/' + name + '/app/app.md',
+      ],
+    },
+    {
+      text: '服务治理',
+      collapsible: true,
+      children: [
+        '/docs/' + name + '/soa/access.md',
+        '/docs/' + name + '/soa/fusing.md',
+        '/docs/' + name + '/soa/grayscale.md',
+        '/docs/' + name + '/soa/cache.md',
+        '/docs/' + name + '/soa/flow.md',
+      ],
+    },
+    {
+      text: '日志审计',
+      collapsible: true,
+      children: [
+        '/docs/' + name + '/logging/audit.md',
+      ],
+    },
+    {
+      text: '系统管理',
+      collapsible: true,
+      children: [
+        '/docs/' + name + '/system/external-application.md',
+      ],
     },
   ]
 }
