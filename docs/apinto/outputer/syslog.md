@@ -10,16 +10,16 @@ syslog输出器能够将程序运行中产生的日志内容输出远端的syslo
 
 #### 配置参数说明
 
-| 参数        | 说明                              | 是否必填 | 默认值 | 值可能性                                |
-| ----------- | --------------------------------- | -------- | ------ | --------------------------------------- |
-| name        | 实例名                            | 是       |        | string                                  |
-| driver      | 驱动名                            | 是       |        | "syslog_output"                         |
-| description | 描述                              | 否       |        | string                                  |
-| network     | 所使用的网络协议, 如:tcp,udp,unix | 是       |        | ["tcp","udp","unix"]                    |
-| address     | 远端syslog服务器的地址            | 是       |        | string                                  |
-| level       | 日志等级                          | 否       |        | ["error","warn","info","debug","trace"] |
-| type        | formatter的类型                   | 否       | "line" | ["line","json"]                         |
-| formatter   | formatter的输出内容               | 是       |        | object                                  |
+| 参数名      | 值类型 | 是否必填 | 值可能性                                | 默认值 | 说明                              |
+| ----------- | ------ | -------- | --------------------------------------- | ------ | --------------------------------- |
+| name        | string | 是       |                                         |        | 实例名                            |
+| driver      | string | 是       | syslog_output                           |        | 驱动名                            |
+| description | string | 否       |                                         |        | 描述                              |
+| network     | string | 是       | ["tcp","udp","unix"]                    |        | 所使用的网络协议, 如:tcp,udp,unix |
+| address     | string | 是       |                                         |        | 远端syslog服务器的地址            |
+| level       | string | 否       | ["error","warn","info","debug","trace"] |        | 日志等级                          |
+| type        | string | 否       | ["line","json"]                         | line   | formatter的类型                   |
+| formatter   | object | 是       |                                         |        | formatter的输出内容               |
 
 **注意**：
 

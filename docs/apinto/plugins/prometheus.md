@@ -9,16 +9,16 @@
 
 通过给路由配置该插件，当请求到达网关时，能够将请求的信息和配置的指标列表发送给指定的prometheus输出器，由各个prometheus输出器内同名的指标处理并采集请求内的信息。
 
-
+![](http://data.eolinker.com/course/eUCrM7n00732bf46a30d528853f7da77273d513639e8fe5.png)
 
 **备注**：输出器的教程[点此](/docs/apinto/outputer/prometheus.md)进行跳转。
 
 #### 配置参数说明
 
-| 参数名  | 说明                   | 是否必填 | 默认值 | 值可能性     |
-| ------- | ---------------------- | -------- | ------ | ------------ |
-| metrics | 指标列表               | 是       |        | string_array |
-| output  | prometheus输出器id数组 | 否       |        | string_array |
+| 参数名  | 值类型       | 是否必填 | 值可能性 | 默认值 | 说明                   |
+| ------- | ------------ | -------- | -------- | ------ | ---------------------- |
+| metrics | string_array | 是       |          |        | 指标列表               |
+| output  | string_array | 否       |          |        | prometheus输出器id数组 |
 
 当output为空，将会使用作用域包含`prometheus`的prometheus输出器作为ouput。
 

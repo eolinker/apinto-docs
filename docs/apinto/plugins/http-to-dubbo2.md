@@ -18,13 +18,13 @@
 
 #### 配置参数说明
 
-| 参数名                                | 说明                                                  | 是否必填 | 默认值 | 值可能性         |
-|------------------------------------|-----------------------------------------------------|------| ------ |--------------|
-| service                            | 服务名                                                 | 是    |        | string       |
-| method                             | 方法名                                                 | 是    |        | string       |
-| params                         | 对转发的body内容进行匹配，匹配成功后读取并解析成dubbo2协议所需要数据             | 是    |        | array_object |
-| params -> class_name     | 对应java中的className   获取方法（user.getClass().getName()） | 是    |        | string       |
-| params -> field_name   | 从body中提取的字段名,不填默认读取整个body                           | 否 （仅params长度为0时可不填）   |        | string       |
+| 参数名                                | 值类型                        | 是否必填 | 值可能性         | 默认值 | 说明                                                  |
+|:-----------------------------------| :----- |:-------------|:-------------|:-------------|:-------------|
+| service                            | string                      | 是    | api.Server |        | 服务名                                                 |
+| method                             | string                       | 是    | getUser |        | 方法名                                                 |
+| params                         | array_object             | 是    |  |        | 对转发的body内容进行匹配，匹配成功后读取并解析成dubbo2协议所需要数据             |
+| params -> class_name     | string | 是    | cn.apinto.model.UserInfo |        | 对应java中的className   获取方法（user.getClass().getName()） |
+| params -> field_name   | string | 否 （仅params长度为0时可不填）   |        |        | 从body中提取的字段名,不填默认读取整个body                           |
 
 #### 配置示例
 

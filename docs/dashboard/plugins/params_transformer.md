@@ -18,16 +18,16 @@
 
 ### 配置参数说明
 
-| 参数名                   | 说明                                               | 是否必填 | 默认值 | 值可能性                  |
-| ------------------------ | -------------------------------------------------- | -------- | ------ | ------------------------- |
-| params                   | 映射参数列表                                       | 是       |        | array_object              |
-| params -> name           | 待映射参数名称                                     | 是       |        | string                    |
-| params -> position       | 待映射参数所在位置                                 | 是       |        | ["body","header","query"] |
-| params -> proxy_name     | 目标参数名称                                       | 是       |        | string                    |
-| params -> proxy_position | 目标参数所在位置                                   | 是       |        | string                    |
-| params -> required       | 待映射参数是否必含，如为true，该参数不存在时会报错 | 否       | false  | bool                      |
-| remove                   | 映射后删除原参数                                   | 否       | false  | bool                      |
-| error_type               | 插件返回报错的类型                                 | 否       | text   | ["text","json"]           |
+| 参数名                   | 值类型       | 是否必填 | 值可能性                  | 默认值 | 说明                                               |
+| ------------------------ | ------------ | -------- | ------------------------- | ------ | -------------------------------------------------- |
+| params                   | array_object | 是       |                           |        | 映射参数列表                                       |
+| params -> name           | string       | 是       |                           |        | 待映射参数名称                                     |
+| params -> position       | string       | 是       | ["body","header","query"] |        | 待映射参数所在位置                                 |
+| params -> proxy_name     | string       | 是       |                           |        | 目标参数名称                                       |
+| params -> proxy_position | string       | 是       |                           |        | 目标参数所在位置                                   |
+| params -> required       | bool         | 否       | false                     | false  | 待映射参数是否必含，如为true，该参数不存在时会报错 |
+| remove                   | bool         | 否       | false                     | false  | 映射后删除原参数                                   |
+| error_type               | string       | 否       | ["text","json"]           | text   | 插件返回报错的类型                                 |
 
 ### 全局开启该插件
 

@@ -14,15 +14,15 @@ Nacos注册中心自带健康检查，从该注册中心获取节点时可以获
 #### 请求参数说明
 
 
-| 参数名                                | 说明                                                         | 是否必填 | 默认值 | 值可能性        |
-| ------------------------------------- | :----------------------------------------------------------- | -------- | ------ | --------------- |
-| name                                  | 实例名                                                       | 是       |        | string          |
-| driver                                | 所使用的服务发现类别                                         | 是       |        | "nacos"         |
-| description                           | 描述                                                         | 否       |        | string          |
-| scheme(**已废弃，apinto版本0.7.0起**) | 请求服务发现地址时使用的协议                                 | 否       | "http" | ["http","https] |
-| config                                | 服务发现配置                                                 | 是       |        | object          |
-| config-> address                      | nacos地址列表                                                | 是       |        | array_string    |
-| config-> params                       | 参数信息,如{"token":"XXX","namespaceId":"default","username":"XXX","password":"xxx"} | 是       |        | object          |
+| 参数名                                | 值类型       | 是否必填 | 值可能性        | 默认值 | 说明                                                         |
+| ------------------------------------- | :----------- | -------- | --------------- | ------ | :----------------------------------------------------------- |
+| name                                  | string       | 是       |                 |        | 实例名                                                       |
+| driver                                | string       | 是       | nacos           |        | 所使用的服务发现驱动                                         |
+| description                           | string       | 否       |                 |        | 描述                                                         |
+| scheme(**已废弃，apinto版本0.7.0起**) | string       | 否       | ["http","https] | http   | 请求服务发现地址时使用的协议                                 |
+| config                                | object       | 是       |                 |        | 服务发现配置                                                 |
+| config-> address                      | array_string | 是       |                 |        | nacos地址列表                                                |
+| config-> params                       | object       | 是       |                 |        | 参数信息,如{"token":"XXX","namespaceId":"default","username":"XXX","password":"xxx"} |
 
 
 

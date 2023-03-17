@@ -169,25 +169,25 @@ header：
 
 #### 配置参数说明
 
-| 参数             | 类型       | 是否必填 | 值可能性                                   | 说明                                                   |
-|----------------|----------|------|----------------------------------------|------------------------------------------------------|
-| name           | string   | 是    |                                        | 路由名称，格式：支持英文、数字、下划线                                  |
-| driver         | string   | 是    | grpc                                   |                                                      |
-| listen         | int      | 是    |                                        | 路由监听端口，需要和启动时配置的config.yml文件配合使用，当定义该文件未监听的端口时，该监听无效 |
-| host           | []string | 否    |                                        |  gRPC请求的主机名称，可为域名/ip，改值从gRPC请求的头部信息中的`:authority`中获取。                                                 |
-| service_name       | string   | 否   |                                        |   gRPC请求的服务名称，不填则匹配所有服务                                         |
-| method_name | string | 否 | gRPC请求的方法名称，不填则匹配所有方法
-| rules          | object数组 | 否    |                                        | 匹配参数规则，支持header                               |
-| rules -> type  | string   | 否    | header                           | 参数类型                                                 |
-| rules -> name  | string   | 否    |                                        | 参数名                                                  |
-| rules -> value | string   | 否    |                                        | 参数值                                                  |
-| service        | string   | 是    |                                        | 服务id                                                 |
-| template       | string   | 否    |                                        | 插件模版id                                               |
-| disable        | bool     | 否    | false                                  | 是否禁用路由                                               |
-| plugins        | object数组 | 否    |                                        | 插件列表                                                 |
-| retry          | int      | 否    | 0                                      | 超时重试次数                                               |
-| time_out       | int      | 否    |                                        | 超时时间，当为0时不设置超时，单位：ms，0为不设置超时                         |
-| description    | string   | 否    |                                        | 路由描述                                                 |
+| 参数名          | 值类型      | 是否必填 | 值可能性                                   | 默认值                                                | 说明                                                   |
+|----------------|----------|------|----------------------------------------|------------------------------------------------------|------------------------------------------------------|
+| name           | string   | 是    |                                        |                                   | 路由名称，格式：支持英文、数字、下划线                                  |
+| driver         | string   | 是    | grpc                                   |                                                      |                                                      |
+| listen         | int      | 是    |                                        |  | 路由监听端口，需要和启动时配置的config.yml文件配合使用，当定义该文件未监听的端口时，该监听无效 |
+| host           | []string | 否    |                                        |                                                   |  gRPC请求的主机名称，可为域名/ip，改值从gRPC请求的头部信息中的`:authority`中获取。                                                 |
+| service_name       | string   | 否   |                                        |                                            |   gRPC请求的服务名称，不填则匹配所有服务                                         |
+| method_name | string | 否 | gRPC请求的方法名称，不填则匹配所有方法|||
+| rules          | array_object | 否    |                                        |                                | 匹配参数规则，支持header                               |
+| rules -> type  | string   | 否    | header                           |                                                  | 参数类型                                                 |
+| rules -> name  | string   | 否    |                                        |                                                   | 参数名                                                  |
+| rules -> value | string   | 否    |                                        |                                                   | 参数值                                                  |
+| service        | string   | 是    |                                        |                                                  | 服务id                                                 |
+| template       | string   | 否    |                                        |                                                | 插件模版id                                               |
+| disable        | bool     | 否    | false                                  |                                                | 是否禁用路由                                               |
+| plugins        | array_object | 否    |                                        |                                                  | 插件列表                                                 |
+| retry          | int      | 否    |                                       | 0                                              | 超时重试次数                                               |
+| time_out       | int      | 否    |                                        | 0                        | 超时时间，当为0时不设置超时，单位：ms                         |
+| description    | string   | 否    |                                        |                                                  | 路由描述                                                 |
 
 
 **备注**：

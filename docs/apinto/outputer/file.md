@@ -17,17 +17,17 @@
 ### OpenAPI配置日志
 #### 配置参数说明
 
-| 参数        | 说明                                      | 是否必填 | 默认值 | 值可能性        |
-| ----------- | ----------------------------------------- | -------- | ------ | --------------- |
-| name        | 实例名                                    | 是       |        | string          |
-| driver      | 驱动名                                    | 是       |        | "file"   |
-| description | 描述                                      | 否       |        | string          |
-| file        | 日志文件的文件名                          | 是       |        | string          |
-| dir         | 日志文件的目录路径                        | 是       |        | string          |
-| period      | 更替日志文件的周期时间，可选day、hour其一 | 是       |        | ["day","hour"]  |
-| expire      | 旧日志文件的保存时间，单位为天            | 否       | 3      | int             |
-| type        | formatter的类型                           | 否       | "line" | ["line","json"] |
-| formatter   | formatter的输出内容                       | 是       |        | object          |
+| 参数名     | 值类型  | 是否必填 | 值可能性        | 默认值 | 说明                                      |
+| ----------- | -------- | ------ | ----------------------------------------- | --------------- | --------------- |
+| name        | string  | 是       |           |        | 实例名                                    |
+| driver      | string | 是       | file   |        | 驱动名                                    |
+| description | string | 否       |           |        | 描述                                      |
+| file        | string  | 是       |           |        | 日志文件的文件名                          |
+| dir         | string   | 是       |           |        | 日志文件的目录路径                        |
+| period      | string | 是       | ["day","hour"]  |        | 更替日志文件的周期时间，可选day、hour其一 |
+| expire      | int   | 否       |              | 3      | 旧日志文件的保存时间，单位为天            |
+| type        | string  | 否       | ["line","json"] | line | formatter的类型                           |
+| formatter   | object | 是       |           |        | formatter的输出内容                       |
 
 **注意**：
 

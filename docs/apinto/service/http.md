@@ -18,19 +18,19 @@
 #### 请求参数说明
 
 
-| 参数名              | 说明                                                         | 是否必填 | 默认值 | 值可能性        |
-| ------------------- | :----------------------------------------------------------- | -------- | ------ | --------------- |
-| name                | 实例名                                                       | 是       |        | string          |
-| driver              | 服务驱动类型                                                 | 是       |        | "http_proxy"    |
-| description         | 描述                                                         | 否       |        | string          |
-| scheme              | 请求所使用的协议                                             | 否       | http   | ["http","https"] |
-| retry               | 重试次数                                                     | 是       |        | int             |
-| timeout             | 超时时间，单位:毫秒                                          | 是       |        | int             |
-| discovery  | 服务发现ID                                                   | 否       |        | string          |
-| service           | 所在注册中心的服务名 或者 静态服务发现配置            | 否       |        | string          |
-| nodes | 匿名服务地址，可以填多个。配置格式是是静态接入地址及其权重，格式：addr weight。addr可以填域名或者ip地址。weight可省略，默认为1 | 否       |        | array_string    |
-| balance | 负载均衡算法，暂时只支持round-robin                          | 是       |        | string          |
-| plugins             | 插件配置                                                     | 否       |        | object          |
+| 参数名              | 值类型           | 是否必填 | 值可能性        | 默认值                                                      | 说明                                                         |
+| ------------------- | -------- | ------ | :----------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| name                | string          | 是       |           |                                                        | 实例名                                                       |
+| driver              | string        | 是       | "http_proxy"    |                                                  | 服务驱动类型                                                 |
+| description         | string   | 否       |           |                                                          | 描述                                                         |
+| scheme              | string        | 否       | ["http","https"] | http                                         | 请求所使用的协议                                             |
+| retry               | int            | 是       |              | 0                                                    | 重试次数                                                     |
+| timeout             | int          | 是       |              | 2000                                      | 超时时间，单位:毫秒                                          |
+| discovery  | string | 否       |           |                                                    | 服务发现ID                                                   |
+| service           | string     | 否       |           |             | 所在注册中心的服务名 或者 静态服务发现配置            |
+| nodes | array_string | 否       |     |  | 匿名服务地址，可以填多个。配置格式是是静态接入地址及其权重，格式：addr weight。addr可以填域名或者ip地址。weight可省略，默认为1 |
+| balance | string | 是       | ["round-robin","ip-hash"] | round-robin               | 负载均衡算法                          |
+| plugins             | object       | 否       |           |                                                      | 插件配置                                                     |
 
 **备注**：
 
@@ -60,7 +60,7 @@
 | discovery   | string       | 是       | 服务发现ID                                                   |
 | service     | string       | 是       | 所在注册中心的服务名 或者 静态服务发现配置                   |
 | nodes       | array_string | 是       | 匿名服务地址，可以填多个，配置格式是是静态接入地址及其权重，格式：addr weight。addr可以填域名或者ip地址。weight可省略，默认为1 |
-| balance     | string       | 是       | 负载均衡算法，暂时只支持round-robin                          |
+| balance     | string       | 是       | 负载均衡算法                                                 |
 | plugins     | object       | 是       | 插件配置                                                     |
 
 

@@ -1,7 +1,7 @@
 # prometheus输出器
 
 ### 功能描述
-能够配置多个自定义的prometheus指标来收集请求的信息。
+能够配置多个自定义的prometheus指标来收集请求的相关信息，向外部的Prometheus应用提供指标的收集接口。
 
 具备以下特性：
 
@@ -9,28 +9,30 @@
 * 可自定义指标的收集数据的类型
 * 可自定义指标的标签
 
-
+![](http://data.eolinker.com/course/fBpPdPX29c584a8348e6a0a7713f1158f7250b73f58b6c7.png)
 
 ### OpenAPI配置日志
 #### 配置参数说明
 
-| 参数        | 说明                                      | 是否必填 | 默认值 | 值可能性        |
-| ----------- | ----------------------------------------- | -------- | ------ | --------------- |
-| name        | 实例名                                    | 是       |        | string          |
-| driver      | 驱动名                                    | 是       |        | "prometheus" |
-| description | 描述                                      | 否       |        | string          |
-| scopes   | 作用域                                    | 否       |        | array_string |
-| path     | Metrics请求路径            | 是       |        | string          |
-| metrics | 指标列表                                  | 是       |        | array_object |
-| metrics->metric | 指标名       | 是     |     | string                                                       |
-| metrics->description | 指标描述                         | 是      |  | ["line","json"] |
-| metrics->collector | 收集类型     | 是       |        | 可选其一：["request_total","request_timing","request_retry","request_req","request_resp","proxy_total","proxy_timing","proxy_req","proxy_resp"] |
-| metrics->objectives | quantiles分位数值配置,每个quantile用,分隔 | 否 | "0.5:0.05,0.9:0.01,0.99:0.001" | string |
-| metrics->labels | 标签列表 | 是 | | array_string |
+| 参数名     | 值类型 | 是否必填 | 值可能性        | 默认值 | 说明                                      |
+| ----------- | ----------------------------------------- | ------ | :------- | --------------- | --------------- |
+| name        | string  | 是       |           |        | 实例名                                    |
+| driver      | string | 是       | prometheus |        | 驱动名                                    |
+| description | string | 否       |           |        | 描述                                      |
+| scopes   | array_string | 否       |  |        | 作用域                                    |
+| path     | string | 是       |           |        | Metrics请求路径            |
+| metrics | array_object | 是       |  |        | 指标列表                                  |
+| metrics->metric | string | 是     |                                                        |     | 指标名       |
+| metrics->description | string | 是      | ["line","json"] |  | 指标描述                         |
+| metrics->collector | string | 是       | 可选其一：["request_total","request_timing","request_retry","request_req","request_resp","proxy_total","proxy_timing","proxy_req","proxy_resp"] |        | 收集类型     |
+| metrics->objectives | string | 否 |  | "0.5:0.05,0.9:0.01,0.99:0.001" | quantiles分位数值配置,每个quantile用,分隔 |
+| metrics->labels | array_string | 是 |  | | 标签列表 |
 
 **备注**：
 
-* 指标名`metric`，Metrics请求路径`path`不可重复
+* 同一输出器下，指标名`metric`不可重复
+
+* 不同输出器下，Metrics请求路径`path`不可重复
 
 * 多个指标可以配置相同的收集类型`collector`
 
@@ -174,5 +176,9 @@ curl -X POST 'http://127.0.0.1:9400/api/output' -H 'Content-Type:application/jso
 
 ### prometheus输出器使用
 
-prometheus输出器可通过绑定至prometheus插件来收集指标信息，之后prometheus调用输出器配置的metrics路径后可获取配置的相关指标信息。[点此](/docs/apinto/plugins/prometheus.md)跳转至prometheus插件。
+![](http://data.eolinker.com/course/eUCrM7n00732bf46a30d528853f7da77273d513639e8fe5.png)
+
+通过prometheus插件绑定prometheus输出器，输出器能够接收并处理来自prometheus插件的相关指标信息。外部的Prometheus应用调用输出器配置的metrics路径即可获取收集的指标信息。
+
+[点此](/docs/apinto/plugins/prometheus.md)跳转至prometheus插件。
 
