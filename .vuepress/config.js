@@ -258,6 +258,7 @@ function dashboard_v2() {
       text: '快速开始',
       collapsible: true,
       children: [
+        '/docs/' + name + '/quick/arrange.md',
         '/docs/' + name + '/quick/quick_start.md',
       ],
     },
