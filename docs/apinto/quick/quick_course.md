@@ -148,7 +148,7 @@ curl -X POST http://127.0.0.1:9400/api/router \
     "rules": [{
         "location": "/demo"
     }],
-    "target": "apintoapi@service"
+    "service": "apintoapi@service"
 }'
 ```
 
