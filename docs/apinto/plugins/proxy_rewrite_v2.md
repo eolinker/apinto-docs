@@ -138,9 +138,7 @@ curl -X POST  'http://127.0.0.1:9400/api/router' \
     "name":"proxy_rewrite_v2_router",
     "driver":"http",
     "listen":8099,
-    "rules":[{
-        "location":"/old-prefix/demo"
-    }],
+    "location":"/old-prefix/demo",
     "target":"proxy_rewrite_v2_service@service"
 }'
 ```

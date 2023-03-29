@@ -100,9 +100,7 @@ curl -X POST 'http://127.0.0.1:9400/api/router' -H 'Content-Type:application/jso
   "driver": "http",
   "description": "该路由的目标服务使用了流控插件",
   "listen": 8099,
-  "rules": [{
-	"location": "/demo/rate_limiting_service"
-  }],
+  "location": "/demo/rate_limiting_service",
   "target": "rate_limiting_service@service"
 }'
 ```

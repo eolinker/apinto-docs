@@ -141,9 +141,7 @@ curl -X POST  'http://127.0.0.1:9400/api/router' \
     "name":"circuit_breaker_router",
     "driver":"http",
     "listen":8099,
-    "rules":[{
-        "location":"/demo/circuit_breaker"
-    }],
+    "location":"/demo/circuit_breaker",
     "target":"circuit_breaker_service@service"
 }'
 ```

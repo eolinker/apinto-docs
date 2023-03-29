@@ -123,9 +123,7 @@ curl -X POST  'http://127.0.0.1:9400/api/router' \
     "name":"extra_params_router",
     "driver":"http",
     "listen":8099,
-    "rules":[{
-        "location":"/demo/extra_params"
-    }],
+    "location":"/demo/extra_params",
     "target":"extra_param_service@service"
 }'
 ```

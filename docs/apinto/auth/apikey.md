@@ -172,9 +172,7 @@ curl -X POST  \
 	"driver": "http",
 	"description": "该路由的目标服务使用了apikey鉴权",
 	"listen": 8099,
-	"rules": [{
-		"location": "/demo/apikey"
-	}],
+	"location": "/demo/apikey",
 	"target": "apikey_service@service"
 }'
 ```

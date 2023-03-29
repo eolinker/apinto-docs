@@ -248,9 +248,7 @@ curl -X POST 'http://127.0.0.1:9400/api/router' \
 	"driver": "http",
 	"description": "该路由的目标服务使用了jwt鉴权",
 	"listen": 8099,
-	"rules": [{
-		"location": "/demo/jwt"
-	}],
+	"location": "/demo/jwt",
 	"target": "jwt_service@service"
 }'
 ```

@@ -98,9 +98,7 @@ curl -X POST  'http://127.0.0.1:9400/api/router' \
     "name":"access_log_router",
     "driver":"http",
     "listen":8099,
-    "rules":[{
-        "location":"/demo/access_log"
-    }],
+    "location":"/demo/access_log",
     "target":"access_log_service@service"
 }'
 ```

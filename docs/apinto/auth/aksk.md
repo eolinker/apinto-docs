@@ -473,9 +473,7 @@ curl -X POST  \
 	"description": "该路由的目标服务使用了aksk鉴权",
 	"listen": 8099,
 	"host": ["www.demo.com"],
-	"rules": [{
-		"location": "/demo/login"
-	}],
+	"location": "/demo/login",
 	"target": "aksk_service@service"
 }'
 ```

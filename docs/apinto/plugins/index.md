@@ -241,9 +241,7 @@ curl -X POST  'http://127.0.0.1:9400/api/router' \
 	"name":"params_router",
 	"driver":"http",
 	"listen":8099,
-	"rules":[{
-	"location":"/plugin/extra_params"
-	}],
+	"location":"/plugin/extra_params",
 	"target":"extra_param_service@service"
 }'
 ```
@@ -332,9 +330,7 @@ curl -X POST  'http://127.0.0.1:9400/api/router' \
   "name":"params_router",
   "driver":"http",
   "listen":8099,
-  "rules":[{
-	"location":"/plugin/global/extra_params"
-  }],
+  "location":"/plugin/global/extra_params",
   "target":"extra_param_service@service"
 }'
 ```

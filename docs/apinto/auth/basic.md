@@ -161,9 +161,7 @@ curl -X POST  \
 	"driver": "http",
 	"description": "创建使用鉴权basic服务的路由",
 	"listen": 8099,
-	"rules": [{
-		"location": "/demo/basic"
-	}],
+	"location": "/demo/basic",
 	"target": "basic_service@service"
 }'
 ```
