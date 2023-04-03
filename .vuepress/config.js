@@ -268,6 +268,7 @@ function dashboard_v2() {
       children: [
         '/docs/' + name + '/basic/cluster.md',
         '/docs/' + name + '/basic/env.md',
+        '/docs/' + name + '/basic/plugin.md',
       ],
     },
     {
@@ -283,6 +284,7 @@ function dashboard_v2() {
       collapsible: true,
       children: [
         '/docs/' + name + '/api/api.md',
+        '/docs/' + name + '/api/plugin-template.md',
       ],
     },
     {
