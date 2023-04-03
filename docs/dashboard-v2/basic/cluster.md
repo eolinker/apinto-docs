@@ -36,7 +36,7 @@
 
 * 插件列表
 
-![](http://data.eolinker.com/course/7BGtwar37b8e2c53dfd2f5dfb132e149a164d1d2a2423a3.png)
+![](http://data.eolinker.com/course/fwH4VHz5df1b578175c873daddf31ddecfecc37b978ac81.gif)
 插件来源于插件管理的数据，默认状态为禁用，发布状态为未发布；原已使用的插件如app、灰度、访问、熔断等插件，状态是全局，不可修改，发布状态为已发布，且配置按钮置灰。
 
 插件名称中的新：表示着插件管理那里添加了一个插件，会自动同步到网关集群，表示新插件
