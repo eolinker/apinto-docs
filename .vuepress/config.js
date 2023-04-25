@@ -318,6 +318,11 @@ function dashboard_v2() {
       children: [
         '/docs/' + name + '/system/external-application.md',
       ],
+
+    },
+    {
+      text: 'FAQ',
+      link: '/docs/'+ name + '/faq/dashboard_v2.md',
     },
   ]
 }
