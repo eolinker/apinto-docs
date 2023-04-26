@@ -15,46 +15,46 @@
 示例配置如下
 ```json
 {
-    "plugins": {
-        "extra_params": {
-            "disable": false,
-            "config": {
-                "error_type": "json",
-                "params": [
-                    {
-                        "conflict": "origin",
-                        "name": "header1",
-                        "position": "header",
-                        "value": "header1"
-                    },
-                    {
-                        "conflict": "origin",
-                        "name": "query1",
-                        "position": "query",
-                        "value": "query1"
-                    },
-                    {
-                        "conflict": "origin",
-                        "name": "body1",
-                        "position": "body",
-                        "value": "body1"
-                    }
-                ]
-            }
-        },
-        "rate_limiting": {
-            "disable": false,
-            "config": {
-                "day": 0,
-                "hide_client_header": false,
-                "hour": 0,
-                "minute": 0,
-                "response_type": "json",
-                "second": 5
-            }
-        }
+  "plugins": {
+    "extra_params": {
+      "disable": false,
+      "config": {
+        "error_type": "json",
+        "params": [
+          {
+            "conflict": "origin",
+            "name": "header1",
+            "position": "header",
+            "value": "header1"
+          },
+          {
+            "conflict": "origin",
+            "name": "query1",
+            "position": "query",
+            "value": "query1"
+          },
+          {
+            "conflict": "origin",
+            "name": "body1",
+            "position": "body",
+            "value": "body1"
+          }
+        ]
+      }
     },
-    "description": "示例模版"
+    "rate_limiting": {
+      "disable": false,
+      "config": {
+        "day": 0,
+        "hide_client_header": false,
+        "hour": 0,
+        "minute": 0,
+        "response_type": "json",
+        "second": 5
+      }
+    }
+  },
+  "description": "示例模版"
 }
 ```
 
@@ -65,39 +65,39 @@
 全局插件列表配置如下
 ```json
 {
-    "plugins": [
-        {
-            "config": {
-                "error_type": "json",
-                "params": []
-            },
-            "id": "eolinker.com:apinto:extra_params",
-            "init_config": {},
-            "name": "extra_params",
-            "status": "enable"
-        },
-        {
-            "config": {
-                "day": 0,
-                "hide_client_header": false,
-                "hour": 0,
-                "minute": 0,
-                "response_type": "text",
-                "second": 0
-            },
-            "id": "eolinker.com:apinto:rate_limiting",
-            "init_config": {},
-            "name": "rate_limiting",
-            "status": "enable"
-        },
-        {
-            "config": {},
-            "id": "eolinker.com:apinto:plugin_app",
-            "init_config": {},
-            "name": "app",
-            "status": "enable"
-        }
-    ]
+  "plugins": [
+    {
+      "config": {
+        "error_type": "json",
+        "params": []
+      },
+      "id": "eolinker.com:apinto:extra_params",
+      "init_config": {},
+      "name": "extra_params",
+      "status": "enable"
+    },
+    {
+      "config": {
+        "day": 0,
+        "hide_client_header": false,
+        "hour": 0,
+        "minute": 0,
+        "response_type": "text",
+        "second": 0
+      },
+      "id": "eolinker.com:apinto:rate_limiting",
+      "init_config": {},
+      "name": "rate_limiting",
+      "status": "enable"
+    },
+    {
+      "config": {},
+      "id": "eolinker.com:apinto:plugin_app",
+      "init_config": {},
+      "name": "app",
+      "status": "enable"
+    }
+  ]
 }
 ```
 1、新增插件模版

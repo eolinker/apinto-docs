@@ -1,6 +1,14 @@
 # Apinto Dashboard
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/eolinker/apinto-dashboard)](https://goreportcard.com/report/github.com/eolinker/apinto-dashboard) [![Releases](https://img.shields.io/github/release/eolinker/apinto-dashboard/all.svg?style=flat-square)](https://github.com/eolinker/apinto-dashboard/releases) [![LICENSE](https://img.shields.io/github/license/eolinker/Apinto-dashboard.svg?style=flat-square)](https://github.com/eolinker/apinto-dashboard/blob/main/LICENSE) ![](https://shields.io/github/downloads/eolinker/apinto-dashboard/total) ![Star](https://img.shields.io/github/stars/eolinker/apinto-dashboard)
+<div class="[&>p]-flex [&>p]-gap-2">
+
+[![Go Report Card](https://goreportcard.com/badge/github.com/eolinker/apinto-dashboard)](https://goreportcard.com/report/github.com/eolinker/apinto-dashboard)
+[![Releases](https://img.shields.io/github/release/eolinker/apinto-dashboard/all.svg?style=flat-square)](https://github.com/eolinker/apinto-dashboard/releases) 
+[![LICENSE](https://img.shields.io/github/license/eolinker/Apinto-dashboard.svg?style=flat-square)](https://github.com/eolinker/apinto-dashboard/blob/main/LICENSE) 
+![](https://shields.io/github/downloads/eolinker/apinto-dashboard/total) 
+![Star](https://img.shields.io/github/stars/eolinker/apinto-dashboard)
+
+</div>
 
 * **Apinto Dashboard**项目**main**分支与**Apinto**项目**main**分支同步更新
 

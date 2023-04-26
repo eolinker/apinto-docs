@@ -1,8 +1,4 @@
----
-home: true
-title: Contributor
----
-## Apinto 项目
+# Apinto 项目
 - apinto
   - 描述：apinto开源网关主项目，负责网关核心内容，包括转发、安全防护、流量控制、监控等功能
   - 地址：https://github.com/eolinker/apinto
@@ -24,6 +20,7 @@ title: Contributor
 - apinto-custom-plugin
   - 描述：自定义插件，开发者可根据插件开发文档开发扩展插件，当插件提交到插件市场时，也可获得贡献者的标志
   - 教程：Apinto Gateway 用户手册
+
 ## 贡献者
   对于Apinto项目中的任何项目，如果有一个PR合并，那么他就是一个贡献者。新的贡献者应该受到现有成员的欢迎，在公共工作流程中得到帮助，并被引导到相关的文档和沟通渠道。提交PR的人自动具有贡献者的标签。  
 
@@ -42,5 +39,5 @@ title: Contributor
   贡献者详情可前往 [Apinto Contributor](https://github.com/eolinker/apinto/graphs/contributors)
 
 
-## 已有贡献者
-<Contributor />
+<!-- ## 已有贡献者 -->
+<!-- <Contributor /> -->

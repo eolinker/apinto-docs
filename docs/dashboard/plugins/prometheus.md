@@ -43,7 +43,7 @@
 
 ![](http://data.eolinker.com/course/v8SRWh57d8892fd84174cb815c15bd54e70b30541c5d26a.gif)
 
-全局插件具体配置点此进行[跳转](/docs/dashboard/plugins)。
+全局插件具体配置点此进行[跳转](/docs/dashboard/plugins/)。
 
 
 

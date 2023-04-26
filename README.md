@@ -3,7 +3,7 @@ Apinto document project, which includes the use tutorials, development documents
 
 # README
 
-本文档由 [VuePress](https://v2.vuepress.vuejs.org/) 搭建
+本文档由 [Vitepress](https://vitepress.dev/) 搭建
 
 ### 项目结构
 
@@ -11,13 +11,15 @@ Apinto document project, which includes the use tutorials, development documents
 .
 ├── README.md       # 本文档
 ├── index.md        # 首页
-├── components/     # markdown 文档中需要运行的vue组件，例如定制化的首页
-├── .vuepress/      # vuepress配置，构建后的静态资源也在该文件夹下。
-├── assets/         # 静态资源，主要是放置图片
+├── .vitepress/      # vuepress配置，构建后的静态资源也在该文件夹下。
+│   ├─ theme
+│   │  ├─ components/ # markdown 文档中需要运行的vue组件，例如定制化的首页
+│   │  └─ index.ts   # 主题入口
+│   └─ config.ts     # 主题配置
 ├── public/         # 不需要编译的公共资源，如 favicon.ico,logo等
 ├── docs/           # 各详细文档
 ├── package.json    # 依赖配置
-└── yarn.lock       # 依赖配置
+└── pnpm-lock.lock  # 依赖配置
 ```
 
 ### 如何开始编辑
@@ -26,17 +28,17 @@ Apinto document project, which includes the use tutorials, development documents
 
 环境准备： 需要安装12.20.0或14.13.0或大于等于15.0.0版本的node
 
-依赖安装：确保项目下`package.json`文件内的依赖已用yarn安装。
+依赖安装：确保项目下`package.json`文件内的依赖已用`pnpm`安装。
 
 #### 第二步
 
-运行 VuePress 环境
+运行 Vitepress 环境
 
 ```bash
-$ yarn dev
+$ pnpm dev
 ```
 
-运行成功后，可以在`localhost:8080/`实时查看编辑结果。
+运行成功后，可以在`localhost:5173/`实时查看编辑结果。
 
 #### 第三步
 
@@ -71,9 +73,9 @@ VuePress 提供了一些配置选项，用于控制`.md`文档的细节，目前
 构建命令为：
 
 ```bash
-$ yarn build
+$ pnpm build
 ```
 
-构建成功后，会在`/.vuepress`下创建名为 `dist/`的文件夹，其中内容即是构建后的静态资源，如果需要在本地预览，可以运行`yarn dev`命令，在本地临时启动一个静态资源服务器，即可预览构建后的最终效果。
+构建成功后，会在根目录下创建名为 `dist/`的文件夹，其中内容即是构建后的静态资源，如果需要在本地预览，可以运行`pnpm preview`命令，在本地临时启动一个静态资源服务器，即可预览构建后的最终效果。
 
 也可以将`dist/`中的内容放置到正式服务器上浏览。
