@@ -31,7 +31,7 @@
 
 ![](http://data.eolinker.com/course/2ztpj3G3bb1d01b0e659f3efdcae1928dc0b4389f3f1f37.gif)
 
-5、路由绑定服务，教程[跳转](/docs/dashboard/router)
+5、路由绑定服务，教程[跳转](/docs/dashboard/router/http)
 
 6、请求接口，并带上以下头部信息
 |Header|描述|值可能性|

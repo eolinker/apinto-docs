@@ -76,7 +76,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 
 **配置说明**：将转发请求的路径`uri`进行正则替换，如：/path/a/b替换成/path/b/a ,`host`设置为 `www.eolink.com`，同时请求头部中删掉`a` 和新增`b:1`。
 
-全局插件具体配置点此进行[跳转](/docs/apinto/plugins)。
+全局插件具体配置点此进行[跳转](/docs/apinto/plugins/)。
 
 **备注**：匿名服务配置的是apinto官方示例接口，将返回请求的相关信息。
 

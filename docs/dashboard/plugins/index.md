@@ -4,7 +4,7 @@
 若在多个模块配置了同一个插件，则**配置优先级**为：路由>服务>全局，且同个插件只生效一次。
 `即路由和服务均配置同一个插件，最终会以路由的配置为准`
 
-插件执行流程及其更多细节[点此](/docs/apinto/plugins/index.md)进行跳转。
+插件执行流程及其更多细节[点此](/docs/apinto/plugins/)进行跳转。
 
 **备注**：
 
@@ -15,21 +15,21 @@
 
 | 插件名称                                                            | 字段名                  | 说明                                                                 |
 |-----------------------------------------------------------------|----------------------|--------------------------------------------------------------------|
-| [额外参数](/docs/dashboard/plugins/extra_params.md)                 | extra_params         | 转发时在请求中携带自定义参数                                                     |
-| [参数映射](/docs/dashboard/plugins/params_transformer.md)           | params_transformer   | 转发时将请求中的原参数映射成自定义参数                                                |
-| [转发重写](/docs/dashboard/plugins/proxy_rewrite.md)                | proxy_rewrite        | 转发时对请求的host、scheme、uri进行重写，同时能在请求头加入自定义参数                          |
-| [http-mocking](/docs/dashboard/plugins/http-mocking.md)                | http-mocking       |   当执行该插件时，它将随机返回指定格式的模拟数据，并且请求不会转发到上游。                     |
-| [dubbo2协议转发重写](/docs/dashboard/plugins/dubbo2-proxy-rewrite.md) | dubbo2-proxy-rewrite | 转发时，对dubbo2协议请求的service_name、method_name进行重写，同时能对attachment加入自定义参数 |
-| [http协议转dubbo2协议](/docs/dashboard/plugins/http-to-dubbo2.md)    | http-to-dubbo2       | 将http请求转换成dubbo2请求                                                 |
-| [dubbo2协议转http协议](/docs/dashboard/plugins/dubbo2-to-http.md)    | dubbo2-to-http       | 将dubbo2请求转换成http请求                                                 |
-| [IP黑白名单](/docs/dashboard/plugins/ip_restriction.md)             | ip_restriction       | 对访问的客户端ip进行黑白限制                                                    |
-| [流量控制](/docs/dashboard/plugins/rate_limiting.md)                | rate_limiting        | 控制请求在单位时间内的访问次数                                                    |
-| [鉴权](/docs/dashboard/plugins/auth.md)                           | auth                 | 对请求进行权限校验                                                          |
-| [响应重写](/docs/dashboard/plugins/response_rewrite.md)             | response_rewrite     | 用于重写网关返回的状态码、响应体、头部                                                |
-| [API熔断](/docs/dashboard/plugins/circuit_breaker.md)             | circuit_breaker      | 用于停止对不可用API的转发                                                     |
-| [跨域CORS](/docs/dashboard/plugins/cors.md)                       | cors                 | 设置跨域的头部字段，实现跨域功能                                                   |
-| [gzip压缩](/docs/dashboard/plugins/gzip.md)                       | gzip                 | 将响应进行gzip压缩，以提高传输效率                                                |
-| [access_log](/docs/dashboard/plugins/access_log.md)             | access_log           | 记录到达网关的http请求的访问日志                                                 |
+| [额外参数](/docs/dashboard/plugins/extra_params)                 | extra_params         | 转发时在请求中携带自定义参数                                                     |
+| [参数映射](/docs/dashboard/plugins/params_transformer)           | params_transformer   | 转发时将请求中的原参数映射成自定义参数                                                |
+| [转发重写](/docs/dashboard/plugins/proxy_rewrite)                | proxy_rewrite        | 转发时对请求的host、scheme、uri进行重写，同时能在请求头加入自定义参数                          |
+| [http-mocking](/docs/dashboard/plugins/http-mocking)                | http-mocking       |   当执行该插件时，它将随机返回指定格式的模拟数据，并且请求不会转发到上游。                     |
+| [dubbo2协议转发重写](/docs/dashboard/plugins/dubbo2-proxy-rewrite) | dubbo2-proxy-rewrite | 转发时，对dubbo2协议请求的service_name、method_name进行重写，同时能对attachment加入自定义参数 |
+| [http协议转dubbo2协议](/docs/dashboard/plugins/http-to-dubbo2)    | http-to-dubbo2       | 将http请求转换成dubbo2请求                                                 |
+| [dubbo2协议转http协议](/docs/dashboard/plugins/dubbo2-to-http)    | dubbo2-to-http       | 将dubbo2请求转换成http请求                                                 |
+| [IP黑白名单](/docs/dashboard/plugins/ip_restriction)             | ip_restriction       | 对访问的客户端ip进行黑白限制                                                    |
+| [流量控制](/docs/dashboard/plugins/rate_limiting)                | rate_limiting        | 控制请求在单位时间内的访问次数                                                    |
+| [鉴权](/docs/dashboard/plugins/auth)                           | auth                 | 对请求进行权限校验                                                          |
+| [响应重写](/docs/dashboard/plugins/response_rewrite)             | response_rewrite     | 用于重写网关返回的状态码、响应体、头部                                                |
+| [API熔断](/docs/dashboard/plugins/circuit_breaker)             | circuit_breaker      | 用于停止对不可用API的转发                                                     |
+| [跨域CORS](/docs/dashboard/plugins/cors)                       | cors                 | 设置跨域的头部字段，实现跨域功能                                                   |
+| [gzip压缩](/docs/dashboard/plugins/gzip)                       | gzip                 | 将响应进行gzip压缩，以提高传输效率                                                |
+| [access_log](/docs/dashboard/plugins/access_log)             | access_log           | 记录到达网关的http请求的访问日志                                                 |
 
 ### 在全局配置插件
 

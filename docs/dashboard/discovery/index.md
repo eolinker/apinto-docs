@@ -17,7 +17,7 @@
 ### 支持的服务发现
 | 功能                                            | driver配置字段 | 类型     |
 |-----------------------------------------------| -------------- |--------|
-| [consul](/docs/dashboard/discovery/consul.md) | consul         | 动态服务发现 |
-| [eureka](/docs/dashboard/discovery/eureka.md)    | eureka         | 动态服务发现 |
-| [nacos](/docs/dashboard/discovery/nacos.md)      | nacos          | 动态服务发现 |
-| [静态服务发现](/docs/dashboard/discovery/static.md)    | static         | 静态服务   |
+| [consul](/docs/dashboard/discovery/consul) | consul         | 动态服务发现 |
+| [eureka](/docs/dashboard/discovery/eureka)    | eureka         | 动态服务发现 |
+| [nacos](/docs/dashboard/discovery/nacos)      | nacos          | 动态服务发现 |
+| [静态服务发现](/docs/dashboard/discovery/static)    | static         | 静态服务   |

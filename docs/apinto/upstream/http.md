@@ -28,7 +28,7 @@
 
 支持consul、nacos、eureka及静态服务发现。
 
-服务发现配置教程[点此](/docs/apinto/discovery)进行跳转
+服务发现配置教程[点此](/docs/apinto/discovery/)进行跳转
 
 ### OpenAPI配置负载
 

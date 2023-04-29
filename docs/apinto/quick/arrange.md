@@ -26,7 +26,7 @@ Apinto支持在arm64、amd64架构上运行。
 apinto start
 ```
 
-**备注**：若网关启动不成功可以在/var/log/apinto目录下的日志文件排查原因，一般是路由监听端口被占用的情况，可以在apinto执行文件相同目录下的config.yml修改路由监听端口，具体配置详情[点此跳转](/docs/apinto/quick/quick_course.md)。
+**备注**：若网关启动不成功可以在/var/log/apinto目录下的日志文件排查原因，一般是路由监听端口被占用的情况，可以在apinto执行文件相同目录下的config.yml修改路由监听端口，具体配置详情[点此跳转](/docs/apinto/quick/quick_course)。
 
 ## 编译源码进行安装
 访问https://github.com/eolinker/apinto ，下载源码后可执行编译脚本或者打包成安装包
@@ -72,7 +72,7 @@ APINTO容器有两个可挂载的目录：
 
 * `/etc/apinto`:存放了config.yml文件，该文件用于指定节点的路由监听端口，ssl证书等信息。详细信息
 
-  [点此](/docs/apinto/quick/quick_course.md )进行跳转。
+  [点此](/docs/apinto/quick/quick_course )进行跳转。
 
 **备注**：`/etc/apinto`目录不挂载的话将会使用默认配置文件，默认admin端口为9400，http端口为8080。
 

@@ -47,7 +47,7 @@
 
 ### 配置额外参数全局插件
 
-开启插件教程[点此](/docs/dashboard/plugins/index.md)进行跳转。
+开启插件教程[点此](/docs/dashboard/plugins/)进行跳转。
 
 ![](http://data.eolinker.com/course/5KvDHZs12fa33a027fc4d08dba4322b5d01814723d5aee9.gif)
 

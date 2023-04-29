@@ -11,7 +11,7 @@
 
 ![](http://data.eolinker.com/course/eUCrM7n00732bf46a30d528853f7da77273d513639e8fe5.png)
 
-**备注**：输出器的教程[点此](/docs/dashboard/outputer/prometheus.md)进行跳转。
+**备注**：输出器的教程[点此](/docs/dashboard/outputer/prometheus)进行跳转。
 
 #### 配置参数说明
 

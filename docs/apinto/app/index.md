@@ -4,14 +4,14 @@
 
   * 应用是对请求来源的抽象概念，其可以是一个客户端App，也可以是一个后端服务，还可以是Web App......
   * 请求达到网关时，会先进行鉴权检验，鉴权通过后，将匹配唯一应用，并进行应用设置的规定行为，包括但不限于流量限制、数据修饰（额外参数、格式转换等）、访问控制等。
-  * 该模块需要配合全局插件 **eolinker.com:apinto:plugin_app** 使用，插件配置请参考[应用插件](/docs/apinto/plugins/app.md)
+  * 该模块需要配合全局插件 **eolinker.com:apinto:plugin_app** 使用，插件配置请参考[应用插件](/docs/apinto/plugins/app)
 
 ## 配置说明
 | 参数名      | 值类型                     | 是否必填 | 值可能性 | 默认值 | 说明                                                         |
 | ----------- | -------------------------- | -------- | -------- | ------ | ------------------------------------------------------------ |
 | description | string                     | 否       |          |        | 应用描述                                                     |
-| auth        | array_object               | 是       |          |        | 鉴权配置，详细配置请阅读[鉴权文档](/docs/apinto/app/auth.md) |
-| additional  | array_object               | 是       |          |        | 额外参数配置，详细配置请阅读[额外参数文档](/docs/apinto/app/extra-param.md) |
+| auth        | array_object               | 是       |          |        | 鉴权配置，详细配置请阅读[鉴权文档](/docs/apinto/app/auth) |
+| additional  | array_object               | 是       |          |        | 额外参数配置，详细配置请阅读[额外参数文档](/docs/apinto/app/extra-param) |
 | disable     | bool                       | 否       |          | false  | 是否禁用该应用                                               |
 | labels      | object (map[string]string) | 否       |          |        | 应用标签                                                     |
 

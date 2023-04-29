@@ -6,9 +6,9 @@
 > * 对请求进行防篡改验证
 >
 > 如果需要了解其他鉴权，可点击对应文档链接：
-> * [Apikey](/docs/apinto/app/auth/apikey.md)
-> * [Basic](/docs/apinto/app/auth/basic.md)
-> * [JWT](/docs/apinto/app/auth/jwt.md)
+> * [Apikey](/docs/apinto/app/auth/apikey)
+> * [Basic](/docs/apinto/app/auth/basic)
+> * [JWT](/docs/apinto/app/auth/jwt)
 
 ## 配置说明
 | 参数名                   | 值类型                     | 是否必填 | 值可能性 | 默认值 | 说明                                                         |
@@ -64,7 +64,7 @@
 
 
 
-AK/SK鉴权需要搭配应用使用，详情请点击[应用](/docs/apinto/app/index.md)
+AK/SK鉴权需要搭配应用使用，详情请点击[应用](/docs/apinto/app/)
 
 
 ## AK/SK流程概述

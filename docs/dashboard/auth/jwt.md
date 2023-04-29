@@ -37,7 +37,7 @@
 4、绑定上游服务/路由，此处示例以绑定上游服务为例，凡匹配到该上游服务的请求都需要进行鉴权
 ![](http://data.eolinker.com/course/AB2b1AI055865a7c82fee1a76222c2a595e5fcfca6c79e8.gif)
 
-5、路由绑定服务，教程[跳转](/docs/dashboard/router)
+5、路由绑定服务，教程[跳转](/docs/dashboard/router/http)
 
 6、请求接口，并带上以下头部信息
 |Header|描述|值可能性|

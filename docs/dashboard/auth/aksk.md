@@ -339,7 +339,7 @@ curl -X GET "http://www.demo.com:6689/demo/login?parm1=value1&parm2=" \
 
 ![](http://data.eolinker.com/course/QGv56Bme86fe5553ffa684149fdbbf0e869fd4cf9cbb5a8.gif)
 
-5、路由绑定服务，教程[跳转](/docs/dashboard/router)
+5、路由绑定服务，教程[跳转](/docs/dashboard/router/http)
 
 6、请求接口，并带上以下头部信息
 |Header|描述|值可能性|

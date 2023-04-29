@@ -23,7 +23,7 @@ HTTP输出器能够将程序运行中产生的日志内容会被封装成http请
 
 **注意**：
 
-* formatter的配置教程[点此](/docs/formatter)进行跳转
+* formatter的配置教程[点此](/docs/apinto/formatter/)进行跳转
 
 
 
@@ -101,4 +101,4 @@ curl -X POST  \
 
 ### HTTP输出器使用
 
-HTTP输出器可用于access-log插件的日志输出，[点此](/docs/apinto/plugins/access_log.md)跳转至access-log插件。
+HTTP输出器可用于access-log插件的日志输出，[点此](/docs/apinto/plugins/access_log)跳转至access-log插件。

@@ -11,7 +11,7 @@
 
 ![](http://data.eolinker.com/course/eUCrM7n00732bf46a30d528853f7da77273d513639e8fe5.png)
 
-**备注**：输出器的教程[点此](/docs/apinto/outputer/prometheus.md)进行跳转。
+**备注**：输出器的教程[点此](/docs/apinto/outputer/prometheus)进行跳转。
 
 #### 配置参数说明
 
@@ -73,7 +73,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 }'
 ```
 
-全局插件具体配置点此进行[跳转](/docs/apinto/plugins)。
+全局插件具体配置点此进行[跳转](/docs/apinto/plugins/)。
 
 
 

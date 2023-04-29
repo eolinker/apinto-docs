@@ -32,7 +32,7 @@
 **注意**：
 
 * period字段：表示新建一个日志文件的周期时间，新建日志文件的同时会将旧日志文件的文件名由filename.log修改为filename-文件修改时间.log
-* formatter的配置教程[点此](/docs/formatter)进行跳转
+* formatter的配置教程[点此](/docs/apinto/formatter/)进行跳转
 
 
 
@@ -106,5 +106,5 @@ curl -X POST  \
 
 ### 文件输出器使用
 
-文件输出器可用于access-log插件的日志输出，[点此](/docs/apinto/plugins/access_log.md)跳转至access-log插件。
+文件输出器可用于access-log插件的日志输出，[点此](/docs/apinto/plugins/access_log)跳转至access-log插件。
 

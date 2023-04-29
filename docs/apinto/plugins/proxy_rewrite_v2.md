@@ -91,7 +91,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 
 **配置说明**：将转发请求的路径`path`前缀`/old-prefix`替换成`/new-prefix`,若替换失败则转发失败返回报错。并且将host重写为`www.eolink.com`同时请求头部新增`a:1`。
 
-全局插件具体配置点此进行[跳转](/docs/apinto/plugins)。
+全局插件具体配置点此进行[跳转](/docs/apinto/plugins/)。
 
 **备注**：匿名服务配置的是apinto官方示例接口，将返回请求的相关信息。
 

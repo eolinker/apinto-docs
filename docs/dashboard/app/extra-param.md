@@ -18,4 +18,4 @@
 | 参数存在替换规则 | string                     | 当参数已经存在，执行当冲突解决策略。参数值可能性：`origin`、`convert`、`error`<br/>* origin：使用原始值<br/>* convert：使用额外参数设置的值<br/>* error：不转发，返回冲突报错 |
 | 额外参数标签   | object (map[string]string) | 参数额外标签                                                                                                                 |
 
-该额外参数需要搭配应用使用，详情点击[应用](/docs/apinto/app/index.md）
+该额外参数需要搭配应用使用，详情点击[应用](/docs/apinto/app/）

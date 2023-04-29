@@ -40,7 +40,7 @@
 * **nodes参数配置说明**：匿名服务地址，字符串数组。格式为：**addr weight=num**。addr可以填域名或者ip地址。weight可省略，默认为1。如`["172.17.0.3","172.17.0.4:80 weight=10","demoHost.com weight=100"]`
 * 若使用服务发现则需要填写`discovery`和`service`；使用匿名服务则填写`nodes`。
 * 服务发现和匿名服务必须选填其中一个，若都填了，则最终使用服务发现。
-* plugins具体配置[点此](/docs/apinto/plugins)进行跳转。
+* plugins具体配置[点此](/docs/apinto/plugins/)进行跳转。
 
 #### 返回参数说明
 
@@ -122,7 +122,7 @@ curl -X POST  \
 
 discovery字段填上配置了服务发现的负载。
 
-此处已经配置id为`consul_demo@discovery`的服务发现，服务发现配置教程[点此](/docs/apinto/discovery/index.md)进行跳转
+此处已经配置id为`consul_demo@discovery`的服务发现，服务发现配置教程[点此](/docs/apinto/discovery/)进行跳转
 
 ```shell
 curl -X POST  \

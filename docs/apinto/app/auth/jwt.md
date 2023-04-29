@@ -6,9 +6,9 @@
 > * jwt生成的token一般包括用户信息
 >
 > 如果需要了解其他鉴权，可点击对应文档链接：
-> * [Apikey](/docs/apinto/app/auth/apikey.md)
-> * [AK/SK](/docs/apinto/app/auth/aksk.md)
-> * [Basic](/docs/apinto/app/auth/basic.md)
+> * [Apikey](/docs/apinto/app/auth/apikey)
+> * [AK/SK](/docs/apinto/app/auth/aksk)
+> * [Basic](/docs/apinto/app/auth/basic)
 
 ## 配置说明
 | 参数名                         | 值类型                     | 是否必填 | 值可能性                                                     | 默认值 | 说明                                                         |
@@ -58,7 +58,7 @@
 }
 ```
 
-Jwt鉴权需要搭配应用使用，详情请点击[应用](/docs/apinto/app/index.md)
+Jwt鉴权需要搭配应用使用，详情请点击[应用](/docs/apinto/app/)
 
 Jwt快速构造可参考 [jwt生成工具](https://jwt.io)
 

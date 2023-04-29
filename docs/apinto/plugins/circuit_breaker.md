@@ -98,7 +98,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 
 **配置说明**：见上面的配置示例。
 
-全局插件具体配置点此进行[跳转](/docs/apinto/plugins)。
+全局插件具体配置点此进行[跳转](/docs/apinto/plugins/)。
 
 **备注**：匿名服务配置的是apinto官方示例接口，将返回请求的相关信息。
 

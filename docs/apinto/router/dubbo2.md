@@ -40,7 +40,7 @@
 
 ## 配置说明
 
-路由需要绑定服务，因此在创建路由前，需要确保上游服务已经存在，上游服务的配置教程[点此](/docs/apinto/service/http.md)进行跳转
+路由需要绑定服务，因此在创建路由前，需要确保上游服务已经存在，上游服务的配置教程[点此](/docs/apinto/service/http)进行跳转
 
 #### 配置参数说明
 
@@ -65,7 +65,7 @@
 
 **备注**：
 
-* plugins具体配置[点此](/docs/apinto/plugins)进行跳转。
+* plugins具体配置[点此](/docs/apinto/plugins/)进行跳转。
 
 #### 返回参数说明
 

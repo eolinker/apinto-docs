@@ -16,7 +16,7 @@
 | Basic  | 用户鉴权（静态token） |
 | JWT    | 用户鉴权（动态token） |
 
-该插件于v0.8.x版本废弃，应用插件（eolinker.com:apinto:plugin_app）将替代鉴权插件，应用插件教程请[点击](/docs/apinto/plugins/app.md)
+该插件于v0.8.x版本废弃，应用插件（eolinker.com:apinto:plugin_app）将替代鉴权插件，应用插件教程请[点击](/docs/apinto/plugins/app)
 
 ### Open Api
 
@@ -27,7 +27,7 @@
 | :----- | :----------- | :------- | :------------------ | :----- | :------------------ |
 | auth   | array_string | 是       | ["myJwt","myBasic"] |        | 所使用的auth ID列表 |
 
-以apiKey鉴权为例，可以通过下述open api对鉴权插件进行配置，关于鉴权插件的详细配置说明，可以[点此](/docs/apinto/auth)跳转查阅
+以apiKey鉴权为例，可以通过下述open api对鉴权插件进行配置，关于鉴权插件的详细配置说明，可以[点此](/docs/apinto/auth/)跳转查阅
 
 #### 全局插件加入鉴权插件配置
 

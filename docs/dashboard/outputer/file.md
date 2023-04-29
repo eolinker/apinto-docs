@@ -35,7 +35,7 @@
 | 日志分割周期| 定时分割日志文件，可选项：hour、day                   |     
 | 日志保存时间| 日志保存时间，当超过该时间后，日志会被删除，单位：天              |     
 | 输出格式| 支持格式：json、line                          |     
-| 格式化配置| 具体配置请查看[formatter配置说明](/docs/formatter) |     
+| 格式化配置| 具体配置请查看[formatter配置说明](/docs/apinto/formatter/) |     
 
 3、开启access日志插件，将插件的状态设置为**global**，并绑定需要用到的输出器
 

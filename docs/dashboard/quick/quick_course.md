@@ -2,17 +2,7 @@
 
 本教程将阐述从零开始配置**Apinto**，使其可以反向代理请求到后端服务。
 
-[//]: # (如需了解更多场景，可点击：)
-
-[//]: # (* [负载均衡]&#40;/docs/dashboard/upstream/http.md&#41;)
-
-[//]: # ()
-[//]: # (* [鉴权校验]&#40;/docs/dashboard/auth/auth.md&#41;)
-
-[//]: # ()
-[//]: # (* [请求重写]&#40;/docs/dashboard/plugins/request_rewrite.md&#41;)
-
-以下操作默认使用者已经部署好**Apinto**和**Apinto Dashboard**产品，若未部署，请点击[部署教程](/docs/dashboard/quick/arrange.md)
+以下操作默认使用者已经部署好**Apinto**和**Apinto Dashboard**产品，若未部署，请点击[部署教程](/docs/dashboard/quick/arrange)
 
 ## 网关调用流程
 
@@ -44,7 +34,7 @@
 | 请求超时时间 | 请求后端服务的最大等待时间，单位：ms，最小值：1                                                                                                                                                     |
 | 失败重试次数 | 当请求后端服务超时时，重新发送该请求的次数                                                                                                                                                         |
 | 请求协议   | 请求后端服务的协议，目前支持http、https                                                                                                                                                      |
-| 服务发现   | 后端服务地址列表，可选择匿名上游或已有动态服务发现，服务发现的具体概念请查看[服务发现说明](/docs/dashboard/discovery.md)                                                                                                  |
+| 服务发现   | 后端服务地址列表，可选择匿名上游或已有动态服务发现，服务发现的具体概念请查看[服务发现说明](/docs/dashboard/discovery/)                                                                                                  |
 | 负载均衡算法 | 分配负载上游的算法<br>round-robin：权重轮询算法                ｜                                                                                                                              |
 | 静态配置   | 当服务发现选择匿名上游时弹出<br><br>配置格式：{域名/ip}:{port} {weight} <br> 示例：demo.apinto.com:8280 100 <br><br> 可配置多个上游地址，中间用英文分号**;**隔开<br>示例：demo.apinto.com:8280 100;demo.gokuapi.com:8280 10 |
 
@@ -65,10 +55,10 @@
 
 | 字段 |说明|
 |--|---|
-| 端口号 |路由监听端口号，该端口必须是**apinto**程序的config.yml中已经存在的端口号，详情请点击[程序配置说明](/docs/apinto/quick/quick_course.md#程序配置说明)|
+| 端口号 |路由监听端口号，该端口必须是**apinto**程序的config.yml中已经存在的端口号，详情请点击[程序配置说明](/docs/apinto/quick/quick_course#程序配置说明)|
 |请求方式|客户端访问网关的请求方式，路由匹配规则之一|
 |域名|客户端访问网关时请求的域名地址，路由匹配规则之一|
-|路由规则 | 可规定客户端请求的请求URL，请求头部参数、query参数的条件，路由规则说明请参考[路由规则](/docs/dashboard/router/http.md#路由匹配规则)|
+|路由规则 | 可规定客户端请求的请求URL，请求头部参数、query参数的条件，路由规则说明请参考[路由规则](/docs/dashboard/router/http#路由匹配规则)|
 
 （3）填写完后提交即可
 

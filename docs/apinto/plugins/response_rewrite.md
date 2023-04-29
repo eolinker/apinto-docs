@@ -68,7 +68,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 
 **配置说明**：当响应状态码为200或者404时，响应状态码将被重写为201，响应头部设置`demo_header: "1"`，body被覆盖为`{"重写响应体Body"}`(以下配置的body已经过base64加密)。
 
-全局插件具体配置点此进行[跳转](/docs/apinto/plugins)。
+全局插件具体配置点此进行[跳转](/docs/apinto/plugins/)。
 
 
 ```shell

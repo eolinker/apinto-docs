@@ -50,7 +50,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 }'
 ```
 
-全局插件具体配置点此进行[跳转](/docs/dashboard/plugins)。
+全局插件具体配置点此进行[跳转](/docs/dashboard/plugins/)。
 
 
 

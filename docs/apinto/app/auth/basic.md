@@ -6,9 +6,9 @@
 > * 多用于openApi中来源校验
 >
 > 如果需要了解其他鉴权，可点击对应文档链接：
-> * [Apikey](/docs/apinto/app/auth/apikey.md)
-> * [AK/SK](/docs/apinto/app/auth/aksk.md)
-> * [JWT](/docs/apinto/app/auth/jwt.md)
+> * [Apikey](/docs/apinto/app/auth/apikey)
+> * [AK/SK](/docs/apinto/app/auth/aksk)
+> * [JWT](/docs/apinto/app/auth/jwt)
 
 ## 配置说明
 | 参数名                       | 值类型                     | 是否必填 | 值可能性            | 默认值 | 说明                                                  |
@@ -72,5 +72,5 @@
 
 `position`、`token_name`分别定义了basic鉴权检验的参数名及参数名称，即将校验请求header中的authorization参数，当basic鉴权检验通过，并会根据匹配到的用户信息，检查该用户是否过期，是否需要设置用户标签信息等。
 
-Basic鉴权需要搭配应用使用，详情请点击[应用](/docs/apinto/app/index.md)
+Basic鉴权需要搭配应用使用，详情请点击[应用](/docs/apinto/app/)
 

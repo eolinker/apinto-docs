@@ -83,7 +83,7 @@
 
 
 
-**系统可用值的教程**[点此](/docs/formatter/#系统可用值)进行跳转
+**系统可用值的教程**[点此](/docs/apinto/formatter/#系统可用值)进行跳转
 
 
 
@@ -180,5 +180,5 @@ curl -X POST 'http://127.0.0.1:9400/api/output' -H 'Content-Type:application/jso
 
 通过prometheus插件绑定prometheus输出器，输出器能够接收并处理来自prometheus插件的相关指标信息。外部的Prometheus应用调用输出器配置的metrics路径即可获取收集的指标信息。
 
-[点此](/docs/apinto/plugins/prometheus.md)跳转至prometheus插件。
+[点此](/docs/apinto/plugins/prometheus)跳转至prometheus插件。
 

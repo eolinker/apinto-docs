@@ -58,7 +58,7 @@
 
 ##### 全局配置
 
-在使用`http_to_grpc`插件之前，需要在全局插件配置中将name为`http_to_grpc`的插件状态设置为`enable`，具体配置点此[跳转](/docs/apinto/plugins)
+在使用`http_to_grpc`插件之前，需要在全局插件配置中将name为`http_to_grpc`的插件状态设置为`enable`，具体配置点此[跳转](/docs/apinto/plugins/)
 
 ```shell
 curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
