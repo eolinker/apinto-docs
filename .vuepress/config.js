@@ -20,6 +20,9 @@ module.exports = {
             text:"Apinto",link: "/docs/index.md"
           },
           {
+            text:"Apinto Dashboard V3",link: "https://help.eolink.com/tutorial/Apinto"
+          },
+          {
             text:"Apinto Dashboard V2",link: "/docs/dashboard-v2/index.md"
           },
           {
