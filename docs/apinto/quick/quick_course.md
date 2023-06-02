@@ -145,9 +145,9 @@ curl -X POST http://127.0.0.1:9400/api/router \
     "driver": "http",
     "description": "路由示例",
     "listen": 8099,
-    "rules": [{
-        "location": "/demo"
-    }],
+    "method": ["GET","POST"],
+    "location": "/demo",
+    "rules": [],
     "service": "apintoapi@service"
 }'
 ```
