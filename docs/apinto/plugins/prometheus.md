@@ -35,7 +35,6 @@ curl -X POST 'http://127.0.0.1:9400/api/output' -H 'Content-Type:application/jso
 	"driver": "prometheus",
 	"description": "test_prometheus",
 	"scopes": ["prometheus"],
-	"path": "/test",
 	"metrics": [{
 		"metric": "apinto_request_total",
 		"collector": "request_total",
@@ -48,7 +47,8 @@ curl -X POST 'http://127.0.0.1:9400/api/output' -H 'Content-Type:application/jso
 
 返回的输出器id为`test_prometheus@output`
 
-**示例说明**：prometheus实际拉取的metrics路径为`/apinto/test`(默认在配置的路径前加上/apinto/)，配置指标名为`apinto_request_total`，采集request_total请求总数。
+**示例说明**：prometheus实际拉取的metrics路径为`/apinto/metrics/prometheus/test_prometheus`，配置指标名为`apinto_request_total`，采集request_total请求总数。
+
 指标配置的标签分别为:
 
 | 标签名         | 标签值                               |
