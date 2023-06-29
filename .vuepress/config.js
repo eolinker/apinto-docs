@@ -143,7 +143,8 @@ function apinto() {
         '/docs/apinto/discovery/static.md',
         '/docs/apinto/discovery/consul.md',
         '/docs/apinto/discovery/eureka.md',
-        '/docs/apinto/discovery/nacos.md'
+        '/docs/apinto/discovery/nacos.md',
+        '/docs/apinto/discovery/polaris.md'
       ],
     },
     {
