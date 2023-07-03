@@ -11,6 +11,7 @@
 | [consul](/docs/apinto/discovery/consul.md)       | consul         | 动态服务发现 |
 | [eureka](/docs/apinto/discovery/eureka.md)       | eureka         | 动态服务发现 |
 | [nacos](/docs/apinto/discovery/nacos.md)         | nacos          | 动态服务发现 |
+| [polaris](/docs/apinto/discovery/polaris.md)     | polaris        | 动态服务发现 |
 | [静态服务发现](/docs/apinto/discovery/static.md) | static         | 静态服务     |
 
 
