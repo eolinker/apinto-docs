@@ -69,9 +69,9 @@
     "allow_origin": "*",
     "allow_methods": "POST,GET",
     "allow_headers": "*",
-    "allow_credentials": "true",
+    "allow_credentials": true,
     "expose_headers": "*",
-    "max_age":5
+    "max_age":5,
     "response_type":"json"
 }
 ```
