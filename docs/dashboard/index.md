@@ -98,4 +98,4 @@ Json Scheme数据返回示例：
 
 - **论坛**：[https://community.apinto.com](https://community.apinto.com/)
 
-- **微信群**：[![img](https://user-images.githubusercontent.com/25589530/149860447-5879437b-3cda-4833-aee3-69a2e538e85d.png)](https://user-images.githubusercontent.com/25589530/149860447-5879437b-3cda-4833-aee3-69a2e538e85d.png)
+- **微信群**：[![img](http://data.eolinker.com/course/2HdT4zd10b670318462bec90f0f390bef896c21cad66172.png)](http://data.eolinker.com/course/2HdT4zd10b670318462bec90f0f390bef896c21cad66172.png)
