@@ -72,6 +72,9 @@ Apinto是一个基于 Golang 开发的微服务网关，能够实现高性能 HT
 | 转发重写     | 支持对 `scheme`、`uri`、`host` 的重写，同时支持对转发请求的请求头部header的值进行新增或者删除                           |
 | 流量控制     | 拦截异常流量                                                                                 |
 | 可视化UI    | 通过UI界面配置网关转发信息，官方支持项目：[Apinto Dashboard](https://github.com/eolinker/apinto-dashboard) |
+| MOCK     | 模拟web服务器端API的响应                                                                        |
+| CORS     | 支持api请求跨域                                                                              |
+| 同步API    | 提供OpenAPI同步API文档，支持swagger3.0 json或yaml格式文件                                            |
 
 #### 迭代计划
 
@@ -84,13 +87,14 @@ Apinto是一个基于 Golang 开发的微服务网关，能够实现高性能 HT
 - **监控**：捕获网关请求数据，并可将其导出到promethus、Graphite中进行分析
 - .....
 
-#### 2022年迭代计划
-![](http://data.eolinker.com/course/NjYrbqx2804eb7d3b0216009f9bbcdeb483f6f5354815ba.jpeg)
+#### 2023年迭代计划
+![](http://data.eolinker.com/course/RPmFkDwc97dd69f23bf57ad7be8e163b2e498e89df6771e.png)
 
 
 ## 产品功能设计展望
 
-![](http://data.eolinker.com/course/QDcZqTD6d2e3811ea57e436ffd32a10a8ffd72eaa9c037d.png)
+
+![](http://data.eolinker.com/course/JX64nZrf2700eaa09e6ebd5dc40b2d86ddefed7fe3e55df.png)
 
 ### 基准测试
 
