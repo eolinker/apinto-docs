@@ -17,17 +17,18 @@
 ### OpenAPI配置日志
 #### 配置参数说明
 
-| 参数名     | 值类型  | 是否必填 | 值可能性        | 默认值 | 说明                                      |
-| ----------- | -------- | ------ | ----------------------------------------- | --------------- | --------------- |
-| name        | string  | 是       |           |        | 实例名                                    |
-| driver      | string | 是       | file   |        | 驱动名                                    |
-| description | string | 否       |           |        | 描述                                      |
-| file        | string  | 是       |           |        | 日志文件的文件名                          |
-| dir         | string   | 是       |           |        | 日志文件的目录路径                        |
-| period      | string | 是       | ["day","hour"]  |        | 更替日志文件的周期时间，可选day、hour其一 |
-| expire      | int   | 否       |              | 3      | 旧日志文件的保存时间，单位为天            |
-| type        | string  | 否       | ["line","json"] | line | formatter的类型                           |
-| formatter   | object | 是       |           |        | formatter的输出内容                       |
+| 参数名         | 值类型       | 是否必填  | 值可能性            | 默认值  | 说明                       |
+|-------------|-----------|-------|-----------------|------|--------------------------|
+| name        | string    | 是     |                 |      | 实例名                      |
+| driver      | string    | 是     | file            |      | 驱动名                      |
+| description | string    | 否     |                 |      | 描述                       |
+| scopes      | []string  | 是     |                 |      | 作用域，此处填写access_log       |
+| file        | string    | 是     |                 |      | 日志文件的文件名                 |
+| dir         | string    | 是     |                 |      | 日志文件的目录路径                |
+| period      | string    | 是     | ["day","hour"]  |      | 更替日志文件的周期时间，可选day、hour其一 |
+| expire      | int       | 否     |                 | 3    | 旧日志文件的保存时间，单位为天          |
+| type        | string    | 否     | ["line","json"] | line | formatter的类型             |
+| formatter   | object    | 是     |                 |      | formatter的输出内容           |
 
 **注意**：
 
@@ -38,21 +39,22 @@
 
 #### 返回参数说明
 
-| 参数名      | 类型   | 是否必含 | 说明                                      |
-| ----------- | ------ | -------- | ----------------------------------------- |
-| id          | string | 是       | 实例id                                    |
-| name        | string | 是       | 实例名                                    |
-| driver      | string | 是       | 驱动名                                    |
-| description | string | 是       | 描述                                      |
-| profession  | string | 是       | 模块名                                    |
-| create      | string | 是       | 创建时间                                  |
-| update      | string | 是       | 更新时间                                  |
-| file        | string | 是       | 日志文件的文件名                          |
-| dir         | string | 是       | 日志文件的目录路径                        |
-| period      | string | 是       | 更替日志文件的周期时间，可选day、hour其一 |
-| expire      | int    | 是       | 旧日志文件的保存时间，单位为天            |
-| type        | string | 是       | formatter的类型                           |
-| formatter   | object | 是       | formatter的输出内容                       |
+| 参数名         | 类型         | 是否必含   | 说明                       |
+|-------------|------------|--------|--------------------------|
+| id          | string     | 是      | 实例id                     |
+| name        | string     | 是      | 实例名                      |
+| driver      | string     | 是      | 驱动名                      |
+| description | string     | 是      | 描述                       |
+| profession  | string     | 是      | 模块名                      |
+| create      | string     | 是      | 创建时间                     |
+| update      | string     | 是      | 更新时间                     |
+| scopes      | []string   | 是      | 作用域                      |
+| file        | string     | 是      | 日志文件的文件名                 |
+| dir         | string     | 是      | 日志文件的目录路径                |
+| period      | string     | 是      | 更替日志文件的周期时间，可选day、hour其一 |
+| expire      | int        | 是      | 旧日志文件的保存时间，单位为天          |
+| type        | string     | 是      | formatter的类型             |
+| formatter   | object     | 是      | formatter的输出内容           |
 
 
 
@@ -66,7 +68,7 @@ curl -X POST  \
 	"name": "demo_file",
 	"driver": "file",
 	"description": "示例文件输出器",
-
+    "scopes": ["access_log"],
 	"dir": "/var/log",
 	"file": "demo",
 	"period": "day",
@@ -86,6 +88,7 @@ curl -X POST  \
 {
 	"create": "2022-06-14 12:02:31",
 	"description": "示例文件输出器",
+    "scopes": ["access_log"],
 	"dir": "/var/log",
 	"driver": "file",
 	"expire": 1,

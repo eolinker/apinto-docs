@@ -10,17 +10,18 @@ NSQ输出器能够将特定的日志信息输出到指定nsqd的topic中.
 
 #### 配置参数说明
 
-| 参数名      | 值类型       | 是否必填 | 值可能性        | 默认值 | 说明                |
-| ----------- | ------------ | -------- | --------------- | ------ | ------------------- |
-| name        | string       | 是       |                 |        | 实例名              |
-| driver      | string       | 是       | nsqd            |        | 驱动名              |
-| description | string       | 否       |                 |        | 描述                |
-| topic       | string       | 是       |                 |        | 所指定的topic       |
-| address     | array_string | 是       |                 |        | nsqd地址列表        |
-| auth_secret | string       | 否       |                 |        | nsqd的鉴权密钥      |
-| nsq_conf    | object       | 否       |                 |        | nsq生产者配置       |
-| type        | string       | 否       | ["line","json"] | line   | formatter的类型     |
-| formatter   | object       | 是       |                 |        | formatter的输出内容 |
+| 参数名          | 值类型          | 是否必填 | 值可能性            | 默认值  | 说明                 |
+|--------------|--------------|------|-----------------|------|--------------------|
+| name         | string       | 是    |                 |      | 实例名                |
+| driver       | string       | 是    | nsqd            |      | 驱动名                |
+| description  | string       | 否    |                 |      | 描述                 |
+| scopes       | []string     | 是    |                 |      | 作用域，此处填写access_log |
+| topic        | string       | 是    |                 |      | 所指定的topic          |
+| address      | array_string | 是    |                 |      | nsqd地址列表           |
+| auth_secret  | string       | 否    |                 |      | nsqd的鉴权密钥          |
+| nsq_conf     | object       | 否    |                 |      | nsq生产者配置           |
+| type         | string       | 否    | ["line","json"] | line | formatter的类型       |
+| formatter    | object       | 是    |                 |      | formatter的输出内容     |
 
 **注意**：
 
@@ -61,6 +62,7 @@ curl -X POST  \
   -d '{
 	"name": "demo_nsqlog",
 	"driver": "nsqd",
+	"scopes": ["access_log"],
 	"topic": "test",
 	"address": ["192.168.1.3:4150", "192.168.1.4:4150", "192.168.1.5:4150"],
 	"auth_secret": "auth_token",
@@ -84,6 +86,7 @@ curl -X POST  \
 	"auth_secret": "auth_token",
 	"create": "2022-06-14 17:11:00",
 	"description": "",
+    "scopes": ["access_log"],
 	"driver": "nsqd",
 	"formatter": {
 		"fields": ["$request_id", "$request", "$status", "@time", "@proxy", "$response_time"],

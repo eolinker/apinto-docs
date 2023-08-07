@@ -10,16 +10,17 @@ syslog输出器能够将程序运行中产生的日志内容输出远端的syslo
 
 #### 配置参数说明
 
-| 参数名      | 值类型 | 是否必填 | 值可能性                                | 默认值 | 说明                              |
-| ----------- | ------ | -------- | --------------------------------------- | ------ | --------------------------------- |
-| name        | string | 是       |                                         |        | 实例名                            |
-| driver      | string | 是       | syslog_output                           |        | 驱动名                            |
-| description | string | 否       |                                         |        | 描述                              |
-| network     | string | 是       | ["tcp","udp","unix"]                    |        | 所使用的网络协议, 如:tcp,udp,unix |
-| address     | string | 是       |                                         |        | 远端syslog服务器的地址            |
-| level       | string | 否       | ["error","warn","info","debug","trace"] |        | 日志等级                          |
-| type        | string | 否       | ["line","json"]                         | line   | formatter的类型                   |
-| formatter   | object | 是       |                                         |        | formatter的输出内容               |
+| 参数名            | 值类型            | 是否必填 | 值可能性                                    | 默认值  | 说明                                                            |
+|----------------|----------------|------|-----------------------------------------|------|---------------------------------------------------------------|
+| name           | string         | 是    |                                         |      | 实例名                                                           |
+| driver         | string         | 是    | syslog_output                           |      | 驱动名                                                           |
+| description    | string         | 否    |                                         |      | 描述                                                            |
+| scopes         | []string       | 是    |                                         |      | 作用域，此处填写access_log                                            |
+| network        | string         | 是    | ["tcp","udp","unix"]                    |      | 所使用的网络协议, 如:tcp,udp,unix                                      |
+| address        | string         | 是    |                                         |      | 远端syslog服务器的地址                                                |
+| level          | string         | 否    | ["error","warn","info","debug","trace"] |      | 日志等级                                                          |
+| type           | string         | 否    | ["line","json"]                         | line | formatter的类型                                                  |
+| formatter      | object         | 是    |                                         |      | formatter的输出内容                                                |
 
 **注意**：
 
@@ -29,20 +30,21 @@ syslog输出器能够将程序运行中产生的日志内容输出远端的syslo
 
 #### 返回参数说明
 
-| 参数名      | 类型   | 是否必含 | 说明                              |
-| ----------- | ------ | -------- | --------------------------------- |
-| id          | string | 是       | 实例id                            |
-| name        | string | 是       | 实例名                            |
-| driver      | string | 是       | 驱动名                            |
-| description | string | 是       | 描述                              |
-| profession  | string | 是       | 模块名                            |
-| create      | string | 是       | 创建时间                          |
-| update      | string | 是       | 更新时间                          |
-| network     | string | 是       | 所使用的网络协议, 如:tcp,udp,unix |
-| address     | string | 是       | 远端syslog服务器的地址            |
-| level       | string | 是       | 日志等级                          |
-| type        | string | 是       | formatter的类型                   |
-| formatter   | object | 是       | formatter的输出内容               |
+| 参数名          | 类型          | 是否必含  | 说明                       |
+|--------------|-------------|-------|--------------------------|
+| id           | string      | 是     | 实例id                     |
+| name         | string      | 是     | 实例名                      |
+| driver       | string      | 是     | 驱动名                      |
+| description  | string      | 是     | 描述                       |
+| profession   | string      | 是     | 模块名                      |
+| create       | string      | 是     | 创建时间                     |
+| update       | string      | 是     | 更新时间                     |
+| scopes       | []string    | 是     |  作用域，此处填写access_log      |
+| network      | string      | 是     | 所使用的网络协议, 如:tcp,udp,unix |
+| address      | string      | 是     | 远端syslog服务器的地址           |
+| level        | string      | 是     | 日志等级                     |
+| type         | string      | 是     | formatter的类型             |
+| formatter    | object      | 是     | formatter的输出内容           |
 
 
 
@@ -59,6 +61,7 @@ curl -X POST  \
 	"address": "127.0.0.1:514",
 	"level": "info",
 	"type": "line",
+	"scopes": ["access_log"],
 	"formatter": {
 		"fields": ["$request_id", "$request", "$status", "@time", "@proxy", "$response_time"],
 		"time": ["$msec", "$time_iso8601", "$time_local"],
@@ -77,6 +80,7 @@ curl -X POST  \
 	"create": "2022-06-14 14:56:15",
 	"description": "",
 	"driver": "syslog_output",
+    "scopes": ["access_log"],
 	"formatter": {
 		"fields": ["$request_id", "$request", "$status", "@time", "@proxy", "$response_time"],
 		"proxy": ["$proxy_uri", "$proxy_scheme", "$proxy_addr"],

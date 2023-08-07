@@ -8,7 +8,7 @@ Apinto 完全基于 Golang 开发，不基于现有第三方产品，因此具�
 1.下载安装包并解压
 
 ```shell
-wget https://github.com/eolinker/apinto/releases/download/v0.12.1/apinto_v0.12.1_linux_amd64.tar.gz && tar -zxvf apinto_v0.12.1_linux_amd64.tar.gz && cd apinto
+wget https://github.com/eolinker/apinto/releases/download/v0.13.3/apinto_v0.13.3_linux_amd64.tar.gz && tar -zxvf apinto_v0.13.3_linux_amd64.tar.gz && cd apinto
 ```
 
 Apinto支持在arm64、amd64架构上运行。
@@ -74,480 +74,356 @@ APINTO容器有两个可挂载的目录：
 
   [点此](/docs/apinto/quick/quick_course.md )进行跳转。
 
-**备注**：`/etc/apinto`目录不挂载的话将会使用默认配置文件，默认admin端口为9400，http端口为8080。
+**备注**：`/etc/apinto`目录不挂载的话将会使用默认配置文件，默认admin端口为9400，http端口为8099。
 
-### 创建Service
+### 新建命名空间 
+本文档部署将演示部署在命名空间`apinto`中，为此，需要先新建命名空间。
 
-以NodePort类型为例，端口配置请以应用的配置文件为标准。
+文件名：`namespace.yml`
+```yaml
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: apinto
+```
 
-注意：该服务需要与APINTO的pod在同一命名空间内。
+命令行部署
+```yaml
+kubectl apply -f namespace.yml
+```
+
+### 创建ClusterRole
+该角色具有所有资源的 **get、list、watch**，若系统已经自带角色，该步骤可忽略。
+
+文件名：`apinto-cluster-role.yml`
+```yaml
+---
+aggregationRule:
+  clusterRoleSelectors:
+    - matchLabels:
+        rbac.authorization.k8s.io/aggregate-to-view: 'true'
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: 'true'
+  labels:
+    kubernetes.io/bootstrapping: rbac-defaults
+    rbac.authorization.k8s.io/aggregate-to-edit: 'true'
+  name: view
+rules:
+  - apiGroups:
+      - ''
+    resources:
+      - configmaps
+      - endpoints
+      - persistentvolumeclaims
+      - persistentvolumeclaims/status
+      - pods
+      - replicationcontrollers
+      - replicationcontrollers/scale
+      - serviceaccounts
+      - services
+      - services/status
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - ''
+    resources:
+      - bindings
+      - events
+      - limitranges
+      - namespaces/status
+      - pods/log
+      - pods/status
+      - replicationcontrollers/status
+      - resourcequotas
+      - resourcequotas/status
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - ''
+    resources:
+      - namespaces
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - apps
+    resources:
+      - controllerrevisions
+      - daemonsets
+      - daemonsets/status
+      - deployments
+      - deployments/scale
+      - deployments/status
+      - replicasets
+      - replicasets/scale
+      - replicasets/status
+      - statefulsets
+      - statefulsets/scale
+      - statefulsets/status
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - autoscaling
+    resources:
+      - horizontalpodautoscalers
+      - horizontalpodautoscalers/status
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - batch
+    resources:
+      - cronjobs
+      - cronjobs/status
+      - jobs
+      - jobs/status
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - extensions
+    resources:
+      - daemonsets
+      - daemonsets/status
+      - deployments
+      - deployments/scale
+      - deployments/status
+      - ingresses
+      - ingresses/status
+      - networkpolicies
+      - replicasets
+      - replicasets/scale
+      - replicasets/status
+      - replicationcontrollers/scale
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - policy
+    resources:
+      - poddisruptionbudgets
+      - poddisruptionbudgets/status
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - networking.k8s.io
+    resources:
+      - ingresses
+      - ingresses/status
+      - networkpolicies
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - metrics.k8s.io
+    resources:
+      - pods
+      - nodes
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - tekton.dev
+    resources:
+      - tasks
+      - taskruns
+      - pipelines
+      - pipelineruns
+      - pipelineresources
+      - conditions
+    verbs:
+      - get
+      - list
+      - watch
+```
+
+命令行部署
+```shell
+kubectl apply -f apinto-cluster-role.yml
+```
+
+### 创建Service Account
+文件名：`apinto-service-account.yml`
 
 ```yaml
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: apinto
+  namespace: apinto
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  annotations:
+    kubernetes.io/service-account.name: apinto
+  name: apinto-token
+  namespace: apinto
+type: kubernetes.io/service-account-token
+
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: role-bind-apinto
+  namespace: apinto
+subjects:
+  - kind: ServiceAccount
+    name: apinto
+    namespace: apinto
+roleRef:
+  kind: ClusterRole
+  name: view
+  apiGroup: rbac.authorization.k8s.io
+```
+
+命令行部署
+```shell
+kubectl apply -f apinto-service-account.yml
+```
+
+### 创建网关节点
+文件名：`apinto-gateway.yml`
+```yaml
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  annotations: {}
+  labels:
+    k8s.kuboard.cn/name: apinto-gateway-stateful
+  name: apinto-gateway-stateful
+  namespace: apinto
+spec:
+  replicas: 3
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      k8s.kuboard.cn/name: apinto-gateway-stateful
+  serviceName: apinto-gateway-stateful
+  template:
+    metadata:
+      labels:
+        k8s.kuboard.cn/name: apinto-gateway-stateful
+    spec:
+      containers:
+        - env:
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.podIP
+            - name: SVC_NAME
+              value: apinto-gateway-stateful
+            - name: SVC_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            - name: APINTO_ADMIN_PORT
+              value: '9401'
+            - name: SVC_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: token
+                  name: apinto-token
+          image: 'eolinker/apinto-gateway'
+          imagePullPolicy: Always
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - /bin/bash
+                  - '-c'
+                  - nohup bash /apinto/join.sh >nohup.out 2>&1 &
+            preStop:
+              exec:
+                command:
+                  - /bin/bash
+                  - '-c'
+                  - bash /apinto/leave.sh
+          name: apinto-gateway-stateful
+          volumeMounts:
+            - mountPath: /var/lib/apinto
+              name: apinto-gateway-app
+              subPath: data/
+            - mountPath: /var/log/apinto
+              name: apinto-gateway-app
+              subPath: log/
+      restartPolicy: Always
+  volumeClaimTemplates:
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      annotations:
+        k8s.kuboard.cn/pvcType: Dynamic
+      name: apinto-gateway-app
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 5G
+      storageClassName: {storageClassName}
+      volumeMode: Filesystem
+
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: apinto-gateway-svc #服务名
+  annotations: {}
+  labels:
+    k8s.kuboard.cn/name: apinto-gateway-stateful
+  name: apinto-gateway-stateful
+  namespace: apinto
 spec:
-  selector: 
-    app: apinto-gateway  #绑定标签为app: apinto-gateway的POD
-  type: NodePort # 默认为ClusterIP 集群内可访问，NodePort 节点可访问，LoadBalancer负载均衡模式
   ports:
-    - port: 8080      #默认http端口
-      name: apintohttp
-      targetPort: 8080  # 容器端口
-      nodePort: 31080   # 节点端口，范围固定 30000 ~ 32767
-    - port: 9400      #默认admin端口
-      name: apintoadmin
-      targetPort: 9400  # 容器端口
-      nodePort: 31094   # 节点端口，范围固定 30000 ~ 32767
-```
-
-### 部署POD(不挂载目录)
-
-不挂载容器目录可以使用deployment进行部署。使用replicas指定副本数量，创建该deployment之后所有POD会自动加入集群。
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: apinto-gateway
-spec:
-  replicas: 3
-  selector:  
-    matchLabels:
-      app: apinto-gateway #POD标签，用于与Service绑定。
-  # 定义 Pod 相关数据
-  template:
-    metadata:
-      labels:
-        app: apinto-gateway #pod的标签
-    spec:
-      # 定义容器
-      containers:
-      - name: apinto-gateway # 容器名字
-        image: eolinker/apinto-gateway:latest
-        imagePullPolicy: Always
-        lifecycle:
-          postStart: #容器运行加入集群脚本
-            exec:
-              command: ["/bin/bash", "-c", "nohup bash /apinto/join.sh >nohup.out 2>&1 &"]
-          preStop:  #容器关闭前运行离开集群脚本
-            exec:
-              command: ["/bin/bash","-c","bash /apinto/leave.sh"]
-        env:
-        - name: POD_IP #将pod_id加入环境变量
-          valueFrom:
-            fieldRef:
-              fieldPath: status.podIP
-        - name: SVC_NAME  #将apinto服务名加入环境变量
-          value: "apinto-gateway-svc"
-        - name: SVC_NAMESPACE #指定apinto服务所在命名空间
-          value: "default"
-        - name: APINTO_ADMIN_PORT
-          value: "9400"
-        - name: SVC_TOKEN  #将访问k8s集群的TOKEN加入环境变量
-          value: "${TOKEN}"
-```
-
-**备注**：
-
-* 若k8s集群开启了token访问模式，则需要在配置内传入token作为环境变量
-* 需指定apinto服务名以及其命名空间作为POD环境变量
-* 若只想部署单个POD，可以将配置文件内的`lifecycle`和`env`环境变量删除。
-
-
-
-### 部署POD(挂载目录)
-
-**注意**：当要挂载存放日志和数据文件的`/var/lib/apinto`目录时，一个PVC只能被一个POD使用。
-
-以下均以挂载`/var/lib/apinto`为示例。
-
-#### Local卷本地挂载
-
-使用Local卷需要创建SC,PV以及PVC。建议PV配置nodeAffinity，使挂载目录分配到所有worker节点。
-
-##### 创建StorageClass 存储类
-
-```yaml
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: local-storage
-provisioner: kubernetes.io/no-provisioner
-reclaimPolicy: Retain  #回收策略
-volumeBindingMode: WaitForFirstConsumer #延迟卷绑定使得调度器在为 PersistentVolumeClaim 选择一个合适的 PersistentVolume 时能考虑到所有 Pod 的调度限制。
-```
-
-
-
-##### 创建PersistentVolume
-
-使用nodeAffinity指定具体的worker节点挂载。
-
-```yaml
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: apinto-pv1 #pv名
-  labels:
-    pv: local-pv1 #标签，可用来匹配具体的pvc
-spec:
-  capacity:
-    storage: 1Gi
-  volumeMode: Filesystem
-  accessModes:
-  - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: local-storage
-  local:
-    path: /mnt/apinto/ #节点目录
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname #表示pv创建在含有kubernetes.io/hostname:node1 标签的节点
-          operator: In 
-          values:
-          - node1
-```
-
-备注：要创建多个PV时需要修改示例里metadata的pv名以及标签，其他配置仅作参考。
-
-
-
-##### 创建PersistentVolumeClaim
-
-```yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: pvc-local-node1  #pvc名
-spec:
-  storageClassName: local-storage
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-  selector:  #选择器，可用来匹配特定的pv。也可不配置selector，交由调度器匹配。
-    matchLabels:
-      pv: local-pv1
-```
-
-备注：要创建多个PVC时需要修改示例里metadata的pvc名以及spec-selector-matchLabels匹配标签，其他配置仅作参考。
-
-
-
-##### 创建POD
-
-以下为多个POD集群部署的示例，单个POD部署删除lifecycle以及env即可。
-
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: apinto-pod1  #pod名
-  labels: 
-    app: apinto-gateway #标签，用于绑定Service
-spec:
-    volumes:
-    - name: pv-local
-      persistentVolumeClaim:
-        claimName: pvc-local-node1 #使用的pvc
-    containers:
-    - name: apinto-gateway 
-      image: eolinker/apinto-gateway:latest 
-      imagePullPolicy: Always 
-      lifecycle:
-        postStart: #容器运行前启动加入集群脚本
-          exec:
-            command: ["/bin/bash", "-c", "nohup bash /apinto/join.sh >nohup.out 2>&1 &"]
-        preStop:  #容器关闭前运行离开集群脚本
-          exec:
-            command: ["/bin/bash","-c","bash /apinto/leave.sh"]
-      volumeMounts:  #目录挂载
-      - mountPath: /var/lib/apinto
-        name: pv-local
-      env:
-      - name: POD_IP #将pod_id加入环境变量
-        valueFrom:
-          fieldRef:
-            fieldPath: status.podIP
-      - name: SVC_NAME  #将apinto服务名加入环境变量
-        value: "apinto-gateway-svc"
-      - name: SVC_NAMESPACE #指定apinto服务所在命名空间
-        value: "default"
-      - name: APINTO_ADMIN_PORT
-        value: "9400"
-      - name: SVC_TOKEN  #将master节点的TOKEN加入环境变量
-        value: "${TOKEN}"
-```
-
-
-
-#### 静态NFS卷
-
-创建静态NFS PV很简单，指定nfs的服务器地址即可。需要注意的是NFS Server要能与k8s集群内使用nfs卷的worker节点连通。
-
-##### 创建PersistentVolume
-
-```yaml
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: apinto-nfs-pv1 #pv名
-  labels:
-    pv: nfs-pv1 #标签，可用来匹配具体的pvc
-spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-  - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain 
-  storageClassName: nfs
-  nfs:
-    path: /nfs/data/apinto #nfs服务器上的挂载目录
-    server: ${nfs_server_ip}
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname #表示pv创建在含有kubernetes.io/hostname:node1 标签的节点
-          operator: In 
-          values:
-          - node1 
-```
-
-**备注**: 需要在部署了NFS的服务器上，给要挂载的共享目录分配权限。
-
-
-
-##### 创建PersistentVolumeClaim
-
-```yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: nfs-pvc1
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-  storageClassName: nfs
+    - name: http
+      nodePort: 31189
+      port: 8099
+      protocol: TCP
+      targetPort: 8099
+    - name: admin
+      nodePort: 31194
+      port: 9400
+      protocol: TCP
+      targetPort: 9400
+    - name: cluster
+      nodePort: 31191
+      port: 9401
+      protocol: TCP
+      targetPort: 9401
+  type: NodePort
   selector:
-    matchLabels:
-      pv: nfs-pv1
+    k8s.kuboard.cn/name: apinto-gateway-stateful
+
 ```
 
+上述文件中使用{}包裹的均为变量，在实际编辑时需要将其替换成具体的值，变量描述如下
 
+* storageClassName：StorageClass资源名称
 
-##### 创建POD
-
-以下为多个POD集群部署的示例，单个POD部署删除lifecycle以及env即可。
-
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: apinto-nfs-pod1  #pod名
-  labels:
-    app: apinto-gateway
-spec:
-    volumes:
-    - name: pv-nfs
-      persistentVolumeClaim:
-        claimName: nfs-pvc1 #使用的pvc
-    containers:
-    - name: nfs-apinto 
-      image: eolinker/apinto-gateway:latest
-      imagePullPolicy: Always
-      lifecycle:
-        postStart: #容器运行前启动加入集群脚本
-          exec:
-            command: ["/bin/bash", "-c", "nohup bash /apinto/join.sh >nohup.out 2>&1 &"]
-        preStop:  #容器关闭前运行离开集群脚本
-          exec:
-            command: ["/bin/bash","-c","bash /apinto/leave.sh"]
-      volumeMounts:
-      - mountPath: /var/lib/apinto
-        name: pv-nfs
-      env:
-      - name: POD_IP #将pod_id加入环境变量
-        valueFrom:
-          fieldRef:
-            fieldPath: status.podIP
-      - name: SVC_NAME  #将服务名加入环境变量
-        value: "apinto-gateway-svc"
-      - name: SVC_NAMESPACE #指定apinto服务所在命名空间
-        value: "default"
-      - name: APINTO_ADMIN_PORT
-        value: "9400"
-      - name: SVC_TOKEN  #将master节点的TOKEN加入环境变量
-        value: "${TOKEN}"
+命令行部署
+```shell
+kubectl apply -f apinto-gateway.yml
 ```
-
-
-
-#### 动态NFS卷（推荐）
-
-我们推荐使用动态NFS卷进行远程目录挂载，理由如下：
-
-* 可以通过创建PVC动态地创建对应PV，无需手动创建PV。
-* 每创建一个PVC，都会在NFS服务器上的共享目录创建一个以 `${namespace}-${pvcName}-${pvName}`的命名格式的目录，无需手动在NFS服务器上创建多个目录。并且回收时会重命名为`archieved-${namespace}-${pvcName}-${pvName}` 的命名格式的目录。
-
-备注：NFS Server要能与k8s集群内使用nfs卷的worker节点连通。
-
-
-
-##### 创建nfs-client-provisioner POD
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nfs-client-provisioner
-spec:
-  replicas: 1
-  strategy:
-    type: Recreate
-  selector:
-    matchLabels:
-      app: nfs-client-provisioner
-  template:
-    metadata:
-      labels:
-        app: nfs-client-provisioner
-    spec:
-      serviceAccountName: nfs-client-provisioner
-      containers:
-        - name: nfs-client-provisioner
-          image: quay.io/external_storage/nfs-client-provisioner:latest
-          volumeMounts:
-            - name: nfs-client-root
-              mountPath: /persistentvolumes
-          env:
-            - name: PROVISIONER_NAME
-              value: apinto/nfs-client-provisioner  #PROVISIONER_NAME需要与下面StorageClass的provisioner保持一致
-            - name: NFS_SERVER
-              value: ${NFS_SERVER}   #NFS_SERVER的值需要与下面的NFS_SERVER保持一致
-            - name: NFS_PATH
-              value: /nfs/data/apinto   #NFS_PATH的值需要与厦门的path值保持一致
-      volumes:
-        - name: nfs-client-root
-          nfs:
-            server: ${NFS_SERVER} #NFS服务器IP
-            path: /nfs/data/apinto    #NFS 共享目录
-```
-
-
-
-##### 创建StorageClass
-
-```yaml
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: managed-nfs-storage
-provisioner: apinto/nfs-client-provisioner # or choose another name, must match deployment's env PROVISIONER_NAME'
-reclaimPolicy: Delete  #回收策略
-parameters:
-  archiveOnDelete: "true" #回收时是否将要删除的目录重命名保存
-```
-
-**注意**：nfs的reclaimPolicy字段只支持Delete和Retain
-
-
-
-##### 授权provisioner
-
-若集群启用了RBAC，需要配置授权。
-
-```yaml
-kind: ServiceAccount
-apiVersion: v1
-metadata:
-  name: nfs-client-provisioner
----
-kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: nfs-client-provisioner-runner
-rules:
-  - apiGroups: [""]
-    resources: ["persistentvolumes"]
-    verbs: ["get", "list", "watch", "create", "delete"]
-  - apiGroups: [""]
-    resources: ["persistentvolumeclaims"]
-    verbs: ["get", "list", "watch", "update"]
-  - apiGroups: ["storage.k8s.io"]
-    resources: ["storageclasses"]
-    verbs: ["get", "list", "watch"]
-  - apiGroups: [""]
-    resources: ["events"]
-    verbs: ["create", "update", "patch"]
----
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: run-nfs-client-provisioner
-subjects:
-  - kind: ServiceAccount
-    name: nfs-client-provisioner
-    namespace: default
-roleRef:
-  kind: ClusterRole
-  name: nfs-client-provisioner-runner
-  apiGroup: rbac.authorization.k8s.io
----
-kind: Role
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: leader-locking-nfs-client-provisioner
-rules:
-  - apiGroups: [""]
-    resources: ["endpoints"]
-    verbs: ["get", "list", "watch", "create", "update", "patch"]
----
-kind: RoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: leader-locking-nfs-client-provisioner
-subjects:
-  - kind: ServiceAccount
-    name: nfs-client-provisioner
-    # replace with namespace where provisioner is deployed
-    namespace: default
-roleRef:
-  kind: Role
-  name: leader-locking-nfs-client-provisioner
-  apiGroup: rbac.authorization.k8s.io
-```
-
-
-
-##### 创建PersistentVolumeClaim
-
-```yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: nfs-dynamic-claim
-  annotations:
-    volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 1Gi
-```
-
-
-
-##### 创建POD
-
-yaml文件参考静态NFS的POD，不再赘述。
-
