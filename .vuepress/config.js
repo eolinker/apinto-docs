@@ -205,6 +205,8 @@ function apinto() {
       children: [
         // '/docs/apinto/plugins/plugin_build.md',
         '/docs/apinto/plugins/extra_params.md',
+        '/docs/apinto/plugins/extra_params_v2.md',
+        '/docs/apinto/plugins/data_transform.md',
         '/docs/apinto/plugins/params_transformer.md',
         '/docs/apinto/plugins/proxy_rewrite.md',
         '/docs/apinto/plugins/proxy_rewrite_v2.md',
