@@ -5,10 +5,6 @@
 |----------|----------------| -------- |
 | 额外参数插件V2 | extra_params_v2 | 参数处理 |
 
-## 额外参数插件
-
-- 插件id：`eolinker.com:apinto:extra_params_v2`
-- 插件名称：`extra_params_v2`
 
 ### 配置示例
 

@@ -6,12 +6,14 @@
 |------|----------------| -------- |
 | 格式转换 | data_transform | 参数处理 |
 
-### 目的
+### 描述
 
-后端服务系统遵循SOAP协议开发，数据通讯格式为XML。
+XML和JSON是目前主要的两种数据交换格式。由于历史原因，一些后端服务系统采用SOAP协议开发，使用XML作为数据通讯格式。然而，现在业界大多数开放的API都采用JSON格式数据进行通信。但由于后端服务技术老旧，无法进行改造。为了向用户提供更便利的调用方式，我们可以使用格式转换插件来解决JSON和XML之间的互转问题。这样，我们就能够通过JSON格式开放给用户调用，同时与后端服务系统进行无缝交互。
 
-现在业内开放的API大多数采用JSON格式，后端服务技术老旧无法进行改造，希望通过JSON格式开放给用户调用，解决JSON格式与XML格式的互转问题。
+当客户端请求体为JSON时，经过Apinto网关后，将会将数据转换成XML发送给后端服务；接收到后端服务返回的XML后，Apinto将会把该内容转成JSON返回给客户端，如下图所示：
 
+![](http://data.eolinker.com/course/vXNVhhp3fed8da6162ac62d4c95ad42685d7940083f2509.png)
+同理，当客户端请求体为XML时，也会自动转换成JSON发送给后端服务。
 ### 功能演示
 
 该插件根据请求/响应头部`Content-Type`自动匹配数据格式，进行数据格式转换。当`Content-Type`包含`application/json`、`text/json`时，此时数据格式被判定为`JSON`，`Apinto`将把数据转成`XML`；当`Content-Type`包含`application/xml`、`text/xml`时，此时数据格式被判定为`XML`，`Apinto`将把数据转成`JSON`。
@@ -28,7 +30,7 @@
 
 **配置示例**
 
-```JSON
+```json
 {
     "error_type": "json",
     "request_transform": true,
@@ -44,7 +46,7 @@
 
 根据上述示例配置好插件后，客户端请求网关时需要携带**请求头部**`Content-Type: application/json`，请求体内容如下
 
-```JSON
+```json
 {"cpCode":"YTO","province":"广东省","city":"广州市","phone":"11,33"}
 ```
 
@@ -122,7 +124,7 @@
 
 上游服务返回的响应头部携带`Content-Type: application/xml`，此时，经过格式转换插件，客户端接收的响应内容为
 
-```JSON
+```json
 {
     "definitions": {
         "-soap": "http://schemas.xmlsoap.org/wsdl/soap/",
