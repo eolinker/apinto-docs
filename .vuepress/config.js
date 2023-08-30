@@ -22,9 +22,9 @@ module.exports = {
           {
             text:"Apinto Dashboard V3",link: "https://help.eolink.com/tutorial/Apinto"
           },
-          {
-            text:"Apinto Dashboard V2",link: "/docs/dashboard-v2/index.md"
-          },
+          // {
+          //   text:"Apinto Dashboard V2",link: "/docs/dashboard-v2/index.md"
+          // },
           {
             text:"Apinto Dashboard",link: "/docs/dashboard/index.md"
           },
@@ -95,7 +95,7 @@ function getSideBar(){
   return {
     '/docs': apinto(),
     "/docs/dashboard": dashboard(),
-    "/docs/dashboard-v2":dashboard_v2(),
+    // "/docs/dashboard-v2":dashboard_v2(),
   }
 }
 
