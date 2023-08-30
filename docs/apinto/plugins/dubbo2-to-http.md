@@ -1,4 +1,4 @@
-# dubbo2协议转http协议插件
+# Dubbo2协议转HTTP协议
 
 ### 插件信息
 

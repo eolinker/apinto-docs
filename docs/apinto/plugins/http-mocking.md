@@ -1,4 +1,4 @@
-# http_mocking
+# HTTP-MOCK
 
 ### 插件信息
 

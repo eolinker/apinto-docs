@@ -31,8 +31,8 @@
 | [额外参数_v2](/docs/apinto/plugins/extra_params_v2.md)           | extra_params_v2      | 请求处理  | 转发时在请求中携带自定义参数，支持动态处理参数                                                 |
 | [参数映射](/docs/apinto/plugins/params_transformer.md)           | params_transformer   | 请求处理  | 转发时将请求中的原参数映射成自定义参数                                                     |
 | [格式转换](/docs/apinto/plugins/data_transform.md)               | data_transform       | 请求处理  | 对请求体、响应体内容自动进行JSON和XML格式互转                                              |
-| [次数扣减](/docs/apinto/counter.md)                              | counter              | 流量管控  | 确保API请求的数量保持在可接受的限制范围内，防止过载，并确保资源的公平分配                                  |
-| [参数校验](/docs/apinto/params_check.md)                         | params_check         | 安全防护  | 校验请求体 、请求头部 、Query参数的有效性和合法性，过滤/拦截无效请求。                                 |
+| [次数扣减](/docs/apinto/plugins/counter.md)                      | counter              | 流量管控  | 确保API请求的数量保持在可接受的限制范围内，防止过载，并确保资源的公平分配                                  |
+| [参数校验](/docs/apinto/plugins/params_check.md)                 | params_check         | 安全防护  | 校验请求体 、请求头部 、Query参数的有效性和合法性，过滤/拦截无效请求。                                 |
 | [请求体大小限制](/docs/apinto/plugins/body_check.md)                | body_check           | 安全防护  | 通过限制请求体大小，可以有效地控制网络流量、保护服务器资源和防止潜在的安全威胁                                 |
 | [转发重写](/docs/apinto/plugins/proxy_rewrite.md)                | proxy_rewrite        | 请求处理  | 转发时对请求的host、scheme、uri进行重写，同时能在请求头加入自定义参数                               |
 | [转发重写_v2](/docs/apinto/plugins/proxy_rewrite_v2.md)          | proxy_rewrite_v2     | 请求处理  | 转发时对请求的host、scheme、uri进行重写，同时能在请求头加入自定义参数，对转发路径path的重写支持静态重写，前缀替换，正则替换  |

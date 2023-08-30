@@ -1,4 +1,4 @@
-# Http协议转gRPC协议插件
+# HTTP协议转gRPC协议
 
 ### 插件信息
 

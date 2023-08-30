@@ -1,4 +1,4 @@
-# prometheus
+# Prometheus
 ### 插件信息
 
 | 名称           | 字段       | 属性     |
