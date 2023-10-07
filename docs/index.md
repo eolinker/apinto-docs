@@ -91,7 +91,7 @@ Apinto是一个基于 Golang 开发的微服务网关，能够实现高性能 HT
 
 ### 部署
 
-部署详细文档请点击[部署教程](/docs/quick/arrange.md)
+部署详细文档请点击[部署教程](/docs/apinto/quick/arrange.md)
 
 
 ### **联系我们**
