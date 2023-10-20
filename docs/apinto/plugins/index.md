@@ -47,6 +47,7 @@
 | [流量控制](/docs/apinto/plugins/rate_limiting.md)                | rate_limiting        | 安全防控  | 控制请求在单位时间内的访问次数                                                         |
 | [响应重写](/docs/apinto/plugins/response_rewrite.md)             | response_rewrite     | 响应处理  | 用于重写网关返回的状态码、响应体、头部                                                     |
 | [响应重写v2](/docs/apinto/plugins/response_rewrite_v2.md)        | response_rewrite_v2  | 响应处理  | 当匹配响应状态码、响应体、响应头部后，重写响应信息，重写内容包括网关返回的状态码、响应体、头部。                        |
+| [请求拦截](/docs/apinto/plugins/request_interception.md)         | request_interception    | 安全防护  | 用于拦截请求，防止非法请求转发到上游服务                                                   |
 | [API熔断](/docs/apinto/plugins/circuit_breaker.md)             | circuit_breaker      | 安全防护  | 用于停止对不可用API的转发                                                          |
 | [跨域CORS](/docs/apinto/plugins/cors.md)                       | cors                 | 安全防控  | 设置跨域的头部字段，实现跨域功能                                                        |
 | [GZIP压缩](/docs/apinto/plugins/gzip.md)                       | gzip                 | 响应处理  | 将响应进行gzip压缩，以提高传输效率                                                     |

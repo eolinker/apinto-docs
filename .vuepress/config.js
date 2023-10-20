@@ -220,7 +220,7 @@ function apinto() {
         '/docs/apinto/plugins/grpc-proxy_rewrite.md',
         '/docs/apinto/plugins/ip_restriction.md',
         '/docs/apinto/plugins/rate_limiting.md',
-        // '/docs/apinto/plugins/auth.md',
+        '/docs/apinto/plugins/request_interception.md',
         '/docs/apinto/plugins/response_rewrite.md',
         '/docs/apinto/plugins/response_rewrite_v2.md',
         '/docs/apinto/plugins/circuit_breaker.md',
