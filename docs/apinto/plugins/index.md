@@ -25,36 +25,36 @@
 
 ### 插件列表
 
-| 插件名称                                                         | 字段名                  | 插件类型  | 说明                                                                        |
-|--------------------------------------------------------------|----------------------|-------|---------------------------------------------------------------------------|
-| [额外参数](/docs/apinto/plugins/extra_params.md)                 | extra_params         | 请求处理  | 转发时在请求中携带自定义参数                                                            |
-| [额外参数_v2](/docs/apinto/plugins/extra_params_v2.md)           | extra_params_v2      | 请求处理  | 转发时在请求中携带自定义参数，支持动态处理参数                                                   |
-| [参数映射](/docs/apinto/plugins/params_transformer.md)           | params_transformer   | 请求处理  | 转发时将请求中的原参数映射成自定义参数                                                       |
-| [格式转换](/docs/apinto/plugins/data_transform.md)               | data_transform       | 请求处理  | 对请求体、响应体内容自动进行JSON和XML格式互转                                                |
-| [次数扣减](/docs/apinto/plugins/counter.md)                      | counter              | 流量管控  | 确保API请求的数量保持在可接受的限制范围内，防止过载，并确保资源的公平分配                                    |
-| [参数校验](/docs/apinto/plugins/params_check.md)                 | params_check         | 安全防护  | 校验请求体 、请求头部 、Query参数的有效性和合法性，过滤/拦截无效请求。                                   |
-| [请求体大小限制](/docs/apinto/plugins/body_check.md)                | body_check           | 安全防护  | 通过限制请求体大小，可以有效地控制网络流量、保护服务器资源和防止潜在的安全威胁                                   |
-| [转发重写](/docs/apinto/plugins/proxy_rewrite.md)                | proxy_rewrite        | 请求处理  | 转发时对请求的host、scheme、uri进行重写，同时能在请求头加入自定义参数                                 |
-| [转发重写_v2](/docs/apinto/plugins/proxy_rewrite_v2.md)          | proxy_rewrite_v2     | 请求处理  | 转发时对请求的host、scheme、uri进行重写，同时能在请求头加入自定义参数，对转发路径path的重写支持静态重写，前缀替换，正则替换    |
-| [HTTP-MOCK](/docs/apinto/plugins/http-mocking.md)            | http-mocking         | 请求处理  | 当执行该插件时，它将随机返回指定格式的模拟数据，并且请求不会转发到上游。                                      |
-| [Dubbo2协议转发重写](/docs/apinto/plugins/dubbo2-proxy-rewrite.md) | dubbo2-proxy-rewrite | 请求处理  | 转发时，对dubbo2协议请求的service_name、method_name进行重写，同时能对attachment加入自定义参数        |
-| [HTTP协议转Dubbo2协议](/docs/apinto/plugins/http-to-dubbo2.md)    | http-to-dubbo2       | 协议转换  | 将HTTP请求转换成Dubbo2请求                                                        |
-| [Dubbo2协议转HTTP协议](/docs/apinto/plugins/dubbo2-to-http.md)    | dubbo2-to-http       | 协议转换  | 将Dubbo2请求转换成HTTP请求                                                        |
-| [gRPC协议转发重写](/docs/apinto/plugins/grpc-proxy_rewrite.md)     | proxy_rewrite        | 请求处理  | 对上游代理信息进行重写。包括重写转发的服务名、重写转发的方法名、重写虚拟主机域名（`:authority`）、对转发的请求头部进行新增、修改等   |
-| [HTTP协议转gRPC协议](/docs/apinto/plugins/http-to-grpc.md)        | http-to-grpc         | 协议转换  | 将HTTP请求转换成gRPC请求                                                          |
-| [gRPC协议转HTTP协议](/docs/apinto/plugins/grpc-to-http.md)        | grpc-to-http         | 协议转换  | 将gRPC请求转换成HTTP请求                                                          |
-| [IP黑白名单](/docs/apinto/plugins/ip_restriction.md)             | ip_restriction       | 安全防控  | 对访问的客户端ip进行黑白限制                                                           |
-| [流量控制](/docs/apinto/plugins/rate_limiting.md)                | rate_limiting        | 安全防控  | 控制请求在单位时间内的访问次数                                                           |
-| [响应重写](/docs/apinto/plugins/response_rewrite.md)             | response_rewrite     | 响应处理  | 用于重写网关返回的状态码、响应体、头部                                                       |
-| [响应重写v2](/docs/apinto/plugins/response_rewrite_v2.md)        | response_rewrite_v2  | 响应处理  | 当匹配响应状态码、响应体、响应头部后，重写响应信息，重写内容包括网关返回的状态码、响应体、头部。                          |
-| [响应过滤](/docs/apinto/plugins/response_filter.md)              | response_filter      | 响应处理  | 用于过滤网关响应体字段、响应头部字段，通过隐藏上游服务返回的部分字段，避免敏感信息泄露                               |
-| [请求拦截](/docs/apinto/plugins/request_interception.md)         | request_interception | 安全防护  | 用于拦截请求，防止非法请求转发到上游服务                                                      |
-| [API熔断](/docs/apinto/plugins/circuit_breaker.md)             | circuit_breaker      | 安全防护  | 用于停止对不可用API的转发                                                            |
-| [跨域CORS](/docs/apinto/plugins/cors.md)                       | cors                 | 安全防控  | 设置跨域的头部字段，实现跨域功能                                                          |
-| [GZIP压缩](/docs/apinto/plugins/gzip.md)                       | gzip                 | 响应处理  | 将响应进行gzip压缩，以提高传输效率                                                       |
-| [ACCESS访问日志](/docs/apinto/plugins/access_log.md)             | access_log           | 可观测性  | 记录到达网关的HTTP请求的访问日志                                                        |
-| [流量镜像](/docs/apinto/plugins/proxy_mirror.md)                 | proxy_mirror         | 可观测性  | 将线上真实流量拷贝到镜像服务中，以便在不影响线上服务的情况下，对线上流量或请求内容进行具体的分析。                         |
-| [Prometheus](/docs/apinto/plugins/prometheus.md)             | prometheus           | 可观测性  | 将请求的信息和配置的指标列表发送给指定的prometheus输出器，由各个prometheus输出器内同名的指标处理并采集请求内的信息       |
+| 插件名称                                                         | 字段名                  | 插件类型  | 说明                                                                      |
+|--------------------------------------------------------------|----------------------|-------|-------------------------------------------------------------------------|
+| [额外参数](/docs/apinto/plugins/extra_params.md)                 | extra_params         | 请求处理  | 转发时在请求中携带自定义参数                                                          |
+| [额外参数_v2](/docs/apinto/plugins/extra_params_v2.md)           | extra_params_v2      | 请求处理  | 转发时在请求中携带自定义参数，支持动态处理参数                                                 |
+| [参数映射](/docs/apinto/plugins/params_transformer.md)           | params_transformer   | 请求处理  | 转发时将请求中的原参数映射成自定义参数                                                     |
+| [格式转换](/docs/apinto/plugins/data_transform.md)               | data_transform       | 请求处理  | 对请求体、响应体内容自动进行JSON和XML格式互转                                              |
+| [次数扣减](/docs/apinto/plugins/counter.md)                      | counter              | 流量管控  | 确保API请求的数量保持在可接受的限制范围内，防止过载，并确保资源的公平分配                                  |
+| [参数校验](/docs/apinto/plugins/params_check.md)                 | params_check         | 安全防护  | 校验请求体 、请求头部 、Query参数的有效性和合法性，过滤/拦截无效请求。                                 |
+| [请求体大小限制](/docs/apinto/plugins/body_check.md)                | body_check           | 安全防护  | 通过限制请求体大小，可以有效地控制网络流量、保护服务器资源和防止潜在的安全威胁                                 |
+| [转发重写](/docs/apinto/plugins/proxy_rewrite.md)                | proxy_rewrite        | 请求处理  | 转发时对请求的host、scheme、uri进行重写，同时能在请求头加入自定义参数                               |
+| [转发重写_v2](/docs/apinto/plugins/proxy_rewrite_v2.md)          | proxy_rewrite_v2     | 请求处理  | 转发时对请求的host、scheme、uri进行重写，同时能在请求头加入自定义参数，对转发路径path的重写支持静态重写，前缀替换，正则替换  |
+| [HTTP-MOCK](/docs/apinto/plugins/http-mocking.md)            | http-mocking         | 请求处理  | 当执行该插件时，它将随机返回指定格式的模拟数据，并且请求不会转发到上游。                                    |
+| [Dubbo2协议转发重写](/docs/apinto/plugins/dubbo2-proxy-rewrite.md) | dubbo2-proxy-rewrite | 请求处理  | 转发时，对dubbo2协议请求的service_name、method_name进行重写，同时能对attachment加入自定义参数      |
+| [HTTP协议转Dubbo2协议](/docs/apinto/plugins/http-to-dubbo2.md)    | http-to-dubbo2       | 协议转换  | 将HTTP请求转换成Dubbo2请求                                                      |
+| [Dubbo2协议转HTTP协议](/docs/apinto/plugins/dubbo2-to-http.md)    | dubbo2-to-http       | 协议转换  | 将Dubbo2请求转换成HTTP请求                                                      |
+| [gRPC协议转发重写](/docs/apinto/plugins/grpc-proxy_rewrite.md)     | proxy_rewrite        | 请求处理  | 对上游代理信息进行重写。包括重写转发的服务名、重写转发的方法名、重写虚拟主机域名（`:authority`）、对转发的请求头部进行新增、修改等 |
+| [HTTP协议转gRPC协议](/docs/apinto/plugins/http-to-grpc.md)        | http-to-grpc         | 协议转换  | 将HTTP请求转换成gRPC请求                                                        |
+| [gRPC协议转HTTP协议](/docs/apinto/plugins/grpc-to-http.md)        | grpc-to-http         | 协议转换  | 将gRPC请求转换成HTTP请求                                                        |
+| [IP黑白名单](/docs/apinto/plugins/ip_restriction.md)             | ip_restriction       | 安全防控  | 对访问的客户端ip进行黑白限制                                                         |
+| [流量控制](/docs/apinto/plugins/rate_limiting.md)                | rate_limiting        | 安全防控  | 控制请求在单位时间内的访问次数                                                         |
+| [响应重写](/docs/apinto/plugins/response_rewrite.md)             | response_rewrite     | 响应处理  | 用于重写网关返回的状态码、响应体、头部                                                     |
+| [响应重写v2](/docs/apinto/plugins/response_rewrite_v2.md)        | response_rewrite_v2  | 响应处理  | 当匹配响应状态码、响应体、响应头部后，重写响应信息，重写内容包括网关返回的状态码、响应体、头部。                        |
+| [响应过滤](/docs/apinto/plugins/response_filter.md)              | response_filter      | 响应处理  | 用于过滤上游服务返回的响应体字段、响应头部字段，通过隐藏上游服务返回的部分字段，避免敏感信息泄露                        |
+| [请求拦截](/docs/apinto/plugins/request_interception.md)         | request_interception | 安全防护  | 用于拦截请求，防止非法请求转发到上游服务                                                    |
+| [API熔断](/docs/apinto/plugins/circuit_breaker.md)             | circuit_breaker      | 安全防护  | 用于停止对不可用API的转发                                                          |
+| [跨域CORS](/docs/apinto/plugins/cors.md)                       | cors                 | 安全防控  | 设置跨域的头部字段，实现跨域功能                                                        |
+| [GZIP压缩](/docs/apinto/plugins/gzip.md)                       | gzip                 | 响应处理  | 将响应进行gzip压缩，以提高传输效率                                                     |
+| [ACCESS访问日志](/docs/apinto/plugins/access_log.md)             | access_log           | 可观测性  | 记录到达网关的HTTP请求的访问日志                                                      |
+| [流量镜像](/docs/apinto/plugins/proxy_mirror.md)                 | proxy_mirror         | 可观测性  | 将线上真实流量拷贝到镜像服务中，以便在不影响线上服务的情况下，对线上流量或请求内容进行具体的分析。                       |
+| [Prometheus](/docs/apinto/plugins/prometheus.md)             | prometheus           | 可观测性  | 将请求的信息和配置的指标列表发送给指定的prometheus输出器，由各个prometheus输出器内同名的指标处理并采集请求内的信息     |
 
 ### 全局插件配置
 
