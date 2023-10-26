@@ -223,6 +223,7 @@ function apinto() {
         '/docs/apinto/plugins/request_interception.md',
         '/docs/apinto/plugins/response_rewrite.md',
         '/docs/apinto/plugins/response_rewrite_v2.md',
+        '/docs/apinto/plugins/response_filter.md',
         '/docs/apinto/plugins/circuit_breaker.md',
         '/docs/apinto/plugins/cors.md',
         '/docs/apinto/plugins/gzip.md',
