@@ -232,6 +232,8 @@ function apinto() {
         '/docs/apinto/plugins/http-to-grpc.md',
         '/docs/apinto/plugins/grpc-to-http.md',
         '/docs/apinto/plugins/proxy_mirror.md',
+        '/docs/apinto/plugins/request-file-parse.md',
+        '/docs/apinto/plugins/response-file-parse.md',
       ],
     },
     {

@@ -13,6 +13,7 @@ XML和JSON是目前主要的两种数据交换格式。由于历史原因，一�
 当客户端请求体为JSON时，经过Apinto网关后，将会将数据转换成XML发送给后端服务；接收到后端服务返回的XML后，Apinto将会把该内容转成JSON返回给客户端，如下图所示：
 
 ![](http://data.eolinker.com/course/vXNVhhp3fed8da6162ac62d4c95ad42685d7940083f2509.png)
+
 同理，当客户端请求体为XML时，也会自动转换成JSON发送给后端服务。
 ### 功能演示
 
