@@ -234,6 +234,7 @@ function apinto() {
         '/docs/apinto/plugins/proxy_mirror.md',
         '/docs/apinto/plugins/request-file-parse.md',
         '/docs/apinto/plugins/response-file-parse.md',
+        '/docs/apinto/plugins/auto_redirect.md',
       ],
     },
     {
