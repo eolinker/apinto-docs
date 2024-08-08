@@ -13,14 +13,18 @@
 ## 配置示例
 ```json
 {
-    "max_redirect_count": 3
+    "max_redirect_count": 3,
+    "auto_redirect": false,
+    "path_prefix": "/web"
 }
 ```
 **字段描述**
 
-| 字段 | 类型  | 描述                 |
-|-----|-----|--------------------|
-| max_redirect_count | int | 最大重定向次数，该值需大于0小于10 |
+| 字段                 | 类型      | 描述                                                                                                                                                                       |
+|--------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| max_redirect_count | int     | 最大重定向次数，该值需大于0小于10                                                                                                                                                       |
+| auto_redirect      | bool    | 当遇到301、302状态码时，网关是否重定向到新的地址                                                                                                                                              |
+| path_prefix        | string  | 重定向路径前缀，该值会填充响应头`Location`的参数值。<br/>假设原`Location`为：`http://www.apinto.com/user/info` ，设置的`path_prefix`为：`/web`<br/>经过修改后，Location：`http://www.apinto.com/web/user/info`  |
 
 ### 开启重定向插件前
 网关直接透传后端服务响应内容，如下图：
