@@ -99,10 +99,6 @@ Apinto是一个基于 Golang 开发的微服务网关，能够实现高性能 HT
 
 * **帮助文档**：[https://help.apinto.com/docs](https://help.apinto.com/docs)
 
-- **QQ群**: 725853895
-
-- **Slack**：[加入我们](https://join.slack.com/t/slack-zer6755/shared_invite/zt-u7wzqp1u-aNA0XK9Bdb3kOpN03jRmYQ)
-
 - **官网**：[https://www.apinto.com](https://www.apinto.com/)
 - **论坛**：[https://community.apinto.com](https://community.apinto.com/)
 - **微信群**：<img src="http://data.eolinker.com/course/2HdT4zd10b670318462bec90f0f390bef896c21cad66172.png" style="width:150px" />

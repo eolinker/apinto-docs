@@ -49,10 +49,6 @@ Apinto Dashboard与Apinto交互流程如下图所示：
     - [Apinto](https://github.com/eolinker/apinto)
     - [Apinto Dashboard](https://github.com/eolinker/apinto-dashboard)
 
-- **QQ群**: 725853895
-
-- **Slack**：[加入我们](https://join.slack.com/t/slack-zer6755/shared_invite/zt-u7wzqp1u-aNA0XK9Bdb3kOpN03jRmYQ)
-
 - **官网**：[https://www.apinto.com](https://www.apinto.com/)
 
 - **论坛**：[https://community.apinto.com](https://community.apinto.com/)

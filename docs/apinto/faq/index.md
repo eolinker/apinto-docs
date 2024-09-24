@@ -38,7 +38,6 @@ export APINTO_DEBUG=true
 
 ## 如果在使用 APINTO过程中遇到问题，我可以在哪里寻求更多帮助？
 
-- **QQ群**: 725853895
-- **Slack**：[加入我们](https://join.slack.com/t/slack-zer6755/shared_invite/zt-u7wzqp1u-aNA0XK9Bdb3kOpN03jRmYQ)
+
 - **论坛**：[https://community.apinto.com](https://community.apinto.com/)
 - **微信群**：<img src="http://data.eolinker.com/course/2HdT4zd10b670318462bec90f0f390bef896c21cad66172.png" style="width:150px" />

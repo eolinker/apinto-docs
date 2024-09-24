@@ -58,8 +58,7 @@ Json Scheme数据返回示例：
 - **Github**：
   - [Apinto](https://github.com/eolinker/apinto)
   - [Apinto Dashboard](https://github.com/eolinker/apinto-dashboard)
-- **QQ群**: 725853895
-- **Slack**：[加入我们](https://join.slack.com/t/slack-zer6755/shared_invite/zt-u7wzqp1u-aNA0XK9Bdb3kOpN03jRmYQ)
+
 - **官网**：[https://www.apinto.com](https://www.apinto.com/)
 - **论坛**：[https://community.apinto.com](https://community.apinto.com/)
 - **微信群**：[![img](http://data.eolinker.com/course/2HdT4zd10b670318462bec90f0f390bef896c21cad66172.png)](http://data.eolinker.com/course/2HdT4zd10b670318462bec90f0f390bef896c21cad66172.png)
