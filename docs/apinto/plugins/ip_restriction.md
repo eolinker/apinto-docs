@@ -119,9 +119,8 @@ curl -X POST 'http://127.0.0.1:9400/api/router' \
   "driver": "http",
   "description": "该路由的目标服务使用了黑白ip插件",
   "listen": 8099,
-  "rules": [{
-	"location": "/demo/ip_restriction"
-  }],
+  "location": "/demo/ip_restriction",
+  "rules": [],
   "target": "ip_restriction_service@service"
 }'
 ```

@@ -109,9 +109,8 @@ curl -X POST  'http://127.0.0.1:9400/api/router' \
     "name":"response_rewrite_router",
     "driver":"http",
     "listen":8099,
-    "rules":[{
-        "location":"/demo/response_rewrite"
-    }],
+    "location":"/demo/response_rewrite",
+    "rules":[],
     "target":"response_rewrite_service@service"
 }'
 ```

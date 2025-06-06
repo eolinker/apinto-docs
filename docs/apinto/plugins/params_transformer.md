@@ -115,9 +115,8 @@ curl -X POST  'http://127.0.0.1:9400/api/router' \
     "name":"params_trans_router",
     "driver":"http",
     "listen":8099,
-    "rules":[{
-        "location":"/demo/params_trans"
-    }],
+    "location":"/demo/params_trans",
+    "rules":[],
     "target":"params_trans_service@service"
 }'
 ```
