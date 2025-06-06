@@ -139,7 +139,7 @@
 
 ### router引用插件配置
 
-在全局插件中启用了某个插件之后，可以在`router`或`service`中引用并配置它。
+在全局插件中启用了某个插件之后，可以在`router`中引用并配置它。
 
 #### 配置参数说明
 
@@ -162,10 +162,10 @@ curl -X POST  'http://127.0.0.1:9400/api/router' \
 	"name":"params_router",
 	"driver":"http",
 	"listen":8099,
-  "location":"/plugin/extra_params"
+    "location":"/plugin/extra_params"
 	"rules":[],
 	"target":"extra_param_service@service",
-  "plugins": {
+    "plugins": {
 	  "my_access_log": {
 		  "disable": false,
 		  "config": {
@@ -243,7 +243,7 @@ curl -X POST  'http://127.0.0.1:9400/api/router' \
 	"name":"params_router",
 	"driver":"http",
 	"listen":8099,
-  "location":"/plugin/extra_params"
+    "location":"/plugin/extra_params"
 	"rules":[],
 	"target":"extra_param_service@service",
 	"plugins":{
