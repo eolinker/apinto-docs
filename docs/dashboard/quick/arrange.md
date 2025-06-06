@@ -82,7 +82,7 @@ nohup ./apinto-dashboard > logs/stdout_apinto-dashboard_"$(date '+%Y%m%d-%H%M%S'
 zone: zh_cn
 default: monitor
 apinto:
-  - "http://127.0.0.1:9400"
+  - "http://xxxx"  // 此处根据实际情况填写apinto的admin地址
 port: 8081
 filter_forwarded: false
 user_details:
