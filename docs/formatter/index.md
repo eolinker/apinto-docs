@@ -367,7 +367,10 @@ line日志内容仅包含系统可用值或常量，不像json那样有明确分
 | node                   | 节点id                                                                                                             |     |
 | cluster                | 集群id                                                                                                             |     |
 | application            | 应用ID                                                                                                             |     |
+| api | 匹配中的api id                                                                                                       |     |
+| service                | 匹配中的服务id                                                                                                       |     |
 | token                  | 用户访问鉴权信息                                                                                                         |     |
+| block_name | 拦截策略Name                                                                                                         |     |
 | src_ip                 | 请求源IP                                                                                                            |     |
 | src_port               | 请求源端口                                                                                                            |     |
 | dst_ip                 | 目标IP                                                                                                             |     |

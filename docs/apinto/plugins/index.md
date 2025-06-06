@@ -137,7 +137,7 @@
 
 
 
-### router、service引用插件配置
+### router引用插件配置
 
 在全局插件中启用了某个插件之后，可以在`router`或`service`中引用并配置它。
 
@@ -153,19 +153,18 @@
 
 #### 配置示例
 
-以在服务中配置额外参数插件和access_log插件为例
+以在路由中配置额外参数插件和`access_log`插件为例
 
 ```shell
-curl - X POST 'http://127.0.0.1:9400/api/service'\ 
--H 'Content-Type:application/json'\ 
+curl -X POST  'http://127.0.0.1:9400/api/router' \
+-H 'Content-Type:application/json' \
 -d '{
-  "name": "extra_param_service",
-  "driver": "http",
-  "timeout": 3000,
-  "retry": 3,
-  "scheme": "http",
-  "nodes": ["demo.apinto.com:8280"],
-  "balance": "round-robin",
+	"name":"params_router",
+	"driver":"http",
+	"listen":8099,
+  "location":"/plugin/extra_params"
+	"rules":[],
+	"target":"extra_param_service@service",
   "plugins": {
 	  "my_access_log": {
 		  "disable": false,
@@ -215,7 +214,7 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 
 **配置服务**
 
-服务中配置额外参数插件，plugins参数中每个插件key需要使用全局插件中对应插件的name。
+路由中配置额外参数插件，plugins参数中每个插件key需要使用全局插件中对应插件的name。
 
 比如下面服务插件配置里的`my_extra_params`使用的是上面全局插件配置里的name。
 
@@ -231,21 +230,7 @@ curl -X POST  'http://127.0.0.1:9400/api/service' \
     "retry": 3,
     "scheme": "http",
     "nodes": ["demo.apinto.com:8280"],
-    "balance": "round-robin",
-    "plugins": {
-        "my_extra_params":{
-            "disable": false,
-            "config":{
-                "params": [{
-                "name": "demo_param",
-                "position": "query",
-                "value": "1",
-                "conflict": "Convert"
-                }],
-            "error_type": "text"
-            }
-        }
-    }
+    "balance": "round-robin"
 }' 
 ```
 
@@ -258,10 +243,23 @@ curl -X POST  'http://127.0.0.1:9400/api/router' \
 	"name":"params_router",
 	"driver":"http",
 	"listen":8099,
-	"rules":[{
-	"location":"/plugin/extra_params"
-	}],
-	"target":"extra_param_service@service"
+  "location":"/plugin/extra_params"
+	"rules":[],
+	"target":"extra_param_service@service",
+	"plugins":{
+		"my_extra_params":{
+			"disable":false,
+			"config":{
+				"params":[{
+					"name":"demo_param",
+					"position":"query",
+					"value":"1",
+					"conflict":"Convert"
+				}],
+			"error_type":"text"
+			}
+		}
+	}
 }'
 ```
 
@@ -349,9 +347,8 @@ curl -X POST  'http://127.0.0.1:9400/api/router' \
   "name":"params_router",
   "driver":"http",
   "listen":8099,
-  "rules":[{
-	"location":"/plugin/global/extra_params"
-  }],
+  "location":"/plugin/global/extra_params"
+  "rules":[],
   "target":"extra_param_service@service"
 }'
 ```
