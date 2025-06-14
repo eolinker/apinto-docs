@@ -75,22 +75,16 @@ curl -X POST  'http://127.0.0.1:9400/api/setting/plugin' \
 ##### 配置gRPC上游服务
 ```shell
 curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/json' -d '{
-    "balance":"round-robin",
-    "create":"2023-02-17 12:33:09",
-    "description":"",
-    "discovery":"",
+    "name":"grpc_api",
     "driver":"http",
-    "id":"grpc_demo@service",
-    "name":"grpc_demo",
+    "description":"grpc服务",
+    "timeout":2000,
+    "retry":3,
+    "scheme":"http",
     "nodes":[
         "127.0.0.1:9001"
     ],
-    "pass_host":"node",
-    "profession":"service",
-    "retry":0,
-    "scheme":"HTTP",
-    "timeout":2000,
-    "update":"2023-02-27 19:59:45"
+    "balance":"round-robin"
 }' 
 ```
 
@@ -99,41 +93,36 @@ curl -X POST  'http://127.0.0.1:9400/api/service' -H 'Content-Type:application/j
 
 ```shell
 curl -X POST  'http://127.0.0.1:9400/api/router' -H 'Content-Type:application/json' -d '{
-    "listen":8099,
+    "name":"grpc_router",
+    "driver": "http",
+    "description":"grpc路由",
+    "listen":80,
     "method":[
         "GET",
         "POST"
     ],
     "host":[
-
     ],
     "location":"/Service.Hello/Hello",
     "rules":[
-
     ],
-    "service":"grpc_demo@service",
-    "template":"",
-    "websocket":false,
-    "disable":false,
+    "service":"grpc_api@service",
     "plugins":{
         "http_to_grpc":{
             "disable":false,
             "config":{
+                "service":"Service.Hello",
+                "method":"Hello",
                 "authority":"",
                 "format":"json",
                 "headers":{
-
                 },
-                "method":"",
-                "protobuf_id":"demo@transcode",
-                "reflect":false,
-                "service":""
+                "reflect":true
             }
         }
     },
-    "retry":0,
-    "time_out":0,
-    "description":""
+    "retry":3,
+    "time_out":2000
 }' 
 ```
 
