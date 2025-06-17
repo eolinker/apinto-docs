@@ -50,6 +50,7 @@
 | [响应过滤](/docs/apinto/plugins/response_filter.md)              | response_filter       | 响应处理 | 用于过滤响应体字段、响应头部字段，通过隐藏上游服务返回的部分字段，避免敏感信息泄露                               |
 | [请求拦截](/docs/apinto/plugins/request_interception.md)         | request_interception  | 安全防护 | 用于拦截请求，防止非法请求转发到上游服务                                                    |
 | [API熔断](/docs/apinto/plugins/circuit_breaker.md)             | circuit_breaker       | 安全防护 | 用于停止对不可用API的转发                                                          |
+| [防重放攻击](/docs/apinto/plugins/replay_attack_defender.md) | replay_attack_defender | 安全防护 | 防止重放攻击，通过对请求进行签名校验，防止请求被重复执行                                 |
 | [跨域CORS](/docs/apinto/plugins/cors.md)                       | cors                  | 安全防控 | 设置跨域的头部字段，实现跨域功能                                                        |
 | [GZIP压缩](/docs/apinto/plugins/gzip.md)                       | gzip                  | 响应处理 | 将响应进行gzip压缩，以提高传输效率                                                     |
 | [ACCESS访问日志](/docs/apinto/plugins/access_log.md)             | access_log            | 可观测性 | 记录到达网关的HTTP请求的访问日志                                                      |
