@@ -8,7 +8,7 @@
 
 ### 描述
 对上游服务返回的响应进行过滤，可对响应头部、响应体进行过滤，支持多个过滤规则，过滤字段/响应头将会被删除，不会被返回给客户端。
-该插件可以隐藏上游服务返回的部分字段，避免敏感信息泄露。
+该插件可以隐藏上游服务返回的部分字段，避免敏感信息泄露。分别支持响应体和响应头部的**黑白名单**过滤。
 
 注意：该插件仅支持对JSON格式的响应体内容进行字段过滤。
 
@@ -18,7 +18,10 @@
 | 字段               | 类型            | 描述                                                 |
 |------------------|---------------|----------------------------------------------------|
 | body_filter      | []string      | 响应体过滤字段列表，字段名称按照`Json Path`规则填写，如：$.data.requestId |
-| header_filter    | []string      | 响应头部过滤字段                                           |                                                                   
+| header_filter    | []string      | 响应头部过滤字段                                           |            
+| body_filter_type | string | 响应体过滤类型，可选值为`white`（白名单）和`black`（黑名单），默认值为`black` |             
+| header_filter_type | string | 响应头部过滤类型，可选值为`white`（白名单）和`black`（黑名单），默认值为`black` |             
+
 ### 示例配置
 
 ```json
@@ -26,7 +29,9 @@
   "body_filter": [
     "$.data.requestId",
   ],
-  "header_filter": []
+  "header_filter": [],
+  "body_filter_type": "black",
+  "header_filter_type": "black"
 }
 ```
 
