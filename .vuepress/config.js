@@ -4,6 +4,7 @@ module.exports = {
   title: 'APINTO',
   description: '一款基于 Golang 开发的微服务网关',
   public: path.resolve(basedir, './public'),
+  clientConfigFile: path.resolve(__dirname, './client.js'),
   head: [['link', { rel: 'icon', href: '/images/logo.svg' }]],
   themeConfig: {
     logo: '/images/logo.png',
@@ -288,7 +289,7 @@ function dashboard_v2() {
       ],
     },
     {
-      text: '上游服务',
+      text: '上���服务',
       collapsible: true,
       children: [
         '/docs/' + name + '/upstream/upstream.md',
